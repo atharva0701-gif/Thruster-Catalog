@@ -117,7 +117,7 @@
     
     \vfill
     
-    {\large Document Version 1.1\par}
+    {\large Document Version 1.2\par}
     {\large 2026\par}
     
     \vspace{1cm}
@@ -162,6 +162,7 @@ The catalog is organized into the following chapters:
     \item Dynamic Positioning (DP) Thrusters
     \item Ice Class \& Cold-Climate (Winterisation) Requirements
     \item Additional BV Class Notations Affecting Thruster Packages
+    \item Ship-Type \& Service-Notation Specific Requirements
     \item Testing \& Commissioning
     \item Surveyor Checklists by Type
     \item Common Submission Errors
@@ -175,7 +176,7 @@ The catalog is organized into the following chapters:
     \item \textbf{Identify the thruster type} (Chapters \ref{ch:transverse}--\ref{ch:othertypes}) and confirm rated power. Thrusters $>$110~kW attract the full Sec.\,15 submission set.
     \item \textbf{Identify the prime mover} --- electric motor or diesel engine (Chapter \ref{ch:primemover}) --- and add the corresponding drive-train drawings.
     \item \textbf{Identify the functional role(s)}: propulsion, steering (Chapter \ref{ch:steering}), main shaft line (Chapter \ref{ch:shafting}), or dynamic positioning (Chapter \ref{ch:dp}). Each role \emph{adds} to the base package.
-    \item \textbf{Overlay additional notations \& service constraints}: ice class / winterisation (Chapter \ref{ch:ice}) and other BV additional class notations (Chapter \ref{ch:notations}).
+    \item \textbf{Overlay additional notations \& service constraints}: ice class / winterisation (Chapter \ref{ch:ice}), other BV additional class notations (Chapter \ref{ch:notations}), and the ship-type / service-notation requirements incl.\ SRtP, hazardous-area and offshore rules (Chapter \ref{ch:shiptype}).
     \item \textbf{Verify hydraulics/pitch} (Chapter \ref{ch:hydraulics}) and \textbf{testing \& commissioning} (Chapter \ref{ch:testing}).
     \item \textbf{Run the type-specific checklist} (Chapter \ref{ch:checklists}) and screen against common errors (Chapter \ref{ch:errors}).
 \end{enumerate}
@@ -4960,6 +4961,202 @@ reflects the \emph{uprated} loads, not just the open-water condition.
 
 \newpage
 
+% Chapter: Ship-Type / Service Notation
+\chapter{Ship-Type \& Service-Notation Specific Requirements}
+\label{ch:shiptype}
+
+\section{Purpose}
+
+The base thruster package (Chapters \ref{ch:general}--\ref{ch:othertypes}) and the
+prime-mover, ice and notation overlays (Chapters
+\ref{ch:primemover}, \ref{ch:ice}, \ref{ch:notations}) define \emph{what a
+thruster needs}. This chapter answers the complementary question the surveyor
+must also ask: \textbf{``given the ship type / service notation, what
+\emph{extra} do I expect in the thruster package, and which \emph{additional ship
+rules} apply?''}
+
+BV assigns each ship a \textbf{service notation} (NR467 \textbf{Part D}) ---
+e.g.\ \texttt{tug}, \texttt{supply}, \texttt{oil tanker}, \texttt{passenger
+ship} --- plus \textbf{additional class notations} (Part E). Together these pull
+in requirements beyond NR467 Sec.\,15, and sometimes bring in \emph{separate
+rule sets} (offshore units, naval ships, high-speed craft). The matrix below is
+the surveyor's ``what else to demand'' guide; the subsequent sections expand the
+cases with the most rule impact.
+
+\section{Ship-Type $\rightarrow$ Thruster Expectation Matrix}
+
+\begin{longtable}{|p{2.9cm}|p{3.7cm}|p{5.9cm}|p{1.8cm}|}
+\caption{Ship Type / Service --- Typical Arrangement \& Additional Requirements} \label{tab:shiptype} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Ship type / service}} & \textcolor{white}{\textbf{Typical thruster arrangement}} & \textcolor{white}{\textbf{Additional requirements \& notations to expect}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{4}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Ship type / service}} & \textcolor{white}{\textbf{Typical thruster arrangement}} & \textcolor{white}{\textbf{Additional requirements \& notations to expect}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+Harbour / escort tug & Azimuth Z-drive or VSP (main propulsion + steering) &
+Escort/indirect-towing steering \& structural loads; uprated slewing duty;
+steering redundancy; stability interaction; full steering-gear package. &
+NR467 Pt D (tug/escort tug); Sec.14 \\
+\hline
+
+Offshore supply / PSV / AHTS & Bow tunnel(s) + retractable + stern azimuth; DP &
+DYNAPOS/DP (usually DP-2): FMEA, redundancy, power segregation, capability plot;
+FiFi where fitted; station-keeping. & NR216; Pt D/E \\
+\hline
+
+Dredger (TSHD / CSD) & Bow tunnels; azimuth; sometimes DP &
+DREDGING service; DP for some; robust manoeuvring; abrasion/duty considerations.
+& NR467 Pt D \\
+\hline
+
+Passenger ship / RoPax / ferry & Bow (+ stern) tunnels; azimuth/pods on some &
+SOLAS steering (II-1/29); \textbf{Safe Return to Port} survivability \&
+redundancy for ships $\geq$120\,m / 3 fire zones; COMF. & SOLAS II-1/II-2; Pt E \\
+\hline
+
+Cruise ship & Podded propulsors + multiple bow/stern tunnels &
+SRtP; COMF-NOISE/VIB; propulsion/steering redundancy; sometimes DP. &
+SOLAS II-2 Reg.21/22; Pt E \\
+\hline
+
+Double-ended ferry & Azimuth or VSP at both ends &
+Steering redundancy \emph{at each end}; control-station changeover; response
+time both directions. & Sec.14; SOLAS II-1/29 \\
+\hline
+
+Cable / pipe layer, offshore construction & Retractable + azimuth + tunnels; DP &
+DYNAPOS DP-2/DP-3: FMEA, fire/flood separation (DP-3), redundancy, proving
+trials. & NR216; Pt E \\
+\hline
+
+Drillship / semi-sub (MODU) & Multiple azimuth thrusters; DP-3 &
+DP-3 station keeping; offshore-unit rules; fire/flood zone separation;
+extensive FMEA. & NR216; MODU / offshore rules \\
+\hline
+
+Oil / chemical tanker & Bow thruster (manoeuvring) &
+\textbf{Hazardous-area / explosion protection} where equipment is in or adjacent
+to dangerous zones; thruster-room zoning; certified-safe (Ex) equipment. &
+SOLAS II-2; IEC 60079; Pt C \\
+\hline
+
+Gas carrier (LNG/LPG) & Bow thruster; sometimes azimuth &
+As tanker \emph{plus} IGC Code hazardous-zone requirements; gas-safe equipment. &
+IGC Code; IEC 60079 \\
+\hline
+
+Ice-class / polar trader & Ice-strengthened tunnel/azimuth &
+Ice-load strengthening \& winterisation (see Chapter \ref{ch:ice}). &
+NR467 Pt E; NR527 \\
+\hline
+
+Research / naval / patrol & Rim-driven / pods / azimuth &
+Low underwater-noise \& signature; COMF/silent; naval ships follow dedicated
+naval rules. & Naval rules (e.g.\ NR483); Pt E \\
+\hline
+
+Large yacht & Bow/stern tunnels; pods &
+Comfort (noise/vibration); yacht-specific rules; retractable/stabiliser
+interfaces. & Yacht rules; Pt E \\
+\hline
+
+Container / bulk / general cargo & Bow tunnel thruster (manoeuvring) &
+Base Sec.\,15 package; typically electric drive; no special service overlay. &
+NR467 Sec.15; Pt C \\
+\hline
+
+\end{longtable}
+
+\section{Passenger Ships \& Safe Return to Port (SRtP)}
+
+For passenger ships to which SOLAS SRtP applies (broadly, ships $\geq$120\,m in
+length or having three or more main vertical fire zones), the ship must retain,
+after a defined casualty (fire in one zone or flooding of one watertight
+compartment), a set of \textbf{essential systems --- including propulsion and
+steering}. Where thrusters/pods/steering thrusters form part of the propulsion
+or steering means, the surveyor must confirm:
+\begin{itemize}[leftmargin=*]
+\item redundancy and physical/functional separation so a single casualty does
+not disable all propulsion \& steering;
+\item power supply, control and cooling for the retained thruster(s) surviving
+the casualty (fire zone / flooded compartment);
+\item consistency with the ship's SRtP systems-availability documentation and
+casualty-threshold analysis.
+\end{itemize}
+This typically \emph{adds} redundancy/segregation drawings and a systems
+availability analysis to the base thruster package. \textit{(Ref.\ SOLAS II-2
+Reg.21/22; NR467 passenger-ship requirements.)}
+
+\section{Tankers \& Gas Carriers --- Hazardous Areas \& Explosion Protection}
+
+On oil tankers, chemical tankers and gas carriers, the bow-thruster room and any
+electrical/rotating equipment located in or adjacent to \textbf{hazardous
+(gas-dangerous) zones} must meet explosion-protection requirements. The surveyor
+should verify:
+\begin{itemize}[leftmargin=*]
+\item hazardous-area classification of the thruster space and boundaries;
+\item \textbf{certified safe-type (Ex) equipment} for motors, sensors and
+junction boxes where required, with certificates;
+\item cable entries, penetrations and ventilation preserving zone integrity;
+\item for gas carriers, compliance with the \textbf{IGC Code} zoning in addition
+to SOLAS II-2.
+\end{itemize}
+\textit{(Ref.\ SOLAS II-2; IEC 60079 series; IGC Code; NR467 Pt C electrical in
+hazardous areas.)} A tanker bow thruster is often electric; confirm the motor's
+location relative to the cargo/hazardous zone \emph{before} accepting standard
+(non-Ex) equipment.
+
+\section{Offshore \& DP-Intensive Vessels}
+
+OSVs, construction, cable/pipe-lay units and MODUs are defined by their DP
+capability. Beyond the DP package of Chapter \ref{ch:dp}, expect: multiple
+independent thruster trains, power-plant segregation, DP-3 fire/flood separation
+where notated, worst-case-failure design intent, and comprehensive FMEA and
+proving-trials programmes. Mobile offshore units are additionally governed by
+\textbf{offshore-unit / MODU rules}, which may modify hull, machinery and
+location (hazardous-area) requirements relative to NR467.
+
+\section{Tugs \& Escort Tugs}
+
+For tugs the thruster \emph{is} the main propulsion and steering means (Z-drive
+or VSP). Escort tugs generate very high \textbf{indirect steering and towing
+loads}; the surveyor must confirm the azimuth/steering system, unit structure
+and hull foundation are substantiated for these loads (not merely free-running
+thrust), together with the full steering-gear package (Chapter \ref{ch:steering})
+and stability interaction. \textit{(Ref.\ NR467 Pt D tug / escort-tug service
+notations.)}
+
+\section{Thruster Compartment (All Ship Types)}
+
+Independent of ship type, the thruster room / bow-thruster compartment carries
+its own requirements the surveyor should not overlook: watertight boundaries and
+subdivision, bilge/drainage, fire protection and boundary insulation, ventilation
+and (for tankers/gas carriers) hazardous-area integrity, plus safe access and
+escape. Confirm these are reflected in the general arrangement and hull/piping
+documentation. \textit{(Ref.\ NR467 Part B, Ch 5; Part C fire \& piping;
+SOLAS II-2.)}
+
+\noindent\textbf{Surveyor note (ship type):} Read the \emph{requested notation
+string} first --- it tells you the ship type, service and additional notations,
+and therefore which overlays of Chapters
+\ref{ch:primemover}--\ref{ch:notations} and which \emph{separate rule sets}
+(SRtP, hazardous-area/IGC, offshore/MODU, naval, HSC) apply. The most common
+ship-type gaps are: SRtP redundancy on passenger ships, Ex/hazardous-area
+equipment on tankers and gas carriers, and DP-3 separation on offshore units.
+
+\newpage
+
 % Chapter 9: Testing
 \chapter{Testing \& Commissioning Requirements}
 \label{ch:testing}
@@ -5659,14 +5856,27 @@ special purpose ship (service-driven thruster/steering loads).
 \subsection{SOLAS Convention}
 \begin{itemize}[leftmargin=*]
 \item \textbf{Chapter II-1, Regulation 29}: Steering gear
-\item \textbf{Chapter II-2}: Fire protection
+\item \textbf{Chapter II-1, Reg.\ 8-1 \& II-2, Reg.\ 21/22}: Safe Return to Port / systems availability after a casualty (passenger ships)
+\item \textbf{Chapter II-2}: Fire protection; hazardous-area boundaries
 \item \textbf{Chapter V, Regulation 28}: Maneuverability
+\end{itemize}
+
+\subsection{Ship-Type / Service Rule Sets \& Codes}
+\begin{itemize}[leftmargin=*]
+\item \textbf{IEC 60079 series}: Explosion protection --- equipment in hazardous areas (tankers, gas carriers, bow-thruster rooms)
+\item \textbf{IGC Code}: Gas carriers --- hazardous-zone requirements
+\item \textbf{IMO MODU Code / offshore-unit rules}: Mobile offshore drilling units and offshore service craft
+\item \textbf{HSC Code}: High-speed craft (may modify/replace NR467 machinery requirements)
+\item \textbf{Naval ship rules} (e.g.\ BV NR483): Naval and patrol vessels --- signature/silent operation
+\item \textbf{NR467 Part D}: Service notations (tug, escort tug, supply, dredging, passenger, tanker, etc.)
 \end{itemize}
 
 \subsection{IMO Resolutions}
 \begin{itemize}[leftmargin=*]
 \item \textbf{IMO Res.A.468(XII)}: Code on Noise Levels
-\item \textbf{IMO MSC/Circ.645}: Guidelines for DP Systems
+\item \textbf{IMO Res.MSC.337(91)}: Code on Noise Levels on Board Ships (mandatory)
+\item \textbf{IMO MSC/Circ.645 \& MSC.1/Circ.1580}: Guidelines for vessels/units with DP systems
+\item \textbf{IMO MSC.1/Circ.1369}: Interim explanatory notes for SRtP assessment
 \end{itemize}
 
 \section{Online Resources}
@@ -5713,6 +5923,8 @@ special purpose ship (service-driven thruster/steering loads).
 1.0 & 2025 & Initial comprehensive catalog based on NR467 Sections 7, 14, 15 and NR216 & Jules (BV AI Assistant) \\
 \hline
 1.1 & 2026 & Added Voith-Schneider (cycloidal) and other propulsor types (rim-driven, pump-jet, gill/jet, steering grid); prime-mover chapter (diesel-engine vs.\ electric-motor drive incl.\ full-train TVC); ice class \& winterisation chapter; additional BV notations chapter (COMF, AUT, CLEANSHIP, RP, service notations); expanded checklists, quick-reference tables and standards. Preamble/compile fixes. & Plan Approval Reference (expanded ed.) \\
+\hline
+1.2 & 2026 & Added Ship-Type \& Service-Notation chapter (ship-type $\rightarrow$ thruster expectation matrix; Safe Return to Port for passenger ships; hazardous-area/Ex for tankers \& gas carriers; offshore/MODU \& DP-intensive vessels; tugs \& escort tugs; thruster-compartment requirements). Added ship-type/service rule sets \& codes to references (IEC 60079, IGC, MODU, HSC, naval, SRtP). & Plan Approval Reference (expanded ed.) \\
 \hline
 \end{tabular}
 \end{table}
@@ -5772,7 +5984,7 @@ special purpose ship (service-driven thruster/steering loads).
 
 \vspace{2cm}
 
-{\large Document Version 1.1}
+{\large Document Version 1.2}
 
 {\large 2026}
 
