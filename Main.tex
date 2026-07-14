@@ -91,6 +91,32 @@
 \newcommand{\fic}{\textbf{\textcolor{bvgray}{FI}}}
 \newcommand{\checkitem}{\item[$\square$]}
 
+% --- Submission cover-sheet helpers (Appendix) ---
+% Identification block for each ship-type cover sheet
+\newcommand{\CoverID}{%
+\noindent{\footnotesize
+\begin{tabular}{|p{3.1cm}|p{4.1cm}|p{3.1cm}|p{3.1cm}|}
+\hline
+\rowcolor{lightgray}\textbf{Vessel / Yard No} & & \textbf{Class notation} & \\
+\hline
+\textbf{IMO number} & & \textbf{Thruster type / qty} & \\
+\hline
+\textbf{Prime mover} & & \textbf{Reviewer / date} & \\
+\hline
+\end{tabular}}\par\vspace{2mm}}
+% Common core submissions applicable to every thruster package
+\newcommand{\CoreCoverItems}{%
+\item General Arrangement + Technical Specification sheet (\fa{})
+\item \textbf{Type-specific mechanical/structural package} --- attach the matching Chapter \ref{ch:checklists} checklist (\fa{})
+\item Materials, welding procedures, NDT plan (\fa{})
+\item Thrust / vibration / noise / thermal calculations (\fa{})
+\item Control system package + electrical single-line diagram (\fa{})
+\item \textbf{Prime-mover package} (Chapter \ref{ch:primemover}): if \emph{electric} --- motor + VFD + harmonic study + cabling/segregation + protection; if \emph{diesel} --- engine approval + \textbf{full-train TVC} + clutch/coupling + FO/LO/cooling/starting/exhaust + controls (\fa{})
+\item FAT / dock-trial / sea-trial procedures (\fa{}); test reports (\fic{})
+\item O\&M, spare-parts \& installation manuals (\fic{})}
+% Section header that always starts on a fresh page with an ID block
+\newcommand{\CoverSheet}[1]{\clearpage\section{#1}\CoverID}
+
 % Document begins
 \begin{document}
 
@@ -117,7 +143,7 @@
     
     \vfill
     
-    {\large Document Version 1.2\par}
+    {\large Document Version 1.3\par}
     {\large 2026\par}
     
     \vspace{1cm}
@@ -165,6 +191,7 @@ The catalog is organized into the following chapters:
     \item Ship-Type \& Service-Notation Specific Requirements
     \item Testing \& Commissioning
     \item Surveyor Checklists by Type
+    \item Submission Cover Sheets by Ship Type (one-page tick-off)
     \item Common Submission Errors
     \item Quick Reference Tables
     \item Regulatory References
@@ -3877,7 +3904,7 @@ This typically applies to:
 \end{itemize} & NR467 Sec.7, [16] \\
 \hline
 
-28 & Test Reports & \fic{} & 
+28 & Test Reports & \fic{} &
 \begin{itemize}[leftmargin=*,nosep]
 \item Factory test reports
 \item Installation test reports
@@ -3888,6 +3915,83 @@ This typically applies to:
 \hline
 
 \end{longtable}
+
+\section{MON-SHAFT \& Shaft-Line Condition-Monitoring Notations}
+\label{sec:monshaft}
+
+Where the thruster forms part of the propulsion shaft line (azimuth, podded,
+water-jet or high-power tunnel units with oil-lubricated stern-tube/lower-unit
+bearings), the owner may request the \textbf{MON-SHAFT} additional class
+notation. MON-SHAFT allows the classical periodic \emph{tailshaft withdrawal /
+complete shaft survey} to be replaced by a survey regime based on
+\textbf{continuous monitoring and condition assessment} of the oil-lubricated
+shaft/bearing/seal arrangement. It therefore \emph{adds documentation} to the
+shaft-line package and interacts directly with the thruster's lower-unit
+bearing, seal and oil systems.
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{MON-SHAFT --- Additional Shaft-Line Monitoring Submissions} \label{tab:monshaft} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+1 & Oil-Lubricated Bearing \& Seal Arrangement & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Approved stern-tube / lower-unit oil-lubricated bearing \& seal design
+\item Weardown measurement provisions
+\item Compatibility with monitoring notation
+\end{itemize} & NR467 Sec.7; Pt E (MON-SHAFT) \\
+\hline
+
+2 & Lube-Oil Monitoring \& Analysis Programme & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Oil temperature (and pressure where applicable) monitoring
+\item Periodic oil-analysis programme (contamination, wear metals, water)
+\item Sampling points and acceptance/alert criteria
+\end{itemize} & NR467 Pt E (MON-SHAFT) \\
+\hline
+
+3 & Bearing Weardown / Sensor Instrumentation & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Bearing temperature sensors and locations
+\item Weardown/liner-wear measurement method \& trending
+\item Alarm set-points and data logging
+\end{itemize} & NR467 Pt E; Pt C, Ch.3 \\
+\hline
+
+4 & Survey Arrangement \& Data-Management Plan & \fic{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Monitoring-based survey scheme replacing shaft withdrawal
+\item Record keeping, trend review, thresholds for action
+\item Interface with planned maintenance / class survey
+\end{itemize} & NR467 Pt A (surveys); Pt E \\
+\hline
+
+\end{longtable}
+
+\noindent\textbf{Surveyor note (MON-SHAFT):} MON-SHAFT is only compatible with
+\textbf{oil-lubricated} shaft/bearing arrangements of an approved type. For
+azimuth and podded units the ``shaft line'' extends into the lower gear/pod;
+confirm the seal, bearing and oil-monitoring documentation of the thruster
+lower unit (Chapters \ref{ch:azimuth}) is consistent with the MON-SHAFT scheme,
+and that the oil-analysis and weardown-trending programme, sensors and
+acceptance criteria are all submitted. Related shaft-line notations (e.g.\
+oil-lubricated stern-tube monitoring / \texttt{TIGHT}-type arrangements) follow
+the same principle --- verify the exact notation and its rule article in the
+current NR467 Part E.
 
 \newpage
 
@@ -3904,7 +4008,18 @@ Hydraulic systems are used in thrusters for:
 \item Controllable pitch propeller pitch control
 \item Azimuth slewing drive (if hydraulic)
 \item Water-jet steering and reversing actuation
+\item Voith-Schneider control (steering) servo system
 \end{itemize}
+
+\noindent\textbf{Rule basis:} Thruster hydraulic systems are assessed under
+\textbf{NR467 Pt C, Ch 1} --- the thruster/water-jet requirements of Sec.\,15,
+the \textbf{piping-system rules} (design pressure, materials, testing, relief),
+and, where the hydraulics actuate a \emph{steering} function, the more stringent
+\textbf{steering-gear requirements of Sec.\,14} (duplication, single-failure,
+power supply, response time). Recognised standard \textbf{ISO 4413} applies to
+general hydraulic-system design. Steering-critical hydraulics attract the
+redundancy and control provisions of Chapter \ref{ch:steering}; pitch-control
+hydraulics must define the \emph{fail-safe} pitch position.
 
 \section{Hydraulic Power Unit (HPU)}
 
@@ -4933,6 +5048,12 @@ Independence/segregation of propulsion trains, single-failure analysis,
 take-me-home capability, redundant thruster arrangement. & NR467 Pt E \\
 \hline
 
+\textbf{MON-SHAFT} (shaft-line monitoring) & Shaft survey by condition monitoring &
+Oil-lubricated bearing/seal of approved type; lube-oil monitoring \& analysis
+programme; bearing temperature \& weardown instrumentation; monitoring-based
+survey scheme (see Section \ref{sec:monshaft}). & NR467 Pt E; Sec.7 \\
+\hline
+
 \textbf{TUG / ESCORT TUG / AHT} (service) & High steering \& towing loads &
 Escort/indirect-towing loads on azimuth \& steering system, structural
 substantiation of unit \& foundation, stability interaction, uprated steering
@@ -5522,6 +5643,214 @@ equipment on tankers and gas carriers, and DP-3 separation on offshore units.
 
 \newpage
 
+% Chapter: Submission Cover Sheets by Ship Type
+\chapter{Submission Cover Sheets by Ship Type}
+\label{ch:coversheets}
+
+\textbf{How to use:} one cover sheet per page. Pick the sheet matching the
+vessel's service notation, complete the identification block, then tick each
+line as the corresponding drawing/document is received and found acceptable.
+Every sheet shares a \emph{common core} (base package, type-specific package,
+prime mover, testing, manuals) and then lists the \textbf{ship-type-specific
+extras} --- the items most often missing for that service. Use together with the
+detailed checklists of Chapter \ref{ch:checklists} and the overlays of
+Chapters \ref{ch:primemover}--\ref{ch:shiptype}.
+Legend: \fa{} = For Approval, \fic{} = For Information.
+
+\CoverSheet{Generic Template (any ship / any thruster type)}
+\textbf{Core package (all thrusters $>$110\,kW):}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Functional overlays --- tick those applicable:}
+\begin{itemize}[label=$\square$,nosep]
+\item Steering function $\rightarrow$ Chapter \ref{ch:steering} (FMEA, redundancy, SOLAS II-1/29)
+\item Part of main shaft line $\rightarrow$ Chapter \ref{ch:shafting} (+ MON-SHAFT, Section \ref{sec:monshaft}, if notated)
+\item Dynamic positioning $\rightarrow$ Chapter \ref{ch:dp} (FMEA, capability plot, proving trials)
+\item Hydraulic actuation $\rightarrow$ Chapter \ref{ch:hydraulics}
+\end{itemize}
+\textbf{Additional-notation \& ice overlays --- tick those in the notation string:}
+\begin{itemize}[label=$\square$,nosep]
+\item Ice class / Polar / COLD $\rightarrow$ Chapter \ref{ch:ice}
+\item DP / COMF / AUT / CLEANSHIP / RP / MON-SHAFT $\rightarrow$ Chapter \ref{ch:notations}
+\end{itemize}
+
+\CoverSheet{Harbour / Escort Tug}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (tug):}
+\begin{itemize}[label=$\square$,nosep]
+\item Azimuth (Z-drive) or Voith-Schneider unit --- full type package (\fa{})
+\item \textbf{Full steering-gear package} --- Chapter \ref{ch:steering}: FMEA, redundancy, control stations, response time, SOLAS II-1/29 (\fa{})
+\item \textbf{Escort / indirect-towing loads} on steering \& structure; unit \& foundation substantiation for these loads, not free-running only (\fa{})
+\item Uprated slewing duty \& brake/locking; stability interaction documentation (\fa{})
+\item Drive-train torsional vibration calculation (diesel Z-drive) (\fa{})
+\end{itemize}
+
+\CoverSheet{Offshore Supply / PSV / AHTS (DP)}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (OSV / DP):}
+\begin{itemize}[label=$\square$,nosep]
+\item Bow tunnel(s) + retractable + stern azimuth --- type packages (\fa{})
+\item \textbf{DYNAPOS / DP (usually DP-2)} --- Chapter \ref{ch:dp}: FMEA, redundancy concept, power segregation, capability plot, thruster allocation, proving-trials plan (\fa{})
+\item Retractable/take-me-home thruster package incl.\ emergency lowering (\fa{})
+\item FiFi and other service systems interfaces where fitted (\fic{})
+\item Steering-function compliance for azimuth units (\fa{})
+\end{itemize}
+
+\CoverSheet{Passenger Ship / RoPax / Ferry}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (passenger):}
+\begin{itemize}[label=$\square$,nosep]
+\item Bow (+ stern) tunnel thrusters / azimuth --- type packages (\fa{})
+\item \textbf{Safe Return to Port} redundancy \& segregation of propulsion/steering (ships $\geq$120\,m or 3 fire zones); systems-availability analysis (\fa{})
+\item SOLAS steering-gear compliance (II-1/29) where thrusters steer (\fa{})
+\item COMF-NOISE / COMF-VIB noise \& vibration prediction (\fa{})
+\item Emergency/standby power to retained thruster after casualty (\fa{})
+\end{itemize}
+
+\CoverSheet{Cruise Ship}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (cruise):}
+\begin{itemize}[label=$\square$,nosep]
+\item Podded propulsors + multiple bow/stern tunnels --- type packages (\fa{})
+\item \textbf{Safe Return to Port} redundancy \& systems availability (\fa{})
+\item \textbf{COMF-NOISE / COMF-VIB} --- blade-rate excitation, cavitation noise, resilient mounting (\fa{})
+\item Pod electrical-machine, cooling \& monitoring; slip-ring/power-through-strut (\fa{})
+\item DP package if DP-notated (\fa{})
+\end{itemize}
+
+\CoverSheet{Double-Ended Ferry}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (double-ended):}
+\begin{itemize}[label=$\square$,nosep]
+\item Azimuth or Voith-Schneider unit \emph{at each end} --- type packages (\fa{})
+\item \textbf{Steering redundancy at both ends} + control-station changeover logic (\fa{})
+\item Response time / manoeuvring in both running directions (\fa{})
+\item COMF noise \& vibration (passenger comfort) (\fa{})
+\end{itemize}
+
+\CoverSheet{Dredger (TSHD / CSD)}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (dredger):}
+\begin{itemize}[label=$\square$,nosep]
+\item Bow tunnels / azimuth --- type packages (\fa{})
+\item DREDGING service duty; robust manoeuvring provisions (\fa{})
+\item DP package where station-keeping/tracking notated (\fa{})
+\item Duty-cycle / abrasion considerations in bearing \& seal life (\fic{})
+\end{itemize}
+
+\CoverSheet{Cable / Pipe Layer \& Offshore Construction (DP)}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (construction / DP):}
+\begin{itemize}[label=$\square$,nosep]
+\item Retractable + azimuth + tunnel thrusters --- type packages (\fa{})
+\item \textbf{DYNAPOS DP-2 / DP-3} --- Chapter \ref{ch:dp}: FMEA, redundancy, power segregation, capability plot, proving trials (\fa{})
+\item DP-3 \textbf{fire / flood zone separation} of thruster groups \& power (\fa{})
+\item Worst-case-failure design intent documentation (\fa{})
+\end{itemize}
+
+\CoverSheet{Drillship / Semi-Submersible (MODU)}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (MODU / DP-3):}
+\begin{itemize}[label=$\square$,nosep]
+\item Multiple azimuth thrusters --- type packages (\fa{})
+\item \textbf{DYNAPOS DP-3} station keeping --- full FMEA, redundancy, proving trials (\fa{})
+\item \textbf{Fire \& flood separation} of thruster/power groups (DP-3) (\fa{})
+\item Compliance with \textbf{offshore-unit / MODU rules} (hull, machinery, hazardous-area) (\fa{})
+\end{itemize}
+
+\CoverSheet{Oil / Chemical Tanker}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (tanker):}
+\begin{itemize}[label=$\square$,nosep]
+\item Bow thruster (usually electric) --- type package (\fa{})
+\item \textbf{Hazardous-area classification} of thruster room \& boundaries (\fa{})
+\item \textbf{Certified safe-type (Ex) equipment} for motor/sensors/junction boxes where in or adjacent to dangerous zones, with certificates (\fa{})
+\item Cable entries, penetrations \& ventilation preserving zone integrity (\fa{})
+\item Confirm motor location vs.\ hazardous zone \emph{before} accepting non-Ex equipment (\fa{})
+\end{itemize}
+
+\CoverSheet{Gas Carrier (LNG / LPG)}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (gas carrier):}
+\begin{itemize}[label=$\square$,nosep]
+\item Bow thruster / azimuth --- type package (\fa{})
+\item \textbf{IGC Code} hazardous-zone requirements in addition to SOLAS II-2 (\fa{})
+\item Gas-safe / certified (Ex) electrical equipment \& certificates (\fa{})
+\item Hazardous-area drawings for thruster space \& boundaries (\fa{})
+\end{itemize}
+
+\CoverSheet{Ice-Class / Polar Trader}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (ice) --- Chapter \ref{ch:ice}:}
+\begin{itemize}[label=$\square$,nosep]
+\item Ice-class notation basis \& design conditions (\fa{})
+\item \textbf{Propeller ice-load strength} calculation (\fa{})
+\item \textbf{Shaft line \& gear ice-torque} verification (blade-milling / blade-loss) (\fa{})
+\item Azimuth/pod lower-unit \& slewing gear vs.\ ice-block impact (\fa{})
+\item Winterisation (low-temp oils, materials, sensor heating; anti-icing) (\fa{})
+\item Low-temperature material certification (\fa{})
+\end{itemize}
+
+\CoverSheet{Research / Naval / Patrol}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (research / naval):}
+\begin{itemize}[label=$\square$,nosep]
+\item Rim-driven / podded / azimuth units --- type packages (\fa{})
+\item \textbf{Low underwater-noise / signature} \& COMF (silent) documentation (\fa{})
+\item Cavitation-noise control measures (\fa{})
+\item Naval vessels: compliance with applicable \textbf{naval ship rules} (\fa{})
+\end{itemize}
+
+\CoverSheet{Large Yacht}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (yacht):}
+\begin{itemize}[label=$\square$,nosep]
+\item Bow/stern tunnel thrusters and/or pods --- type packages (\fa{})
+\item \textbf{Comfort} (noise \& vibration) documentation (\fa{})
+\item Retractable-thruster \& stabiliser interface where fitted (\fa{})
+\item Applicable yacht-specific rules (\fa{})
+\end{itemize}
+
+\CoverSheet{Container / Bulk / General Cargo}
+\begin{itemize}[label=$\square$,nosep]
+\CoreCoverItems
+\end{itemize}
+\textbf{Ship-type-specific extras (cargo):}
+\begin{itemize}[label=$\square$,nosep]
+\item Bow tunnel thruster for manoeuvring --- type package (\fa{})
+\item Typically electric drive --- confirm motor, cabling \& protection (\fa{})
+\item No special service overlay unless ice class / other notation carried (verify string) (\fa{})
+\end{itemize}
+
+\newpage
+
 % Chapter 11: Common Errors
 \chapter{Common Submission Errors \& Surveyor Notes}
 \label{ch:errors}
@@ -5734,6 +6063,8 @@ AUT-UMS / AUT-CCS & Chapter \ref{ch:notations}: extended alarms/monitoring, safe
 \hline
 CLEANSHIP & Chapter \ref{ch:notations}: EAL seal/hydraulic fluids, leakage monitoring. \\
 \hline
+MON-SHAFT & Section \ref{sec:monshaft}: oil-lubricated bearing/seal, lube-oil analysis \& weardown monitoring, condition-based shaft survey. \\
+\hline
 TUG / ESCORT TUG & Chapter \ref{ch:notations}: uprated steering \& structural loads. \\
 \hline
 \end{tabular}
@@ -5926,6 +6257,8 @@ special purpose ship (service-driven thruster/steering loads).
 \hline
 1.2 & 2026 & Added Ship-Type \& Service-Notation chapter (ship-type $\rightarrow$ thruster expectation matrix; Safe Return to Port for passenger ships; hazardous-area/Ex for tankers \& gas carriers; offshore/MODU \& DP-intensive vessels; tugs \& escort tugs; thruster-compartment requirements). Added ship-type/service rule sets \& codes to references (IEC 60079, IGC, MODU, HSC, naval, SRtP). & Plan Approval Reference (expanded ed.) \\
 \hline
+1.3 & 2026 & Added \textbf{MON-SHAFT} shaft-line condition-monitoring notation (Section \ref{sec:monshaft}) with submissions table and cross-references in the notation matrix/quick-guide; added hydraulic-system rule-basis note (Sec.14/Sec.15/piping, ISO 4413, fail-safe pitch). Added \textbf{per-ship-type submission cover sheets} (one-page tick-off) for 15 ship types plus a generic template. & Plan Approval Reference (expanded ed.) \\
+\hline
 \end{tabular}
 \end{table}
 
@@ -5984,7 +6317,7 @@ special purpose ship (service-driven thruster/steering loads).
 
 \vspace{2cm}
 
-{\large Document Version 1.2}
+{\large Document Version 1.3}
 
 {\large 2026}
 
