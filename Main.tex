@@ -1,0 +1,5797 @@
+\documentclass[11pt,a4paper]{report}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{textcomp}
+\usepackage{hyperref}
+\usepackage{xurl} % allow long URLs to break across lines
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{caption}
+
+% Map Unicode glyphs used in the body so pdfLaTeX compiles cleanly
+\DeclareUnicodeCharacter{2713}{\ding{51}}   % checkmark
+\DeclareUnicodeCharacter{2714}{\ding{52}}   % heavy checkmark
+\DeclareUnicodeCharacter{2717}{\ding{55}}   % cross
+\DeclareUnicodeCharacter{26A0}{\textbf{!}}  % warning sign
+\DeclareUnicodeCharacter{00B0}{\textdegree} % degree
+\DeclareUnicodeCharacter{2265}{$\geq$}
+\DeclareUnicodeCharacter{2264}{$\leq$}
+\DeclareUnicodeCharacter{2192}{$\rightarrow$}
+\DeclareUnicodeCharacter{00D7}{$\times$}
+
+% Page geometry
+\geometry{
+    a4paper,
+    left=25mm,
+    right=25mm,
+    top=30mm,
+    bottom=30mm,
+    headheight=15pt
+}
+
+% Colors
+\definecolor{bvblue}{RGB}{0,51,102}
+\definecolor{bvlightblue}{RGB}{51,102,153}
+\definecolor{bvgray}{RGB}{128,128,128}
+\definecolor{lightgray}{RGB}{240,240,240}
+\definecolor{warningred}{RGB}{204,0,0}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=bvblue,
+    filecolor=bvblue,
+    urlcolor=bvblue,
+    citecolor=bvblue,
+    pdftitle={Bureau Veritas Thruster Requirements - Surveyor Catalog},
+    pdfauthor={Bureau Veritas},
+    pdfsubject={Thruster Plan Approval Requirements},
+    pdfkeywords={Bureau Veritas, Thrusters, NR467, Classification, Marine}
+}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{bvblue}{BV Thruster Requirements Catalog}}
+\fancyhead[R]{\small\textcolor{bvblue}{NR467 Sections 7, 14, 15}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Title formatting
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\color{bvblue}}
+{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{bvblue}}
+{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont\large\bfseries\color{bvlightblue}}
+{\thesubsection}{1em}{}
+
+% Custom commands
+\newcommand{\fa}{\textbf{\textcolor{warningred}{FA}}}
+\newcommand{\fic}{\textbf{\textcolor{bvgray}{FI}}}
+\newcommand{\checkitem}{\item[$\square$]}
+
+% Document begins
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries\color{bvblue} Bureau Veritas\par}
+    \vspace{0.5cm}
+    {\LARGE\bfseries Thruster Requirements\par}
+    \vspace{0.3cm}
+    {\LARGE\bfseries Comprehensive Surveyor Catalog\par}
+    
+    \vspace{2cm}
+    
+    {\Large\bfseries Based on NR467 Rules for Classification of Steel Ships\par}
+    \vspace{0.5cm}
+    {\large Sections 7, 14, and 15\par}
+    
+    \vspace{2cm}
+    
+    {\large\textit{Complete Plan Approval Reference Guide}\par}
+    
+    \vfill
+    
+    {\large Document Version 1.1\par}
+    {\large 2026\par}
+    
+    \vspace{1cm}
+    
+    {\small\textcolor{warningred}{\textbf{FOR BUREAU VERITAS PLAN APPROVAL SURVEYORS}}\par}
+    
+\end{titlepage}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Document Purpose
+\chapter*{Document Purpose and Usage}
+\addcontentsline{toc}{chapter}{Document Purpose and Usage}
+
+This catalog provides a comprehensive overview of thruster requirements per Bureau Veritas Rules for Classification (NR467) and related guidance, designed as a practical reference for plan approval surveyors.
+
+\section*{Key Features}
+\begin{itemize}[leftmargin=*]
+    \item Complete drawing and document lists for all thruster types
+    \item Explicit approval categories (\fa{} or \fic{})
+    \item Cross-references for overlapping requirements (steering gear, main shafting, hydraulics)
+    \item Surveyor checklists by thruster type
+    \item Testing and commissioning requirements
+    \item Common submission errors and review tips
+\end{itemize}
+
+\section*{Document Structure}
+The catalog is organized into the following chapters:
+\begin{enumerate}[leftmargin=*]
+    \item General Requirements (All Thrusters >110kW)
+    \item Transverse Thrusters (Tunnel \& Retractable)
+    \item Rotating and Azimuth Thrusters (incl. Podded Units)
+    \item Water-Jet Propulsion Systems
+    \item Voith-Schneider (Cycloidal) Propulsion Systems
+    \item Other Thruster Types (Rim-Driven, Pump-Jet, Gill/Jet, Steering Grid)
+    \item Prime Mover Considerations --- Diesel-Engine vs. Electric-Motor Driven Thrusters
+    \item Thrusters as Part of Steering Gear
+    \item Thrusters as Part of Main Shafting
+    \item Hydraulic Systems \& Pitch Control
+    \item Dynamic Positioning (DP) Thrusters
+    \item Ice Class \& Cold-Climate (Winterisation) Requirements
+    \item Additional BV Class Notations Affecting Thruster Packages
+    \item Testing \& Commissioning
+    \item Surveyor Checklists by Type
+    \item Common Submission Errors
+    \item Quick Reference Tables
+    \item Regulatory References
+    \item Contact Information
+\end{enumerate}
+
+\section*{How to Use This Catalog (Surveyor Workflow)}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Identify the thruster type} (Chapters \ref{ch:transverse}--\ref{ch:othertypes}) and confirm rated power. Thrusters $>$110~kW attract the full Sec.\,15 submission set.
+    \item \textbf{Identify the prime mover} --- electric motor or diesel engine (Chapter \ref{ch:primemover}) --- and add the corresponding drive-train drawings.
+    \item \textbf{Identify the functional role(s)}: propulsion, steering (Chapter \ref{ch:steering}), main shaft line (Chapter \ref{ch:shafting}), or dynamic positioning (Chapter \ref{ch:dp}). Each role \emph{adds} to the base package.
+    \item \textbf{Overlay additional notations \& service constraints}: ice class / winterisation (Chapter \ref{ch:ice}) and other BV additional class notations (Chapter \ref{ch:notations}).
+    \item \textbf{Verify hydraulics/pitch} (Chapter \ref{ch:hydraulics}) and \textbf{testing \& commissioning} (Chapter \ref{ch:testing}).
+    \item \textbf{Run the type-specific checklist} (Chapter \ref{ch:checklists}) and screen against common errors (Chapter \ref{ch:errors}).
+\end{enumerate}
+
+\section*{Legend}
+\begin{itemize}[leftmargin=*]
+    \item \fa{} = \textbf{For Approval} — Must be reviewed and approved before construction/installation
+    \item \fic{} = \textbf{For Information} — Submitted for record, not requiring formal approval
+    \item \textbf{During Construction} = Certificates/reports generated during manufacturing
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent\textit{Note on rule references:} Thruster requirements are found in \textbf{NR467, Part C, Chapter 1, Section 15} (``Thrusters''); steering gear in \textbf{Section 14}; shaft lines and propellers in \textbf{Sections 7--8}. Bracketed sub-references such as [2.3] are structural pointers within this catalog. Ice class, comfort, automation and DP requirements sit in \textbf{NR467 Part E} (Additional Class Notations) and dedicated Rule Notes (NR216, NR527, etc.). Always confirm the exact article against the rule edition applicable to the vessel's contract/build date.
+
+\newpage
+
+% Chapter 1: General Requirements
+\chapter{General Requirements - All Thrusters >110kW}
+\label{ch:general}
+
+\section{Applicability}
+All thrusters with power output exceeding 110 kW must comply with NR467 Section 15 requirements. Thrusters $\leq$110 kW may have reduced submission requirements (verify with surveyor).
+
+\section{Mandatory Submissions for All Thruster Types}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{General Requirements - All Thrusters} \label{tab:general-req} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & General Arrangement Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Thruster location on vessel
+\item Installation orientation
+\item Access provisions
+\item Clearances to other equipment
+\item Coordinate system reference
+\end{itemize} & NR467 Sec.15, [1] \\
+\hline
+
+2 & Technical Specification Sheet & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Rated power (kW)
+\item Rated thrust (kN)
+\item Rated speed (RPM)
+\item Operating voltage/pressure
+\item Weight and dimensions
+\item Operating depth/pressure rating
+\end{itemize} & NR467 Sec.15, [1] \\
+\hline
+
+3 & Material Specifications & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Material grades for all major components
+\item Compliance with NR467 Part B, Ch.3
+\item Corrosion protection details
+\item Material certificates (during construction)
+\end{itemize} & NR467 Part B, Ch.3 \\
+\hline
+
+4 & Welding Procedures & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Welding Procedure Specifications (WPS)
+\item Welder qualification records
+\item NDT requirements and extent
+\item Weld inspection plan
+\end{itemize} & NR467 Part B, Ch.4 \\
+\hline
+
+5 & Manufacturer's Quality Plan & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Manufacturing sequence
+\item Inspection and test points
+\item Quality control procedures
+\item Traceability system
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+6 & Operation \& Maintenance Manual & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Operating instructions
+\item Maintenance schedule
+\item Troubleshooting guide
+\item Safety precautions
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+7 & Spare Parts List & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Recommended spare parts
+\item Critical component identification
+\item Part numbers and suppliers
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+8 & Installation Manual & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Installation procedure
+\item Alignment requirements
+\item Foundation specifications
+\item Connection details
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+% Chapter 2: Transverse Thrusters
+\chapter{Transverse Thrusters (Tunnel \& Retractable)}
+\label{ch:transverse}
+
+\section{Tunnel Thrusters (Fixed Installation)}
+
+\subsection{Structural Drawings \& Calculations}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Tunnel Thrusters - Structural Requirements} \label{tab:tunnel-struct} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & Tunnel Structural Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Tunnel diameter and length
+\item Tunnel position relative to baseline/centerline
+\item Plate thickness and material
+\item Reinforcement arrangement
+\item Connection to hull structure
+\end{itemize} & NR467 Sec.15, [2.1] \\
+\hline
+
+2 & Tunnel Structural Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pressure loads (internal/external)
+\item Structural stress analysis
+\item Buckling analysis
+\item Fatigue assessment
+\item FEA results (if applicable)
+\end{itemize} & NR467 Sec.15, [2.1] \\
+\hline
+
+3 & Tunnel End Grating/Grid Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Grating dimensions and material
+\item Attachment method
+\item Structural strength verification
+\item Debris protection
+\end{itemize} & NR467 Sec.15, [2.2] \\
+\hline
+
+4 & Hull Penetration Details & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Opening dimensions
+\item Reinforcement around opening
+\item Welding details
+\item Watertight integrity provisions
+\end{itemize} & NR467 Part B, Ch.5 \\
+\hline
+
+\end{longtable}
+
+\subsection{Thruster Unit - Mechanical Components}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Tunnel Thrusters - Mechanical Components} \label{tab:tunnel-mech} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+5 & Thruster Unit General Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete unit cross-section
+\item Component identification
+\item Material specifications
+\item Assembly sequence
+\end{itemize} & NR467 Sec.15, [2.3] \\
+\hline
+
+6 & Propeller Design Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Propeller diameter and pitch
+\item Number of blades
+\item Blade profile and geometry
+\item Hub design
+\item Material specification
+\end{itemize} & NR467 Sec.15, [2.4] \\
+\hline
+
+7 & Propeller Strength Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Blade root stress analysis
+\item Hub stress analysis
+\item Centrifugal force calculations
+\item Fatigue life assessment
+\item Cavitation analysis
+\end{itemize} & NR467 Sec.15, [2.4] \\
+\hline
+
+8 & Propeller Shaft Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Shaft diameter and length
+\item Material specification
+\item Surface finish requirements
+\item Keyway details
+\item Seal locations
+\end{itemize} & NR467 Sec.15, [2.5] \\
+\hline
+
+9 & Shaft Strength Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Torsional strength analysis
+\item Bending stress calculations
+\item Combined stress analysis
+\item Deflection calculations
+\item Critical speed analysis
+\item Fatigue assessment
+\end{itemize} & NR467 Sec.15, [2.5]; Sec.7 \\
+\hline
+
+10 & Bearing Arrangement Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Bearing type and manufacturer
+\item Bearing housing design
+\item Lubrication arrangement
+\item Seal design
+\item Cooling provisions (if applicable)
+\end{itemize} & NR467 Sec.15, [2.6] \\
+\hline
+
+11 & Bearing Load Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Radial and axial loads
+\item Bearing life calculation (L10)
+\item Lubrication requirements
+\item Temperature analysis
+\end{itemize} & NR467 Sec.15, [2.6] \\
+\hline
+
+12 & Gearbox Assembly Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Gear arrangement (bevel, helical, etc.)
+\item Gear ratios
+\item Casing design
+\item Lubrication system
+\item Mounting arrangement
+\end{itemize} & NR467 Sec.15, [2.7] \\
+\hline
+
+13 & Gear Tooth Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Gear tooth strength (ISO 6336)
+\item Contact stress analysis
+\item Bending stress analysis
+\item Lubrication film thickness
+\item Efficiency calculations
+\end{itemize} & NR467 Sec.15, [2.7] \\
+\hline
+
+14 & Gearbox Lubrication System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Oil type and capacity
+\item Circulation system (if forced)
+\item Cooling arrangement
+\item Filtration system
+\item Oil level and temperature monitoring
+\end{itemize} & NR467 Sec.15, [2.7] \\
+\hline
+
+\end{longtable}
+
+\subsection{Drive System (Electric or Hydraulic)}
+
+\subsubsection{For Electric Motor Drive}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Tunnel Thrusters - Electric Drive System} \label{tab:tunnel-electric} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+15 & Electric Motor Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor type (induction, synchronous)
+\item Rated power and speed
+\item Voltage and frequency
+\item Insulation class
+\item Protection class (IP rating)
+\item Cooling method
+\item Mounting arrangement
+\end{itemize} & NR467 Sec.15, [2.8]; IEC 60092-301 \\
+\hline
+
+16 & Motor Foundation Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Foundation structure design
+\item Vibration isolation details
+\item Bolt arrangement
+\item Alignment provisions
+\item Structural attachment to hull
+\end{itemize} & NR467 Sec.15, [2.8] \\
+\hline
+
+17 & Motor-Gearbox Coupling & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Coupling type and manufacturer
+\item Alignment tolerances
+\item Torque capacity
+\item Installation procedure
+\end{itemize} & NR467 Sec.15, [2.8] \\
+\hline
+
+\end{longtable}
+
+\subsubsection{For Hydraulic Motor Drive}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Tunnel Thrusters - Hydraulic Drive System} \label{tab:tunnel-hydraulic} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+18 & Hydraulic Motor Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor type (axial piston, radial piston, gear)
+\item Displacement and speed range
+\item Rated pressure
+\item Efficiency curves
+\item Mounting details
+\end{itemize} & NR467 Sec.15, [2.9] \\
+\hline
+
+19 & Hydraulic System Schematic & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete hydraulic circuit
+\item Component symbols and identification
+\item Pressure and flow ratings
+\item See Chapter \ref{ch:hydraulics} for detailed requirements
+\end{itemize} & NR467 Sec.15, [2.9] \\
+\hline
+
+\end{longtable}
+
+\subsection{Control System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Tunnel Thrusters - Control System} \label{tab:tunnel-control} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+20 & Control System Block Diagram & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Control architecture
+\item Input/output signals
+\item Control logic overview
+\item Interface with ship systems
+\end{itemize} & NR467 Sec.15, [2.10]; Part C, Ch.4 \\
+\hline
+
+21 & Control Panel Layout & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Panel arrangement
+\item Component locations
+\item Wiring diagram
+\item Protection devices
+\end{itemize} & NR467 Sec.15, [2.10] \\
+\hline
+
+22 & Electrical Single-Line Diagram & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Power supply arrangement
+\item Circuit breakers and protection
+\item Emergency stop circuit
+\item Monitoring and alarm systems
+\end{itemize} & NR467 Sec.15, [2.10]; IEC 60092-504 \\
+\hline
+
+23 & Control Software Description & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Software functionality
+\item Control algorithms
+\item Safety functions
+\item Software validation documentation
+\end{itemize} & NR467 Part C, Ch.4 \\
+\hline
+
+\end{longtable}
+
+\subsection{Additional Calculations \& Documentation}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Tunnel Thrusters - Additional Calculations} \label{tab:tunnel-calc} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+24 & Thrust Calculation & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Theoretical thrust calculation
+\item Efficiency factors
+\item Operating curves (thrust vs. speed)
+\item Bollard pull prediction
+\end{itemize} & NR467 Sec.15, [2.11] \\
+\hline
+
+25 & Vibration Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Natural frequency calculations
+\item Forced vibration analysis
+\item Resonance avoidance verification
+\item Vibration isolation design
+\end{itemize} & NR467 Sec.15, [2.12] \\
+\hline
+
+26 & Noise Level Prediction & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Airborne noise prediction
+\item Structure-borne noise analysis
+\item Compliance with IMO noise code
+\item Noise reduction measures
+\end{itemize} & NR467 Sec.15, [2.12] \\
+\hline
+
+27 & Thermal Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Heat generation calculations
+\item Cooling requirements
+\item Temperature rise predictions
+\item Ventilation requirements
+\end{itemize} & NR467 Sec.15, [2.13] \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+\section{Retractable Thrusters}
+
+\subsection{Additional Requirements Beyond Fixed Tunnel Thrusters}
+
+\textbf{All submissions from Section 2.1 apply, PLUS the following:}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Retractable Thrusters - Additional Requirements} \label{tab:retractable} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+28 & Retraction Mechanism Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete mechanism design
+\item Lifting/lowering system
+\item Guide rail arrangement
+\item Travel limits and stops
+\item Position indicators
+\end{itemize} & NR467 Sec.15, [2.14] \\
+\hline
+
+29 & Hydraulic Cylinder Specifications & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Cylinder bore and stroke
+\item Operating pressure
+\item Rod diameter and material
+\item Seal specifications
+\item Mounting arrangement
+\end{itemize} & NR467 Sec.15, [2.14] \\
+\hline
+
+30 & Retraction System Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Lifting force requirements
+\item Hydraulic pressure calculations
+\item Cylinder sizing verification
+\item Retraction/extension time calculations
+\item Dynamic load analysis
+\end{itemize} & NR467 Sec.15, [2.14] \\
+\hline
+
+31 & Hull Opening \& Closure Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Opening dimensions
+\item Closure plate/door design
+\item Sealing arrangement (extended position)
+\item Sealing arrangement (retracted position)
+\item Locking mechanism
+\end{itemize} & NR467 Sec.15, [2.15]; Part B, Ch.5 \\
+\hline
+
+32 & Hull Opening Structural Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Local hull strength calculations
+\item Reinforcement design around opening
+\item Stress concentration analysis
+\item Fatigue assessment
+\item FEA results (typically required)
+\end{itemize} & NR467 Sec.15, [2.15]; Part B, Ch.5 \\
+\hline
+
+33 & Watertight Integrity Documentation & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Seal design and material
+\item Pressure testing requirements
+\item Leakage criteria
+\item Compliance with subdivision requirements
+\end{itemize} & NR467 Part B, Ch.5 \\
+\hline
+
+34 & Locking System Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Mechanical locks (extended position)
+\item Retracted position locks
+\item Locking force calculations
+\item Fail-safe provisions
+\item Interlock system
+\end{itemize} & NR467 Sec.15, [2.16] \\
+\hline
+
+35 & Position Indication System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Position sensors (type and location)
+\item Indication on bridge/control panel
+\item Alarm system (intermediate positions)
+\item Redundancy provisions
+\end{itemize} & NR467 Sec.15, [2.16] \\
+\hline
+
+36 & Emergency Lowering System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Emergency power source
+\item Manual lowering provisions
+\item Emergency procedure
+\item Time to deploy
+\end{itemize} & NR467 Sec.15, [2.17] \\
+\hline
+
+37 & Hydraulic System for Retraction & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item HPU specifications
+\item Control valve arrangement
+\item Piping layout
+\item Accumulator sizing (if applicable)
+\item Emergency lowering circuit
+\item See Chapter \ref{ch:hydraulics} for detailed requirements
+\end{itemize} & NR467 Sec.15, [2.17] \\
+\hline
+
+38 & Retraction/Extension Procedures & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Step-by-step operating procedure
+\item Pre-operation checks
+\item Safety precautions
+\item Troubleshooting
+\end{itemize} & NR467 Sec.15, [2.18] \\
+\hline
+
+39 & Emergency Recovery Procedures & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Emergency lowering procedure
+\item Manual operation instructions
+\item Recovery from failure modes
+\item Contact information for support
+\end{itemize} & NR467 Sec.15, [2.18] \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+% Chapter 3: Azimuth Thrusters
+\chapter{Rotating and Azimuth Thrusters}
+\label{ch:azimuth}
+
+\section{Azimuth Thrusters (Fixed Pitch \& Controllable Pitch)}
+
+\subsection{General Arrangement \& Structure}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - General Arrangement} \label{tab:azimuth-general} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & General Arrangement Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Thruster location on vessel
+\item Installation orientation
+\item Azimuth rotation range (typically 360°)
+\item Clearance envelope (rotating)
+\item Access for maintenance
+\end{itemize} & NR467 Sec.15, [3.1] \\
+\hline
+
+2 & Azimuth Unit Complete Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Longitudinal and transverse sections
+\item All major components identified
+\item Material specifications
+\item Assembly sequence
+\item Lifting points
+\end{itemize} & NR467 Sec.15, [3.1] \\
+\hline
+
+3 & Hull Penetration \& Foundation & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hull opening dimensions
+\item Structural reinforcement
+\item Foundation design
+\item Watertight integrity details
+\item Load transfer to hull structure
+\end{itemize} & NR467 Sec.15, [3.2]; Part B, Ch.5 \\
+\hline
+
+4 & Hull Structure Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Local hull strength analysis
+\item Foundation load distribution
+\item Stress analysis
+\item Fatigue assessment
+\item FEA results (typically required)
+\end{itemize} & NR467 Sec.15, [3.2]; Part B, Ch.5 \\
+\hline
+
+\end{longtable}
+
+\subsection{Propeller \& Shaft System}
+
+\subsubsection{For Fixed Pitch Propellers}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Fixed Pitch Propeller} \label{tab:azimuth-fp} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+5 & Propeller Design Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Propeller diameter and pitch
+\item Number of blades
+\item Blade geometry (sections)
+\item Hub design
+\item Material specification
+\item Blade attachment method
+\end{itemize} & NR467 Sec.15, [3.3] \\
+\hline
+
+6 & Propeller Strength Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Blade stress analysis
+\item Hub stress analysis
+\item Centrifugal forces
+\item Hydrodynamic forces
+\item Fatigue life assessment
+\item Cavitation analysis
+\end{itemize} & NR467 Sec.15, [3.3] \\
+\hline
+
+\end{longtable}
+
+\subsubsection{For Controllable Pitch Propellers (ADDITIONAL to Fixed Pitch)}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Controllable Pitch Mechanism} \label{tab:azimuth-cp} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+7 & CP Hub Mechanism Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hub internal mechanism
+\item Pitch control rod/linkage
+\item Blade retention system
+\item Bearing arrangement
+\item Seal design
+\end{itemize} & NR467 Sec.15, [3.4] \\
+\hline
+
+8 & Blade Retention Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Blade root connection strength
+\item Centrifugal force analysis
+\item Hydrodynamic moment analysis
+\item Bolt/pin strength verification
+\item Fatigue assessment
+\end{itemize} & NR467 Sec.15, [3.4] \\
+\hline
+
+9 & Pitch Control Mechanism & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hydraulic cylinder (in hub or external)
+\item Control rod design
+\item Linkage system
+\item Pitch range and indicators
+\item Fail-safe position
+\end{itemize} & NR467 Sec.15, [3.4]; Ch.\ref{ch:hydraulics} \\
+\hline
+
+10 & Pitch Control Hydraulic System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hydraulic supply arrangement
+\item Rotary joint/slip ring design
+\item Control valve system
+\item Pitch feedback system
+\item See Chapter \ref{ch:hydraulics} for detailed requirements
+\end{itemize} & NR467 Sec.15, [3.4]; Ch.\ref{ch:hydraulics} \\
+\hline
+
+\end{longtable}
+
+\subsection{Vertical Shaft \& Column}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Vertical Shaft \& Column} \label{tab:azimuth-shaft} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+11 & Vertical Shaft Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Shaft dimensions and material
+\item Upper and lower bearing locations
+\item Thrust bearing arrangement
+\item Seal system
+\item Coupling details
+\end{itemize} & NR467 Sec.15, [3.5]; Sec.7 \\
+\hline
+
+12 & Vertical Shaft Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Torsional strength
+\item Bending stress (from propeller forces)
+\item Combined stress analysis
+\item Deflection calculations
+\item Critical speed analysis
+\item Fatigue assessment
+\end{itemize} & NR467 Sec.15, [3.5]; Sec.7 \\
+\hline
+
+13 & Thrust Bearing Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Bearing type and manufacturer
+\item Load capacity
+\item Lubrication system
+\item Cooling arrangement
+\item Monitoring provisions
+\end{itemize} & NR467 Sec.15, [3.6] \\
+\hline
+
+14 & Thrust Bearing Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Axial load analysis
+\item Bearing life calculation
+\item Temperature rise analysis
+\item Lubrication film thickness
+\end{itemize} & NR467 Sec.15, [3.6] \\
+\hline
+
+15 & Radial Bearing Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Upper and lower bearing design
+\item Bearing housing
+\item Lubrication system
+\item Seal arrangement
+\end{itemize} & NR467 Sec.15, [3.7] \\
+\hline
+
+16 & Column Structure Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Column/strut dimensions
+\item Material specification
+\item Hydrodynamic fairing
+\item Structural strength
+\item Corrosion protection
+\end{itemize} & NR467 Sec.15, [3.8] \\
+\hline
+
+17 & Seal System Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Seal type and material
+\item Seal arrangement (upper/lower)
+\item Pressure rating
+\item Leakage monitoring
+\item Replacement procedure
+\end{itemize} & NR467 Sec.15, [3.9] \\
+\hline
+
+\end{longtable}
+
+\subsection{Gear System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Gear System} \label{tab:azimuth-gear} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+18 & Gear Train Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Gear arrangement (bevel, helical, planetary)
+\item Gear ratios
+\item Gear casing design
+\item Lubrication system
+\item Access for inspection
+\end{itemize} & NR467 Sec.15, [3.10] \\
+\hline
+
+19 & Gear Tooth Strength Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Tooth bending stress (ISO 6336)
+\item Contact stress
+\item Pitting resistance
+\item Scuffing analysis
+\item Efficiency calculations
+\end{itemize} & NR467 Sec.15, [3.10] \\
+\hline
+
+20 & Gear Lubrication System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Oil type and capacity
+\item Circulation system (forced/splash)
+\item Cooling arrangement
+\item Filtration system
+\item Oil level and temperature monitoring
+\end{itemize} & NR467 Sec.15, [3.10] \\
+\hline
+
+\end{longtable}
+
+\subsection{Slewing (Azimuth) System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Slewing System} \label{tab:azimuth-slewing} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+21 & Slewing Bearing Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Bearing type and manufacturer
+\item Internal/external gear (if applicable)
+\item Load capacity (axial, radial, moment)
+\item Mounting arrangement
+\item Lubrication provisions
+\end{itemize} & NR467 Sec.15, [3.11] \\
+\hline
+
+22 & Slewing Bearing Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Load analysis (static and dynamic)
+\item Bearing life calculation
+\item Bolt preload calculations
+\item Overturning moment analysis
+\end{itemize} & NR467 Sec.15, [3.11] \\
+\hline
+
+23 & Azimuth Drive Mechanism & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Drive motor (electric or hydraulic)
+\item Gear/pinion arrangement
+\item Drive ratio
+\item Brake system
+\item Locking mechanism (if required)
+\end{itemize} & NR467 Sec.15, [3.12] \\
+\hline
+
+24 & Azimuth Drive Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Torque requirements
+\item Acceleration/deceleration analysis
+\item Motor sizing verification
+\item Brake sizing
+\item Response time calculations
+\end{itemize} & NR467 Sec.15, [3.12] \\
+\hline
+
+25 & Position Feedback System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Position sensor type and location
+\item Accuracy and resolution
+\item Signal processing
+\item Redundancy (if required for DP/steering)
+\end{itemize} & NR467 Sec.15, [3.13] \\
+\hline
+
+\end{longtable}
+
+\subsection{Power Transmission}
+
+\subsubsection{For Electric Drive}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Electric Power Transmission} \label{tab:azimuth-electric} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+26 & Electric Motor Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor type and rating
+\item Voltage and frequency
+\item Cooling method
+\item Insulation and protection class
+\item Mounting arrangement
+\end{itemize} & NR467 Sec.15, [3.14]; IEC 60092-301 \\
+\hline
+
+27 & Power Cable Routing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Cable route from switchboard
+\item Cable support and protection
+\item Penetrations through bulkheads
+\item Cable sizing calculations
+\end{itemize} & NR467 Sec.15, [3.14]; IEC 60092-352 \\
+\hline
+
+28 & Slip Ring or Rotary Joint & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Type and manufacturer
+\item Current rating
+\item Maintenance requirements
+\item Cooling provisions
+\end{itemize} & NR467 Sec.15, [3.14] \\
+\hline
+
+\end{longtable}
+
+\subsubsection{For Hydraulic Drive}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Hydraulic Power Transmission} \label{tab:azimuth-hydraulic} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+29 & Hydraulic Motor Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor type and displacement
+\item Rated pressure and speed
+\item Efficiency curves
+\item Mounting details
+\end{itemize} & NR467 Sec.15, [3.15] \\
+\hline
+
+30 & Hydraulic System Schematic & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete hydraulic circuit
+\item HPU specifications
+\item Piping arrangement
+\item Control valve system
+\item See Chapter \ref{ch:hydraulics} for detailed requirements
+\end{itemize} & NR467 Sec.15, [3.15]; Ch.\ref{ch:hydraulics} \\
+\hline
+
+\end{longtable}
+
+\subsection{Control System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Control System} \label{tab:azimuth-control} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+31 & Control System Architecture & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Overall control system topology
+\item Propulsion control
+\item Azimuth control
+\item Pitch control (CP thrusters)
+\item Interface with ship systems
+\end{itemize} & NR467 Sec.15, [3.16]; Part C, Ch.4 \\
+\hline
+
+32 & Bridge Control Console & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Control panel layout
+\item Joystick/lever arrangement
+\item Display and indication
+\item Alarm system
+\item Emergency stop provisions
+\end{itemize} & NR467 Sec.15, [3.16] \\
+\hline
+
+33 & Local Control Station & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Local control panel design
+\item Control mode selection
+\item Indication and monitoring
+\item Interlock with bridge control
+\end{itemize} & NR467 Sec.15, [3.16] \\
+\hline
+
+34 & Control Software Description & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Software architecture
+\item Control algorithms
+\item Safety functions
+\item Software validation documentation
+\item Version control
+\end{itemize} & NR467 Part C, Ch.4 \\
+\hline
+
+35 & Electrical Single-Line Diagram & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Power supply arrangement
+\item Circuit breakers and protection
+\item Emergency power provisions
+\item Monitoring and alarm circuits
+\end{itemize} & NR467 Sec.15, [3.16]; IEC 60092-504 \\
+\hline
+
+\end{longtable}
+
+\subsection{Additional Calculations \& Documentation}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Azimuth Thrusters - Additional Calculations} \label{tab:azimuth-calc} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+36 & Thrust and Torque Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Propeller thrust curves
+\item Torque requirements
+\item Power absorption
+\item Efficiency analysis
+\item Bollard pull prediction
+\end{itemize} & NR467 Sec.15, [3.17] \\
+\hline
+
+37 & Vibration Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Natural frequency calculations
+\item Forced vibration analysis
+\item Resonance avoidance
+\item Foundation vibration isolation
+\item Acceptable vibration levels
+\end{itemize} & NR467 Sec.15, [3.18] \\
+\hline
+
+38 & Noise Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Airborne noise prediction
+\item Structure-borne noise analysis
+\item Compliance with noise regulations
+\item Noise reduction measures
+\end{itemize} & NR467 Sec.15, [3.18] \\
+\hline
+
+39 & Hydrodynamic Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Propeller hydrodynamic design
+\item Cavitation analysis
+\item Efficiency optimization
+\item Interaction effects with hull
+\end{itemize} & NR467 Sec.15, [3.19] \\
+\hline
+
+40 & Thermal Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Heat generation in gears, bearings, seals
+\item Cooling system capacity
+\item Temperature rise predictions
+\item Ventilation requirements
+\end{itemize} & NR467 Sec.15, [3.20] \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+\section{Podded Propulsion Units}
+
+\textbf{Podded propulsion units include all requirements from Section 3.1 (Azimuth Thrusters), with the following ADDITIONAL or MODIFIED requirements:}
+
+\subsection{Pod-Specific Structural Components}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Podded Propulsion - Pod Structure} \label{tab:pod-structure} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+41 & Pod Housing Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pod shell structure
+\item Material specification
+\item Hydrodynamic fairing
+\item Structural strength analysis
+\item Corrosion protection system
+\end{itemize} & NR467 Sec.15, [3.21] \\
+\hline
+
+42 & Pod Housing Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pressure loading analysis
+\item Structural stress analysis
+\item Fatigue assessment
+\item Impact resistance
+\item FEA results
+\end{itemize} & NR467 Sec.15, [3.21] \\
+\hline
+
+43 & Strut Structure Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Strut dimensions and material
+\item Hydrodynamic profile
+\item Connection to pod and hull
+\item Internal cable/pipe routing
+\item Access provisions
+\end{itemize} & NR467 Sec.15, [3.22] \\
+\hline
+
+44 & Strut Structural Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Bending stress analysis
+\item Torsional stress
+\item Combined loading
+\item Fatigue analysis
+\item Vibration analysis
+\end{itemize} & NR467 Sec.15, [3.22] \\
+\hline
+
+\end{longtable}
+
+\subsection{Electric Motor in Pod}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Podded Propulsion - In-Pod Motor} \label{tab:pod-motor} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+45 & In-Pod Motor Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor type (permanent magnet, induction)
+\item Rated power and speed
+\item Voltage and frequency
+\item Insulation system (marine environment)
+\item Rotor and stator assembly
+\item Bearing arrangement
+\end{itemize} & NR467 Sec.15, [3.23]; IEC 60092-301 \\
+\hline
+
+46 & Motor Thermal Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Heat generation calculations
+\item Cooling system design
+\item Temperature limits
+\item Thermal monitoring
+\item Insulation life assessment
+\end{itemize} & NR467 Sec.15, [3.23] \\
+\hline
+
+47 & Motor Cooling System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Cooling method (water-cooled, oil-cooled)
+\item Heat exchanger design
+\item Coolant circulation system
+\item Pump specifications
+\item Temperature monitoring
+\end{itemize} & NR467 Sec.15, [3.24] \\
+\hline
+
+48 & Motor Mounting \& Support & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor mounting arrangement in pod
+\item Alignment provisions
+\item Vibration isolation
+\item Thermal expansion accommodation
+\end{itemize} & NR467 Sec.15, [3.23] \\
+\hline
+
+\end{longtable}
+
+\subsection{Power Supply Through Strut}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Podded Propulsion - Power Supply} \label{tab:pod-power} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+49 & Power Cable Routing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Cable route through strut
+\item Cable support and protection
+\item Cable entry into pod
+\item Sealing arrangements
+\item Cable sizing calculations
+\end{itemize} & NR467 Sec.15, [3.25]; IEC 60092-352 \\
+\hline
+
+50 & Slip Ring or Rotary Transformer & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Type and manufacturer
+\item Current and voltage rating
+\item Cooling provisions
+\item Maintenance access
+\item Reliability data
+\end{itemize} & NR467 Sec.15, [3.25] \\
+\hline
+
+51 & Power Distribution in Pod & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Internal switchgear/junction boxes
+\item Protection devices
+\item Monitoring systems
+\item Watertight/waterproof rating
+\end{itemize} & NR467 Sec.15, [3.25] \\
+\hline
+
+\end{longtable}
+
+\subsection{Propeller Direct Drive}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Podded Propulsion - Direct Drive} \label{tab:pod-drive} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+52 & Direct Drive Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor shaft to propeller connection
+\item Coupling or direct mounting
+\item Bearing arrangement
+\item Seal system
+\item Alignment procedure
+\end{itemize} & NR467 Sec.15, [3.26] \\
+\hline
+
+53 & Shaft Seal System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Seal type and material
+\item Seal arrangement
+\item Pressure rating
+\item Leakage monitoring
+\item Emergency sealing provisions
+\end{itemize} & NR467 Sec.15, [3.26] \\
+\hline
+
+\end{longtable}
+
+\subsection{Pod-Specific Testing}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Podded Propulsion - Testing Requirements} \label{tab:pod-testing} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+54 & Pressure Testing Procedure & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Test pressure and duration
+\item Test setup
+\item Acceptance criteria
+\item Leakage limits
+\end{itemize} & NR467 Sec.15, [3.27] \\
+\hline
+
+55 & Motor Insulation Testing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Insulation resistance tests
+\item High voltage tests
+\item Partial discharge tests
+\item Test conditions and acceptance criteria
+\end{itemize} & IEC 60092-301 \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+% Chapter 4: Water-Jets
+\chapter{Water-Jet Propulsion Systems}
+\label{ch:waterjets}
+
+\section{General Arrangement}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - General Arrangement} \label{tab:waterjet-general} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & Water-Jet General Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Installation location on vessel
+\item Inlet and outlet positions
+\item Nozzle orientation
+\item Access for maintenance
+\item Clearances
+\end{itemize} & NR467 Sec.15, [4.1] \\
+\hline
+
+2 & Hull Integration Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Inlet duct design
+\item Hull penetration details
+\item Structural integration
+\item Hydrodynamic considerations
+\item Reinforcement arrangements
+\end{itemize} & NR467 Sec.15, [4.2]; Part B, Ch.5 \\
+\hline
+
+\end{longtable}
+
+\section{Water-Jet Unit Components}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - Unit Components} \label{tab:waterjet-components} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+3 & Water-Jet Unit Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete unit cross-section
+\item Pump assembly
+\item Inlet duct
+\item Nozzle and steering/reversing mechanism
+\item Material specifications
+\end{itemize} & NR467 Sec.15, [4.3] \\
+\hline
+
+4 & Impeller Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Impeller geometry
+\item Number of blades
+\item Material specification
+\item Blade profile
+\item Hub design
+\end{itemize} & NR467 Sec.15, [4.4] \\
+\hline
+
+5 & Impeller Strength Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Blade stress analysis
+\item Hub stress analysis
+\item Centrifugal forces
+\item Hydrodynamic forces
+\item Fatigue assessment
+\item Cavitation analysis
+\end{itemize} & NR467 Sec.15, [4.4] \\
+\hline
+
+6 & Pump Shaft Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Shaft dimensions and material
+\item Bearing locations
+\item Seal arrangements
+\item Coupling details
+\end{itemize} & NR467 Sec.15, [4.5] \\
+\hline
+
+7 & Pump Shaft Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Torsional strength
+\item Bending stress
+\item Combined stress analysis
+\item Deflection
+\item Critical speed
+\item Fatigue assessment
+\end{itemize} & NR467 Sec.15, [4.5]; Sec.7 \\
+\hline
+
+8 & Bearing Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Bearing types and locations
+\item Bearing housing
+\item Lubrication system
+\item Seal design
+\item Cooling provisions
+\end{itemize} & NR467 Sec.15, [4.6] \\
+\hline
+
+9 & Bearing Load Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Radial and axial loads
+\item Bearing life calculation
+\item Lubrication requirements
+\item Temperature analysis
+\end{itemize} & NR467 Sec.15, [4.6] \\
+\hline
+
+\end{longtable}
+
+\section{Inlet Duct System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - Inlet Duct} \label{tab:waterjet-inlet} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+10 & Inlet Duct Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Duct geometry and dimensions
+\item Material specification
+\item Structural design
+\item Hydrodynamic profile
+\item Debris protection (grating/screen)
+\end{itemize} & NR467 Sec.15, [4.7] \\
+\hline
+
+11 & Inlet Duct Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Structural strength analysis
+\item Pressure loading
+\item Flow analysis
+\item Cavitation assessment
+\end{itemize} & NR467 Sec.15, [4.7] \\
+\hline
+
+12 & Hull Penetration \& Reinforcement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Opening dimensions
+\item Reinforcement design
+\item Watertight integrity
+\item Structural attachment
+\end{itemize} & NR467 Sec.15, [4.7]; Part B, Ch.5 \\
+\hline
+
+\end{longtable}
+
+\section{Steering and Reversing Mechanism}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - Steering \& Reversing} \label{tab:waterjet-steering} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+13 & Steering Nozzle Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Nozzle geometry
+\item Deflection range
+\item Actuator arrangement
+\item Structural design
+\item Material specification
+\end{itemize} & NR467 Sec.15, [4.8] \\
+\hline
+
+14 & Reversing Bucket Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Bucket geometry
+\item Deployment mechanism
+\item Actuator system
+\item Structural strength
+\item Material specification
+\end{itemize} & NR467 Sec.15, [4.9] \\
+\hline
+
+15 & Steering/Reversing Actuators & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hydraulic cylinder specifications
+\item Operating pressure
+\item Force requirements
+\item Position feedback
+\item Emergency provisions
+\end{itemize} & NR467 Sec.15, [4.10] \\
+\hline
+
+16 & Steering/Reversing Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Actuator force requirements
+\item Structural strength of nozzle/bucket
+\item Response time analysis
+\item Hydraulic system sizing
+\end{itemize} & NR467 Sec.15, [4.10] \\
+\hline
+
+\end{longtable}
+
+\section{Drive System}
+
+\subsection{For Direct Drive from Main Engine}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - Direct Drive} \label{tab:waterjet-direct} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+17 & Drive Shaft Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Shaft line from engine to water-jet
+\item Bearing locations
+\item Coupling arrangements
+\item Alignment provisions
+\end{itemize} & NR467 Sec.15, [4.11]; Sec.7 \\
+\hline
+
+18 & Drive Shaft Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Torsional strength
+\item Bending stress
+\item Critical speed analysis
+\item Alignment calculations
+\item See Chapter \ref{ch:shafting} for full requirements
+\end{itemize} & NR467 Sec.15, [4.11]; Sec.7 \\
+\hline
+
+\end{longtable}
+
+\subsection{For Gearbox Drive}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - Gearbox Drive} \label{tab:waterjet-gearbox} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+19 & Gearbox Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Gear arrangement
+\item Gear ratios
+\item Casing design
+\item Lubrication system
+\item Mounting arrangement
+\end{itemize} & NR467 Sec.15, [4.12] \\
+\hline
+
+20 & Gear Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Gear tooth strength
+\item Contact stress
+\item Bending stress
+\item Lubrication analysis
+\item Efficiency
+\end{itemize} & NR467 Sec.15, [4.12] \\
+\hline
+
+\end{longtable}
+
+\section{Hydraulic System (for steering/reversing)}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - Hydraulic System} \label{tab:waterjet-hydraulic} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+21 & Hydraulic System Schematic & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete hydraulic circuit
+\item HPU specifications
+\item Control valves
+\item Piping arrangement
+\item See Chapter \ref{ch:hydraulics} for detailed requirements
+\end{itemize} & NR467 Sec.15, [4.13]; Ch.\ref{ch:hydraulics} \\
+\hline
+
+\end{longtable}
+
+\section{Control System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - Control System} \label{tab:waterjet-control} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+22 & Control System Architecture & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Control system topology
+\item Steering control
+\item Reversing control
+\item Engine/pump speed control
+\item Interface with ship systems
+\end{itemize} & NR467 Sec.15, [4.14]; Part C, Ch.4 \\
+\hline
+
+23 & Bridge Control Console & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Control panel layout
+\item Joystick/lever arrangement
+\item Display and indication
+\item Alarm system
+\item Emergency stop
+\end{itemize} & NR467 Sec.15, [4.14] \\
+\hline
+
+24 & Electrical Single-Line Diagram & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Power supply
+\item Protection devices
+\item Monitoring circuits
+\item Emergency power provisions
+\end{itemize} & NR467 Sec.15, [4.14]; IEC 60092-504 \\
+\hline
+
+\end{longtable}
+
+\section{Performance Calculations}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Water-Jets - Performance Calculations} \label{tab:waterjet-performance} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+25 & Thrust and Performance Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Thrust curves
+\item Power absorption
+\item Efficiency analysis
+\item Speed predictions
+\item Bollard pull
+\end{itemize} & NR467 Sec.15, [4.15] \\
+\hline
+
+26 & Cavitation Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Cavitation inception speed
+\item Cavitation patterns
+\item Erosion risk assessment
+\item Mitigation measures
+\end{itemize} & NR467 Sec.15, [4.15] \\
+\hline
+
+27 & Vibration Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Natural frequency calculations
+\item Forced vibration analysis
+\item Resonance avoidance
+\item Foundation design
+\end{itemize} & NR467 Sec.15, [4.16] \\
+\hline
+
+28 & Noise Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Airborne noise prediction
+\item Structure-borne noise
+\item Compliance with regulations
+\item Noise reduction measures
+\end{itemize} & NR467 Sec.15, [4.16] \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+% Chapter: Voith-Schneider / Cycloidal
+\chapter{Voith-Schneider (Cycloidal) Propulsion Systems}
+\label{ch:vsp}
+
+\section{Description \& Classification Basis}
+
+The Voith-Schneider Propeller (VSP), or cycloidal propeller, is a vertical-axis
+propulsor in which a set of vertical blades projects below a rotating casing
+(rotor). Each blade oscillates about its own vertical axis through a kinematic
+control gear linked to a movable control (steering) centre. By displacing the
+control centre, the unit produces thrust of \emph{any magnitude in any
+horizontal direction} at constant rotor speed. A VSP therefore combines
+\textbf{propulsion and steering in a single unit}; the steering function makes
+\textbf{NR467 Part C, Ch 1, Sec 14 (Steering Gear) and SOLAS II-1 Reg.\,29
+requirements applicable} (see Chapter \ref{ch:steering}). Typical applications:
+Voith Water Tractors, double-ended ferries, buoy tenders, mine-countermeasure
+vessels.
+
+VSP units are assessed under \textbf{NR467 Pt C, Ch 1, Sec 15} for the
+mechanical thruster elements, \textbf{Sec 14} for the steering/control function,
+and \textbf{Sec 7} where the drive forms part of the propulsion shaft line.
+
+\section{VSP-Specific Structural \& Mechanical Components}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Voith-Schneider Propeller --- Mechanical \& Structural Requirements} \label{tab:vsp-mech} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+1 & VSP Unit General Assembly & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete unit cross-section (rotor casing, blades, gear)
+\item Number of blades and blade circle diameter
+\item Rotor speed and orbit geometry
+\item Material list and lifting arrangement
+\end{itemize} & NR467 Sec.15, [5.1] \\
+\hline
+
+2 & Blade (Wing) Design Drawing & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Blade profile, chord, span
+\item Blade shaft dimensions and material
+\item Blade root / shaft connection
+\item Surface finish and corrosion protection
+\end{itemize} & NR467 Sec.15, [5.2] \\
+\hline
+
+3 & Blade Shaft \& Blade Strength Calculations & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Hydrodynamic blade loads (thrust + side force)
+\item Bending + torsion of blade shaft
+\item Centrifugal loads at max rotor speed
+\item Fatigue assessment (reversing loads)
+\end{itemize} & NR467 Sec.15, [5.2]; Sec.7 \\
+\hline
+
+4 & Blade Bearing Arrangement & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Upper/lower blade bearings, seals
+\item Bearing load and L10 life
+\item Lubrication path from oil system
+\end{itemize} & NR467 Sec.15, [5.3] \\
+\hline
+
+5 & Kinematic Control Gear (Steering Mechanism) & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Control-centre / eccentric arrangement
+\item Control rods, links, crank geometry
+\item Servo actuator interface
+\item Strength of linkage members and pins
+\item Fail-safe / neutral-thrust behaviour
+\end{itemize} & NR467 Sec.15, [5.4]; Sec.14 \\
+\hline
+
+6 & Rotor Casing \& Main Bevel Gear & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Rotor casing structure and thrust path
+\item Input bevel gear (horizontal drive $\rightarrow$ vertical rotor)
+\item Gear tooth calculations (ISO 6336)
+\item Main thrust bearing design and life
+\item Lubrication and oil monitoring
+\end{itemize} & NR467 Sec.15, [5.5] \\
+\hline
+
+7 & Bottom Cover / Guard Plate Structure & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Guard plate below blade circle
+\item Structural strength (grounding/impact)
+\item Attachment to unit and hull
+\item Detachment / fail-safe considerations
+\end{itemize} & NR467 Sec.15, [5.6]; Part B, Ch.5 \\
+\hline
+
+8 & Hull Seat, Foundation \& Well Structure & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Foundation ring and bolting
+\item Local hull reinforcement / FEA
+\item Watertight integrity of installation well
+\item Load transfer (thrust, steering moment)
+\end{itemize} & NR467 Sec.15, [5.6]; Part B, Ch.5 \\
+\hline
+
+9 & Seal System (Rotor \& Blade Shafts) & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Seal type, arrangement and material
+\item Leakage monitoring / oil-in-water prevention
+\item EAL fluid if CLEANSHIP (see Ch.\ref{ch:notations})
+\end{itemize} & NR467 Sec.15, [5.7] \\
+\hline
+
+\end{longtable}
+
+\section{VSP Drive, Servo Control \& Steering Function}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Voith-Schneider Propeller --- Drive \& Control} \label{tab:vsp-ctrl} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+10 & Prime Mover Interface & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Diesel engine or electric motor input (see Ch.\ref{ch:primemover})
+\item Input coupling / clutch / cardan shaft
+\item Torsional vibration calculation of the complete drive train
+\end{itemize} & NR467 Sec.15; Sec.7 \\
+\hline
+
+11 & Servo / Hydraulic Control Unit & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Control (steering) hydraulic schematic
+\item Two independent power/servo systems where used for steering (redundancy)
+\item Pressure ratings, relief, accumulators
+\item See Chapter \ref{ch:hydraulics}
+\end{itemize} & NR467 Sec.14; Ch.\ref{ch:hydraulics} \\
+\hline
+
+12 & Steering Control System \& Bridge Console & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Control transmitter (tiller/joystick) to control centre
+\item Thrust magnitude \& direction indication
+\item Follow-up / non-follow-up control
+\item Alarms, emergency stop, mode changeover
+\end{itemize} & NR467 Sec.14; Part C, Ch.4 \\
+\hline
+
+13 & Steering Function Compliance Package & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item FMEA of steering function
+\item Single-failure / duplication analysis
+\item Response time, hard-over to hard-over
+\item SOLAS II-1 Reg.29 demonstration (see Ch.\ref{ch:steering})
+\end{itemize} & NR467 Sec.14; SOLAS II-1/29 \\
+\hline
+
+\end{longtable}
+
+\noindent\textbf{Surveyor note (VSP):} A VSP is simultaneously a propeller, a
+gear unit \emph{and} a steering gear. Do not approve the mechanical package in
+isolation --- confirm that the steering-function documentation of
+Chapter \ref{ch:steering} (redundancy, control stations, alarms, response time,
+SOLAS compliance) has also been submitted. The blade guard/bottom plate and its
+hull attachment are frequently under-documented; require structural
+substantiation against grounding loads.
+
+\newpage
+
+% Chapter: Other Thruster Types
+\chapter{Other Thruster Types (Rim-Driven, Pump-Jet, Gill/Jet, Steering Grid)}
+\label{ch:othertypes}
+
+This chapter addresses less-common propulsor arrangements recognised by BV. Each
+follows the \textbf{general submissions of Chapter \ref{ch:general}} plus the
+requirements of the \emph{nearest analogous conventional type}, with the
+additional type-specific items below. Confirm the intended notation and service
+(propulsion, take-me-home, DP, steering) before fixing the package.
+
+\section{Rim-Driven Thrusters (Integrated Motor Propulsors)}
+
+Rim-driven / hubless thrusters integrate a permanent-magnet (or induction) motor
+whose rotor forms the propeller-blade tip ring inside the duct. There is no
+mechanical shaft line or reduction gear; excitation and speed are set by a
+frequency converter. Assessment shifts from gearing toward
+\textbf{electrical machine, converter and duct-bearing} substantiation.
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Rim-Driven Thruster --- Type-Specific Requirements} \label{tab:rdt} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+1 & Integrated Motor \& Duct Assembly & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor type (PM / induction), pole/winding data
+\item Rotor rim / blade-tip ring construction
+\item Duct structure and stator support
+\item Cooling (seawater / freshwater path)
+\end{itemize} & NR467 Sec.15; Pt C, Ch.2; IEC 60092-301 \\
+\hline
+
+2 & Frequency Converter / Drive Package & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Converter rating and topology
+\item Harmonic / power-quality analysis
+\item Protection, cooling, EMC
+\item See Chapter \ref{ch:primemover} (electric drive)
+\end{itemize} & NR467 Pt C, Ch.2; IEC 60092-101 \\
+\hline
+
+3 & Bearing \& Seal Arrangement & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Water-lubricated / magnetic bearing design
+\item Bearing load and wear-life basis
+\item Gap / air-gap control, seal design
+\end{itemize} & NR467 Sec.15, [6.1] \\
+\hline
+
+4 & Blade \& Rim Strength Calculations & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Blade + rim stress (hydro + magnetic + centrifugal)
+\item Fatigue and corrosion allowance
+\item Cavitation assessment
+\end{itemize} & NR467 Sec.15, [6.1]; Sec.7 \\
+\hline
+
+\end{longtable}
+
+\section{Pump-Jet \& Ducted Rotor-Stator Propulsors}
+
+Pump-jet units (ducted rotor with stator vanes, often for low-signature or
+shallow-draught craft) are treated as a ducted propeller + shaft line. Submit the
+\textbf{duct/stator structure and strength, rotor blade design and strength,
+shaft line (Chapter \ref{ch:shafting}), bearings, seals} and the relevant drive
+package. Where the unit also steers (deflector/vectoring), add the steering
+function package of Chapter \ref{ch:steering}.
+
+\section{Gill / Hydro-Jet Transverse Thrusters (Pump-Type)}
+
+Pump-type transverse thrusters draw water through a hull inlet and discharge
+through athwartship outlets, providing side thrust without an open tunnel. Submit
+as for a tunnel thruster (Chapter \ref{ch:transverse}) but replace the tunnel
+structure items with: \textbf{inlet grating and duct, internal pump/impeller
+design and strength, discharge outlet and directional-valve arrangement, hull
+penetration and watertight integrity}, plus the pump drive package.
+
+\section{Steering Grid / Steering-Nozzle \& Rudder-Propeller Variants}
+
+Fixed-nozzle (Kort-type) units with a steering grid or a steerable nozzle behave
+as combined propulsion + steering devices. Submit the \textbf{nozzle/grid
+structure and strength, propeller in nozzle, shaft line, steering actuator and
+control}, and the full steering-gear compliance package of
+Chapter \ref{ch:steering} (SOLAS II-1 Reg.29 where the device is the ship's
+means of steering).
+
+\noindent\textbf{Surveyor note (other types):} For any novel or hybrid
+propulsor, apply the \emph{function-based} approach --- decompose the unit into
+propeller/impeller, structure, shaft line, gear (if any), drive
+(electric/diesel/hydraulic), bearings/seals and control --- and require the
+corresponding chapter's submissions for each function. Novel technology may
+additionally require an Approval-in-Principle (AiP) or risk-based/alternative-design
+assessment.
+
+\newpage
+
+% Chapter: Prime Mover Considerations
+\chapter{Prime Mover Considerations --- Diesel-Engine vs.\ Electric-Motor Driven Thrusters}
+\label{ch:primemover}
+
+\section{Purpose}
+
+The preceding type chapters split the drive into \emph{electric} or
+\emph{hydraulic}. This chapter consolidates the \textbf{additional package
+elements driven by the choice of prime mover} so the surveyor can confirm the
+correct drive-train documentation is present. A thruster may be driven by:
+\begin{itemize}[leftmargin=*]
+\item an \textbf{electric motor} (constant- or variable-speed, converter-fed), typical of diesel-electric ships, DP vessels, cruise ships and pods; or
+\item a \textbf{diesel engine} (direct/geared mechanical drive), typical of tugs, OSVs and workboats with inboard engines driving Z-drive azimuth or tunnel thrusters via shafting, clutches and gearboxes; or
+\item a \textbf{hydraulic motor} (covered per type chapter and Chapter \ref{ch:hydraulics}), common on retractable and smaller units.
+\end{itemize}
+
+\section{Electric-Motor-Driven Thrusters --- Additional Submissions}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Electric-Motor Prime Mover --- Additional Requirements} \label{tab:pm-electric} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+1 & Propulsion/Drive Motor Data Sheet & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Type (induction / PM / synchronous)
+\item Rated \& overload power, torque-speed curve
+\item Voltage, frequency, insulation \& IP class
+\item Cooling method, temperature rise (IEC 60034)
+\end{itemize} & NR467 Pt C, Ch.2; IEC 60092-301 \\
+\hline
+
+2 & Frequency Converter (VFD) Specification \& Arrangement & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Converter topology and rating
+\item Output torque ripple at thruster
+\item Protection, redundancy, bypass
+\item Cooling and heat load to space
+\end{itemize} & NR467 Pt C, Ch.2 \\
+\hline
+
+3 & Harmonic \& Power-Quality Analysis & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item THD at main switchboard (limits per rules)
+\item Effect on generators/other consumers
+\item Mitigation (multi-pulse, active front end, filters)
+\end{itemize} & NR467 Pt C, Ch.2 \\
+\hline
+
+4 & Supply Transformer \& Switchboard Interface & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Transformer rating, vector group, cooling
+\item Feeder protection and discrimination
+\item Short-circuit \& earth-fault coordination
+\end{itemize} & NR467 Pt C, Ch.2; IEC 60092-201 \\
+\hline
+
+5 & Power Cable Sizing \& Routing & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Current rating, voltage drop, derating
+\item Routing, support, bulkhead penetrations
+\item Segregation (DP redundancy where relevant)
+\end{itemize} & IEC 60092-352 / -352 \\
+\hline
+
+6 & Motor Protection, Monitoring \& Cooling & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Winding/bearing temperature monitoring
+\item Overload, earth-fault, differential protection
+\item Space heaters, forced cooling, condensation control
+\end{itemize} & NR467 Pt C, Ch.2 / Ch.3 \\
+\hline
+
+7 & Torque-Ripple / Torsional Interaction Note & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Converter harmonics vs.\ shaft-line torsionals
+\item Barred-speed / avoidance ranges if any
+\item Cross-reference shaft TVC (Chapter \ref{ch:shafting})
+\end{itemize} & NR467 Sec.7 \\
+\hline
+
+8 & Integration with PMS / Blackout Recovery & \fic{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Load-dependent start/stop, load shedding
+\item Blackout and thruster restart sequence
+\end{itemize} & NR467 Pt C, Ch.3 \\
+\hline
+
+\end{longtable}
+
+\section{Diesel-Engine-Driven Thrusters --- Additional Submissions}
+
+Where a thruster (typically a Z-drive azimuth on a tug/OSV, or a directly driven
+tunnel/CP unit) is driven by a diesel engine, the \textbf{engine and its
+auxiliary systems become part of the approvable package} under
+\textbf{NR467 Pt C, Ch 1, Sec 2 (Diesel Engines)} in addition to the thruster
+under Sec 15. A \textbf{torsional vibration calculation (TVC) of the complete
+engine--clutch--shafting--thruster system is mandatory.}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Diesel-Engine Prime Mover --- Additional Requirements} \label{tab:pm-diesel} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+1 & Diesel Engine Approval / Type Data & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Engine general arrangement \& rating (MCR)
+\item Type Approval / unit certification status
+\item Crankshaft \& main running-gear data
+\item Safety devices (overspeed, LO low-pressure shutdown)
+\end{itemize} & NR467 Pt C, Ch.1, Sec.2 \\
+\hline
+
+2 & Torsional Vibration Calculation (TVC) & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete engine--coupling--gear--thruster model
+\item Barred/critical speed ranges
+\item Stresses in shafts, coupling, gear at criticals
+\item Clutch-in/out and misfiring conditions
+\end{itemize} & NR467 Sec.2; Sec.7 \\
+\hline
+
+3 & Clutch \& Flexible Coupling & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Clutch type, torque \& engagement control
+\item Flexible coupling stiffness/damping data
+\item Alignment and vibration decoupling
+\end{itemize} & NR467 Sec.2; Sec.7 \\
+\hline
+
+4 & Engine Foundation \& Chocking & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Seating structure and holding-down bolts
+\item Resilient mounts / chocking arrangement
+\item Alignment provisions and thrust transmission
+\end{itemize} & NR467 Sec.2; Part B, Ch.5 \\
+\hline
+
+5 & Fuel Oil System & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item FO service/settling tanks, transfer, filtration
+\item Piping, valves, quick-closing valves
+\item Leakage containment, high-pressure line shielding
+\end{itemize} & NR467 Pt C, Ch.1 (Piping) \\
+\hline
+
+6 & Lubricating Oil System & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item LO pumps, cooler, filters, sump
+\item Pressure/temperature monitoring \& alarms
+\end{itemize} & NR467 Pt C, Ch.1 \\
+\hline
+
+7 & Cooling Water System & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Jacket \& charge-air cooling circuits
+\item Sea-water / central cooling, pumps, expansion
+\end{itemize} & NR467 Pt C, Ch.1 \\
+\hline
+
+8 & Starting \& Control Air / Starting System & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Air receivers, compressors, capacity for starts
+\item Or electric-start battery capacity
+\end{itemize} & NR467 Pt C, Ch.1 \\
+\hline
+
+9 & Exhaust Gas System & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Piping, expansion, lagging, silencer
+\item Back-pressure, boundary insulation (fire)
+\item SCR/EGR arrangement if fitted
+\end{itemize} & NR467 Pt C, Ch.1; SOLAS II-2 \\
+\hline
+
+10 & Engine Control, Safety \& Monitoring & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Governor / speed control, overspeed trip
+\item Alarms \& safeguards, local/remote control
+\item Integration with thruster \& bridge controls
+\end{itemize} & NR467 Pt C, Ch.1 / Ch.3 \\
+\hline
+
+11 & Emissions / NOx Documentation & \fic{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item EIAPP certificate \& NOx Technical File
+\item MARPOL Annex VI Tier compliance
+\end{itemize} & MARPOL Annex VI \\
+\hline
+
+12 & Engine-Room Ventilation \& Air Supply & \fic{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Combustion air and space ventilation
+\item Heat balance / temperature rise
+\end{itemize} & NR467 Pt C, Ch.1 \\
+\hline
+
+\end{longtable}
+
+\noindent\textbf{Surveyor note (prime mover):} The single most common gap for
+diesel-driven Z-drive tugs is a \textbf{missing or incomplete TVC for the whole
+train} (engine + clutch + cardan/shaft + azimuth gears + propeller). For
+electric drives, the recurring gaps are the \textbf{harmonic/power-quality study}
+and \textbf{cable-sizing/segregation}. Hybrid PTI/PTO arrangements must document
+\emph{every} driving path and the mode-changeover logic. Cross-reference the
+shaft-line torsional/alignment package in Chapter \ref{ch:shafting}.
+
+\newpage
+
+% Chapter 5: Steering Gear
+\chapter{Thrusters as Part of Steering Gear}
+\label{ch:steering}
+
+\section{Applicability}
+
+\textbf{\textcolor{warningred}{CRITICAL:}} When thrusters (azimuth, podded, or water-jets) are used as the PRIMARY or AUXILIARY steering system, they MUST comply with ALL steering gear requirements in addition to thruster requirements.
+
+This applies to:
+\begin{itemize}[leftmargin=*]
+\item Azimuth thrusters used for steering
+\item Podded propulsion units providing steering
+\item Water-jet systems providing steering
+\item Any thruster configuration that replaces or supplements rudder steering
+\end{itemize}
+
+\section{Additional Steering Gear Requirements}
+
+\textbf{All applicable thruster drawings from Chapters \ref{ch:transverse}-\ref{ch:waterjets} apply, PLUS the following steering-specific submissions:}
+
+\subsection{Steering System Design}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - System Design} \label{tab:steering-design} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & Steering System General Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete steering system layout
+\item Main and auxiliary steering provisions
+\item Control stations
+\item Power supply arrangements
+\item Emergency steering provisions
+\end{itemize} & NR467 Sec.14, [1] \\
+\hline
+
+2 & Steering Gear Capacity Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Maximum steering torque
+\item Time to move from 35° port to 35° starboard
+\item Time to move from 35° to 30° on opposite side
+\item Compliance with SOLAS requirements
+\item Redundancy analysis
+\end{itemize} & NR467 Sec.14, [2]; SOLAS Ch.II-1, Reg.29 \\
+\hline
+
+3 & Steering Control System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Control system architecture
+\item Main control station (bridge)
+\item Auxiliary control provisions
+\item Emergency control
+\item Autopilot integration
+\item Manual override provisions
+\end{itemize} & NR467 Sec.14, [3] \\
+\hline
+
+\end{longtable}
+
+\subsection{Redundancy \& Reliability}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - Redundancy Requirements} \label{tab:steering-redundancy} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+4 & Main and Auxiliary Steering Systems & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Main steering arrangement
+\item Auxiliary steering arrangement
+\item Independence of systems
+\item Changeover provisions
+\item Simultaneous operation capability
+\end{itemize} & NR467 Sec.14, [4]; SOLAS Ch.II-1, Reg.29 \\
+\hline
+
+5 & Failure Mode and Effects Analysis (FMEA) & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item All potential failure modes
+\item Effects on steering capability
+\item Single failure tolerance
+\item Redundancy verification
+\item Mitigation measures
+\end{itemize} & NR467 Sec.14, [5] \\
+\hline
+
+6 & Reliability Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item System reliability calculations
+\item Component failure rates
+\item Mean time between failures (MTBF)
+\item Availability analysis
+\item Compliance with steering gear standards
+\end{itemize} & NR467 Sec.14, [5] \\
+\hline
+
+\end{longtable}
+
+\subsection{Power Supply}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - Power Supply} \label{tab:steering-power} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+7 & Steering Gear Power Supply & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Main power supply arrangement
+\item Emergency power supply
+\item Independent power sources for main/auxiliary
+\item Switchboard arrangements
+\item Circuit protection
+\end{itemize} & NR467 Sec.14, [6]; SOLAS Ch.II-1, Reg.29 \\
+\hline
+
+8 & Power Supply Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Load analysis
+\item Cable sizing
+\item Protection device coordination
+\item Voltage drop calculations
+\item Short circuit analysis
+\end{itemize} & NR467 Sec.14, [6]; IEC 60092-352 \\
+\hline
+
+\end{longtable}
+
+\subsection{Control Stations}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - Control Stations} \label{tab:steering-control} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+9 & Bridge Control Console & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Main steering control layout
+\item Steering wheel or joystick
+\item Rudder angle indicator (or thruster angle)
+\item Rate of turn indicator
+\item Alarm and monitoring displays
+\item Autopilot controls
+\end{itemize} & NR467 Sec.14, [7] \\
+\hline
+
+10 & Emergency Steering Station & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Emergency control location
+\item Control equipment
+\item Communication with bridge
+\item Indication and monitoring
+\item Access provisions
+\end{itemize} & NR467 Sec.14, [8]; SOLAS Ch.II-1, Reg.29 \\
+\hline
+
+11 & Local Control Station & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Local control panel (if applicable)
+\item Control mode selection
+\item Indication and monitoring
+\item Interlock with other control stations
+\end{itemize} & NR467 Sec.14, [9] \\
+\hline
+
+\end{longtable}
+
+\subsection{Alarms and Monitoring}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - Alarms \& Monitoring} \label{tab:steering-alarms} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+12 & Alarm System Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Power supply failure alarms
+\item Control system failure alarms
+\item Actuator failure alarms
+\item Position deviation alarms
+\item Alarm display on bridge
+\end{itemize} & NR467 Sec.14, [10] \\
+\hline
+
+13 & Monitoring System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Position monitoring
+\item Rate monitoring
+\item Torque/thrust monitoring
+\item Temperature monitoring
+\item Data logging
+\end{itemize} & NR467 Sec.14, [10] \\
+\hline
+
+\end{longtable}
+
+\subsection{Hydraulic Systems (if applicable)}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - Hydraulic System} \label{tab:steering-hydraulic} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+14 & Steering Gear Hydraulic System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Main hydraulic system
+\item Auxiliary hydraulic system
+\item Independence of systems
+\item Accumulator provisions
+\item See Chapter \ref{ch:hydraulics} for detailed requirements
+\end{itemize} & NR467 Sec.14, [11]; Ch.\ref{ch:hydraulics} \\
+\hline
+
+\end{longtable}
+
+\subsection{Testing \& Commissioning}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - Testing Requirements} \label{tab:steering-testing} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+15 & Steering Gear Testing Procedures & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Factory acceptance tests
+\item Installation tests
+\item Sea trial procedures
+\item Performance verification
+\item Redundancy testing
+\item Emergency steering tests
+\end{itemize} & NR467 Sec.14, [12]; SOLAS Ch.II-1, Reg.29 \\
+\hline
+
+16 & Steering Gear Test Records & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item FAT reports
+\item Installation test reports
+\item Sea trial results
+\item Performance verification
+\item As-built documentation
+\end{itemize} & NR467 Sec.14, [12] \\
+\hline
+
+\end{longtable}
+
+\subsection{Operating Manuals}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - Operating Manuals} \label{tab:steering-manuals} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+17 & Steering Gear Operating Manual & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Normal operating procedures
+\item Changeover procedures (main/auxiliary)
+\item Emergency procedures
+\item Troubleshooting guide
+\item Safety precautions
+\end{itemize} & NR467 Sec.14, [13] \\
+\hline
+
+18 & Maintenance Manual & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Maintenance schedule
+\item Inspection procedures
+\item Lubrication requirements
+\item Spare parts list
+\item Overhaul procedures
+\end{itemize} & NR467 Sec.14, [13] \\
+\hline
+
+\end{longtable}
+
+\subsection{SOLAS Compliance Documentation}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Steering Gear - SOLAS Compliance} \label{tab:steering-solas} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+19 & SOLAS Compliance Statement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Demonstration of compliance with SOLAS Ch.II-1, Reg.29
+\item Steering gear capacity verification
+\item Redundancy verification
+\item Emergency steering capability
+\item Testing and commissioning compliance
+\end{itemize} & NR467 Sec.14, [14]; SOLAS Ch.II-1, Reg.29 \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+% Chapter 6: Main Shafting
+\chapter{Thrusters as Part of Main Shafting}
+\label{ch:shafting}
+
+\section{Applicability}
+
+When thruster shafts (propeller shafts, intermediate shafts, vertical shafts in azimuth thrusters, or water-jet drive shafts) are considered part of the main propulsion shafting system, they MUST comply with shafting requirements in NR467 Section 7.
+
+This typically applies to:
+\begin{itemize}[leftmargin=*]
+\item Azimuth thruster vertical and horizontal shafts
+\item Podded propulsion shafts
+\item Water-jet drive shafts
+\item Tunnel thruster propeller shafts (for high-power units)
+\item Any shaft transmitting significant propulsion power
+\end{itemize}
+
+\section{Overlap with Thruster Requirements}
+
+\textbf{NOTE:} Many shaft-related drawings and calculations are already covered in Chapters \ref{ch:transverse}-\ref{ch:waterjets}. This chapter identifies ADDITIONAL requirements or ENHANCED detail levels required when shafts are classified as "main shafting."
+
+\subsection{Shaft Design Drawings}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Design Drawings} \label{tab:shafting-design} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & Shaft Line General Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete shaft line layout
+\item All shaft sections identified
+\item Bearing locations
+\item Coupling locations
+\item Seal locations
+\item Coordinate system
+\end{itemize} & NR467 Sec.7, [1] \\
+\hline
+
+2 & Shaft Detail Drawings & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Dimensional drawings of each shaft section
+\item Diameter changes and transitions
+\item Keyway details
+\item Thread details
+\item Surface finish requirements
+\item Material specifications
+\item Heat treatment requirements
+\end{itemize} & NR467 Sec.7, [2] \\
+\hline
+
+3 & Shaft End Connections & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Flange designs
+\item Coupling designs
+\item Bolt specifications
+\item Fit tolerances
+\item Assembly procedures
+\end{itemize} & NR467 Sec.7, [3] \\
+\hline
+
+\end{longtable}
+
+\subsection{Shaft Strength Calculations}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Strength Calculations} \label{tab:shafting-strength} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+4 & Shaft Diameter Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Minimum diameter calculations per BV formula
+\item Torsional strength verification
+\item Bending strength verification
+\item Combined stress analysis
+\item Safety factors applied
+\end{itemize} & NR467 Sec.7, [4] \\
+\hline
+
+5 & Shaft Stress Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Detailed stress calculations at critical sections
+\item Stress concentration factors
+\item Keyway effects
+\item Thread effects
+\item FEA results (if applicable)
+\end{itemize} & NR467 Sec.7, [4] \\
+\hline
+
+6 & Fatigue Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Fatigue life calculations
+\item S-N curves for materials
+\item Stress range analysis
+\item Cumulative damage assessment
+\item Compliance with fatigue criteria
+\end{itemize} & NR467 Sec.7, [5] \\
+\hline
+
+7 & Deflection Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Shaft deflection under load
+\item Bearing alignment effects
+\item Seal clearance verification
+\item Acceptable deflection limits
+\end{itemize} & NR467 Sec.7, [6] \\
+\hline
+
+\end{longtable}
+
+\subsection{Critical Speed Analysis}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Critical Speed Analysis} \label{tab:shafting-critical} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+8 & Torsional Vibration Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Natural frequencies calculation
+\item Forced vibration analysis
+\item Resonance identification
+\item Barred speed ranges
+\item Damping analysis
+\item Compliance with acceptable vibration levels
+\end{itemize} & NR467 Sec.7, [7] \\
+\hline
+
+9 & Lateral Vibration Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Critical speed calculations
+\item Campbell diagram
+\item Operating speed verification
+\item Margin to critical speeds
+\item Bearing stiffness effects
+\end{itemize} & NR467 Sec.7, [7] \\
+\hline
+
+10 & Whirling Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Whirling speed calculations
+\item Forward and backward whirl
+\item Operating range verification
+\item Stability analysis
+\end{itemize} & NR467 Sec.7, [7] \\
+\hline
+
+\end{longtable}
+
+\subsection{Bearing Design}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Bearing Design} \label{tab:shafting-bearing} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+11 & Bearing Arrangement Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Bearing types and locations
+\item Bearing housing design
+\item Lubrication system
+\item Seal arrangements
+\item Cooling provisions
+\item Mounting details
+\end{itemize} & NR467 Sec.7, [8] \\
+\hline
+
+12 & Bearing Load Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Radial loads
+\item Axial loads (thrust bearings)
+\item Moment loads
+\item Load distribution among bearings
+\item Dynamic load factors
+\end{itemize} & NR467 Sec.7, [8] \\
+\hline
+
+13 & Bearing Life Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item L10 life calculations
+\item Operating conditions
+\item Load and speed effects
+\item Lubrication effects
+\item Minimum acceptable life
+\end{itemize} & NR467 Sec.7, [8] \\
+\hline
+
+14 & Bearing Lubrication System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Lubrication method (oil bath, forced circulation, grease)
+\item Oil type and properties
+\item Oil flow rate (forced systems)
+\item Cooling arrangements
+\item Filtration system
+\item Oil level and temperature monitoring
+\end{itemize} & NR467 Sec.7, [9] \\
+\hline
+
+\end{longtable}
+
+\subsection{Couplings}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Couplings} \label{tab:shafting-coupling} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+15 & Coupling Design Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Coupling type (rigid, flexible)
+\item Dimensions and material
+\item Bolt specifications
+\item Fit tolerances
+\item Assembly procedure
+\end{itemize} & NR467 Sec.7, [10] \\
+\hline
+
+16 & Coupling Strength Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Torque capacity
+\item Bolt strength verification
+\item Flange strength
+\item Fit stress analysis
+\item Fatigue assessment
+\end{itemize} & NR467 Sec.7, [10] \\
+\hline
+
+17 & Flexible Coupling Characteristics & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Torsional stiffness
+\item Damping properties
+\item Misalignment capacity
+\item Effect on torsional vibration
+\end{itemize} & NR467 Sec.7, [10] \\
+\hline
+
+\end{longtable}
+
+\subsection{Seals}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Seals} \label{tab:shafting-seal} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+18 & Seal System Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Seal type and material
+\item Seal arrangement
+\item Pressure rating
+\item Leakage monitoring provisions
+\item Emergency sealing (if applicable)
+\end{itemize} & NR467 Sec.7, [11] \\
+\hline
+
+19 & Seal Performance Data & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Operating pressure and temperature
+\item Shaft speed limitations
+\item Expected leakage rates
+\item Service life
+\item Maintenance requirements
+\end{itemize} & NR467 Sec.7, [11] \\
+\hline
+
+\end{longtable}
+
+\subsection{Alignment}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Alignment} \label{tab:shafting-alignment} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+20 & Shaft Alignment Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Alignment procedure
+\item Bearing reactions
+\item Shaft sag calculations
+\item Thermal growth considerations
+\item Acceptable alignment tolerances
+\end{itemize} & NR467 Sec.7, [12] \\
+\hline
+
+21 & Alignment Procedure & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Step-by-step alignment procedure
+\item Measurement methods
+\item Adjustment provisions
+\item Verification methods
+\item Documentation requirements
+\end{itemize} & NR467 Sec.7, [12] \\
+\hline
+
+\end{longtable}
+
+\subsection{Material Specifications}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Material Specifications} \label{tab:shafting-material} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+22 & Shaft Material Specifications & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Material grades (steel, stainless steel, etc.)
+\item Mechanical properties
+\item Heat treatment requirements
+\item Surface treatment (if applicable)
+\item Corrosion protection
+\item Compliance with BV approved materials
+\end{itemize} & NR467 Sec.7, [13]; Part B, Ch.3 \\
+\hline
+
+23 & Material Certificates & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Material test certificates (during construction)
+\item Chemical composition
+\item Mechanical properties
+\item Heat treatment records
+\item Traceability
+\end{itemize} & NR467 Part B, Ch.3 \\
+\hline
+
+\end{longtable}
+
+\subsection{Non-Destructive Testing (NDT)}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - NDT Requirements} \label{tab:shafting-ndt} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+24 & NDT Plan & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item NDT methods (UT, MT, PT, RT)
+\item Extent of testing
+\item Acceptance criteria
+\item Inspector qualifications
+\item Testing stages
+\end{itemize} & NR467 Sec.7, [14]; Part B, Ch.4 \\
+\hline
+
+25 & NDT Reports & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item NDT test reports (during construction)
+\item Test results
+\item Defect identification and disposition
+\item Inspector certification
+\end{itemize} & NR467 Part B, Ch.4 \\
+\hline
+
+\end{longtable}
+
+\subsection{Testing \& Commissioning}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Main Shafting - Testing \& Commissioning} \label{tab:shafting-testing} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+26 & Shaft Testing Procedures & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Dimensional verification
+\item Material testing
+\item NDT
+\item Balance testing (if applicable)
+\item Assembly testing
+\item Acceptance criteria
+\end{itemize} & NR467 Sec.7, [15] \\
+\hline
+
+27 & Vibration Monitoring Plan & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Vibration measurement locations
+\item Measurement methods
+\item Acceptance criteria
+\item Monitoring during sea trials
+\item Long-term monitoring provisions
+\end{itemize} & NR467 Sec.7, [16] \\
+\hline
+
+28 & Test Reports & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Factory test reports
+\item Installation test reports
+\item Sea trial vibration measurements
+\item Alignment verification
+\item As-built documentation
+\end{itemize} & NR467 Sec.7, [15] \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+% Chapter 7: Hydraulics
+\chapter{Hydraulic Systems \& Pitch Control Mechanisms}
+\label{ch:hydraulics}
+
+\section{Applicability}
+
+Hydraulic systems are used in thrusters for:
+\begin{itemize}[leftmargin=*]
+\item Hydraulic motor drive (alternative to electric motor)
+\item Retractable thruster lifting/lowering mechanism
+\item Controllable pitch propeller pitch control
+\item Azimuth slewing drive (if hydraulic)
+\item Water-jet steering and reversing actuation
+\end{itemize}
+
+\section{Hydraulic Power Unit (HPU)}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - HPU} \label{tab:hydraulic-hpu} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+1 & HPU General Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete HPU layout
+\item Pump arrangement
+\item Motor/drive arrangement
+\item Reservoir design
+\item Valve manifold
+\item Accumulator location
+\item Filtration system
+\item Cooling system
+\item Mounting arrangement
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+2 & Hydraulic Pump Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pump type (gear, piston, vane)
+\item Displacement
+\item Rated pressure and flow
+\item Drive motor specifications
+\item Efficiency curves
+\item Manufacturer and model
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+3 & Hydraulic Reservoir Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Reservoir capacity
+\item Material and construction
+\item Baffle arrangement
+\item Oil level indication
+\item Breather and filler
+\item Drain provisions
+\item Heating elements (if applicable)
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+4 & HPU Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Flow requirements
+\item Pressure requirements
+\item Pump sizing verification
+\item Reservoir sizing
+\item Heat generation and cooling capacity
+\item Accumulator sizing (if applicable)
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Hydraulic Circuit Design}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Circuit Design} \label{tab:hydraulic-circuit} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+5 & Hydraulic System Schematic & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Complete hydraulic circuit
+\item All components identified with symbols
+\item Pressure ratings
+\item Flow ratings
+\item Control logic
+\item Safety devices
+\item Monitoring points
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+6 & Piping and Instrumentation Diagram (P\&ID) & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Detailed piping layout
+\item Pipe sizes and materials
+\item Valve locations and specifications
+\item Instrument locations
+\item Pressure and temperature monitoring
+\item Drain and vent points
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+7 & Hydraulic Piping Arrangement & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item 3D piping layout (or isometric)
+\item Pipe routing
+\item Pipe supports
+\item Flexibility analysis
+\item Penetrations through bulkheads
+\item Accessibility for maintenance
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Hydraulic Components}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Components} \label{tab:hydraulic-components} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+8 & Hydraulic Motor Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Motor type and displacement
+\item Rated pressure and speed
+\item Torque and power curves
+\item Efficiency
+\item Mounting details
+\item Manufacturer and model
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+9 & Hydraulic Cylinder Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Cylinder bore and stroke
+\item Operating pressure
+\item Rod diameter and material
+\item Seal specifications
+\item Mounting arrangement
+\item Position sensors
+\item Manufacturer and model
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+10 & Control Valve Specifications & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Valve types (directional, pressure, flow)
+\item Valve ratings
+\item Actuation method (solenoid, manual, pilot)
+\item Response time
+\item Manufacturer and model
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+11 & Pressure Relief Valve & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Set pressure
+\item Flow capacity
+\item Type (direct-acting, pilot-operated)
+\item Mounting location
+\item Manufacturer and model
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+12 & Accumulator Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Accumulator type (bladder, piston, diaphragm)
+\item Volume
+\item Pre-charge pressure
+\item Operating pressure range
+\item Gas type (nitrogen)
+\item Mounting arrangement
+\item Safety provisions
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+13 & Accumulator Sizing Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Volume requirements
+\item Pre-charge pressure calculation
+\item Energy storage capacity
+\item Response time analysis
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Filtration System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Filtration} \label{tab:hydraulic-filtration} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+14 & Filtration System Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Filter types and locations
+\item Filtration rating (micron)
+\item Flow capacity
+\item Pressure drop
+\item Filter change indicators
+\item Bypass provisions
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+15 & Filter Specifications & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Filter element type
+\item Filtration rating
+\item Collapse pressure
+\item Manufacturer and model
+\item Replacement schedule
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Cooling System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Cooling} \label{tab:hydraulic-cooling} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+16 & Hydraulic Oil Cooling System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Cooling method (air, water)
+\item Heat exchanger specifications
+\item Cooling capacity
+\item Temperature control
+\item Monitoring provisions
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+17 & Thermal Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Heat generation calculations
+\item Heat dissipation calculations
+\item Temperature rise predictions
+\item Cooling capacity verification
+\item Operating temperature range
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Hydraulic Fluid}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Fluid Specification} \label{tab:hydraulic-fluid} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+18 & Hydraulic Fluid Specification & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Fluid type (mineral oil, synthetic, biodegradable)
+\item Viscosity grade
+\item Operating temperature range
+\item Fire resistance properties (if applicable)
+\item Compatibility with system materials
+\item Approved manufacturer and grade
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Piping Design}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Piping} \label{tab:hydraulic-piping} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+19 & Pipe Sizing Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Flow velocity calculations
+\item Pressure drop calculations
+\item Pipe diameter selection
+\item Compliance with velocity limits
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+20 & Pipe Material Specifications & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pipe material (steel, stainless steel, copper-nickel)
+\item Wall thickness
+\item Pressure rating
+\item Corrosion protection
+\item Compliance with BV approved materials
+\end{itemize} & NR467 Sec.15; Part B, Ch.3 \\
+\hline
+
+21 & Pipe Support Design & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Support locations and types
+\item Support spacing
+\item Vibration isolation
+\item Thermal expansion accommodation
+\item Load calculations
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+22 & Piping Stress Analysis & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pressure stress
+\item Thermal stress
+\item Vibration analysis
+\item Support reaction forces
+\item Compliance with stress limits
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Hose Assemblies}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Hoses} \label{tab:hydraulic-hoses} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+23 & Hydraulic Hose Specifications & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hose type and construction
+\item Pressure rating
+\item Temperature rating
+\item End fittings
+\item Length and routing
+\item Fire resistance (if required)
+\item Manufacturer and model
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+24 & Hose Installation Drawing & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hose routing
+\item Bend radius verification
+\item Support and protection
+\item Accessibility for inspection/replacement
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Safety Devices}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Safety Devices} \label{tab:hydraulic-safety} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+25 & Pressure Relief System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Relief valve locations
+\item Set pressures
+\item Discharge routing
+\item Capacity verification
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+26 & Emergency Shutdown System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Emergency stop provisions
+\item Valve actuation
+\item System depressurization
+\item Safe state definition
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+27 & Leak Detection System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Leak detection method
+\item Alarm provisions
+\item Automatic shutdown (if required)
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Control System}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Control} \label{tab:hydraulic-control} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+28 & Hydraulic Control System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Control architecture
+\item Manual/automatic control modes
+\item Valve actuation signals
+\item Feedback systems
+\item Safety interlocks
+\end{itemize} & NR467 Sec.15; Part C, Ch.4 \\
+\hline
+
+29 & Control Panel Layout & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Panel arrangement
+\item Control devices
+\item Indication and monitoring
+\item Alarm displays
+\item Emergency stop
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Monitoring \& Instrumentation}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Monitoring} \label{tab:hydraulic-monitoring} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+30 & Instrumentation List & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pressure gauges/transmitters
+\item Temperature sensors
+\item Flow meters (if applicable)
+\item Level indicators
+\item Position sensors
+\item Filter condition indicators
+\item Specifications for each instrument
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+31 & Alarm and Monitoring System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Parameters monitored
+\item Alarm setpoints
+\item Alarm display location
+\item Data logging (if applicable)
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Controllable Pitch Mechanism (CP Propellers)}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - CP Mechanism} \label{tab:hydraulic-cp} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+32 & CP Mechanism Assembly & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hub internal mechanism
+\item Pitch control rod/linkage
+\item Hydraulic cylinder (in hub or external)
+\item Blade retention system
+\item Bearing arrangement
+\item Seal design
+\end{itemize} & NR467 Sec.15, [3.4] \\
+\hline
+
+33 & CP Mechanism Calculations & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pitch control forces
+\item Hydraulic cylinder sizing
+\item Linkage strength
+\item Blade retention strength
+\item Seal pressure rating
+\end{itemize} & NR467 Sec.15, [3.4] \\
+\hline
+
+34 & Pitch Control Hydraulic System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Hydraulic supply to hub
+\item Rotary joint/slip ring design
+\item Control valve system
+\item Pitch feedback system
+\item Emergency pitch setting
+\end{itemize} & NR467 Sec.15, [3.4] \\
+\hline
+
+35 & Pitch Feedback System & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Position sensor type and location
+\item Signal transmission (rotary joint)
+\item Accuracy and resolution
+\item Redundancy (if required)
+\end{itemize} & NR467 Sec.15, [3.4] \\
+\hline
+
+\end{longtable}
+
+\section{Testing \& Commissioning}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Testing} \label{tab:hydraulic-testing} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+36 & Hydraulic System Test Procedures & \fa{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pressure testing
+\item Functional testing
+\item Leak testing
+\item Performance verification
+\item Safety device testing
+\item Acceptance criteria
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+37 & Hydraulic System Test Reports & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Pressure test results
+\item Functional test results
+\item Leak test results
+\item Performance data
+\item As-built documentation
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\section{Operating \& Maintenance Manuals}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Hydraulic Systems - Manuals} \label{tab:hydraulic-manuals} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+38 & Hydraulic System Operating Manual & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item System description
+\item Operating procedures
+\item Normal operation
+\item Emergency procedures
+\item Troubleshooting guide
+\item Safety precautions
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+39 & Hydraulic System Maintenance Manual & \fic{} & 
+\begin{itemize}[leftmargin=*,nosep]
+\item Maintenance schedule
+\item Inspection procedures
+\item Fluid sampling and analysis
+\item Filter replacement
+\item Component overhaul
+\item Spare parts list
+\end{itemize} & NR467 Sec.15 \\
+\hline
+
+\end{longtable}
+
+\newpage
+
+% Due to length, I'll provide the remaining chapters in a condensed format
+% Continue with Chapter 8 (DP), Chapter 9 (Testing), Chapter 10 (Checklists),
+% Chapter 11 (Errors), Chapter 12 (Quick Reference), Chapter 13 (Regulatory References)
+
+% Chapter 8: DP Thrusters (condensed)
+\chapter{Dynamic Positioning (DP) Thrusters - Additional Requirements}
+\label{ch:dp}
+
+\section{Applicability}
+
+Thrusters that are part of a Dynamic Positioning (DP) system must comply with ALL applicable requirements from Chapters \ref{ch:transverse}-\ref{ch:hydraulics}, PLUS the additional DP-specific requirements in this chapter.
+
+DP systems are classified into three classes:
+\begin{itemize}[leftmargin=*]
+\item \textbf{DP-1}: Basic DP capability, no redundancy required
+\item \textbf{DP-2}: Redundant systems, single failure tolerance
+\item \textbf{DP-3}: Enhanced redundancy with fire/flood separation
+\end{itemize}
+
+The DP-specific submissions below are \emph{in addition to} the full type
+package for each thruster used in the DP system (structure, propeller, shaft,
+gear, drive, control). They focus on redundancy, power segregation, control and
+failure analysis, and are assessed principally under \textbf{NR216} and
+\textbf{NR467 Part E}.
+
+\textbf{Key DP-Specific Documents Required (\fa{}):}
+\begin{enumerate}
+\item DP System General Arrangement
+\item Thruster Configuration Drawing
+\item DP Capability Plot
+\item FMEA Documentation (comprehensive)
+\item Redundancy Concept (DP-2/DP-3)
+\item Power Supply Segregation
+\item Fire Zone Arrangement (DP-3)
+\item Watertight Subdivision (DP-3)
+\item DP Control System Architecture
+\item Thruster Allocation Logic
+\item Position Reference System Configuration
+\item Environmental Sensor Configuration
+\item Power Management System (PMS) Configuration
+\item UPS Configuration
+\item DP FMEA Proving Trials Plan
+\item DP Annual Trials Plan
+\end{enumerate}
+
+\textbf{Key DP-Specific Documents Required (\fic{}):}
+\begin{enumerate}
+\item DP Operations Manual
+\item DP Maintenance Manual
+\item DP Trials Reports
+\item DP Training Requirements
+\end{enumerate}
+
+\section{Reference}
+All DP requirements per \textbf{NR216 - Rules for Dynamic Positioning Systems}
+
+\newpage
+
+% Chapter: Ice Class
+\chapter{Ice Class \& Cold-Climate (Winterisation) Requirements}
+\label{ch:ice}
+
+\section{Applicability}
+
+When a vessel carries a BV ice-class or polar notation, thrusters and their
+drive trains must be strengthened and winterised in addition to all base
+requirements of the preceding chapters. Two families apply:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Baltic / Finnish-Swedish Ice Classes} --- notations
+\textbf{ICE CLASS IA SUPER, IA, IB, IC} (and \textbf{ID}), based on the
+Finnish-Swedish Ice Class Rules (FSICR / TRAFICOM), adopted in
+\textbf{NR467 Part E}. Intended for first-year Baltic-type ice with icebreaker
+assistance.
+\item \textbf{Polar Classes} --- notations \textbf{POLAR CLASS PC1--PC7}
+(IACS Polar Class / IMO Polar Code), addressed in \textbf{NR467 Part E} and
+Rule Note \textbf{NR527}. Machinery strengthening follows \textbf{IACS UR I3}.
+\end{itemize}
+Cold-climate service without ice loads is covered by winterisation notations such
+as \textbf{COLD} (e.g.\ \texttt{COLD(H\,$t_{DH}$, E\,$t_{DE}$)}), addressing
+design ambient temperatures rather than ice impact.
+
+\textbf{Key principle:} ice class primarily drives \emph{ice-load strengthening}
+of the propeller, shaft line, gears and thruster body, plus \emph{winterisation}
+of exposed and seawater systems. The surveyor overlays these on the type package.
+
+\section{Ice-Strengthening Submissions}
+
+\begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
+\caption{Ice Class --- Additional Thruster Requirements} \label{tab:ice} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{5}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Drawing/Document}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Content Requirements}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+1 & Ice Class Notation Basis \& Design Conditions & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Declared notation (IA Super/IA/\ldots\ or PC1--PC7)
+\item Design ice thickness / ice-load basis
+\item Applicable rule edition and lower design temperature
+\end{itemize} & NR467 Part E; NR527 \\
+\hline
+
+2 & Propeller Ice-Load Strength Calculation & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Ice interaction loads (milling, impact) on blades
+\item Blade root and blade tip strength vs.\ ice bending
+\item Blade material and thickness increase
+\item Open vs.\ ducted / nozzle ice loads
+\end{itemize} & NR467 Part E; IACS UR I3 \\
+\hline
+
+3 & Shaft Line \& Ice Torque Verification & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Maximum ice-induced torque and thrust
+\item Propeller shaft, intermediate shaft, couplings
+\item Overload/peak-torque capacity of gears
+\item Blade-loss / one-blade-milling scenarios
+\end{itemize} & NR467 Part E; Sec.7; IACS UR I3 \\
+\hline
+
+4 & Gear \& Azimuth/Nozzle Ice-Load Substantiation & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Bevel/reduction gears vs.\ ice peak torque
+\item Azimuth slewing bearing/gear vs.\ ice-block impact on lower unit
+\item Nozzle/steering-grid ice-impact strength
+\end{itemize} & NR467 Part E; Sec.15 \\
+\hline
+
+5 & Thruster Body / Lower Unit Ice Protection & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Lower gearbox/pod shape vs.\ ice interaction
+\item Ice knife / deflector where required
+\item Local structural strengthening
+\end{itemize} & NR467 Part E \\
+\hline
+
+6 & Tunnel / Inlet Ice \& Grid Arrangement & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Tunnel thruster grid ice/debris protection
+\item De-icing / anti-blocking provisions
+\item Ice-load on grid bars
+\end{itemize} & NR467 Part E; Sec.15 \\
+\hline
+
+7 & Winterisation of Systems (Hydraulic, Cooling, Seals) & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Low-temperature grades of oils/greases/seals
+\item Heating/insulation of exposed hydraulics \& sensors
+\item Sea-chest/cooling anti-icing (recirculation)
+\item Materials for low-temperature toughness (Charpy)
+\end{itemize} & NR467 Part E (COLD); Part B, Ch.3 \\
+\hline
+
+8 & Materials Low-Temperature Certification & \fa{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Impact testing at design temperature
+\item Grade selection for exposed \& load-bearing parts
+\end{itemize} & NR467 Part B, Ch.3; Part E \\
+\hline
+
+9 & Retraction/Deployment in Ice (if retractable) & \fic{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Operating limits and procedures in ice
+\item Protection of opening/seals from ice ingress
+\end{itemize} & NR467 Part E \\
+\hline
+
+\end{longtable}
+
+\noindent\textbf{Surveyor note (ice):} The governing case for ice-classed
+propulsion is usually the \textbf{ice peak torque / blade-milling load}
+propagating through propeller $\rightarrow$ shaft $\rightarrow$ gear
+$\rightarrow$ prime mover, \emph{not} the open-water rating. Verify the ice-load
+calculation explicitly and check that it is carried consistently into the shaft
+(Chapter \ref{ch:shafting}) and gear strength checks. For azimuth/podded units in
+ice, confirm lower-unit and slewing-gear substantiation against ice-block impact
+--- a frequent omission. Match the rule edition to the declared notation.
+
+\newpage
+
+% Chapter: Additional Notations
+\chapter{Additional BV Class Notations Affecting Thruster Packages}
+\label{ch:notations}
+
+\section{Purpose}
+
+Beyond ice class, several BV \textbf{additional class notations} and
+\textbf{service notations} impose extra requirements on the thruster package.
+This chapter summarises the ones most often encountered so the surveyor can
+confirm the client has submitted the corresponding documents. Requirements here
+\emph{add to} the type package; they do not replace it.
+
+\section{Notation Impact Matrix}
+
+\begin{longtable}{|p{2.8cm}|p{3.7cm}|p{5.8cm}|p{1.9cm}|}
+\caption{Additional Notations --- Impact on Thruster Submissions} \label{tab:notations} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Notation (family)}} & \textcolor{white}{\textbf{Concern}} & \textcolor{white}{\textbf{Additional thruster submissions}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endfirsthead
+\multicolumn{4}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Notation (family)}} & \textcolor{white}{\textbf{Concern}} & \textcolor{white}{\textbf{Additional thruster submissions}} & \textcolor{white}{\textbf{Reference}} \\
+\hline
+\endhead
+\hline \multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+
+\textbf{DYNAPOS} (AM/AT/ATR, SAM/SAT); \textbf{DP-1/2/3} & Dynamic positioning &
+Full DP package --- see Chapter \ref{ch:dp}: FMEA, redundancy, power segregation,
+capability plot, thruster allocation, proving trials. & NR467 Pt E; NR216 \\
+\hline
+
+\textbf{AUT-UMS, AUT-CCS, AUT-PORT} & Automated / unattended machinery &
+Extended alarm \& monitoring of thruster (bearing temps, oil, vibration), remote
+\& safe control, fail-safe on power/control loss, integration with alarm system.
+& NR467 Pt C, Ch.3; Pt E \\
+\hline
+
+\textbf{COMF-NOISE / COMF-VIB} (Comfort) & Noise \& vibration on board &
+Structure-borne \& airborne noise prediction, vibration levels at thruster
+excitation (blade-rate), resilient mounting, cavitation-noise control, source
+data. & NR467 Pt E, Ch.6 \\
+\hline
+
+\textbf{CLEANSHIP / environmental} & Pollution prevention &
+Environmentally Acceptable Lubricants (EAL) for stern-tube/thruster seals \&
+hydraulics, leakage monitoring, oil-to-sea interface documentation. & NR467 Pt E
+(environmental); VGP/EAL \\
+\hline
+
+\textbf{Redundant Propulsion (RP, RP-1, AVM-\ldots)} & Propulsion availability &
+Independence/segregation of propulsion trains, single-failure analysis,
+take-me-home capability, redundant thruster arrangement. & NR467 Pt E \\
+\hline
+
+\textbf{TUG / ESCORT TUG / AHT} (service) & High steering \& towing loads &
+Escort/indirect-towing loads on azimuth \& steering system, structural
+substantiation of unit \& foundation, stability interaction, uprated steering
+duty. & NR467 Pt D \\
+\hline
+
+\textbf{SPS} (Special Purpose Ship) & Personnel / mission systems &
+Higher survivability \& redundancy expectations may extend to propulsion/steering
+arrangement. & NR467 Pt D/E \\
+\hline
+
+\textbf{Electric hybrid / battery} & Hybrid power &
+Documentation of every driving path (PTI/PTO), energy-storage interface, mode
+changeover, converter data. & NR467 Pt E \\
+\hline
+
+\end{longtable}
+
+\noindent\textbf{Surveyor note (notations):} Always cross-check the vessel's
+\emph{requested class notation string} against the thruster package. A DP or
+comfort notation in particular pulls in substantial extra documentation
+(FMEA/proving trials; noise \& vibration studies) that clients frequently omit
+from the initial thruster submission. Where a notation adds a steering-critical
+duty (escort tug), confirm the steering-gear package (Chapter \ref{ch:steering})
+reflects the \emph{uprated} loads, not just the open-water condition.
+
+\newpage
+
+% Chapter 9: Testing
+\chapter{Testing \& Commissioning Requirements}
+\label{ch:testing}
+
+\section{Factory Acceptance Tests (FAT)}
+
+\textbf{Required for All Thrusters:}
+\begin{itemize}[leftmargin=*]
+\item Dimensional verification
+\item Material verification
+\item Non-destructive testing
+\item Assembly inspection
+\item Mechanical running test
+\item Hydraulic system test (if applicable)
+\item Electric motor test (if applicable)
+\item Control system test
+\item Retraction mechanism test (retractable)
+\item CP mechanism test (CP propellers)
+\item Azimuth slewing test (azimuth thrusters)
+\end{itemize}
+
+\section{Installation Tests}
+
+\textbf{On-Site Verification:}
+\begin{itemize}[leftmargin=*]
+\item Foundation inspection
+\item Alignment verification
+\item Piping inspection
+\item Electrical installation inspection
+\item Control system integration test
+\item Hydraulic system commissioning
+\end{itemize}
+
+\section{Dock Trials}
+
+\textbf{Pre-Sea Trials:}
+\begin{itemize}[leftmargin=*]
+\item Static thrust test
+\item No-load running test
+\item Control system functional test
+\item Retraction/extension test (retractable)
+\item Azimuth rotation test (azimuth)
+\item CP pitch control test (CP propellers)
+\end{itemize}
+
+\section{Sea Trials}
+
+\textbf{Performance Verification:}
+\begin{itemize}[leftmargin=*]
+\item Performance verification
+\item Maneuverability trials
+\item Vibration measurements
+\item Noise measurements
+\item Thermal performance
+\item Steering gear trials (if steering function)
+\item DP trials (for DP systems)
+\item DP FMEA proving trials (for DP systems)
+\end{itemize}
+
+\section{Documentation \& Reporting}
+
+\textbf{Required Reports (\fic{}):}
+\begin{itemize}[leftmargin=*]
+\item FAT Report
+\item Installation Report
+\item Sea Trial Report
+\item DP Trials Report (for DP systems)
+\item As-Built Documentation
+\end{itemize}
+
+\newpage
+
+% Chapter 10: Surveyor Checklists
+\chapter{Surveyor Checklists by Thruster Type}
+\label{ch:checklists}
+
+\section{Tunnel Thrusters (Fixed) - Complete Checklist}
+
+\subsection{General Information}
+\begin{itemize}[label=$\square$]
+\item Thruster power rating >110 kW (Section 15 applies)
+\item Thruster manufacturer and model
+\item Installation location (bow/stern)
+\end{itemize}
+
+\subsection{Structural}
+\begin{itemize}[label=$\square$]
+\item General Arrangement Drawing (\fa{})
+\item Tunnel Structural Arrangement (\fa{})
+\item Tunnel Structural Calculations (\fa{})
+\item Tunnel End Grating/Grid Design (\fa{})
+\item Hull Penetration Details (\fa{})
+\end{itemize}
+
+\subsection{Thruster Unit - Mechanical}
+\begin{itemize}[label=$\square$]
+\item Thruster Unit General Assembly (\fa{})
+\item Propeller Design Drawing (\fa{})
+\item Propeller Strength Calculations (\fa{})
+\item Propeller Shaft Drawing (\fa{})
+\item Shaft Strength Calculations (\fa{})
+\item Bearing Arrangement Drawing (\fa{})
+\item Bearing Load Calculations (\fa{})
+\item Gearbox Assembly Drawing (\fa{})
+\item Gear Tooth Calculations (\fa{})
+\item Gearbox Lubrication System (\fa{})
+\end{itemize}
+
+\subsection{Drive System}
+\textbf{If Electric:}
+\begin{itemize}[label=$\square$]
+\item Electric Motor Specification (\fa{})
+\item Motor Foundation Drawing (\fa{})
+\item Motor-Gearbox Coupling (\fa{})
+\end{itemize}
+
+\textbf{If Hydraulic:}
+\begin{itemize}[label=$\square$]
+\item Hydraulic Motor Specification (\fa{})
+\item Hydraulic System Schematic (\fa{})
+\item See Chapter \ref{ch:hydraulics} for complete hydraulic requirements
+\end{itemize}
+
+\subsection{Control System}
+\begin{itemize}[label=$\square$]
+\item Control System Block Diagram (\fa{})
+\item Control Panel Layout (\fa{})
+\item Electrical Single-Line Diagram (\fa{})
+\item Control Software Description (\fa{})
+\end{itemize}
+
+\subsection{Calculations}
+\begin{itemize}[label=$\square$]
+\item Thrust Calculation (\fa{})
+\item Vibration Analysis (\fa{})
+\item Noise Level Prediction (\fa{})
+\item Thermal Analysis (\fa{})
+\end{itemize}
+
+\subsection{Materials \& Welding}
+\begin{itemize}[label=$\square$]
+\item Material Specifications (\fa{})
+\item Welding Procedures (\fa{})
+\item Material Certificates (during construction)
+\item NDT Plan (\fa{})
+\end{itemize}
+
+\subsection{Testing}
+\begin{itemize}[label=$\square$]
+\item FAT Procedures (\fa{})
+\item Installation Test Procedures (\fa{})
+\item Sea Trial Procedures (\fa{})
+\item Test Reports (\fic{} - after testing)
+\end{itemize}
+
+\subsection{Manuals}
+\begin{itemize}[label=$\square$]
+\item Operation \& Maintenance Manual (\fic{})
+\item Spare Parts List (\fic{})
+\item Installation Manual (\fic{})
+\end{itemize}
+
+\section{Retractable Thrusters - Complete Checklist}
+
+\textbf{All items from Section 10.1 (Tunnel Thrusters), PLUS:}
+
+\subsection{Retraction Mechanism}
+\begin{itemize}[label=$\square$]
+\item Retraction Mechanism Assembly (\fa{})
+\item Hydraulic Cylinder Specifications (\fa{})
+\item Retraction System Calculations (\fa{})
+\item Hull Opening \& Closure Design (\fa{})
+\item Hull Opening Structural Analysis (\fa{})
+\item Watertight Integrity Documentation (\fa{})
+\item Locking System Design (\fa{})
+\item Position Indication System (\fa{})
+\item Emergency Lowering System (\fa{})
+\item Hydraulic System for Retraction (\fa{})
+\end{itemize}
+
+\subsection{Additional Manuals}
+\begin{itemize}[label=$\square$]
+\item Retraction/Extension Procedures (\fic{})
+\item Emergency Recovery Procedures (\fic{})
+\end{itemize}
+
+\subsection{Additional Testing}
+\begin{itemize}[label=$\square$]
+\item Retraction mechanism FAT
+\item Seal integrity testing
+\item Emergency lowering test
+\item Dock trials - retraction/extension
+\item Sea trials - retraction under way (if applicable)
+\end{itemize}
+
+\section{Azimuth Thrusters (Fixed Pitch) - Complete Checklist}
+
+\subsection{General \& Structure}
+\begin{itemize}[label=$\square$]
+\item General Arrangement Drawing incl.\ 360° clearance envelope (\fa{})
+\item Azimuth Unit Complete Assembly (\fa{})
+\item Hull Penetration \& Foundation (\fa{})
+\item Hull Structure Calculations / FEA (\fa{})
+\end{itemize}
+
+\subsection{Propeller \& Shaft}
+\begin{itemize}[label=$\square$]
+\item Propeller Design Drawing (\fa{})
+\item Propeller Strength Calculations (\fa{})
+\item Vertical Shaft Assembly \& Calculations (\fa{})
+\item Thrust Bearing Design \& Calculations (\fa{})
+\item Radial Bearing Arrangement (\fa{})
+\item Column Structure Design (\fa{})
+\item Seal System Design (\fa{})
+\end{itemize}
+
+\subsection{Gear \& Slewing System}
+\begin{itemize}[label=$\square$]
+\item Gear Train Assembly (\fa{})
+\item Gear Tooth Strength Calculations --- ISO 6336 (\fa{})
+\item Gear Lubrication System (\fa{})
+\item Slewing Bearing Design \& Calculations (\fa{})
+\item Azimuth Drive Mechanism \& Calculations (\fa{})
+\item Position Feedback System (\fa{})
+\end{itemize}
+
+\subsection{Drive System \& Prime Mover}
+\begin{itemize}[label=$\square$]
+\item Electric or hydraulic power-transmission package (\fa{})
+\item Slip ring / rotary joint (electric) (\fa{})
+\item \textbf{Prime-mover add-on} --- electric or diesel (Chapter \ref{ch:primemover})
+\end{itemize}
+
+\subsection{Control, Calculations, Materials \& Testing}
+\begin{itemize}[label=$\square$]
+\item Control System Architecture \& Bridge Console (\fa{})
+\item Local Control Station (\fa{})
+\item Thrust / vibration / noise / thermal calculations (\fa{})
+\item Material Specifications, Welding, NDT Plan (\fa{})
+\item FAT / dock trial (azimuth slewing) / sea-trial procedures (\fa{})
+\item O\&M and Installation Manuals (\fic{})
+\end{itemize}
+
+\subsection{If Steering / DP / Ice / Notations}
+\begin{itemize}[label=$\square$]
+\item If steering function $\rightarrow$ Chapter \ref{ch:steering} package (SOLAS II-1/29, FMEA)
+\item If part of main shaft line $\rightarrow$ Chapter \ref{ch:shafting} package
+\item If DP $\rightarrow$ Section \ref{ch:checklists}.\ (DP add-on below)
+\item If ice class $\rightarrow$ Chapter \ref{ch:ice} add-on
+\item Overlay applicable notations $\rightarrow$ Chapter \ref{ch:notations}
+\end{itemize}
+
+\section{Azimuth Thrusters (Controllable Pitch) - Complete Checklist}
+
+\textbf{All items from Azimuth FP, PLUS:}
+\begin{itemize}[label=$\square$]
+\item CP Hub Mechanism Assembly (\fa{})
+\item Blade Retention Calculations (\fa{})
+\item Pitch Control Mechanism (\fa{})
+\item Pitch Control Hydraulic System incl.\ rotary joint (\fa{}) --- Chapter \ref{ch:hydraulics}
+\item Pitch feedback \& fail-safe position (\fa{})
+\end{itemize}
+
+\section{Podded Propulsion Units - Complete Checklist}
+
+\textbf{All items from Azimuth (FP or CP), PLUS:}
+\begin{itemize}[label=$\square$]
+\item Pod-specific structural components \& strut (\fa{})
+\item Electric motor in pod --- specification, cooling, monitoring (\fa{})
+\item Power supply through strut / slip-ring (\fa{})
+\item Propeller direct-drive arrangement (\fa{})
+\item Pod-specific FAT/testing (\fa{})
+\item \textbf{Electric prime-mover add-on} (Chapter \ref{ch:primemover})
+\end{itemize}
+
+\section{Voith-Schneider (Cycloidal) Units - Complete Checklist}
+\begin{itemize}[label=$\square$]
+\item VSP Unit General Assembly (\fa{})
+\item Blade (wing) design + blade-shaft/blade strength calculations (\fa{})
+\item Blade bearing arrangement (\fa{})
+\item Kinematic control gear / steering mechanism strength (\fa{})
+\item Rotor casing \& main bevel gear + gear calculations (\fa{})
+\item Main thrust bearing design \& life (\fa{})
+\item Bottom cover / guard plate structure (\fa{})
+\item Hull seat, foundation \& well structure / FEA (\fa{})
+\item Seal system (rotor \& blade shafts) (\fa{})
+\item Servo / hydraulic control unit (\fa{}) --- Chapter \ref{ch:hydraulics}
+\item Steering control system \& bridge console (\fa{})
+\item \textbf{Steering-function package} --- Chapter \ref{ch:steering} (FMEA, redundancy, SOLAS II-1/29)
+\item Prime-mover add-on (Chapter \ref{ch:primemover}) + drive-train TVC
+\end{itemize}
+
+\section{Water-Jet Systems - Complete Checklist}
+\begin{itemize}[label=$\square$]
+\item Water-jet general arrangement \& installation (\fa{})
+\item Impeller/rotor design \& strength calculations (\fa{})
+\item Shaft line \& bearings (\fa{}) --- Chapter \ref{ch:shafting}
+\item Inlet duct \& transom structure / hull penetration (\fa{})
+\item Steering \& reversing (bucket) mechanism (\fa{})
+\item Steering/reversing hydraulic system (\fa{}) --- Chapter \ref{ch:hydraulics}
+\item Control system \& bridge interface (\fa{})
+\item Drive package (direct-from-engine or via gearbox) + TVC (\fa{})
+\item Performance / thrust calculations (\fa{})
+\item Materials, welding, NDT (\fa{})
+\item FAT / trials procedures (\fa{}); O\&M manuals (\fic{})
+\item If steering means of ship $\rightarrow$ Chapter \ref{ch:steering}; if DP $\rightarrow$ DP add-on
+\end{itemize}
+
+\section{Prime-Mover Add-On Checklist (apply to any type)}
+
+\textbf{If ELECTRIC-motor driven:}
+\begin{itemize}[label=$\square$]
+\item Drive-motor data sheet (\fa{})
+\item Frequency converter (VFD) specification \& arrangement (\fa{})
+\item Harmonic / power-quality analysis (\fa{})
+\item Supply transformer \& switchboard interface (\fa{})
+\item Power cable sizing, routing \& segregation (\fa{})
+\item Motor protection, monitoring \& cooling (\fa{})
+\end{itemize}
+
+\textbf{If DIESEL-engine driven:}
+\begin{itemize}[label=$\square$]
+\item Diesel engine approval / type data (\fa{})
+\item \textbf{Torsional vibration calculation of the complete train} (\fa{})
+\item Clutch \& flexible coupling (\fa{})
+\item Engine foundation \& chocking (\fa{})
+\item Fuel oil / lube oil / cooling water systems (\fa{})
+\item Starting system \& exhaust gas system (\fa{})
+\item Engine control, safety \& monitoring (\fa{})
+\item NOx Technical File / EIAPP (\fic{})
+\end{itemize}
+
+\section{Ice Class / Winterisation Add-On Checklist (apply if notation carried)}
+\begin{itemize}[label=$\square$]
+\item Ice-class notation basis \& design conditions (\fa{})
+\item Propeller ice-load strength calculation (\fa{})
+\item Shaft line \& ice-torque verification (\fa{})
+\item Gear \& azimuth/nozzle ice-load substantiation (\fa{})
+\item Thruster lower-unit ice protection (\fa{})
+\item Tunnel/inlet grid ice arrangement (\fa{})
+\item Winterisation of hydraulic/cooling/seal systems (\fa{})
+\item Low-temperature material certification (\fa{})
+\end{itemize}
+
+\section{DP Thrusters - Additional Checklist Items}
+
+\textbf{For ANY thruster type used in DP system, add:}
+\begin{itemize}[label=$\square$]
+\item DP System General Arrangement (\fa{})
+\item Thruster Configuration Drawing (\fa{})
+\item DP Capability Plot (\fa{})
+\item FMEA Documentation (\fa{})
+\item Redundancy Concept (\fa{})
+\item Power Supply Segregation (\fa{})
+\item DP Control System Architecture (\fa{})
+\item Position Reference System Configuration (\fa{})
+\item PMS Configuration (\fa{})
+\item UPS Configuration (\fa{})
+\item DP FMEA Proving Trials Plan (\fa{})
+\item DP Trials Reports (\fic{})
+\item DP Operations Manual (\fic{})
+\end{itemize}
+
+\newpage
+
+% Chapter 11: Common Errors
+\chapter{Common Submission Errors \& Surveyor Notes}
+\label{ch:errors}
+
+\section{Frequent Documentation Gaps}
+
+\subsection{Missing or Incomplete Calculations}
+\begin{itemize}[leftmargin=*]
+\item Shaft strength calculations missing fatigue analysis
+\item Bearing life calculations without proper load factors
+\item Gear calculations not per recognized standards (ISO 6336)
+\item Vibration analysis incomplete or missing
+\item Hydraulic system calculations (accumulator sizing, pressure drop)
+\end{itemize}
+
+\subsection{Inadequate Drawings}
+\begin{itemize}[leftmargin=*]
+\item General arrangements without sufficient detail
+\item Material specifications not clearly indicated
+\item Welding details missing or incomplete
+\item Foundation drawings without load specifications
+\item Control system diagrams without protection details
+\end{itemize}
+
+\subsection{Steering Gear Overlap Not Addressed}
+\begin{itemize}[leftmargin=*]
+\item Azimuth or podded thrusters used for steering without steering gear compliance documentation
+\item Missing FMEA for steering function
+\item Inadequate redundancy analysis
+\item Missing emergency steering provisions
+\item SOLAS compliance not demonstrated
+\end{itemize}
+
+\subsection{DP System Gaps}
+\begin{itemize}[leftmargin=*]
+\item FMEA not covering all failure modes or worst-case scenarios
+\item Inadequate power segregation for DP-2/DP-3
+\item Missing fire/flood zone analysis for DP-3
+\item Thruster interaction effects not analyzed
+\item Incomplete proving trials procedures
+\end{itemize}
+
+\subsection{Hydraulic System Issues}
+\begin{itemize}[leftmargin=*]
+\item Undersized accumulators
+\item Inadequate pressure relief provisions
+\item Missing filtration specifications
+\item Incomplete piping stress analysis
+\item Emergency provisions not clearly defined
+\end{itemize}
+
+\subsection{Prime-Mover Gaps}
+\begin{itemize}[leftmargin=*]
+\item Diesel-driven Z-drive submitted \emph{without} a torsional vibration calculation for the complete engine--clutch--shaft--thruster train (most common tug/OSV gap)
+\item Missing barred-speed range or clutch-in/misfiring conditions in the TVC
+\item Electric-driven thruster without harmonic / power-quality study or cable-sizing \& segregation
+\item Hybrid PTI/PTO arrangements with undocumented driving paths or mode-changeover logic
+\end{itemize}
+
+\subsection{Ice-Class \& Notation Gaps}
+\begin{itemize}[leftmargin=*]
+\item Ice-classed vessel with propeller/shaft/gear checked only for open-water rating, not ice peak-torque / blade-milling loads
+\item Azimuth/pod lower unit and slewing gear not substantiated against ice-block impact
+\item Winterisation (low-temperature oils, materials, sensor heating) not addressed
+\item Comfort (COMF) notation carried but no thruster noise/vibration prediction
+\item Requested notation string not reconciled with the submitted thruster package
+\end{itemize}
+
+\subsection{Cycloidal (VSP) \& Combined Propulsion/Steering Gaps}
+\begin{itemize}[leftmargin=*]
+\item VSP mechanical package submitted without the steering-function compliance set (FMEA, redundancy, SOLAS II-1/29, response time)
+\item Blade guard/bottom plate and its hull attachment not substantiated for grounding/impact
+\item Steerable water-jet / nozzle / grid units missing steering-gear documentation
+\end{itemize}
+
+\section{Surveyor Review Tips}
+
+\subsection{Initial Review}
+\begin{enumerate}
+\item Verify thruster power >110 kW → Section 15 applies
+\item Identify thruster type → Apply appropriate checklist (Chapters \ref{ch:transverse}--\ref{ch:othertypes})
+\item Identify the prime mover (electric / diesel / hydraulic) → Add Chapter \ref{ch:primemover} submissions
+\item Check for steering function → Add Chapter \ref{ch:steering} requirements
+\item Check for main shafting classification → Add Chapter \ref{ch:shafting} requirements
+\item Check for DP application → Add Chapter \ref{ch:dp} requirements
+\item Check ice class / winterisation notation → Add Chapter \ref{ch:ice} requirements
+\item Reconcile the full class-notation string → Add Chapter \ref{ch:notations} requirements
+\end{enumerate}
+
+\subsection{Calculation Review}
+\begin{itemize}[leftmargin=*]
+\item Verify all calculations use BV-approved formulas or recognized standards
+\item Check safety factors applied
+\item Verify material properties used in calculations match specifications
+\item Ensure all loading conditions considered (normal, extreme, emergency)
+\end{itemize}
+
+\subsection{Drawing Review}
+\begin{itemize}[leftmargin=*]
+\item Check for consistency between drawings
+\item Verify dimensions and tolerances
+\item Ensure material specifications clearly indicated
+\item Check for proper welding symbols and details
+\item Verify accessibility for maintenance
+\end{itemize}
+
+\section{Red Flags for Surveyors}
+
+\subsection{Immediate Rejection Criteria}
+\begin{itemize}[leftmargin=*]
+\item Missing critical calculations (shaft strength, bearing life, gear strength)
+\item Material specifications not compliant with BV rules
+\item Welding procedures not approved
+\item Control system without adequate safety provisions
+\item Steering gear requirements not addressed when applicable
+\item DP FMEA incomplete or inadequate
+\end{itemize}
+
+\subsection{Require Clarification}
+\begin{itemize}[leftmargin=*]
+\item Ambiguous material specifications
+\item Incomplete or unclear drawings
+\item Calculations without clear assumptions
+\item Testing procedures without acceptance criteria
+\item Manuals not in working language of crew
+\end{itemize}
+
+\newpage
+
+% Chapter 12: Quick Reference
+\chapter{Quick Reference Tables}
+\label{ch:quickref}
+
+\section{Thruster Type vs. Applicable Rule Sections}
+
+\begin{table}[H]
+\centering
+\caption{Applicability Matrix}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Thruster Type}} & \textcolor{white}{\textbf{Sec.15}} & \textcolor{white}{\textbf{Sec.14}} & \textcolor{white}{\textbf{Sec.7}} & \textcolor{white}{\textbf{NR216}} & \textcolor{white}{\textbf{Hydraulics}} \\
+\hline
+Tunnel (Fixed) & ✓ & Optional & Optional & Optional & If hydraulic \\
+\hline
+Retractable & ✓ & Optional & Optional & Optional & ✓ Required \\
+\hline
+Azimuth FP & ✓ & Often ✓ & Typically ✓ & Optional & If hydraulic \\
+\hline
+Azimuth CP & ✓ & Often ✓ & Typically ✓ & Optional & ✓ Required \\
+\hline
+Podded & ✓ & Often ✓ & Typically ✓ & Optional & If CP \\
+\hline
+Water-Jet & ✓ & Often ✓ & ✓ Required & Optional & ✓ Required \\
+\hline
+Voith-Schneider & ✓ & ✓ Required & Typically ✓ & Optional & ✓ Required \\
+\hline
+Rim-Driven & ✓ & Optional & Optional & Optional & Rarely \\
+\hline
+Pump-Jet / Ducted & ✓ & If steering & ✓ Required & Optional & If steering \\
+\hline
+Gill / Hydro-Jet & ✓ & Optional & Optional & Optional & If hydraulic \\
+\hline
+Steering Grid / Nozzle & ✓ & ✓ Required & ✓ Required & Optional & ✓ Required \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+{\footnotesize Sec.15 = Thrusters; Sec.14 = Steering Gear; Sec.7 = Shaft
+lines/propellers (NR467 Pt C, Ch 1). ``Often/Typically ✓'' means applicable when
+the unit provides steering or forms part of the main shaft line. Overlay
+Chapter \ref{ch:primemover} (prime mover), Chapter \ref{ch:ice} (ice class) and
+Chapter \ref{ch:notations} (notations) on every row as applicable.}
+\end{table}
+
+\section{Prime Mover \& Additional-Notation Quick Guide}
+
+\begin{table}[H]
+\centering
+\caption{Prime Mover --- Key Additional Submissions}
+\begin{tabular}{|p{3.2cm}|p{11.5cm}|}
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Prime mover}} & \textcolor{white}{\textbf{Headline additional submissions (see Chapter \ref{ch:primemover})}} \\
+\hline
+Electric motor & Motor data sheet; frequency converter (VFD); harmonic/power-quality study; transformer \& switchboard interface; cable sizing \& segregation; motor protection/monitoring/cooling. \\
+\hline
+Diesel engine & Engine approval (Sec.2); \textbf{full-train torsional vibration calculation}; clutch \& flexible coupling; foundation/chocking; FO/LO/cooling/starting/exhaust systems; engine safety \& controls; NOx file. \\
+\hline
+Hydraulic motor & Per Chapter \ref{ch:hydraulics} (HPU, circuit, accumulators, relief, filtration, monitoring). \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Additional Notations --- Trigger Reference}
+\begin{tabular}{|p{4cm}|p{10.7cm}|}
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Notation carried}} & \textcolor{white}{\textbf{Adds}} \\
+\hline
+DP / DYNAPOS & Chapter \ref{ch:dp}: FMEA, redundancy, power segregation, capability plot, proving trials (NR216). \\
+\hline
+Ice class / Polar / COLD & Chapter \ref{ch:ice}: ice-load propeller/shaft/gear strengthening, winterisation, low-temp materials (NR467 Pt E, NR527, IACS UR I3). \\
+\hline
+COMF-NOISE / COMF-VIB & Chapter \ref{ch:notations}: noise \& vibration prediction, blade-rate excitation, resilient mounting. \\
+\hline
+AUT-UMS / AUT-CCS & Chapter \ref{ch:notations}: extended alarms/monitoring, safe remote control, fail-safe. \\
+\hline
+CLEANSHIP & Chapter \ref{ch:notations}: EAL seal/hydraulic fluids, leakage monitoring. \\
+\hline
+TUG / ESCORT TUG & Chapter \ref{ch:notations}: uprated steering \& structural loads. \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Document Approval Categories Summary}
+
+\begin{table}[H]
+\centering
+\caption{Approval Categories}
+\begin{tabular}{|l|p{4cm}|p{3cm}|p{4cm}|}
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Meaning}} & \textcolor{white}{\textbf{Timing}} & \textcolor{white}{\textbf{Surveyor Action}} \\
+\hline
+\fa{} & Must be reviewed and approved before construction & Submit before construction & Detailed technical review \\
+\hline
+\fic{} & Submitted for record, not requiring formal approval & Submit as specified & Review for completeness \\
+\hline
+During Construction & Certificates/reports generated during manufacturing & Submit as work progresses & Verify during surveys \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+% Chapter 13: Regulatory References
+\chapter{Regulatory References}
+\label{ch:regulations}
+
+\section{Bureau Veritas Rules}
+
+\subsection{NR467 - Rules for Classification of Steel Ships}
+
+\textbf{Part B: Hull and Stability}
+\begin{itemize}[leftmargin=*]
+\item Chapter 2: Subdivision and Stability
+\item Chapter 3: Materials
+\item Chapter 4: Welding
+\item Chapter 5: Hull Structure
+\end{itemize}
+
+\textbf{Part C: Machinery, Electricity, Automation and Fire Protection}
+\begin{itemize}[leftmargin=*]
+\item Chapter 1 --- Machinery:
+\begin{itemize}
+\item Section 2: Diesel Engines (prime-mover-driven thrusters)
+\item Sections 7--8: Shaft Lines and Propellers
+\item Section 14: Steering Gear
+\item Section 15: Thrusters (and water-jets)
+\end{itemize}
+\item Chapter 2 --- Electrical Installations (drive motors, converters, cables)
+\item Chapter 3 --- Automation (control, alarms, AUT notations)
+\item Chapter 4 --- Fire Protection
+\end{itemize}
+\textit{Note: exact section numbering varies with rule edition --- always confirm
+against the current NR467 in Rules Explorer.}
+
+\textbf{Part D: Service Notations} --- e.g.\ tug, escort tug, anchor-handling,
+special purpose ship (service-driven thruster/steering loads).
+
+\textbf{Part E: Additional Class Notations}
+\begin{itemize}[leftmargin=*]
+\item Ice class (IA Super / IA / IB / IC) and Polar Class (PC1--PC7); COLD winterisation
+\item Comfort on board --- COMF-NOISE, COMF-VIB
+\item Automated machinery spaces / integrated systems --- AUT-UMS, AUT-CCS, AUT-PORT
+\item Dynamic positioning --- DYNAPOS / DP notations
+\item Environmental protection --- CLEANSHIP and related (EAL lubricants)
+\item Redundant propulsion --- RP / AVM notations
+\end{itemize}
+
+\subsection{NR216 - Rules for Dynamic Positioning Systems}
+\begin{itemize}[leftmargin=*]
+\item DP-1, DP-2, DP-3 Requirements
+\item FMEA Guidelines
+\item Proving Trials Requirements
+\end{itemize}
+
+\subsection{Other BV Rule Notes (as applicable)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{NR527} --- Ships operating in polar and ice-covered waters / Polar Class
+\item Rule notes / guidance for comfort (noise \& vibration) supporting COMF notations
+\item Guidance notes for cold-climate / winterisation service
+\end{itemize}
+
+\section{International Standards}
+
+\subsection{ISO Standards}
+\begin{itemize}[leftmargin=*]
+\item \textbf{ISO 6336}: Calculation of load capacity of spur and helical gears
+\item \textbf{ISO 22547}: Ships and marine technology --- azimuth thrusters
+\item \textbf{ISO 484}: Shipbuilding --- ship screw propellers (manufacturing tolerances)
+\item \textbf{ISO 4413}: Hydraulic fluid power --- general rules for systems
+\item \textbf{ISO 20283 / ISO 6954}: Mechanical vibration --- measurement \& evaluation (supports COMF-VIB)
+\end{itemize}
+
+\subsection{IEC Standards}
+\begin{itemize}[leftmargin=*]
+\item \textbf{IEC 60092 Series}: Electrical installations in ships
+\begin{itemize}
+\item IEC 60092-101: Definitions and general requirements
+\item IEC 60092-201: System design --- general
+\item IEC 60092-301: Equipment - Generators and motors
+\item IEC 60092-352: Choice and installation of cables
+\item IEC 60092-504: Control and instrumentation
+\end{itemize}
+\item \textbf{IEC 60034 Series}: Rotating electrical machines (ratings, cooling, temperature rise)
+\item \textbf{IEC 61508}: Functional safety (for DP / thruster control systems)
+\end{itemize}
+
+\subsection{IACS Unified Requirements \& Codes}
+\begin{itemize}[leftmargin=*]
+\item \textbf{IACS UR I1--I3}: Polar Class --- ships and machinery requirements (ice loads on propeller/shaft/gear)
+\item \textbf{IACS UR M}: Machinery requirements (shafting, gears, TVC principles)
+\item \textbf{IACS UR E22 / E26 / E27}: Programmable / cyber-resilient control systems
+\item \textbf{IMO Polar Code}: Ships operating in polar waters
+\item \textbf{Finnish-Swedish Ice Class Rules (TRAFICOM)}: Baltic ice classes basis
+\end{itemize}
+
+\subsection{SOLAS Convention}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Chapter II-1, Regulation 29}: Steering gear
+\item \textbf{Chapter II-2}: Fire protection
+\item \textbf{Chapter V, Regulation 28}: Maneuverability
+\end{itemize}
+
+\subsection{IMO Resolutions}
+\begin{itemize}[leftmargin=*]
+\item \textbf{IMO Res.A.468(XII)}: Code on Noise Levels
+\item \textbf{IMO MSC/Circ.645}: Guidelines for DP Systems
+\end{itemize}
+
+\section{Online Resources}
+
+\subsection{Bureau Veritas Marine \& Offshore}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Rules Explorer}: \url{https://rulesexplorer.bureauveritas.com/}
+\item \textbf{NR467 Rules}: \url{https://marine-offshore.bureauveritas.com/nr467-rules-classification-steel-ships}
+\item \textbf{All Rules \& Guidance Notes}: \url{https://marine-offshore.bureauveritas.com/rules-classification-rule-notes-and-guidance-notes}
+\end{itemize}
+
+\newpage
+
+% Chapter 14: Contact Information
+\chapter{Contact Information \& Document Control}
+\label{ch:contact}
+
+\section{For Technical Queries}
+
+\textbf{Bureau Veritas Marine \& Offshore Division}
+\begin{itemize}[leftmargin=*]
+\item Regional Technical Support Offices
+\item Email: Contact through official BV channels
+\item Rules Explorer Support: Available through BV website
+\end{itemize}
+
+\section{For Urgent Classification Matters}
+
+\begin{itemize}[leftmargin=*]
+\item Contact your assigned Plan Approval Manager
+\item Regional Marine \& Offshore Director
+\end{itemize}
+
+\section{Document Revision History}
+
+\begin{table}[H]
+\centering
+\caption{Revision History}
+\begin{tabular}{|c|c|p{6cm}|p{3cm}|}
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Version}} & \textcolor{white}{\textbf{Date}} & \textcolor{white}{\textbf{Changes}} & \textcolor{white}{\textbf{Author}} \\
+\hline
+1.0 & 2025 & Initial comprehensive catalog based on NR467 Sections 7, 14, 15 and NR216 & Jules (BV AI Assistant) \\
+\hline
+1.1 & 2026 & Added Voith-Schneider (cycloidal) and other propulsor types (rim-driven, pump-jet, gill/jet, steering grid); prime-mover chapter (diesel-engine vs.\ electric-motor drive incl.\ full-train TVC); ice class \& winterisation chapter; additional BV notations chapter (COMF, AUT, CLEANSHIP, RP, service notations); expanded checklists, quick-reference tables and standards. Preamble/compile fixes. & Plan Approval Reference (expanded ed.) \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Important Disclaimers}
+
+\begin{center}
+\fcolorbox{warningred}{lightgray}{%
+\begin{minipage}{0.9\textwidth}
+\textbf{\textcolor{warningred}{⚠ CRITICAL NOTICE FOR SURVEYORS:}}
+
+\begin{enumerate}
+\item \textbf{Verification Required}: This catalog is a reference guide compiled from Bureau Veritas rules. Always verify against the latest official BV rules and guidance notes.
+
+\item \textbf{Rule Updates}: BV rules are updated periodically. Ensure you are working with the current version applicable to the vessel's build date and classification notation.
+
+\item \textbf{Complex Cases}: For unusual thruster configurations, hybrid systems, or novel technologies, consult with BV technical specialists before approval.
+
+\item \textbf{Project-Specific Requirements}: Some projects may have additional requirements beyond standard rules (e.g., owner specifications, flag state requirements, special notations).
+
+\item \textbf{Overlapping Requirements}: When thrusters serve multiple functions (propulsion + steering, or DP + steering), ALL applicable requirements must be met.
+
+\item \textbf{FMEA Critical}: For DP systems, the FMEA is the cornerstone document. Inadequate FMEA is grounds for rejection.
+
+\item \textbf{Steering Gear Compliance}: If thrusters provide steering, full SOLAS steering gear requirements apply.
+
+\item \textbf{Material Traceability}: All critical components must have traceable material certificates.
+
+\item \textbf{Software Validation}: Control system software, especially for DP and steering functions, requires validation documentation.
+
+\item \textbf{Cybersecurity}: Modern thruster control systems must address cybersecurity per latest BV guidance and IMO requirements.
+\end{enumerate}
+\end{minipage}}
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+\textbf{⚠ PLEASE CAREFULLY REVIEW THIS DOCUMENT}
+
+\textit{It may contain errors or omissions. Always verify against official BV rules.}
+\end{center}
+
+\newpage
+
+% Back cover
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+{\Huge\bfseries\color{bvblue} Bureau Veritas}
+
+\vspace{1cm}
+
+{\Large Thruster Requirements}
+
+{\Large Comprehensive Surveyor Catalog}
+
+\vspace{2cm}
+
+{\large Document Version 1.1}
+
+{\large 2026}
+
+\vspace{2cm}
+
+\textit{For Bureau Veritas Plan Approval Surveyors}
+
+\vspace{1cm}
+
+\textbf{Source Links:}
+
+\small
+\url{https://marine-offshore.bureauveritas.com/nr467-rules-classification-steel-ships}
+
+\url{https://marine-offshore.bureauveritas.com/rules-classification-rule-notes-and-guidance-notes}
+
+\url{https://rulesexplorer.bureauveritas.com/}
+
+\end{center}
+\vspace*{\fill}
+
+\end{document}
