@@ -3,6 +3,8 @@
 % Packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}     % scalable (Type1) fonts -> crisp, selectable, searchable
+\usepackage{microtype}  % better line-breaking & readability, fewer overfull lines
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{longtable}
@@ -58,11 +60,21 @@
     filecolor=bvblue,
     urlcolor=bvblue,
     citecolor=bvblue,
+    bookmarks=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=1,
+    bookmarksnumbered=true,
+    breaklinks=true,
+    pdfstartview=FitH,
+    pdfdisplaydoctitle=true,
     pdftitle={Bureau Veritas Thruster Requirements - Surveyor Catalog},
     pdfauthor={Bureau Veritas},
     pdfsubject={Thruster Plan Approval Requirements},
     pdfkeywords={Bureau Veritas, Thrusters, NR467, Classification, Marine}
 }
+
+% Slightly more open line spacing for on-screen readability
+\linespread{1.05}
 
 % Header and footer
 \pagestyle{fancy}
@@ -143,7 +155,7 @@
     
     \vfill
     
-    {\large Document Version 1.3\par}
+    {\large Document Version 1.4\par}
     {\large 2026\par}
     
     \vspace{1cm}
@@ -207,6 +219,15 @@ The catalog is organized into the following chapters:
     \item \textbf{Verify hydraulics/pitch} (Chapter \ref{ch:hydraulics}) and \textbf{testing \& commissioning} (Chapter \ref{ch:testing}).
     \item \textbf{Run the type-specific checklist} (Chapter \ref{ch:checklists}) and screen against common errors (Chapter \ref{ch:errors}).
 \end{enumerate}
+
+\section*{Navigating this PDF}
+This document is fully hyperlinked for quick reference:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Bookmarks panel} --- open your PDF reader's bookmarks/outline panel to jump to any chapter or section.
+    \item \textbf{Table of contents} --- every entry is clickable.
+    \item \textbf{Cross-references} --- ``Chapter~X'', ``Section~Y'' and table references in the text are clickable links.
+    \item \textbf{Search} --- the text is fully selectable and searchable (e.g.\ search ``MON-SHAFT'', ``escort tug'', ``ice'').
+\end{itemize}
 
 \section*{Legend}
 \begin{itemize}[leftmargin=*]
@@ -6259,6 +6280,8 @@ special purpose ship (service-driven thruster/steering loads).
 \hline
 1.3 & 2026 & Added \textbf{MON-SHAFT} shaft-line condition-monitoring notation (Section \ref{sec:monshaft}) with submissions table and cross-references in the notation matrix/quick-guide; added hydraulic-system rule-basis note (Sec.14/Sec.15/piping, ISO 4413, fail-safe pitch). Added \textbf{per-ship-type submission cover sheets} (one-page tick-off) for 15 ship types plus a generic template. & Plan Approval Reference (expanded ed.) \\
 \hline
+1.4 & 2026 & Readability/accessibility: switched to scalable Latin Modern fonts (crisp, selectable, searchable text) with microtype; enabled navigable PDF bookmarks (open, numbered) and FitH view; added a ``Navigating this PDF'' guide; slightly opened line spacing. & Plan Approval Reference (expanded ed.) \\
+\hline
 \end{tabular}
 \end{table}
 
@@ -6317,7 +6340,7 @@ special purpose ship (service-driven thruster/steering loads).
 
 \vspace{2cm}
 
-{\large Document Version 1.3}
+{\large Document Version 1.4}
 
 {\large 2026}
 
