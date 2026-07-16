@@ -155,7 +155,7 @@
     
     \vfill
     
-    {\large Document Version 1.6\par}
+    {\large Document Version 1.7\par}
     {\large 2026\par}
     
     \vspace{1cm}
@@ -187,7 +187,7 @@ This catalog provides a comprehensive overview of thruster requirements per Bure
 \section*{Document Structure}
 The catalog is organized into the following chapters:
 \begin{enumerate}[leftmargin=*]
-    \item General Requirements (All Thrusters >110kW)
+    \item General Requirements (All Thrusters $\geq$110kW)
     \item Transverse Thrusters (Tunnel \& Retractable)
     \item Rotating and Azimuth Thrusters (incl. Podded Units)
     \item Water-Jet Propulsion Systems
@@ -212,7 +212,7 @@ The catalog is organized into the following chapters:
 
 \section*{How to Use This Catalog (Surveyor Workflow)}
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Identify the thruster type} (Chapters \ref{ch:transverse}--\ref{ch:othertypes}) and confirm rated power. Thrusters $>$110~kW attract the full Sec.\,15 submission set.
+    \item \textbf{Identify the thruster type} (Chapters \ref{ch:transverse}--\ref{ch:othertypes}) and confirm rated power. Thrusters $\geq$110~kW attract the full Sec.\,15 submission set.
     \item \textbf{Identify the prime mover} --- electric motor or diesel engine (Chapter \ref{ch:primemover}) --- and add the corresponding drive-train drawings.
     \item \textbf{Identify the functional role(s)}: propulsion, steering (Chapter \ref{ch:steering}), main shaft line (Chapter \ref{ch:shafting}), or dynamic positioning (Chapter \ref{ch:dp}). Each role \emph{adds} to the base package.
     \item \textbf{Overlay additional notations \& service constraints}: ice class / winterisation (Chapter \ref{ch:ice}), other BV additional class notations (Chapter \ref{ch:notations}), and the ship-type / service-notation requirements incl.\ SRtP, hazardous-area and offshore rules (Chapter \ref{ch:shiptype}).
@@ -242,11 +242,11 @@ This document is fully hyperlinked for quick reference:
 \newpage
 
 % Chapter 1: General Requirements
-\chapter{General Requirements - All Thrusters >110kW}
+\chapter{General Requirements - All Thrusters $\geq$110kW}
 \label{ch:general}
 
 \section{Applicability}
-All thrusters with power output exceeding 110 kW must comply with NR467 Section 15 requirements. Thrusters $\leq$110 kW may have reduced submission requirements (verify with surveyor).
+All thrusters developing power equal to 110 kW or more ($\geq$110 kW) must comply with NR467 Section 15 requirements (NR467 Pt C, Ch.1, Sec.15, [1.1.1]). Thrusters of less than 110 kW are to be built in accordance with sound marine practice and tested per Sec.15 [3.2] to the satisfaction of the Surveyor (NR467 Pt C, Ch.1, Sec.15, [1.1.2]) --- verify with surveyor for the exact reduced scope.
 
 \section{Two Axes to Classify Before Listing Drawings}
 \label{sec:duty-config}
@@ -5085,44 +5085,46 @@ confirm the client has submitted the corresponding documents. Requirements here
 \hline
 \endlastfoot
 
-\textbf{DYNAPOS} (AM/AT/ATR, SAM/SAT); \textbf{DP-1/2/3} & Dynamic positioning &
+\textbf{DYNAPOS} (AM / AT / AM-AT / AM-AT R / AM-AT RS / SAM); \textbf{DP-1/2/3} & Dynamic positioning &
 Full DP package --- see Chapter \ref{ch:dp}: FMEA, redundancy, power segregation,
-capability plot, thruster allocation, proving trials. & NR467 Pt F (DYNAPOS) \\
+capability plot, thruster allocation, proving trials. & NR467 Pt F, Ch.11 (DYNAPOS) \\
 \hline
 
 \textbf{AUT-UMS, AUT-CCS, AUT-PORT} & Automated / unattended machinery &
 Extended alarm \& monitoring of thruster (bearing temps, oil, vibration), remote
 \& safe control, fail-safe on power/control loss, integration with alarm system.
-& NR467 Pt C, Ch.3; Pt E \\
+& NR467 Pt C, Ch.3; Pt F, Ch.3 (AUT) \\
 \hline
 
 \textbf{COMF-NOISE / COMF-VIB} (Comfort) & Noise \& vibration on board &
 Structure-borne \& airborne noise prediction, vibration levels at thruster
 excitation (blade-rate), resilient mounting, cavitation-noise control, source
-data. & NR467 Pt F (COMF) \\
+data. & NR467 Pt F, Ch.6 (COMF) \\
 \hline
 
 \textbf{CLEANSHIP / environmental} & Pollution prevention &
 Environmentally Acceptable Lubricants (EAL) for stern-tube/thruster seals \&
-hydraulics, leakage monitoring, oil-to-sea interface documentation. & NR467 Pt E
+hydraulics, leakage monitoring, oil-to-sea interface documentation. & NR467 Pt F, Ch.9
 (environmental); VGP/EAL \\
 \hline
 
-\textbf{Redundant Propulsion (RP, RP-1, AVM-\ldots)} & Propulsion availability &
+\textbf{Redundant Propulsion (AVM-DPS)} & Propulsion availability &
 Independence/segregation of propulsion trains, single-failure analysis,
-take-me-home capability, redundant thruster arrangement. & NR467 Pt E \\
+take-me-home capability, redundant thruster arrangement. Related: \textbf{HEADING
+CONTROL-DS / HEADING CONTROL-IS} for heading-keeping with redundant
+propulsion/steering. & NR467 Pt F, Ch.2 (AVM-DPS); Ch.11 (HEADING CONTROL) \\
 \hline
 
 \textbf{MON-SHAFT} (shaft-line monitoring) & Shaft survey by condition monitoring &
 Oil-lubricated bearing/seal of approved type; lube-oil monitoring \& analysis
 programme; bearing temperature \& weardown instrumentation; monitoring-based
-survey scheme (see Section \ref{sec:monshaft}). & NR467 Pt E; Sec.7 \\
+survey scheme (see Section \ref{sec:monshaft}). & NR467 Pt F, Ch.5; Sec.7 \\
 \hline
 
 \textbf{TUG / ESCORT TUG / AHT} (service) & High steering \& towing loads &
 Escort/indirect-towing loads on azimuth \& steering system, structural
 substantiation of unit \& foundation, stability interaction, uprated steering
-duty. & NR467 Pt D \\
+duty. & NR467 Pt E, Ch.1 (Tugs) / Ch.2 (AHT) \\
 \hline
 
 \textbf{SPS} (Special Purpose Ship) & Personnel / mission systems &
@@ -5132,7 +5134,7 @@ arrangement. & NR467 Pt D/E \\
 
 \textbf{Electric hybrid / battery} & Hybrid power &
 Documentation of every driving path (PTI/PTO), energy-storage interface, mode
-changeover, converter data. & NR467 Pt E \\
+changeover, converter data. & NR467 Pt F, Ch.14 (Electric Propulsion) \\
 \hline
 
 \end{longtable}
@@ -5193,27 +5195,27 @@ cases with the most rule impact.
 Harbour / escort tug & Azimuth Z-drive or VSP (main propulsion + steering) &
 Escort/indirect-towing steering \& structural loads; uprated slewing duty;
 steering redundancy; stability interaction; full steering-gear package. &
-NR467 Pt D (tug/escort tug); Sec.14 \\
+NR467 Pt E, Ch.1 (tug/escort tug); Sec.14 \\
 \hline
 
 Offshore supply / PSV / AHTS & Bow tunnel(s) + retractable + stern azimuth; DP &
 DYNAPOS/DP (usually DP-2): FMEA, redundancy, power segregation, capability plot;
-FiFi where fitted; station-keeping. & NR467 Pt F (DYNAPOS); Pt E \\
+FiFi where fitted; station-keeping. & NR467 Pt F, Ch.11 (DYNAPOS); Pt E, Ch.2--3 \\
 \hline
 
 Dredger (TSHD / CSD) & Bow tunnels; azimuth; sometimes DP &
 DREDGING service; DP for some; robust manoeuvring; abrasion/duty considerations.
-& NR467 Pt D \\
+& NR467 Pt D, Ch.13 \\
 \hline
 
 Passenger ship / RoPax / ferry & Bow (+ stern) tunnels; azimuth/pods on some &
 SOLAS steering (II-1/29); \textbf{Safe Return to Port} survivability \&
-redundancy for ships $\geq$120\,m / 3 fire zones; COMF. & SOLAS II-1/II-2; Pt E \\
+redundancy for ships $\geq$120\,m / 3 fire zones; COMF. & SOLAS II-1/II-2; Pt D, Ch.11--12 \\
 \hline
 
 Cruise ship & Podded propulsors + multiple bow/stern tunnels &
 SRtP; COMF-NOISE/VIB; propulsion/steering redundancy; sometimes DP. &
-SOLAS II-2 Reg.21/22; Pt E \\
+SOLAS II-2 Reg.21/22; Pt D, Ch.11 \\
 \hline
 
 Double-ended ferry & Azimuth or VSP at both ends &
@@ -5223,43 +5225,71 @@ time both directions. & Sec.14; SOLAS II-1/29 \\
 
 Cable / pipe layer, offshore construction & Retractable + azimuth + tunnels; DP &
 DYNAPOS DP-2/DP-3: FMEA, fire/flood separation (DP-3), redundancy, proving
-trials. & NR467 Pt F (DYNAPOS) \\
+trials. & NR467 Pt F, Ch.11 (DYNAPOS); Pt E, Ch.6 / Ch.12 \\
+\hline
+
+Diving support vessel (DSV) & Multiple azimuth/tunnel thrusters; DP-2/DP-3 &
+DYNAPOS (usually DP-2/DP-3): FMEA, redundancy, power segregation, capability
+plot, proving trials; interfaces with the diving system itself (see NR610 for
+the diving system, distinct from the ship's NR467 class). & NR467 Pt E, Ch.7;
+Pt F, Ch.11 (DYNAPOS); NR610 \\
+\hline
+
+Lifting unit / heavy-lift \& crane vessel & Multiple azimuth/tunnel thrusters;
+often DP & DYNAPOS where fitted: FMEA, redundancy, capability plot; crane/lift
+loads interact with stability \& thruster foundation loads. & NR467 Pt E, Ch.8;
+Pt F, Ch.11 (DYNAPOS) where DP fitted \\
+\hline
+
+Fire-fighting ship & Bow/stern tunnels or azimuth; FiFi pumps often share prime
+mover with thrusters & FiFi pump/thruster power-sharing and mode-changeover
+documentation; station-keeping during fire-fighting duty. & NR467 Pt E, Ch.4 \\
+\hline
+
+Oil-recovery ship & Bow tunnel(s); sometimes azimuth &
+Station-keeping during recovery operations; hazardous-area considerations for
+recovered-oil handling spaces near the thruster room. & NR467 Pt E, Ch.5 \\
+\hline
+
+Standby rescue vessel & Bow tunnel(s); sometimes azimuth &
+Manoeuvring/station-keeping close to platforms or vessels in distress; base
+Sec.\,15 package typically applies. & NR467 Pt E, Ch.10 \\
 \hline
 
 Drillship / semi-sub (MODU) & Multiple azimuth thrusters; DP-3 &
 DP-3 station keeping; offshore-unit rules; fire/flood zone separation;
-extensive FMEA. & NR467 Pt F (DYNAPOS); NR445 \\
+extensive FMEA. & NR467 Pt F, Ch.11 (DYNAPOS); NR445 \\
 \hline
 
 Oil / chemical tanker & Bow thruster (manoeuvring) &
 \textbf{Hazardous-area / explosion protection} where equipment is in or adjacent
 to dangerous zones; thruster-room zoning; certified-safe (Ex) equipment. &
-SOLAS II-2; IEC 60079; Pt C \\
+SOLAS II-2; IEC 60079; Pt C; Pt D, Ch.7--8/10 \\
 \hline
 
 Gas carrier (LNG/LPG) & Bow thruster; sometimes azimuth &
 As tanker \emph{plus} IGC Code hazardous-zone requirements; gas-safe equipment. &
-IGC Code; IEC 60079 \\
+IGC Code; IEC 60079; Pt D, Ch.9 \\
 \hline
 
 Ice-class / polar trader & Ice-strengthened tunnel/azimuth &
 Ice-load strengthening \& winterisation (see Chapter \ref{ch:ice}). &
-NR467 Pt E; NR527 \\
+NR467 Pt F, Ch.8; NR527 \\
 \hline
 
 Research / naval / patrol & Rim-driven / pods / azimuth &
 Low underwater-noise \& signature; COMF/silent; naval ships follow dedicated
-naval rules. & Naval rules (e.g.\ NR483); Pt E \\
+naval rules. & Naval rules (e.g.\ NR483); Pt D, Ch.16 (patrol) \\
 \hline
 
 Large yacht & Bow/stern tunnels; pods &
 Comfort (noise/vibration); yacht-specific rules; retractable/stabiliser
-interfaces. & Yacht rules; Pt E \\
+interfaces. & NR500 (yacht rules) \\
 \hline
 
 Container / bulk / general cargo & Bow tunnel thruster (manoeuvring) &
 Base Sec.\,15 package; typically electric drive; no special service overlay. &
-NR467 Sec.15; Pt C \\
+NR467 Sec.15; Pt C; Pt D, Ch.2/4 \\
 \hline
 
 \end{longtable}
@@ -5305,11 +5335,15 @@ location relative to the cargo/hazardous zone \emph{before} accepting standard
 
 \section{Offshore \& DP-Intensive Vessels}
 
-OSVs, construction, cable/pipe-lay units and MODUs are defined by their DP
-capability. Beyond the DP package of Chapter \ref{ch:dp}, expect: multiple
-independent thruster trains, power-plant segregation, DP-3 fire/flood separation
-where notated, worst-case-failure design intent, and comprehensive FMEA and
-proving-trials programmes. Mobile offshore units are additionally governed by
+OSVs, construction, cable/pipe-lay units, diving support vessels, lifting units
+and MODUs are defined by their DP capability. Beyond the DP package of Chapter
+\ref{ch:dp}, expect: multiple independent thruster trains, power-plant
+segregation, DP-3 fire/flood separation where notated, worst-case-failure
+design intent, and comprehensive FMEA and proving-trials programmes. Diving
+support vessels (NR467 Pt E, Ch.7) additionally require the thruster/DP
+package to be reviewed alongside the diving system's own classification
+(\textbf{NR610}) where the two interact (e.g.\ shared power, station-keeping
+during diving operations). Mobile offshore units are additionally governed by
 \textbf{offshore-unit / MODU rules}, which may modify hull, machinery and
 location (hazardous-area) requirements relative to NR467.
 
@@ -5423,7 +5457,7 @@ equipment on tankers and gas carriers, and DP-3 separation on offshore units.
 
 \subsection{General Information}
 \begin{itemize}[label=$\square$]
-\item Thruster power rating >110 kW (Section 15 applies)
+\item Thruster power rating $\geq$110 kW (Section 15 applies)
 \item Thruster manufacturer and model
 \item Installation location (bow/stern)
 \end{itemize}
@@ -5723,7 +5757,7 @@ Chapters \ref{ch:primemover}--\ref{ch:shiptype}.
 Legend: \fa{} = For Approval, \fic{} = For Information.
 
 \CoverSheet{Generic Template (any ship / any thruster type)}
-\textbf{Core package (all thrusters $>$110\,kW):}
+\textbf{Core package (all thrusters $\geq$110\,kW):}
 \begin{itemize}[label=$\square$,nosep]
 \CoreCoverItems
 \end{itemize}
@@ -5995,7 +6029,7 @@ Legend: \fa{} = For Approval, \fic{} = For Information.
 
 \subsection{Initial Review}
 \begin{enumerate}
-\item Verify thruster power >110 kW → Section 15 applies
+\item Verify thruster power $\geq$110 kW → Section 15 applies
 \item Identify thruster type → Apply appropriate checklist (Chapters \ref{ch:transverse}--\ref{ch:othertypes})
 \item Identify the prime mover (electric / diesel / hydraulic) → Add Chapter \ref{ch:primemover} submissions
 \item Check for steering function → Add Chapter \ref{ch:steering} requirements
@@ -6212,10 +6246,12 @@ notations, in multiple chapters:
 \item Ice class (IA Super / IA / IB / IC) and Polar Class (PC1--PC7); COLD winterisation
 \item Comfort on board --- COMF-NOISE, COMF-VIB
 \item Automated machinery spaces / integrated systems --- AUT-UMS, AUT-CCS, AUT-PORT
-\item Dynamic positioning --- \textbf{DYNAPOS} (AM / AT / ATR, SAM / SAT)
+\item Dynamic positioning --- \textbf{DYNAPOS} (AM / AT / AM-AT / AM-AT R / AM-AT RS / SAM)
 \item Environmental protection --- CLEANSHIP and related (EAL lubricants)
-\item Redundant propulsion --- RP / AVM notations
-\item Shaft-line monitoring --- MON-SHAFT
+\item Redundant propulsion --- \textbf{AVM-DPS} (Part F, Ch.2); related \textbf{HEADING CONTROL-DS / HEADING CONTROL-IS} (Part F, Ch.11)
+\item Shaft-line monitoring --- MON-SHAFT (Part F, Ch.5)
+\item Electric propulsion / power supply (Part F, Ch.14) --- relevant to fully electric or hybrid pod/azimuth thruster installations; cross-check against Chapter \ref{ch:primemover}
+\item Elastic shaft alignment \& hydroelasticity (Part F, Ch.15) --- relevant where a thruster's vertical/propeller shaft alignment scheme claims an elastic-alignment notation; cross-check against Chapter \ref{ch:shafting}
 \end{itemize}
 
 \vspace{0.2cm}
@@ -6354,6 +6390,8 @@ NR216 for DP --- read DP references as \textbf{NR467 Part F (DYNAPOS)}.
 \hline
 1.6 & 2026 & Added \textbf{Part A} (Classification and Surveys) to references --- clarifies that notations/ship types are \emph{defined} in Part A Ch.\,1 while Parts D/E/F carry the technical requirements. Companion interactive tool rebuilt as a fully offline local app with a robust clipboard-based Excel/Sheets export (replacing the mobile-unreliable file-download-only export), a spec-capture bar, and a \textbf{contra-rotating propeller (CRP)} option for azimuth/podded units. & Plan Approval Reference (expanded ed.) \\
 \hline
+1.7 & 2026 & \textbf{Verified against live NR467 Jul 2026 edition (Rules Explorer)} --- see \texttt{BV-Rules-Verification.md} for the full evidence log. Corrected: power threshold wording to \textbf{$\geq$110\,kW} (rule says ``equal to 110\,kW or more'', not ``exceeding''); DYNAPOS notation suffixes to \textbf{AM / AT / AM-AT / AM-AT R / AM-AT RS / SAM} (previous ``ATR/SAT'' did not exist); redundant-propulsion notation to \textbf{AVM-DPS} (Part F, Ch.2) --- ``RP'' was not a real notation; corrected several Part D/E/F letter mis-attributions in the Notation Impact Matrix and Ship-Type Expectation Matrix (e.g.\ tug/escort tug is Part E not Part D; passenger/cruise ships are Part D not Part E; ice class is Part F not Part E; large yacht has no Part E involvement, NR500 only). Added \textbf{Diving Support Vessel, Lifting Unit, Fire-Fighting Ship, Oil-Recovery Ship and Standby Rescue Vessel} rows to the ship-type matrix (Part E chapters previously absent from the catalog). Added citations for previously-uncited Part F Ch.14 (Electric Propulsion or Power Supply) and Ch.15 (Elastic Shaft Alignment and Hydroelasticity). & Plan Approval Reference (expanded ed.) \\
+\hline
 \end{tabular}
 \end{table}
 
@@ -6412,7 +6450,7 @@ NR216 for DP --- read DP references as \textbf{NR467 Part F (DYNAPOS)}.
 
 \vspace{2cm}
 
-{\large Document Version 1.6}
+{\large Document Version 1.7}
 
 {\large 2026}
 
