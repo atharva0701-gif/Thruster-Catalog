@@ -42,27 +42,53 @@ Put the file on the shared drive / SharePoint so all admins update the same copy
 
 ## The interactive tool
 
-Open `thruster-quickref.html` in any browser — **it runs fully offline**, no
-internet or install needed (it *is* the local app; double-click the file). Features:
-- Configuration panel → filtered drawing list for that exact case. Inputs:
-  thruster type, **controllable-pitch / retractable**, **duty (manoeuvring /
-  propulsion / take-me-home)**, **propeller: open / ducted (fixed or steering
-  nozzle)**, prime mover, functional role, ship type and Part-F notations.
+Open `thruster-quickref.html` in any browser — **this is the local app**. No
+internet, no install, no account, no Claude access needed: just double-click
+the file (or open it from an email attachment) and it runs entirely offline
+on your work computer, a locked-down machine, or a phone.
+
+Configuration inputs → a filtered, tailored drawing list:
+- Thruster type, **controllable-pitch / retractable / contra-rotating (CRP —
+  azimuth \& podded units)**.
+- **Duty: manoeuvring / propulsion / take-me-home** (propulsion duty correctly
+  pulls in the main-shaft-line package and a mandatory torsional vibration
+  calculation; manoeuvring does not).
+- **Propeller: open / ducted (nozzle)**, with fixed vs. **steering nozzle**
+  (steering nozzle correctly pulls in the steering-gear package).
+- Prime mover, functional role, ship type, and Part-F additional notations.
+
+Other features:
 - Live counts (documents / For-Approval / For-Information) and a "received"
-  progress bar as you tick items off against a client submission.
-- Applicable rule-set chips (NR467 Pt C/D/E/F, NR216/NR266/NR527/NR500/NR566,
-  IEC 60079, SOLAS, …).
-- **Export to Excel/CSV** and **copy list**; identification + specification
-  header (power/thrust/rpm/supply); search/filter; print-to-PDF; light/dark.
-- Ticks auto-save per configuration in your browser.
+  progress bar as you tick items off against a client submission — ticks
+  auto-save per configuration in your browser.
+- Applicable rule-set chips (NR467 Pt A/C/D/E/F, NR216/NR266/NR320/NR500/NR527/
+  NR566, IEC 60079, SOLAS, …).
+- Identification + specification header (maker/model, power/thrust/rpm/supply).
+- Search/filter, print-to-PDF, light/dark theme.
+
+**Getting the list into Excel (mobile-safe, three ways, most reliable first):**
+1. **Copy for Excel / Sheets** — copies a tab-separated table to the clipboard.
+   Open Excel/Sheets/Numbers, tap a cell, paste — it fills in as columns
+   instantly. This is the recommended path on mobile, where browser
+   file-download can be unreliable (silently blocked in email in-app
+   browsers/older WebViews with no error shown).
+2. **Download .csv file** — triggers a normal file download for
+   desktop browsers; on mobile it also reveals a visible, pre-selected
+   fallback text box so you can manually copy the data even if the automatic
+   download didn't fire.
+3. **Copy as checklist text** — a plain-text tick-list for pasting into an
+   email or notes app.
 
 Ship-type selection auto-adds the relevant special requirements (e.g. tanker →
 hazardous-area/Ex; passenger → Safe Return to Port; OSV → DP).
 
-> **Rule references verified (Jan 2026):** DP = additional class notation
-> **DYNAPOS** in **NR467 Part F** (not "NR216" — NR216 is Materials & Welding).
-> Service notations: Part D (general), **Part E (OSV & tugs)**; additional class
-> notations (ice, COMF, AUT, CLEANSHIP, MON-SHAFT, DYNAPOS): **Part F**.
+> **Rule references verified (Jan 2026):** notations and ship-type/service
+> designations are formally listed in **NR467 Part A, Ch.1** (Principles of
+> Classification and Class Notations); the technical requirements for each then
+> sit in **Part D** (general service notations), **Part E** (OSV & tugs), and
+> **Part F** (additional class notations — ice, COMF, AUT, CLEANSHIP,
+> MON-SHAFT, **DYNAPOS** for DP). DP is additional class notation DYNAPOS in
+> Part F — not "NR216", which is actually the Materials & Welding rule note.
 
 ## What the guide covers
 

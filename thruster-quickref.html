@@ -92,7 +92,7 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
 <header class="top">
   <div>
     <h1>Thruster Plan-Approval Quick Reference</h1>
-    <div class="sub">Surveyor working aid &middot; BV NR467 (Jan 2026): Pt&nbsp;C machinery &middot; Pt&nbsp;D/E service notations &middot; Pt&nbsp;F additional class notations</div>
+    <div class="sub">Surveyor working aid &middot; BV NR467 (Jan 2026): Pt&nbsp;A notation definitions &middot; Pt&nbsp;C machinery &middot; Pt&nbsp;D/E service notations &middot; Pt&nbsp;F additional class notations</div>
   </div>
   <button class="themebtn" id="theme">Toggle theme</button>
 </header>
@@ -108,6 +108,7 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
     <div class="field checks">
       <label class="chk"><input type="checkbox" id="mod_cp"> Controllable pitch (CP)</label>
       <label class="chk"><input type="checkbox" id="mod_retract"> Retractable</label>
+      <label class="chk" id="mod_crp_wrap" style="display:none"><input type="checkbox" id="mod_crp"> Contra-rotating propellers (CRP)</label>
     </div>
     <div class="field">
       <label class="lab">Duty / function</label>
@@ -162,14 +163,23 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
     </div>
 
     <div class="btnrow">
-      <button class="btn" id="exportCsv">Export to Excel (CSV)</button>
-      <button class="btn ghost" id="copyList">Copy list</button>
+      <button class="btn" id="copyExcel">Copy for Excel / Sheets</button>
+    </div>
+    <div class="hint" style="margin-top:-2px">Recommended on mobile: copies a table &mdash; open Excel/Sheets, tap a cell, paste.</div>
+    <div class="btnrow">
+      <button class="btn ghost" id="exportCsv">Download .csv file</button>
+      <button class="btn ghost" id="copyList">Copy as checklist text</button>
     </div>
     <div class="btnrow">
       <button class="btn ghost" onclick="window.print()">Print / PDF</button>
       <button class="btn ghost" id="resetChecks">Reset ticks</button>
     </div>
-    <div class="disc">Unofficial personal reference aid compiled from BV rules (NR467, and rule notes NR216/NR266/NR320/NR500/NR527/NR566 as noted). Runs fully offline &mdash; no internet needed. Always verify the exact rule article against the edition applicable to the vessel. Not an official Bureau&nbsp;Veritas document.</div>
+    <div id="fallbackPanel" style="display:none;margin-top:8px">
+      <div class="hint" style="margin-bottom:4px">If nothing downloaded or copied automatically, tap inside the box, select all, and copy manually:</div>
+      <textarea id="fallbackText" readonly onclick="this.select()"
+        style="width:100%;height:90px;font-size:11.5px;font-family:Consolas,monospace;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)"></textarea>
+    </div>
+    <div class="disc">Unofficial personal reference aid compiled from BV rules (NR467 Pt A/C/D/E/F, and rule notes NR216/NR266/NR320/NR500/NR527/NR566 as noted). Runs fully offline as a local file &mdash; no internet, no install, no account needed. Always verify the exact rule article against the edition applicable to the vessel. Not an official Bureau&nbsp;Veritas document.</div>
   </aside>
 
   <main>
@@ -239,9 +249,9 @@ const TYPES = {
     struct:[['Tunnel structural arrangement','FA','NR467 Pt C Ch.1'],['Tunnel structural calculations','FA','NR467 Pt C Ch.1'],
       ['Tunnel end grating / grid design','FA','NR467 Pt C Ch.1'],['Hull penetration details','FA','NR467 Pt B']],
     mech:MECH_COMMON},
-  azimuth:{label:'Azimuth thruster (rotating / Z- or L-drive)', steer:true, hyd:false, ductable:true, hint:'Steerable 360°. Often main propulsion + steering (tugs).',
+  azimuth:{label:'Azimuth thruster (rotating / Z- or L-drive)', steer:true, hyd:false, ductable:true, crpOption:true, hint:'Steerable 360°. Often main propulsion + steering (tugs).',
     struct:AZ_STRUCT, mech:MECH_COMMON.concat(AZ_MECH_EXTRA)},
-  podded:{label:'Podded propulsor (motor in pod)', steer:true, hyd:false, ductable:true, forceElectric:true, propulsion:true,
+  podded:{label:'Podded propulsor (motor in pod)', steer:true, hyd:false, ductable:true, forceElectric:true, propulsion:true, crpOption:true,
     hint:'Electric motor in the pod; main propulsion. Prime mover forced to electric.',
     struct:AZ_STRUCT.concat([['Pod structural components & strut','FA','NR467 Pt C Ch.1']]),
     mech:[['Thruster unit general assembly','FA','NR467 Pt C Ch.1'],['Propeller design drawing','FA','NR467 Pt C Ch.1'],
@@ -293,6 +303,14 @@ const RETRACT_ITEMS = [
   ['Locking system design (fail-safe)','FA','NR467 Pt C Ch.1'],['Position indication system','FA','NR467 Pt C Ch.1'],
   ['Emergency lowering system','FA','NR467 Pt C Ch.1'],['Retraction / extension procedures','FI','NR467 Pt C Ch.1'],
   ['Emergency recovery procedures','FI','NR467 Pt C Ch.1'],
+];
+const CRP_ITEMS = [
+  ['Aft (contra-rotating) propeller & hub assembly','FA','NR467 Pt C Ch.1'],
+  ['Aft propeller strength calculations','FA','NR467 Pt C Ch.1'],
+  ['Aft shaft, bearing & seal system (independent line)','FA','NR467 Pt C Ch.1'],
+  ['Fwd/aft propeller interaction & cavitation assessment','FA','NR467 Pt C Ch.1'],
+  ['CRP speed synchronisation / anti-collision control','FA','NR467 Pt C Ch.1 / Ch.3'],
+  ['Combined torsional vibration calculation (both lines)','FA','NR467 Pt C Ch.1'],
 ];
 const NOZZLE_ITEMS = [
   ['Nozzle (duct) structure & strength drawing','FA','NR467 Pt C Ch.1'],
@@ -401,7 +419,7 @@ const SHIPS = {
   small:{label:'Ship < 500 GT', note:'NR566', add:[['Confirm applicability of simplified requirements','FI','NR566']]},
   cargo:{label:'Container / bulk / general cargo', note:'NR467 Pt C/D', add:[]},
 };
-const GROUP_ORDER = ['Structure & hull','Duct / nozzle','Mechanical (propeller / shaft / gear)','Propulsion (main)','Controllable pitch','Retraction system',
+const GROUP_ORDER = ['Structure & hull','Duct / nozzle','Mechanical (propeller / shaft / gear)','Propulsion (main)','Controllable pitch','Contra-rotating propellers (CRP)','Retraction system',
   'Drive / prime mover','Hydraulics','Steering gear','Main shaft line','Control & electrical',
   'Dynamic positioning (Pt F)','Ice class & winterisation','Additional notations (Pt F)','Ship-type specific','Testing & commissioning'];
 const TESTING_ITEMS = [
@@ -416,6 +434,7 @@ function collect(){
   const cfg = TYPES[t];
   const cp = document.getElementById('mod_cp').checked;
   const retract = document.getElementById('mod_retract').checked;
+  const crp = !!cfg.crpOption && document.getElementById('mod_crp').checked;
   const duty = segVal('duty');
   const ducted = segVal('duct')==='ducted';
   const steernozzle = ducted && document.getElementById('steernozzle').checked;
@@ -436,6 +455,7 @@ function collect(){
   if(duty==='prop') push('Propulsion (main)', PROPULSION_ITEMS);
   if(duty==='tmh')  push('Propulsion (main)', TMH_ITEMS);
   if(cp) push('Controllable pitch', CP_ITEMS);
+  if(crp) push('Contra-rotating propellers (CRP)', CRP_ITEMS);
   if(retract) push('Retraction system', RETRACT_ITEMS);
 
   if(prime==='electric') push('Drive / prime mover', ELECTRIC_ITEMS);
@@ -475,7 +495,8 @@ function collect(){
 /* ================= Persistence ================= */
 function sig(){
   return [document.getElementById('ttype').value, document.getElementById('mod_cp').checked,
-    document.getElementById('mod_retract').checked, segVal('duty'), segVal('duct'),
+    document.getElementById('mod_retract').checked, document.getElementById('mod_crp').checked,
+    segVal('duty'), segVal('duct'),
     document.getElementById('steernozzle').checked, segVal('prime'),
     document.getElementById('role_steer').checked, document.getElementById('role_shaft').checked,
     document.getElementById('role_dp').checked, document.getElementById('ship').value,
@@ -535,35 +556,90 @@ function currentRows(){
   return rows;
 }
 function configText(){
-  return TYPES[document.getElementById('ttype').value].label
+  const cfg=TYPES[document.getElementById('ttype').value];
+  return cfg.label
     + (document.getElementById('mod_cp').checked?' + CP':'')
     + (document.getElementById('mod_retract').checked?' + retractable':'')
+    + (cfg.crpOption && document.getElementById('mod_crp').checked?' + CRP':'')
     + ' | duty: '+({man:'manoeuvring',prop:'propulsion',tmh:'take-me-home'}[segVal('duty')])
     + ' | prop: '+segVal('duct')
     + ' | prime: '+segVal('prime')
     + ' | ship: '+(SHIPS[document.getElementById('ship').value].label);
 }
 function csvEscape(s){ s=(s==null?'':String(s)); return '"'+s.replace(/"/g,'""')+'"'; }
-function exportCSV(){
+function tsvCell(s){ s=(s==null?'':String(s)); return s.replace(/\t/g,' ').replace(/\r?\n/g,' / '); }
+
+function metaRows(){
   const g=id=>document.getElementById(id).value;
-  const meta=[
-    ['Thruster Plan-Approval Quick Reference — submission checklist'],
+  return [
     ['Vessel / Yard No', g('id_vessel')],['IMO number', g('id_imo')],['Class notation', g('id_notation')],['Reviewer / date', g('id_reviewer')],
     ['Maker / model', g('sp_make')],['Rated power (kW)', g('sp_power')],['Rated thrust (kN)', g('sp_thrust')],['Prop. speed (rpm)', g('sp_rpm')],['Supply (V/bar)', g('sp_supply')],
-    ['Configuration', configText()],[],
-    ['Group','Document / drawing','FA/FI','Rule reference','Status'],
+    ['Configuration', configText()],
   ];
+}
+function buildCSV(){
+  const meta=[['Thruster Plan-Approval Quick Reference — submission checklist']].concat(metaRows()).concat([[],['Group','Document / drawing','FA/FI','Rule reference','Status']]);
   const lines = meta.map(r=>r.map(csvEscape).join(',')).concat(currentRows().map(r=>r.map(csvEscape).join(',')));
-  const blob=new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8;'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-  const vn=(g('id_vessel')||'thruster').replace(/[^a-z0-9]+/gi,'_');
-  a.download='thruster-submission-'+vn+'.csv'; document.body.appendChild(a); a.click();
-  setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500);
+  return lines.join('\r\n');
+}
+function buildTSV(){
+  const meta=metaRows().map(r=>r.map(tsvCell).join('\t'));
+  const header=['Group','Document / drawing','FA/FI','Rule reference','Status'].map(tsvCell).join('\t');
+  const rows=currentRows().map(r=>r.map(tsvCell).join('\t'));
+  return ['Thruster Plan-Approval Quick Reference — submission checklist'].concat(meta).concat(['',header]).concat(rows).join('\n');
+}
+function fileBaseName(){
+  const vn=(document.getElementById('id_vessel').value||'thruster').replace(/[^a-z0-9]+/gi,'_');
+  return 'thruster-submission-'+vn;
+}
+function showFallback(text){
+  const panel=document.getElementById('fallbackPanel'); const box=document.getElementById('fallbackText');
+  box.value=text; panel.style.display='block'; box.focus(); box.select();
+}
+function flashLabel(btn, msg, ms){
+  const o=btn.textContent; btn.textContent=msg; setTimeout(()=>{btn.textContent=o;}, ms||1400);
+}
+async function copyToClipboard(text){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    try{ await navigator.clipboard.writeText(text); return true; }catch(e){ /* fall through */ }
+  }
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.top='-1000px'; ta.style.left='-1000px';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    const ok=document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  }catch(e){ return false; }
+}
+async function copyForExcel(){
+  const btn=document.getElementById('copyExcel');
+  const tsv=buildTSV();
+  const ok=await copyToClipboard(tsv);
+  if(ok){ flashLabel(btn,'Copied ✓ — paste into a spreadsheet'); }
+  else { flashLabel(btn,'Could not auto-copy — see box below'); showFallback(tsv); }
+}
+function exportCSV(){
+  const btn=document.getElementById('exportCsv');
+  const csv=buildCSV();
+  let downloadAttempted=false;
+  try{
+    const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8;'});
+    const a=document.createElement('a'); const url=URL.createObjectURL(blob);
+    a.href=url; a.download=fileBaseName()+'.csv';
+    document.body.appendChild(a); a.click();
+    setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },500);
+    downloadAttempted=true;
+  }catch(e){ downloadAttempted=false; }
+  // Mobile / restricted browsers often fail this silently — always offer the manual fallback too.
+  flashLabel(btn, downloadAttempted?'Download started…':'Download not supported here');
+  showFallback(csv);
 }
 function copyList(){
+  const btn=document.getElementById('copyList');
   const txt = configText()+'\n\n'+currentRows().map(r=>('[ ] '+r[1]+'  ('+r[2]+', '+r[3]+')  — '+r[0])).join('\n');
-  navigator.clipboard.writeText(txt).then(()=>{ const b=document.getElementById('copyList'); const o=b.textContent; b.textContent='Copied!'; setTimeout(()=>b.textContent=o,1200); })
-    .catch(()=>{ window.prompt('Copy the list:', txt); });
+  copyToClipboard(txt).then(ok=>{ if(ok) flashLabel(btn,'Copied ✓'); else showFallback(txt); });
 }
 
 /* ================= Wire up ================= */
@@ -582,13 +658,17 @@ function afterChange(which){
   if(cfg.forceElectric){ document.querySelectorAll('#prime button').forEach(b=>b.classList.toggle('on',b.dataset.v==='electric')); }
   // steering-nozzle option only when ducted
   document.getElementById('steernozzle_wrap').style.display = (segVal('duct')==='ducted')?'flex':'none';
+  // CRP option only for types that support it (azimuth / podded)
+  const crpWrap=document.getElementById('mod_crp_wrap');
+  crpWrap.style.display = cfg.crpOption?'flex':'none';
+  if(!cfg.crpOption) document.getElementById('mod_crp').checked=false;
   render();
 }
 document.addEventListener('DOMContentLoaded',()=>{
   initSelects(); segWire('duty'); segWire('duct'); segWire('prime');
   document.getElementById('ttype').addEventListener('change',()=>{ afterChange('ttype'); });
   document.getElementById('steernozzle').addEventListener('change',render);
-  ['mod_cp','mod_retract','role_steer','role_shaft','role_dp','ship',
+  ['mod_cp','mod_retract','mod_crp','role_steer','role_shaft','role_dp','ship',
    'not_ice','not_comf','not_aut','not_clean','not_mon','not_rp','not_ex','not_srtp']
    .forEach(id=>document.getElementById(id).addEventListener('change',()=>{
      if(id==='ship'){ const s=SHIPS[document.getElementById('ship').value]; const au=s.auto||[];
@@ -598,6 +678,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    }));
   document.getElementById('filter').addEventListener('input',render);
   document.getElementById('resetChecks').addEventListener('click',()=>{ TICKS={}; saveTicks(TICKS); render(); });
+  document.getElementById('copyExcel').addEventListener('click',copyForExcel);
   document.getElementById('exportCsv').addEventListener('click',exportCSV);
   document.getElementById('copyList').addEventListener('click',copyList);
   document.getElementById('theme').addEventListener('click',()=>{
