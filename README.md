@@ -42,16 +42,27 @@ Put the file on the shared drive / SharePoint so all admins update the same copy
 
 ## The interactive tool
 
-Open `thruster-quickref.html` in any browser. Features:
-- Configuration panel → filtered drawing list for that exact case.
+Open `thruster-quickref.html` in any browser — **it runs fully offline**, no
+internet or install needed (it *is* the local app; double-click the file). Features:
+- Configuration panel → filtered drawing list for that exact case. Inputs:
+  thruster type, **controllable-pitch / retractable**, **duty (manoeuvring /
+  propulsion / take-me-home)**, **propeller: open / ducted (fixed or steering
+  nozzle)**, prime mover, functional role, ship type and Part-F notations.
 - Live counts (documents / For-Approval / For-Information) and a "received"
   progress bar as you tick items off against a client submission.
-- Applicable rule-set chips (NR467 Sec.14/15/7, NR216, IEC 60079, SOLAS, …).
-- Identification header, search/filter, print-to-PDF, light/dark theme.
+- Applicable rule-set chips (NR467 Pt C/D/E/F, NR216/NR266/NR527/NR500/NR566,
+  IEC 60079, SOLAS, …).
+- **Export to Excel/CSV** and **copy list**; identification + specification
+  header (power/thrust/rpm/supply); search/filter; print-to-PDF; light/dark.
 - Ticks auto-save per configuration in your browser.
 
 Ship-type selection auto-adds the relevant special requirements (e.g. tanker →
 hazardous-area/Ex; passenger → Safe Return to Port; OSV → DP).
+
+> **Rule references verified (Jan 2026):** DP = additional class notation
+> **DYNAPOS** in **NR467 Part F** (not "NR216" — NR216 is Materials & Welding).
+> Service notations: Part D (general), **Part E (OSV & tugs)**; additional class
+> notations (ice, COMF, AUT, CLEANSHIP, MON-SHAFT, DYNAPOS): **Part F**.
 
 ## What the guide covers
 

@@ -155,7 +155,7 @@
     
     \vfill
     
-    {\large Document Version 1.4\par}
+    {\large Document Version 1.5\par}
     {\large 2026\par}
     
     \vspace{1cm}
@@ -237,7 +237,7 @@ This document is fully hyperlinked for quick reference:
 \end{itemize}
 
 \vspace{0.3cm}
-\noindent\textit{Note on rule references:} Thruster requirements are found in \textbf{NR467, Part C, Chapter 1, Section 15} (``Thrusters''); steering gear in \textbf{Section 14}; shaft lines and propellers in \textbf{Sections 7--8}. Bracketed sub-references such as [2.3] are structural pointers within this catalog. Ice class, comfort, automation and DP requirements sit in \textbf{NR467 Part E} (Additional Class Notations) and dedicated Rule Notes (NR216, NR527, etc.). Always confirm the exact article against the rule edition applicable to the vessel's contract/build date.
+\noindent\textit{Note on rule references:} Thruster requirements are found in \textbf{NR467, Part C, Chapter 1, Section 15} (``Thrusters''); steering gear in \textbf{Section 14}; shaft lines and propellers in \textbf{Sections 7--8}. Bracketed sub-references such as [2.3] are structural pointers within this catalog. Ice class, comfort, automation and DP requirements sit in \textbf{NR467 Part F} (Additional Class Notations, e.g.\ DYNAPOS for DP); service notations are in \textbf{Part D} (general) and \textbf{Part E} (offshore service vessels \& tugs). Note \textbf{NR216} is the Materials \& Welding rule note (not a DP rule). Always confirm the exact article against the rule edition applicable to the vessel's contract/build date.
 
 \newpage
 
@@ -247,6 +247,50 @@ This document is fully hyperlinked for quick reference:
 
 \section{Applicability}
 All thrusters with power output exceeding 110 kW must comply with NR467 Section 15 requirements. Thrusters $\leq$110 kW may have reduced submission requirements (verify with surveyor).
+
+\section{Two Axes to Classify Before Listing Drawings}
+\label{sec:duty-config}
+
+Before applying any type checklist, fix two attributes of the unit --- they change
+\emph{which} rules and drawings apply as much as the thruster type does:
+
+\subsection{Duty: manoeuvring vs.\ propulsion}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Manoeuvring (auxiliary)} --- e.g.\ a bow/stern tunnel thruster used
+only for low-speed manoeuvring. Assessed under Sec.\,15 as auxiliary machinery;
+it is \emph{not} part of the main shaft line.
+\item \textbf{Propulsion (main)} --- e.g.\ an azimuth on a tug, a podded unit, a
+water-jet or a Voith-Schneider that propels the ship. The propeller, shaft and
+gear are classed as \textbf{main propulsion}: the main-shaft-line requirements of
+Chapter \ref{ch:shafting} apply, a \textbf{torsional vibration calculation is
+mandatory}, and barred/continuous-speed ranges must be confirmed.
+\item \textbf{Take-me-home / emergency propulsion} --- a retractable or auxiliary
+unit providing get-home capability; assess independence from the main train
+(cross-reference redundant-propulsion notation, Chapter \ref{ch:notations}).
+\end{itemize}
+The same physical thruster therefore attracts a heavier package when it is the
+ship's propulsion than when it is purely for manoeuvring.
+
+\subsection{Propeller configuration: open vs.\ ducted (nozzle)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Open (non-ducted) propeller} --- blade and hub strength, cavitation
+and the usual shaft/bearing package.
+\item \textbf{Ducted (nozzle) propeller} --- \emph{adds} the nozzle/duct structure
+and strength drawing, nozzle profile/geometry with propeller-tip clearance, and
+the nozzle-to-unit/hull connection. Distinguish:
+  \begin{itemize}
+  \item \textbf{Fixed nozzle} (Kort-type) --- structural item only; improves
+  bollard pull.
+  \item \textbf{Steering nozzle} --- the nozzle also steers, so the
+  \textbf{steering-gear package} of Chapter \ref{ch:steering} applies (actuator,
+  control, redundancy, SOLAS II-1/29 where it is the ship's means of steering).
+  \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Surveyor note:} record duty and propeller configuration on the
+submission cover sheet (Chapter \ref{ch:coversheets}). The interactive
+Quick-Reference tool builds the exact drawing list once type, duty, propeller
+configuration, prime mover, role, ship type and notations are selected.
 
 \section{Mandatory Submissions for All Thruster Types}
 
@@ -4838,8 +4882,8 @@ DP systems are classified into three classes:
 The DP-specific submissions below are \emph{in addition to} the full type
 package for each thruster used in the DP system (structure, propeller, shaft,
 gear, drive, control). They focus on redundancy, power segregation, control and
-failure analysis, and are assessed principally under \textbf{NR216} and
-\textbf{NR467 Part E}.
+failure analysis, and are assessed principally under \textbf{NR467 Part F}
+(Additional Class Notation \textbf{DYNAPOS}).
 
 \textbf{Key DP-Specific Documents Required (\fa{}):}
 \begin{enumerate}
@@ -4870,7 +4914,7 @@ failure analysis, and are assessed principally under \textbf{NR216} and
 \end{enumerate}
 
 \section{Reference}
-All DP requirements per \textbf{NR216 - Rules for Dynamic Positioning Systems}
+All DP (DYNAPOS) requirements per \textbf{NR467 Part F (Additional Class Notations)}; see also IMO MSC.1/Circ.1580 and IMCA guidance.
 
 \newpage
 
@@ -4927,7 +4971,7 @@ of exposed and seawater systems. The surveyor overlays these on the type package
 \item Declared notation (IA Super/IA/\ldots\ or PC1--PC7)
 \item Design ice thickness / ice-load basis
 \item Applicable rule edition and lower design temperature
-\end{itemize} & NR467 Part E; NR527 \\
+\end{itemize} & NR467 Part F; NR527 \\
 \hline
 
 2 & Propeller Ice-Load Strength Calculation & \fa{} &
@@ -5043,7 +5087,7 @@ confirm the client has submitted the corresponding documents. Requirements here
 
 \textbf{DYNAPOS} (AM/AT/ATR, SAM/SAT); \textbf{DP-1/2/3} & Dynamic positioning &
 Full DP package --- see Chapter \ref{ch:dp}: FMEA, redundancy, power segregation,
-capability plot, thruster allocation, proving trials. & NR467 Pt E; NR216 \\
+capability plot, thruster allocation, proving trials. & NR467 Pt F (DYNAPOS) \\
 \hline
 
 \textbf{AUT-UMS, AUT-CCS, AUT-PORT} & Automated / unattended machinery &
@@ -5055,7 +5099,7 @@ Extended alarm \& monitoring of thruster (bearing temps, oil, vibration), remote
 \textbf{COMF-NOISE / COMF-VIB} (Comfort) & Noise \& vibration on board &
 Structure-borne \& airborne noise prediction, vibration levels at thruster
 excitation (blade-rate), resilient mounting, cavitation-noise control, source
-data. & NR467 Pt E, Ch.6 \\
+data. & NR467 Pt F (COMF) \\
 \hline
 
 \textbf{CLEANSHIP / environmental} & Pollution prevention &
@@ -5154,7 +5198,7 @@ NR467 Pt D (tug/escort tug); Sec.14 \\
 
 Offshore supply / PSV / AHTS & Bow tunnel(s) + retractable + stern azimuth; DP &
 DYNAPOS/DP (usually DP-2): FMEA, redundancy, power segregation, capability plot;
-FiFi where fitted; station-keeping. & NR216; Pt D/E \\
+FiFi where fitted; station-keeping. & NR467 Pt F (DYNAPOS); Pt E \\
 \hline
 
 Dredger (TSHD / CSD) & Bow tunnels; azimuth; sometimes DP &
@@ -5179,12 +5223,12 @@ time both directions. & Sec.14; SOLAS II-1/29 \\
 
 Cable / pipe layer, offshore construction & Retractable + azimuth + tunnels; DP &
 DYNAPOS DP-2/DP-3: FMEA, fire/flood separation (DP-3), redundancy, proving
-trials. & NR216; Pt E \\
+trials. & NR467 Pt F (DYNAPOS) \\
 \hline
 
 Drillship / semi-sub (MODU) & Multiple azimuth thrusters; DP-3 &
 DP-3 station keeping; offshore-unit rules; fire/flood zone separation;
-extensive FMEA. & NR216; MODU / offshore rules \\
+extensive FMEA. & NR467 Pt F (DYNAPOS); NR445 \\
 \hline
 
 Oil / chemical tanker & Bow thruster (manoeuvring) &
@@ -6013,7 +6057,7 @@ Legend: \fa{} = For Approval, \fic{} = For Information.
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
 \rowcolor{bvblue}
-\textcolor{white}{\textbf{Thruster Type}} & \textcolor{white}{\textbf{Sec.15}} & \textcolor{white}{\textbf{Sec.14}} & \textcolor{white}{\textbf{Sec.7}} & \textcolor{white}{\textbf{NR216}} & \textcolor{white}{\textbf{Hydraulics}} \\
+\textcolor{white}{\textbf{Thruster Type}} & \textcolor{white}{\textbf{Sec.15}} & \textcolor{white}{\textbf{Sec.14}} & \textcolor{white}{\textbf{Sec.7}} & \textcolor{white}{\textbf{DP (Pt F)}} & \textcolor{white}{\textbf{Hydraulics}} \\
 \hline
 Tunnel (Fixed) & ✓ & Optional & Optional & Optional & If hydraulic \\
 \hline
@@ -6074,7 +6118,7 @@ Hydraulic motor & Per Chapter \ref{ch:hydraulics} (HPU, circuit, accumulators, r
 \rowcolor{bvblue}
 \textcolor{white}{\textbf{Notation carried}} & \textcolor{white}{\textbf{Adds}} \\
 \hline
-DP / DYNAPOS & Chapter \ref{ch:dp}: FMEA, redundancy, power segregation, capability plot, proving trials (NR216). \\
+DP / DYNAPOS & Chapter \ref{ch:dp}: FMEA, redundancy, power segregation, capability plot, proving trials (NR467 Pt F, DYNAPOS). \\
 \hline
 Ice class / Polar / COLD & Chapter \ref{ch:ice}: ice-load propeller/shaft/gear strengthening, winterisation, low-temp materials (NR467 Pt E, NR527, IACS UR I3). \\
 \hline
@@ -6144,31 +6188,45 @@ During Construction & Certificates/reports generated during manufacturing & Subm
 \textit{Note: exact section numbering varies with rule edition --- always confirm
 against the current NR467 in Rules Explorer.}
 
-\textbf{Part D: Service Notations} --- e.g.\ tug, escort tug, anchor-handling,
-special purpose ship (service-driven thruster/steering loads).
+\textbf{Part D: Service Notations} --- general ship-type service notations
+(e.g.\ passenger ship, oil tanker, dredger, container ship). Determines the
+ship-type requirements overlaid on the thruster package.
 
-\textbf{Part E: Additional Class Notations}
+\textbf{Part E: Service Notations for Offshore Service Vessels and Tugs} ---
+e.g.\ \emph{tug}, \emph{escort tug}, \emph{supply}, anchor-handling. Source of
+the uprated escort/towing steering \& structural loads for tug/OSV thrusters.
+
+\textbf{Part F: Additional Class Notations} --- the additional (voluntary)
+notations, in multiple chapters:
 \begin{itemize}[leftmargin=*]
 \item Ice class (IA Super / IA / IB / IC) and Polar Class (PC1--PC7); COLD winterisation
 \item Comfort on board --- COMF-NOISE, COMF-VIB
 \item Automated machinery spaces / integrated systems --- AUT-UMS, AUT-CCS, AUT-PORT
-\item Dynamic positioning --- DYNAPOS / DP notations
+\item Dynamic positioning --- \textbf{DYNAPOS} (AM / AT / ATR, SAM / SAT)
 \item Environmental protection --- CLEANSHIP and related (EAL lubricants)
 \item Redundant propulsion --- RP / AVM notations
+\item Shaft-line monitoring --- MON-SHAFT
 \end{itemize}
 
-\subsection{NR216 - Rules for Dynamic Positioning Systems}
-\begin{itemize}[leftmargin=*]
-\item DP-1, DP-2, DP-3 Requirements
-\item FMEA Guidelines
-\item Proving Trials Requirements
-\end{itemize}
+\vspace{0.2cm}
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{Reference correction:}} Dynamic positioning is
+an \emph{additional class notation} (\textbf{DYNAPOS}) defined in \textbf{NR467
+Part F}. There is no ``NR216 DP rule'': \textbf{NR216} is the \emph{Rules on
+Materials and Welding} (see below). Earlier drafts of this catalog mis-cited
+NR216 for DP --- read DP references as \textbf{NR467 Part F (DYNAPOS)}.
+\end{minipage}}
 
-\subsection{Other BV Rule Notes (as applicable)}
+\subsection{Related BV Rule Notes (as applicable)}
 \begin{itemize}[leftmargin=*]
-\item \textbf{NR527} --- Ships operating in polar and ice-covered waters / Polar Class
-\item Rule notes / guidance for comfort (noise \& vibration) supporting COMF notations
-\item Guidance notes for cold-climate / winterisation service
+\item \textbf{NR216} --- Rules on Materials and Welding for the classification of marine units
+\item \textbf{NR266} --- Requirements for Survey of Materials and Equipment
+\item \textbf{NR320} --- Certification scheme of materials and equipment for marine units
+\item \textbf{NR527} --- Ships operating in polar waters / icebreakers (Polar Class)
+\item \textbf{NR500} --- Classification and certification of \emph{yachts}
+\item \textbf{NR566} --- Hull arrangement, stability and systems for \emph{ships $<$ 500 GT}
+\item \textbf{NR483} --- Classification of \emph{naval ships}
+\item \textbf{NR445} --- Classification of \emph{offshore units} (MODU / drillships)
 \end{itemize}
 
 \section{International Standards}
@@ -6282,6 +6340,8 @@ special purpose ship (service-driven thruster/steering loads).
 \hline
 1.4 & 2026 & Readability/accessibility: switched to scalable Latin Modern fonts (crisp, selectable, searchable text) with microtype; enabled navigable PDF bookmarks (open, numbered) and FitH view; added a ``Navigating this PDF'' guide; slightly opened line spacing. & Plan Approval Reference (expanded ed.) \\
 \hline
+1.5 & 2026 & \textbf{Rule-reference correction} (verified against NR467 Jan 2026): DP is additional class notation \textbf{DYNAPOS} in \textbf{Part F} --- the earlier ``NR216 DP'' citation was wrong (NR216 = Materials \& Welding). Corrected Part D (service notations) / Part E (OSV \& tugs) / Part F (additional class notations) throughout; added NR216/NR266/NR320/NR500/NR566/NR483/NR445 to references. Added ``two axes'' section --- \textbf{manoeuvring vs.\ propulsion} duty and \textbf{open vs.\ ducted (nozzle)} propeller, incl.\ fixed vs.\ steering nozzle. & Plan Approval Reference (expanded ed.) \\
+\hline
 \end{tabular}
 \end{table}
 
@@ -6340,7 +6400,7 @@ special purpose ship (service-driven thruster/steering loads).
 
 \vspace{2cm}
 
-{\large Document Version 1.4}
+{\large Document Version 1.5}
 
 {\large 2026}
 
