@@ -18,6 +18,27 @@ Rules for Classification of Steel Ships (NR467) and related rule notes.
 - **`Main.tex`** — LaTeX source of the full detailed guide.
 - **`Main.pdf`** — Compiled full guide (~130 pages) — the deep reference behind
   the tool.
+- **`Thruster-Package-Register.xlsx`** — **Admin intake & package-tracking
+  workbook** (see below).
+- **`build_thruster_register.py`** — generator script for the workbook.
+
+## Admin intake & package tracking (`Thruster-Package-Register.xlsx`)
+
+Solves the problem of thruster drawings arriving in tranches over ~6 months
+(mechanical → hydraulic → electrical/control → TVC) where non-technical admins
+otherwise open several review packages for one thruster. A shared workbook keyed
+on the **client PO number** so no technical judgement is needed:
+
+- **Read me first (SOP)** — the golden rule, step-by-step intake procedure, and a
+  client acknowledgement-email template.
+- **Package Register** — one row per thruster package (BV Reg No, PO, client,
+  vessel, thruster tag/type, per-discipline received-dates, auto "still
+  outstanding" column, status). Duplicate PO numbers are flagged automatically.
+- **Intake Log** — one row per incoming submission; type the PO number and the
+  **ACTION** column auto-tells the admin *"✓ EXISTING — route to BV-Reg-XXX"* or
+  *"➤ NEW PACKAGE — create BV registration"* (green/amber highlighted).
+
+Put the file on the shared drive / SharePoint so all admins update the same copy.
 
 ## The interactive tool
 
