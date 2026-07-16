@@ -8,8 +8,29 @@ Rules for Classification of Steel Ships (NR467) and related rule notes.
 
 ## Contents
 
-- **`Main.tex`** — LaTeX source of the guide.
-- **`Main.pdf`** — Compiled guide (~100 pages).
+- **`thruster-quickref.html`** — **Interactive quick-reference tool** (recommended
+  for day-to-day use). A single self-contained web page: pick the thruster type,
+  modifiers (CP / retractable), prime mover, functional roles, ship type and
+  notations, and it instantly generates the tailored, tick-off list of drawings
+  to demand — grouped by discipline, each tagged FA/FI with its rule reference.
+  Works offline, no install; just open it in any browser. Share it by sending the
+  single file.
+- **`Main.tex`** — LaTeX source of the full detailed guide.
+- **`Main.pdf`** — Compiled full guide (~130 pages) — the deep reference behind
+  the tool.
+
+## The interactive tool
+
+Open `thruster-quickref.html` in any browser. Features:
+- Configuration panel → filtered drawing list for that exact case.
+- Live counts (documents / For-Approval / For-Information) and a "received"
+  progress bar as you tick items off against a client submission.
+- Applicable rule-set chips (NR467 Sec.14/15/7, NR216, IEC 60079, SOLAS, …).
+- Identification header, search/filter, print-to-PDF, light/dark theme.
+- Ticks auto-save per configuration in your browser.
+
+Ship-type selection auto-adds the relevant special requirements (e.g. tanker →
+hazardous-area/Ex; passenger → Safe Return to Port; OSV → DP).
 
 ## What the guide covers
 
