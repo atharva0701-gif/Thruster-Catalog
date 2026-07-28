@@ -10,11 +10,14 @@ Rules for Classification of Steel Ships (NR467) and related rule notes.
 
 - **`thruster-quickref.html`** — **Interactive quick-reference tool** (recommended
   for day-to-day use). A single self-contained web page: pick the thruster type,
-  modifiers (CP / retractable), prime mover, functional roles, ship type and
-  notations, and it instantly generates the tailored, tick-off list of drawings
-  to demand — grouped by discipline, each tagged FA/FI with its rule reference.
-  Works offline, no install; just open it in any browser. Share it by sending the
-  single file.
+  rated power, duty, propeller configuration, prime mover, steering arrangement,
+  ship type, ice class and notations, and it generates the tailored, tick-off list
+  of documents to demand. **Every line is traceable to a named rule table row or
+  article** (e.g. *NR467 Pt C, Ch 1, Sec 15, Tab 1 #2*) and carries the rule's own
+  **A / I** categorisation. Works offline, no install; share by sending the single file.
+- **`BV-Rules-Verification.md`** — the verification database: what was checked on
+  BV Rules Explorer, what the live rule says, and where the catalog diverged.
+  Read this before trusting any citation in the PDF.
 - **`Main.tex`** — LaTeX source of the full detailed guide.
 - **`Main.pdf`** — Compiled full guide (~130 pages) — the deep reference behind
   the tool.
@@ -47,15 +50,33 @@ internet, no install, no account, no Claude access needed: just double-click
 the file (or open it from an email attachment) and it runs entirely offline
 on your work computer, a locked-down machine, or a phone.
 
-Configuration inputs → a filtered, tailored drawing list:
-- Thruster type, **controllable-pitch / retractable / contra-rotating (CRP —
-  azimuth \& podded units)**.
-- **Duty: manoeuvring / propulsion / take-me-home** (propulsion duty correctly
-  pulls in the main-shaft-line package and a mandatory torsional vibration
-  calculation; manoeuvring does not).
-- **Propeller: open / ducted (nozzle)**, with fixed vs. **steering nozzle**
-  (steering nozzle correctly pulls in the steering-gear package).
-- Prime mover, functional role, ship type, and Part-F additional notations.
+**Rule basis:** transcribed from BV Rules Explorer — **NR467 edition Jul 2026**
+(Pt C, Ch 1, Sec 15 Tables 1–5; Sec 14 Table 1 #13 and Article 4; Pt C, Ch 2,
+Sec 4; Pt F, Ch 8 and Ch 11 Sec 5) and **NR584 edition Apr 2026**.
+
+Configuration inputs → a filtered, tailored submission list:
+- Thruster type (transverse, retractable, azimuth Z/L, podded, water-jet,
+  Voith-Schneider, rim-driven, pump-jet, gill-jet) with CP / retractable / CRP.
+- **Rated power ≥ or < 110 kW** — below the threshold the Sec 15 tables do not
+  apply at all ([1.1.2]), and the tool says so instead of listing drawings.
+- **Duty: manoeuvring / propulsion / propulsion + steering.** This drives the
+  real rule consequences: manoeuvring-only omits the 10% propeller thickness
+  increase, sizes the shaft by the Sec 15 formula rather than Sec 7, uses
+  auxiliary rather than propulsion gear safety factors, and does not require
+  Surveyor-witnessed material tests.
+- **Propeller: open / ducted**, with a warning when a *fixed* nozzle propulsion
+  propeller is selected — those are **not thrusters** per Sec 15 [1.2.1] and
+  belong under Sec 8.
+- Prime mover (electric drive > 1 MW adds the Ch 2, Sec 4 [5.1.1] assembly tests),
+  steering arrangement (single vs multiple units), DP with **R/RS gating on the
+  FMEA**, ice class (manoeuvring transverse thrusters get **tunnel grids only**),
+  and 24 ship types each mapped to its governing publication.
+
+Alongside the document list the tool emits a **Rule verification checks** panel —
+the numeric criteria a surveyor must confirm: 2,3°/s main and 0,5°/s auxiliary
+steering rates, the 45 s / 30 min / 10 min alternative power supply, the
+2 500 kW-per-unit thresholds, tunnel thickness ≥ adjacent hull, the two-azimuth-
+thruster rule for sole-means-of-propulsion, and the minimum Tab 6 alarms.
 
 Other features:
 - Live counts (documents / For-Approval / For-Information) and a "received"
@@ -82,17 +103,25 @@ Other features:
 Ship-type selection auto-adds the relevant special requirements (e.g. tanker →
 hazardous-area/Ex; passenger → Safe Return to Port; OSV → DP).
 
-> **Rule references verified (Jan 2026):** notations and ship-type/service
-> designations are formally listed in **NR467 Part A, Ch.1** (Principles of
-> Classification and Class Notations); the technical requirements for each then
-> sit in **Part D** (general service notations), **Part E** (OSV & tugs), and
-> **Part F** (additional class notations — ice, COMF, AUT, CLEANSHIP,
-> MON-SHAFT, **DYNAPOS** for DP). DP is additional class notation DYNAPOS in
-> Part F — not "NR216", which is actually the Materials & Welding rule note.
+> **Rule references verified against NR467 Jul 2026 on BV Rules Explorer.**
+> Notations and ship-type/service designations are formally listed in **NR467
+> Part A, Ch.1**; the technical requirements sit in **Part D** (general service
+> notations), **Part E** (OSV & tugs), and **Part F** (additional class notations
+> — ice, COMF, AUT, CLEANSHIP, MON-SHAFT, **DYNAPOS** for DP). DP is additional
+> class notation DYNAPOS in Part F — not "NR216", which is the Materials &
+> Welding rule note. Full evidence trail in `BV-Rules-Verification.md`.
+
+> ⚠️ **The HTML tool and the PDF are not yet in sync.** The tool has been rebuilt
+> against the actual Sec 15 / Sec 14 / Pt F submission tables. `Main.pdf` still
+> carries the earlier engineering-practice lists, which over-state some
+> requirements (notably ice class for manoeuvring thrusters, and the DP FMEA)
+> and mis-categorise the general arrangement and rating data as *for approval*
+> when the rule categorises them *for information*. **Where they differ, the tool
+> follows the rule.** See §18 of `BV-Rules-Verification.md`.
 
 ## What the guide covers
 
-- General requirements for all thrusters > 110 kW (drawings, calculations,
+- General requirements for all thrusters ≥ 110 kW (drawings, calculations,
   materials, welding, manuals) with **For Approval (FA)** / **For Information
   (FI)** categorisation.
 - Per-type drawing/document lists and checklists:

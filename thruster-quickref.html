@@ -9,15 +9,20 @@
   --bv:#003366; --bv2:#336699; --fa:#cc0000; --fi:#6b7280;
   --bg:#f4f6f9; --card:#ffffff; --ink:#1f2937; --muted:#6b7280;
   --line:#e2e8f0; --chip:#eef2f7; --ok:#15803d; --accent:#003366;
+  --warn:#b45309; --warnbg:#fffbeb; --warnline:#fcd34d;
+  --info:#1d4ed8; --infobg:#eff6ff; --infoline:#bfdbfe;
 }
 @media (prefers-color-scheme: dark){
   :root{ --bg:#0f141b; --card:#161d27; --ink:#e5e9f0; --muted:#9aa5b4;
-    --line:#2a3341; --chip:#1e2732; --bv:#4d88c4; --bv2:#6fa3d6; --fa:#ff6b6b; --fi:#9aa5b4; --accent:#4d88c4;}
+    --line:#2a3341; --chip:#1e2732; --bv:#4d88c4; --bv2:#6fa3d6; --fa:#ff6b6b; --fi:#9aa5b4; --accent:#4d88c4;
+    --warn:#fbbf24; --warnbg:#2a2312; --warnline:#5c4813; --info:#93c5fd; --infobg:#111d2e; --infoline:#1e3a5f;}
 }
 :root[data-theme="dark"]{ --bg:#0f141b; --card:#161d27; --ink:#e5e9f0; --muted:#9aa5b4;
-  --line:#2a3341; --chip:#1e2732; --bv:#4d88c4; --bv2:#6fa3d6; --fa:#ff6b6b; --fi:#9aa5b4; --accent:#4d88c4;}
+  --line:#2a3341; --chip:#1e2732; --bv:#4d88c4; --bv2:#6fa3d6; --fa:#ff6b6b; --fi:#9aa5b4; --accent:#4d88c4;
+  --warn:#fbbf24; --warnbg:#2a2312; --warnline:#5c4813; --info:#93c5fd; --infobg:#111d2e; --infoline:#1e3a5f;}
 :root[data-theme="light"]{ --bg:#f4f6f9; --card:#fff; --ink:#1f2937; --muted:#6b7280;
-  --line:#e2e8f0; --chip:#eef2f7; --bv:#003366; --bv2:#336699; --fa:#cc0000; --fi:#6b7280; --accent:#003366;}
+  --line:#e2e8f0; --chip:#eef2f7; --bv:#003366; --bv2:#336699; --fa:#cc0000; --fi:#6b7280; --accent:#003366;
+  --warn:#b45309; --warnbg:#fffbeb; --warnline:#fcd34d; --info:#1d4ed8; --infobg:#eff6ff; --infoline:#bfdbfe;}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   background:var(--bg);color:var(--ink);line-height:1.45;font-size:15px}
@@ -27,7 +32,7 @@ header.top h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.2px}
 header.top .sub{font-size:12px;opacity:.85;font-weight:400}
 .themebtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;
   border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px}
-.wrap{display:grid;grid-template-columns:350px 1fr;gap:18px;padding:18px;max-width:1320px;margin:0 auto}
+.wrap{display:grid;grid-template-columns:350px 1fr;gap:18px;padding:18px;max-width:1360px;margin:0 auto}
 @media(max-width:880px){.wrap{grid-template-columns:1fr}}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
 .panel.controls{position:sticky;top:70px;align-self:start;max-height:calc(100vh - 90px);overflow:auto}
@@ -58,10 +63,12 @@ select,input[type=text]{width:100%;padding:8px 10px;border:1px solid var(--line)
 .rulechips{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 14px}
 .rulechip{background:var(--chip);border:1px solid var(--line);color:var(--ink);border-radius:20px;
   padding:4px 10px;font-size:12px}
+.rulechip.gov{background:var(--bv);color:#fff;border-color:var(--bv);font-weight:600}
 .group{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
 .group > .gh{display:flex;align-items:center;justify-content:space-between;gap:8px;
   background:var(--bv);color:#fff;padding:10px 14px;cursor:pointer;font-weight:600;font-size:14px}
-.group > .gh .cnt{font-size:12px;opacity:.85;font-weight:400}
+.group > .gh .cnt{font-size:12px;opacity:.85;font-weight:400;white-space:nowrap}
+.group > .gh .src{font-size:11px;opacity:.8;font-weight:400;display:block;margin-top:2px}
 .items{padding:4px 0}
 .item{display:flex;align-items:flex-start;gap:10px;padding:9px 14px;border-top:1px solid var(--line)}
 .item:first-child{border-top:none}
@@ -69,16 +76,29 @@ select,input[type=text]{width:100%;padding:8px 10px;border:1px solid var(--line)
 .item.done .name{text-decoration:line-through;color:var(--muted)}
 .item .name{flex:1;font-size:14px}
 .item .ref{font-size:11.5px;color:var(--muted);margin-top:2px}
+.item .par{font-size:12px;color:var(--muted);margin-top:3px;font-style:italic}
 .tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px;white-space:nowrap;margin-top:1px}
-.tag.FA{background:rgba(204,0,0,.12);color:var(--fa);border:1px solid var(--fa)}
-.tag.FI{background:rgba(107,114,128,.14);color:var(--fi);border:1px solid var(--fi)}
+.tag.A{background:rgba(204,0,0,.12);color:var(--fa);border:1px solid var(--fa)}
+.tag.I{background:rgba(107,114,128,.14);color:var(--fi);border:1px solid var(--fi)}
 .idbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:8px}
 .specbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px}
 .idbar input,.specbar input{font-size:13px}
 .empty{padding:30px;text-align:center;color:var(--muted)}
 .disc{font-size:11.5px;color:var(--muted);margin-top:10px;padding:10px 14px;border:1px dashed var(--line);border-radius:10px}
 .search{margin-bottom:12px}
-footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);font-size:12px}
+.callout{border-radius:10px;padding:11px 14px;margin-bottom:12px;font-size:13px;border:1px solid}
+.callout.warn{background:var(--warnbg);border-color:var(--warnline);color:var(--ink)}
+.callout.info{background:var(--infobg);border-color:var(--infoline);color:var(--ink)}
+.callout b{display:block;margin-bottom:3px;color:var(--ink)}
+.callout .cref{font-size:11.5px;color:var(--muted);margin-top:4px}
+.checkitem{padding:9px 14px;border-top:1px solid var(--line);font-size:13.5px}
+.checkitem:first-child{border-top:none}
+.checkitem .cq{font-weight:600}
+.checkitem .cv{color:var(--muted);font-size:12.5px;margin-top:3px}
+.checkitem .cr{color:var(--bv2);font-size:11.5px;margin-top:3px}
+.legend{font-size:12px;color:var(--muted);margin-bottom:10px}
+.legend b{color:var(--fa)}
+footer{max-width:1360px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);font-size:12px}
 @media print{
   header.top,.panel.controls,.themebtn,.btnrow,.search{display:none!important}
   .wrap{display:block;padding:0;max-width:none}
@@ -92,7 +112,7 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
 <header class="top">
   <div>
     <h1>Thruster Plan-Approval Quick Reference</h1>
-    <div class="sub">Surveyor working aid &middot; BV NR467 (Jan 2026): Pt&nbsp;A notation definitions &middot; Pt&nbsp;C machinery &middot; Pt&nbsp;D/E service notations &middot; Pt&nbsp;F additional class notations</div>
+    <div class="sub">Surveyor working aid &middot; anchored to <b>NR467 Jul&nbsp;2026</b> Pt&nbsp;C Ch&nbsp;1 Sec&nbsp;15 (Thrusters), Sec&nbsp;14 (Steering Gear), Pt&nbsp;F &middot; NR584 &middot; verified on BV Rules Explorer</div>
   </div>
   <button class="themebtn" id="theme">Toggle theme</button>
 </header>
@@ -105,19 +125,28 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
       <select id="ttype"></select>
       <div class="hint" id="typehint"></div>
     </div>
+    <div class="field">
+      <label class="lab" for="power">Rated power</label>
+      <div class="seg" id="power">
+        <button data-v="ge110" class="on">&ge; 110 kW</button>
+        <button data-v="lt110">&lt; 110 kW</button>
+      </div>
+      <div class="hint" id="powerhint">Sec&nbsp;15 [1.1.1]: &ldquo;power equal to 110&nbsp;kW or more&rdquo; &mdash; a unit rated exactly 110&nbsp;kW is <b>in</b> scope.</div>
+    </div>
     <div class="field checks">
       <label class="chk"><input type="checkbox" id="mod_cp"> Controllable pitch (CP)</label>
       <label class="chk"><input type="checkbox" id="mod_retract"> Retractable</label>
       <label class="chk" id="mod_crp_wrap" style="display:none"><input type="checkbox" id="mod_crp"> Contra-rotating propellers (CRP)</label>
+      <label class="chk" id="mod_gt1mw_wrap"><input type="checkbox" id="mod_gt1mw"> Electric motor &gt; 1 MW</label>
     </div>
     <div class="field">
-      <label class="lab">Duty / function</label>
+      <label class="lab">Duty <span style="font-weight:400;color:var(--muted)">(drives most of the rule set)</span></label>
       <div class="seg" id="duty">
         <button data-v="man" class="on">Manoeuvring</button>
         <button data-v="prop">Propulsion</button>
-        <button data-v="tmh">Take-me-home</button>
+        <button data-v="steer">Propulsion + steering</button>
       </div>
-      <div class="hint" id="dutyhint">Auxiliary manoeuvring (e.g. bow thruster).</div>
+      <div class="hint" id="dutyhint">Transverse thruster for manoeuvring only.</div>
     </div>
     <div class="field">
       <label class="lab">Propeller / rotor</label>
@@ -125,7 +154,7 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
         <button data-v="open" class="on">Open</button>
         <button data-v="ducted">Ducted (nozzle)</button>
       </div>
-      <label class="chk" id="steernozzle_wrap" style="display:none;margin-top:6px"><input type="checkbox" id="steernozzle"> Steering nozzle (nozzle also steers)</label>
+      <label class="chk" id="steernozzle_wrap" style="display:none;margin-top:6px"><input type="checkbox" id="steernozzle"> Nozzle is steerable (revolving)</label>
     </div>
 
     <h2>2 &middot; Prime mover</h2>
@@ -135,13 +164,28 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
         <button data-v="diesel">Diesel</button>
         <button data-v="hydraulic">Hydraulic</button>
       </div>
+      <div class="hint" id="primehint"></div>
+    </div>
+    <div class="field">
+      <label class="lab" for="steerpower">Propulsion power per steering-propulsion unit</label>
+      <div class="seg" id="steerpower">
+        <button data-v="le2500" class="on">&le; 2 500 kW</button>
+        <button data-v="gt2500">&gt; 2 500 kW</button>
+      </div>
+      <div class="hint">Sec&nbsp;14 [4.2.6]/[4.2.8] thresholds for powered auxiliary steering and 45&nbsp;s alternative power supply.</div>
     </div>
 
-    <h2>3 &middot; Function / role</h2>
+    <h2>3 &middot; Steering arrangement</h2>
+    <div class="field">
+      <div class="seg" id="units">
+        <button data-v="single" class="on">Single unit</button>
+        <button data-v="multi">Multiple units</button>
+      </div>
+      <div class="hint" id="unitshint"></div>
+    </div>
     <div class="field checks">
-      <label class="chk"><input type="checkbox" id="role_steer"> Provides steering (steering-gear rules)</label>
-      <label class="chk"><input type="checkbox" id="role_shaft"> Part of main shaft line</label>
-      <label class="chk"><input type="checkbox" id="role_dp"> Used for dynamic positioning</label>
+      <label class="chk"><input type="checkbox" id="role_dp"> Used for dynamic positioning (DYNAPOS)</label>
+      <label class="chk" id="dpR_wrap" style="display:none;margin-left:20px"><input type="checkbox" id="dp_R"> Redundancy symbol <b style="margin:0 3px">R</b> / <b style="margin:0 3px">RS</b> requested</label>
     </div>
 
     <h2>4 &middot; Ship type / service</h2>
@@ -150,16 +194,27 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
       <div class="hint" id="shiphint"></div>
     </div>
 
-    <h2>5 &middot; Additional notations (Pt F)</h2>
+    <h2>5 &middot; Ice &amp; cold</h2>
+    <div class="field">
+      <select id="ice">
+        <option value="none">&mdash; none</option>
+        <option value="iceclass">ICE CLASS IA SUPER / IA / IB / IC</option>
+        <option value="iceid">ICE CLASS ID / YOUNG ICE 1 / YOUNG ICE 2</option>
+        <option value="polar">POLAR CLASS / icebreaker</option>
+      </select>
+      <div class="hint" id="icehint"></div>
+    </div>
+
+    <h2>6 &middot; Other additional notations</h2>
     <div class="field checks">
-      <label class="chk"><input type="checkbox" id="not_ice"> Ice class / Polar / COLD</label>
       <label class="chk"><input type="checkbox" id="not_comf"> COMF (noise &amp; vibration)</label>
       <label class="chk"><input type="checkbox" id="not_aut"> AUT (unattended / centralised)</label>
       <label class="chk"><input type="checkbox" id="not_clean"> CLEANSHIP (EAL fluids)</label>
       <label class="chk"><input type="checkbox" id="not_mon"> MON-SHAFT</label>
-      <label class="chk"><input type="checkbox" id="not_rp"> Redundant propulsion (RP)</label>
+      <label class="chk"><input type="checkbox" id="not_avm"> AVM-DPS (redundant propulsion)</label>
       <label class="chk"><input type="checkbox" id="not_ex"> Hazardous area / Ex</label>
       <label class="chk"><input type="checkbox" id="not_srtp"> Safe Return to Port</label>
+      <label class="chk"><input type="checkbox" id="not_cyber"> Cyber resilience (UR E26/E27)</label>
     </div>
 
     <div class="btnrow">
@@ -179,7 +234,7 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
       <textarea id="fallbackText" readonly onclick="this.select()"
         style="width:100%;height:90px;font-size:11.5px;font-family:Consolas,monospace;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)"></textarea>
     </div>
-    <div class="disc">Unofficial personal reference aid compiled from BV rules (NR467 Pt A/C/D/E/F, and rule notes NR216/NR266/NR320/NR500/NR527/NR566 as noted). Runs fully offline as a local file &mdash; no internet, no install, no account needed. Always verify the exact rule article against the edition applicable to the vessel. Not an official Bureau&nbsp;Veritas document.</div>
+    <div class="disc">Unofficial working aid. Every document line is traceable to a named rule table or article &mdash; verify each against the edition applicable to the vessel&rsquo;s contract date on <b>rulesexplorer.bureauveritas.com</b>. Runs fully offline as a local file. Not an official Bureau&nbsp;Veritas document.</div>
   </aside>
 
   <main>
@@ -198,496 +253,821 @@ footer{max-width:1320px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
     </div>
     <div class="summary">
       <div class="stat"><div class="n" id="s_total">0</div><div class="l">Documents</div></div>
-      <div class="stat"><div class="n" id="s_fa" style="color:var(--fa)">0</div><div class="l">For approval</div></div>
-      <div class="stat"><div class="n" id="s_fi">0</div><div class="l">For info</div></div>
-      <div class="stat" style="flex:1;min-width:160px">
+      <div class="stat"><div class="n" id="s_fa" style="color:var(--fa)">0</div><div class="l">Approval (A)</div></div>
+      <div class="stat"><div class="n" id="s_fi">0</div><div class="l">Information (I)</div></div>
+      <div class="stat"><div class="n" id="s_chk" style="color:var(--bv2)">0</div><div class="l">Rule checks</div></div>
+      <div class="stat" style="flex:1;min-width:150px">
         <div class="l">Received <span id="s_pct">0%</span></div>
         <div class="progress"><span id="s_bar"></span></div>
       </div>
     </div>
+    <div id="callouts"></div>
     <div class="rulechips" id="rulechips"></div>
-    <div class="search"><input type="text" id="filter" placeholder="Filter documents (e.g. shaft, FMEA, ice, nozzle, TVC)…"></div>
+    <div class="legend"><b>A</b> = to be submitted for <b>approval</b> &nbsp;&middot;&nbsp; <span style="color:var(--fi);font-weight:700">I</span> = to be submitted for <b>information</b> &mdash; exactly as categorised in the cited rule table.</div>
+    <div class="search"><input type="text" id="filter" placeholder="Filter documents (e.g. shaft, FMEA, ice, nozzle, seal, gear)…"></div>
     <div id="results"></div>
   </main>
 </div>
 <footer>Runs offline. Ticks auto-save per configuration in this browser. Share by sending this single file, or export to Excel/CSV.</footer>
 
 <script>
-/* ================= Reference data (BV NR467, Jan 2026 basis) ================= */
-const MECH_COMMON = [
-  ['Thruster unit general assembly','FA','NR467 Pt C Ch.1'],
-  ['Propeller design drawing','FA','NR467 Pt C Ch.1'],
-  ['Propeller strength calculations','FA','NR467 Pt C Ch.1'],
-  ['Propeller shaft drawing','FA','NR467 Pt C Ch.1 (shaft lines)'],
-  ['Shaft strength calculations (torsion/bending/fatigue)','FA','NR467 Pt C Ch.1'],
-  ['Bearing arrangement drawing','FA','NR467 Pt C Ch.1'],
-  ['Bearing load & life (L10) calculations','FA','NR467 Pt C Ch.1'],
-  ['Gearbox assembly drawing','FA','NR467 Pt C Ch.1'],
-  ['Gear tooth strength calculations (ISO 6336)','FA','NR467 Pt C Ch.1'],
-  ['Gearbox lubrication system','FA','NR467 Pt C Ch.1'],
-  ['Thrust calculation / bollard pull','FA','NR467 Pt C Ch.1'],
-  ['Vibration analysis','FA','NR467 Pt C Ch.1'],
-  ['Noise & thermal analysis','FA','NR467 Pt C Ch.1'],
+/* ============================================================================
+   REFERENCE DATA — transcribed from BV Rules Explorer, NR467 edition Jul 2026
+   and NR584 edition Apr 2026.  A = approval, I = information (rule's own
+   categorisation).  Each entry: [document, A|I, rule citation, particulars]
+   ========================================================================== */
+
+/* ---- NR467 Pt C, Ch 1, Sec 15 (Thrusters) — Tab 1: ALL thrusters ---- */
+const SEC15_T1 = [
+  ['General arrangement of the thruster','I','NR467 Pt C, Ch 1, Sec 15, Tab 1 #1',''],
+  ['Propeller','A','NR467 Pt C, Ch 1, Sec 15, Tab 1 #2','Including the applicable details mentioned in Ch 1, Sec 8'],
+  ['Bearing details','A','NR467 Pt C, Ch 1, Sec 15, Tab 1 #3',''],
+  ['Propeller and intermediate shafts','A','NR467 Pt C, Ch 1, Sec 15, Tab 1 #4',''],
+  ['Gears','A','NR467 Pt C, Ch 1, Sec 15, Tab 1 #5','Including the applicable details mentioned in Ch 1, Sec 6'],
 ];
-const AZ_STRUCT = [
-  ['Azimuth unit complete assembly','FA','NR467 Pt C Ch.1'],
-  ['Hull penetration & foundation','FA','NR467 Pt B'],
-  ['Hull structure calculations / FEA','FA','NR467 Pt B'],
+/* ---- Tab 2: TRANSVERSE thrusters ---- */
+const SEC15_T2 = [
+  ['Structure of the tunnel','A','NR467 Pt C, Ch 1, Sec 15, Tab 2 #1','Showing the materials and their thickness'],
+  ['Structural equipment / connecting devices transmitting thrust from the propeller to the tunnel','A','NR467 Pt C, Ch 1, Sec 15, Tab 2 #2',''],
+  ['Sealing devices','A','NR467 Pt C, Ch 1, Sec 15, Tab 2 #3','Propeller shaft gland and thruster-tunnel connection'],
+  ['Pitch control device and corresponding monitoring system','A','NR467 Pt C, Ch 1, Sec 15, Tab 2 #4','For adjustable pitch propellers'],
 ];
-const AZ_MECH_EXTRA = [
-  ['Vertical shaft assembly & calculations','FA','NR467 Pt C Ch.1 (shaft lines)'],
-  ['Thrust bearing design & calculations','FA','NR467 Pt C Ch.1'],
-  ['Radial bearing arrangement','FA','NR467 Pt C Ch.1'],
-  ['Column / strut structure design','FA','NR467 Pt C Ch.1'],
-  ['Upper & lower seal system design','FA','NR467 Pt C Ch.1'],
-  ['Slewing bearing design & calculations','FA','NR467 Pt C Ch.1'],
-  ['Azimuth (slewing) drive mechanism & calculations','FA','NR467 Pt C Ch.1'],
-  ['Azimuth position feedback system','FA','NR467 Pt C Ch.1'],
+/* ---- Tab 3: ROTATING and AZIMUTH thrusters ---- */
+const SEC15_T3 = [
+  ['Structural items','A','NR467 Pt C, Ch 1, Sec 15, Tab 3 #1','Nozzle, bracing, etc.'],
+  ['Structural connection to hull','A','NR467 Pt C, Ch 1, Sec 15, Tab 3 #2',''],
+  ['Rotating mechanism of the thruster','A','NR467 Pt C, Ch 1, Sec 15, Tab 3 #3',''],
+  ['Thruster control system','A','NR467 Pt C, Ch 1, Sec 15, Tab 3 #4',''],
+  ['Piping systems connected to thruster','A','NR467 Pt C, Ch 1, Sec 15, Tab 3 #5',''],
 ];
-const TYPES = {
-  tunnel:{label:'Tunnel (transverse) thruster', steer:false, hyd:false, ductable:false, hint:'Fixed transverse tunnel unit — usually manoeuvring only.',
-    struct:[['Tunnel structural arrangement','FA','NR467 Pt C Ch.1'],['Tunnel structural calculations','FA','NR467 Pt C Ch.1'],
-      ['Tunnel end grating / grid design','FA','NR467 Pt C Ch.1'],['Hull penetration details','FA','NR467 Pt B']],
-    mech:MECH_COMMON},
-  azimuth:{label:'Azimuth thruster (rotating / Z- or L-drive)', steer:true, hyd:false, ductable:true, crpOption:true, hint:'Steerable 360°. Often main propulsion + steering (tugs).',
-    struct:AZ_STRUCT, mech:MECH_COMMON.concat(AZ_MECH_EXTRA)},
-  podded:{label:'Podded propulsor (motor in pod)', steer:true, hyd:false, ductable:true, forceElectric:true, propulsion:true, crpOption:true,
-    hint:'Electric motor in the pod; main propulsion. Prime mover forced to electric.',
-    struct:AZ_STRUCT.concat([['Pod structural components & strut','FA','NR467 Pt C Ch.1']]),
-    mech:[['Thruster unit general assembly','FA','NR467 Pt C Ch.1'],['Propeller design drawing','FA','NR467 Pt C Ch.1'],
-      ['Propeller strength calculations','FA','NR467 Pt C Ch.1'],['Propeller direct-drive arrangement','FA','NR467 Pt C Ch.1'],
-      ['Electric motor in pod (spec, cooling, monitoring)','FA','NR467 Pt C Ch.2'],
-      ['Power supply through strut / slip-ring','FA','NR467 Pt C Ch.2'],
-      ['Pod shaft, bearing & seal system','FA','NR467 Pt C Ch.1'],
-      ['Slewing bearing & azimuth drive + calculations','FA','NR467 Pt C Ch.1'],
-      ['Azimuth position feedback system','FA','NR467 Pt C Ch.1'],
-      ['Thrust calculation','FA','NR467 Pt C Ch.1'],['Vibration analysis','FA','NR467 Pt C Ch.1'],['Noise & thermal analysis','FA','NR467 Pt C Ch.1']]},
-  waterjet:{label:'Water-jet', steer:true, hyd:true, ductable:false, propulsion:true, hint:'Main propulsion; steering & reversing via bucket.',
-    struct:[['Water-jet general arrangement & installation','FA','NR467 Pt C Ch.1'],['Inlet duct & transom structure / penetration','FA','NR467 Pt B']],
-    mech:[['Impeller / rotor design drawing','FA','NR467 Pt C Ch.1'],['Impeller strength calculations','FA','NR467 Pt C Ch.1'],
-      ['Water-jet shaft & bearings','FA','NR467 Pt C Ch.1'],['Steering & reversing (bucket) mechanism','FA','NR467 Pt C Ch.1'],
-      ['Performance / thrust calculations','FA','NR467 Pt C Ch.1']]},
-  vsp:{label:'Voith-Schneider (cycloidal)', steer:true, hyd:true, ductable:false, propulsion:true, hint:'Combined propulsion + steering; SOLAS II-1/29 applies.',
-    struct:[['Hull seat, foundation & well structure / FEA','FA','NR467 Pt B'],['Bottom cover / guard plate structure','FA','NR467 Pt B']],
-    mech:[['VSP unit general assembly','FA','NR467 Pt C Ch.1'],['Blade (wing) design + blade-shaft strength','FA','NR467 Pt C Ch.1'],
-      ['Blade bearing arrangement','FA','NR467 Pt C Ch.1'],['Kinematic control gear (steering mechanism) strength','FA','NR467 Pt C Ch.1 (steering)'],
-      ['Rotor casing & main bevel gear + gear calcs','FA','NR467 Pt C Ch.1'],['Main thrust bearing design & life','FA','NR467 Pt C Ch.1'],
-      ['Seal system (rotor & blade shafts)','FA','NR467 Pt C Ch.1'],['Thrust calculation','FA','NR467 Pt C Ch.1']]},
-  rim:{label:'Rim-driven / integrated motor', steer:false, hyd:false, ductable:true, forceElectric:true,
-    hint:'PM motor rotor forms blade-tip ring; converter-fed. Inherently ducted.',
-    struct:[['Duct structure & stator support','FA','NR467 Pt C Ch.1']],
-    mech:[['Integrated motor & rotor-rim assembly','FA','NR467 Pt C Ch.2'],['Frequency converter / drive package','FA','NR467 Pt C Ch.2'],
-      ['Bearing & seal arrangement (water-lub / magnetic)','FA','NR467 Pt C Ch.1'],['Blade & rim strength calculations','FA','NR467 Pt C Ch.1'],
-      ['Thrust / performance & cavitation calculations','FA','NR467 Pt C Ch.1']]},
-  pumpjet:{label:'Pump-jet / ducted rotor-stator', steer:false, hyd:false, ductable:true, hint:'Ducted rotor + stator; treated as ducted propeller + shaft line.',
-    struct:[['Duct / stator structure & strength','FA','NR467 Pt C Ch.1'],['Hull penetration details','FA','NR467 Pt B']],
-    mech:[['Rotor blade design & strength','FA','NR467 Pt C Ch.1'],['Shaft & bearings','FA','NR467 Pt C Ch.1'],
-      ['Seal system','FA','NR467 Pt C Ch.1'],['Thrust / performance calculations','FA','NR467 Pt C Ch.1']]},
-  gilljet:{label:'Gill / hydro-jet (pump-type transverse)', steer:false, hyd:true, ductable:false, hint:'Internal pump; discharge via directional outlets. Manoeuvring.',
-    struct:[['Hull inlet, grating & duct','FA','NR467 Pt C Ch.1'],['Hull penetration & watertight integrity','FA','NR467 Pt B']],
-    mech:[['Internal pump / impeller design & strength','FA','NR467 Pt C Ch.1'],['Discharge outlet & directional-valve arrangement','FA','NR467 Pt C Ch.1'],
-      ['Pump shaft & bearings','FA','NR467 Pt C Ch.1'],['Thrust / performance calculations','FA','NR467 Pt C Ch.1']]},
-  steergrid:{label:'Steering grid / nozzle (rudder-propeller)', steer:true, hyd:true, ductable:true, propulsion:true, hint:'Combined propulsion + steering; steering-gear package applies.',
-    struct:[['Nozzle / grid structure & strength','FA','NR467 Pt C Ch.1'],['Hull penetration & foundation','FA','NR467 Pt B']],
-    mech:MECH_COMMON.concat([['Steering actuator & control','FA','NR467 Pt C Ch.1 (steering)']])},
-};
-const CP_ITEMS = [
-  ['CP hub mechanism assembly','FA','NR467 Pt C Ch.1'],['Blade retention calculations','FA','NR467 Pt C Ch.1'],
-  ['Pitch control mechanism','FA','NR467 Pt C Ch.1'],['Pitch control hydraulic system + rotary joint','FA','NR467 Pt C Ch.1'],
-  ['Pitch feedback & fail-safe position','FA','NR467 Pt C Ch.1'],
+/* ---- Tab 4: WATER-JETS ---- */
+const SEC15_T4 = [
+  ['General arrangement of the water-jet','I','NR467 Pt C, Ch 1, Sec 15, Tab 4 #1',''],
+  ['Casing (duct)','A','NR467 Pt C, Ch 1, Sec 15, Tab 4 #2','Showing location and shape, materials, thicknesses, forces acting on the hull'],
+  ['Details of the shafts, flanges, keys','A','NR467 Pt C, Ch 1, Sec 15, Tab 4 #3',''],
+  ['Sealing gland','I','NR467 Pt C, Ch 1, Sec 15, Tab 4 #4',''],
+  ['Bearings','A','NR467 Pt C, Ch 1, Sec 15, Tab 4 #5',''],
+  ['Impeller','A','NR467 Pt C, Ch 1, Sec 15, Tab 4 #6',''],
+  ['Steering and reversing buckets, their control devices and corresponding hydraulic diagrams','A','NR467 Pt C, Ch 1, Sec 15, Tab 4 #7',''],
 ];
-const RETRACT_ITEMS = [
-  ['Retraction mechanism assembly','FA','NR467 Pt C Ch.1'],['Hydraulic cylinder specifications','FA','NR467 Pt C Ch.1'],
-  ['Retraction system calculations','FA','NR467 Pt C Ch.1'],['Hull opening & closure design','FA','NR467 Pt B'],
-  ['Hull opening structural analysis (FEA)','FA','NR467 Pt B'],['Watertight integrity documentation','FA','NR467 Pt B'],
-  ['Locking system design (fail-safe)','FA','NR467 Pt C Ch.1'],['Position indication system','FA','NR467 Pt C Ch.1'],
-  ['Emergency lowering system','FA','NR467 Pt C Ch.1'],['Retraction / extension procedures','FI','NR467 Pt C Ch.1'],
-  ['Emergency recovery procedures','FI','NR467 Pt C Ch.1'],
+/* ---- Tab 5: manufacturer data, thrusters AND water-jets ---- */
+const SEC15_T5 = [
+  ['Data on ratings','I','NR467 Pt C, Ch 1, Sec 15, Tab 5 #1','Rated power, thrust and revolutions'],
+  ['Material specifications of the major parts','A','NR467 Pt C, Ch 1, Sec 15, Tab 5 #2','Including their physical, chemical and mechanical properties'],
+  ['Weldings','A','NR467 Pt C, Ch 1, Sec 15, Tab 5 #3','Where parts are of welded construction: design of welded joints, welding procedures, heat treatments and NDE after welding'],
+  ['Background information on previous operating experience in similar applications','I','NR467 Pt C, Ch 1, Sec 15, Tab 5 #4','Where applicable'],
 ];
-const CRP_ITEMS = [
-  ['Aft (contra-rotating) propeller & hub assembly','FA','NR467 Pt C Ch.1'],
-  ['Aft propeller strength calculations','FA','NR467 Pt C Ch.1'],
-  ['Aft shaft, bearing & seal system (independent line)','FA','NR467 Pt C Ch.1'],
-  ['Fwd/aft propeller interaction & cavitation assessment','FA','NR467 Pt C Ch.1'],
-  ['CRP speed synchronisation / anti-collision control','FA','NR467 Pt C Ch.1 / Ch.3'],
-  ['Combined torsional vibration calculation (both lines)','FA','NR467 Pt C Ch.1'],
+
+/* ---- NR467 Pt C, Ch 1, Sec 14 (Steering Gear) — Tab 1 ---- */
+const SEC14_T1_AZ = [
+  ['Specification and drawings of the steering mechanism','A','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13','For azimuth thrusters used as steering means'],
+  ['General description of the installation and of its functioning principle','I','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #2','Where applicable (Tab 1 #13 pulls in documents 2 to 6 and 8 to 12)'],
+  ['Operating manuals of the steering gear and of its main components','I','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #3',''],
+  ['Description of the operational modes for steering in normal and emergency conditions','I','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #4',''],
+  ['Schematic layout of hydraulic piping of power actuating systems','A','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #5','Hydraulic steering gear: incl. refilling system, design pressure, max working pressure in service, pipe diameter/thickness/material/connections, fluid tank capacity, flashpoint'],
+  ['Assembly sectional drawings and characteristic curves of hydraulic pumps of power units','I','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #6',''],
+  ['Constructional drawings of relief valves protecting the hydraulic actuators','I','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #8','With setting pressure and relieving capacity'],
+  ['Diagrams of the electric power circuits','A','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #9',''],
+  ['Functional diagram of control, monitoring and safety systems','A','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #10','Including remote control from the navigation bridge and location of control, monitoring and safety devices'],
+  ['Constructional drawings of strength parts transmitting forces mechanically','A','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #11',''],
+  ['Calculation notes of the shrink-fit connections','I','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 → #12',''],
 ];
-const NOZZLE_ITEMS = [
-  ['Nozzle (duct) structure & strength drawing','FA','NR467 Pt C Ch.1'],
-  ['Nozzle profile / geometry & propeller-tip clearance','FA','NR467 Pt C Ch.1'],
-  ['Nozzle-to-unit / hull connection & supports','FA','NR467 Pt C Ch.1 / Pt B'],
+const SEC14_T2_SINGLEFAIL = ['Analysis in relation to the risk of single failure','A','NR467 Pt C, Ch 1, Sec 14, Tab 2 #1','Where required by Sec 14 [2.4.2]'];
+const SEC14_T2_HYDLOCK    = ['Analysis in relation to the risk of hydraulic locking','A','NR467 Pt C, Ch 1, Sec 14, Tab 2 #2','Where required by Sec 14 [2.4.5]'];
+const SEC14_T2_FATIGUE    = ['Fatigue analysis and/or fracture mechanics analysis','A','NR467 Pt C, Ch 1, Sec 14, Tab 2 #3','Steering gear on oil tankers, chemical tankers or gas carriers — per Pt D, Ch 7, Sec 4, [7.2.2] and [7.3.1]'];
+const SEC14_RISKASSESS    = ['Detailed risk assessment for the single steering-propulsion unit','A','NR467 Pt C, Ch 1, Sec 14, [4.2.3]','To demonstrate that on any single failure in the steering gear, control system and power supply, ship steering is maintained'];
+
+/* ---- Design-article submissions (calculations the rule text itself demands) ---- */
+const CALC_WJ_FATIGUE = ['Fatigue strength calculation — guide vanes and shaft supports','A','NR467 Pt C, Ch 1, Sec 15, [2.3.2]','Rule states: "Fatigue strength calculation is to be submitted"'];
+const CALC_WJ_BLADEFREQ = ['Stator/rotor blade natural-frequency calculation','A','NR467 Pt C, Ch 1, Sec 15, [2.3.3]','No natural frequency near excitation frequencies from stator-rotor hydrodynamic interaction. Calculations to be submitted for maximum speed and any currently used speed'];
+const CALC_AZ_STRESS = ['Detailed stress analysis of the nozzle-to-hull connection','A','NR467 Pt C, Ch 1, Sec 15, [2.2.5]','Scantlings and weld type/size specially considered; Society reserves the right to require this for certain high power installations'];
+const CALC_AZ_RUDDERSTOCK = ['Equivalent rudder stock diameter calculation','A','NR467 Pt C, Ch 1, Sec 15, [2.2.5] → Pt B, Ch 12','Required for steerable thrusters'];
+
+/* ---- Prime mover ---- */
+const PRIME_ELECTRIC = [
+  ['Electric motor and feeding system documentation','A','NR467 Pt C, Ch 1, Sec 15, [2.2.1] → Pt C, Ch 2, Sec 4','Electric motors driving thrusters and their feeding systems comply with Ch 2, Sec 4'],
+  ['Provisions preventing motor start with insufficient generators in operation','A','NR467 Pt C, Ch 1, Sec 15, [2.2.1]','Explicit rule requirement'],
 ];
-const STEERNOZZLE_ITEMS = [
-  ['Steering-nozzle actuator & control','FA','NR467 Pt C Ch.1 (steering)'],
-  ['Nozzle pivot bearing & stops','FA','NR467 Pt C Ch.1'],
+const PRIME_ELECTRIC_1MW = [
+  ['Shaft-line documentation for the motor','A','NR467 Pt C, Ch 2, Sec 4, [5.1.1] a) → Ch 1, Sec 7','Machines > 1 MW: requirements of Ch 1, Sec 7 apply'],
+  ['Rotor winding dynamic balancing report','A','NR467 Pt C, Ch 2, Sec 4, [5.1.1] b)','During assembly'],
+  ['Stator winding dielectric test + insulation resistance measurement','A','NR467 Pt C, Ch 2, Sec 4, [5.1.1] c)','Both after impregnation'],
+  ['Frame visual examination + liquid penetrant test report','A','NR467 Pt C, Ch 2, Sec 4, [5.1.1] d)','LPT of 10% of the structure welds and 100% of the handling points'],
+  ['Watercooler visual examination + performance (temperature-rise) test','A','NR467 Pt C, Ch 2, Sec 4, [5.1.1] e)',''],
+  ['Hydrostatic jacking unit pressure test + working test under nominal conditions','A','NR467 Pt C, Ch 2, Sec 4, [5.1.1] f)',''],
 ];
-const PROPULSION_ITEMS = [
-  ['Propulsion shaft line classed as main propulsion','FA','NR467 Pt C Ch.1'],
-  ['Torsional vibration calculation (mandatory – propulsion)','FA','NR467 Pt C Ch.1'],
-  ['Barred speed range / continuous-operation confirmation','FA','NR467 Pt C Ch.1'],
-  ['Propeller classed as propulsion propeller','FA','NR467 Pt C Ch.1'],
+const PRIME_DIESEL = [
+  ['Diesel engine documentation','A','NR467 Pt C, Ch 1, Sec 15, [2.2.1] → Pt C, Ch 1, Sec 2','Diesel engines driving thrusters comply with the applicable requirements of Ch 1, Sec 2'],
 ];
-const TMH_ITEMS = [
-  ['Take-me-home / emergency-propulsion capability & limits','FA','NR467 Pt F (RP)'],
-  ['Independence from main propulsion (power & control)','FA','NR467 Pt F'],
+const PRIME_HYDRAULIC = [
+  ['Hydraulic motor specification and circuit diagram','A','NR467 Pt C, Ch 1, Sec 15, Tab 3 #5 / Sec 10','Piping systems connected to the thruster; piping design per Pt C, Ch 1, Sec 10'],
 ];
-const BASE_ITEMS = [
-  ['General arrangement drawing','FA','NR467 Pt C Ch.1'],['Technical specification sheet','FA','NR467 Pt C Ch.1'],
-  ['Material specifications','FA','NR467 Pt B / NR216'],['Welding procedures (WPS/PQR) & NDT plan','FA','NR467 Pt B / NR216'],
-  ['Material & equipment certificates (during construction)','FA','NR266 / NR320'],
-  ["Manufacturer's quality plan",'FA','NR467 Pt C Ch.1'],['Operation & maintenance manual','FI','NR467 Pt C Ch.1'],
-  ['Spare parts list','FI','NR467 Pt C Ch.1'],['Installation manual','FI','NR467 Pt C Ch.1'],
+
+/* ---- DYNAPOS: Pt F, Ch 11, Sec 5 ---- */
+const DP_DOCS = [
+  ['Documentation on the environment conditions long term distribution','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #1','See [9.4.1]'],
+  ['Owner performance request','I','NR467 Pt F, Ch 11, Sec 5, Tab 1 #2','If any'],
+  ['Capability plots','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #3','Environment limit conditions for the specified conditions, at least with all thrusters running and selected in DP, and the worst case failure'],
+  ['Functional block diagram for the sensor and reference systems','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #4','Position / environmental reference systems'],
+  ['Functional block diagram for the control unit','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #5',''],
+  ['Single line diagram and cable specification between equipment units','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #6','Power, control, display'],
+  ['Electrical load balance','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #7',''],
+  ['List of the equipment units','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #8',"Manufacturer's identification, type and model for each"],
+  ['Type test reports for the sensors of the measurement systems','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #9','Or equivalent'],
+  ['Type test report or case-by-case approval certificate for the DP control system','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #10','Tests to be in accordance with Pt C, Ch 3, Sec 6'],
+  ['Layout drawings of thrust units, thrust shafts and blocks; arrangement of hull passages; thrust curves of each propulsion unit','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #11','For approval of propulsion based on rotary azimuth thrusters'],
+  ['Electrical power management layout drawings and specification','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #12','If provided on board'],
+  ['Internal communication system description','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #13',''],
+  ['Description of the operator stations','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #14','Layout on board, descriptive diagrams of the display consoles'],
+  ['Alarm list and parameter values displayed on the consoles','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #15',''],
+  ['Program of FMEA proving tests alongside quay and at sea','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #16',''],
+  ['Study of possible interaction between thrusters','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #18',''],
+  ['Technical specification of the positioning system','I','NR467 Pt F, Ch 11, Sec 5, Tab 1 #19',''],
+  ['Operating manual of the positioning system','I','NR467 Pt F, Ch 11, Sec 5, Tab 1 #20','Including equipment description, maintenance guide, emergency procedures'],
+  ['Vessel-specific DP-operation manuals','I','NR467 Pt F, Ch 11, Sec 5, Tab 1 #21','See [7.1]'],
+  ['Program of FMEA annual tests alongside quay and at sea','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #22',''],
 ];
-const CONTROL_ITEMS = [
-  ['Control system block diagram','FA','NR467 Pt C Ch.3'],['Control panel / console layout','FA','NR467 Pt C Ch.1'],
-  ['Electrical single-line diagram','FA','IEC 60092-504'],['Control software description & validation','FA','NR467 Pt C Ch.3'],
+const DP_FMEA = ['Failure Mode and Effect Analysis (FMEA)','A','NR467 Pt F, Ch 11, Sec 5, Tab 1 #17','Required for the R and RS symbols only (DYNAPOS AM/AT R, AM/AT RS) — see [2.4]'];
+
+/* ---- Ice: Pt F, Ch 8 ---- */
+const ICE_TRANSVERSE = [
+  ['Tunnel grid arrangement for protection against ice impacts','A','NR467 Pt F, Ch 8, Sec 3, [3.5.1]','"Tunnels of transverse thrusters are to be fitted with grids for protection against ice impacts." — this is the ONLY Pt F Ch 8 requirement Sec 15 [1.1.1] applies to a transverse manoeuvring thruster'],
 ];
-const ELECTRIC_ITEMS = [
-  ['Drive-motor data sheet','FA','IEC 60092-301'],['Frequency converter (VFD) spec & arrangement','FA','NR467 Pt C Ch.2'],
-  ['Harmonic / power-quality analysis','FA','NR467 Pt C Ch.2'],['Supply transformer & switchboard interface','FA','IEC 60092-201'],
-  ['Power cable sizing, routing & segregation','FA','IEC 60092-352'],['Motor protection, monitoring & cooling','FA','NR467 Pt C Ch.2/3'],
+const ICE_PROPULSION = [
+  ['Design ice loads on propeller blades (backward, forward, axial, torsional)','A','NR467 Pt F, Ch 8, Sec 3, [1.4]',''],
+  ['Blade stress calculation and acceptability criterion','A','NR467 Pt F, Ch 8, Sec 3, [1.5]','Including fatigue design of the propeller blade'],
+  ['Blade failure load calculation','A','NR467 Pt F, Ch 8, Sec 3, [1.4.5]',''],
+  ['Blade flange, blade bolts, hub and CP mechanism design','A','NR467 Pt F, Ch 8, Sec 3, [1.6]','Including servo oil pressure'],
+  ['Scantling of propeller, intermediate and thrust shafts for ice loads','A','NR467 Pt F, Ch 8, Sec 3, [1.7]','Including gear shaft and propeller blade failure calculation'],
+  ['Couplings and clutches verification for ice loads','A','NR467 Pt F, Ch 8, Sec 3, [1.8]','Flange, shrunk, keyed, flexible couplings; clutches'],
+  ['Gear verification for ice loads','A','NR467 Pt F, Ch 8, Sec 3, [1.9]','Application factor, inertia ratio, safety factors'],
+  ['Propeller material tests for ice class','A','NR467 Pt F, Ch 8, Sec 3, [3.6.1]','Pt C, Ch 1, Sec 8, [4] applies; additionally material tests per [1.3] and [2.2.1]'],
 ];
-const DIESEL_ITEMS = [
-  ['Diesel engine approval / type data','FA','NR467 Pt C Ch.1 (engines)'],['Torsional vibration calculation (complete train)','FA','NR467 Pt C Ch.1'],
-  ['Clutch & flexible coupling','FA','NR467 Pt C Ch.1'],['Engine foundation & chocking','FA','NR467 Pt C Ch.1'],
-  ['Fuel oil system','FA','NR467 Pt C Ch.1'],['Lubricating oil system','FA','NR467 Pt C Ch.1'],
-  ['Cooling water system','FA','NR467 Pt C Ch.1'],['Starting system','FA','NR467 Pt C Ch.1'],
-  ['Exhaust gas system & silencer','FA','NR467 Pt C / SOLAS II-2'],['Engine control, safety & monitoring','FA','NR467 Pt C Ch.1/3'],
-  ['NOx Technical File / EIAPP','FI','MARPOL Annex VI'],
+const ICE_AZIMUTH_BODY = [
+  ['Extreme ice impact loads on the thruster body','A','NR467 Pt F, Ch 8, Sec 3, [1.11.2]',''],
+  ['Extreme ice loads on thruster hull when penetrating an ice ridge','A','NR467 Pt F, Ch 8, Sec 3, [1.11.3]',''],
+  ['Acceptability criterion for static loads','A','NR467 Pt F, Ch 8, Sec 3, [1.11.4]',''],
+  ['Thruster body global vibration assessment','A','NR467 Pt F, Ch 8, Sec 3, [1.11.5]',''],
+  ['Steering gear design torque in ice','A','NR467 Pt F, Ch 8, Sec 3, [1.11.6]',''],
+  ['Protection of the steering gear against excessive torque','A','NR467 Pt F, Ch 8, Sec 3, [1.11.7]',''],
 ];
-const HYD_ITEMS = [
-  ['Hydraulic system schematic','FA','NR467 Pt C Ch.1'],['Hydraulic power unit (HPU) specification','FA','NR467 Pt C Ch.1'],
-  ['Accumulator sizing calculations','FA','NR467 Pt C Ch.1'],['Relief & safety devices','FA','NR467 Pt C Ch.1'],
-  ['Filtration & cooling system','FA','NR467 Pt C Ch.1'],['Piping & hose assemblies','FA','NR467 Pt C Ch.1'],
-  ['Hydraulic control & monitoring','FA','NR467 Pt C Ch.1'],['Hydraulic fluid specification','FA','ISO 4413'],
+
+/* ---- NR584: Azimuth thrusters in ice for polar class ships and icebreakers ---- */
+const NR584_CORE = [
+  ['General arrangement of the thruster','I','NR584 Sec 1, Tab 2 #1','Including cross sections and sealing arrangements exposed to sea'],
+  ['General layout of the thruster','I','NR584 Sec 1, Tab 2 #2',''],
+  ['Azimuth thruster general specification','A','NR584 Sec 1, Tab 2 #3','Rating, operation modes, limitations and maximum design loads (torque, thrust, hydrodynamic loads, loads transferred to hull, steering loads and cycles); material specifications for principal parts and welding procedures'],
+  ['Environmental conditions','I','NR584 Sec 1, Tab 2 #4',''],
+  ['FMEA of the propulsion','A','NR584 Sec 1, Tab 2 #5','For the cooling, lubrication, ventilation systems, sealing system, steering functions, thruster control system and fire safety'],
+  ['Process and instrumentation of azimuth thruster','A','NR584 Sec 1, Tab 2 #6','Including all the auxiliary services'],
+  ['Specification and data sheet of the auxiliary services','A','NR584 Sec 1, Tab 2 #7',''],
+  ['Arrangements and details of the auxiliary services','A','NR584 Sec 1, Tab 2 #8',''],
+  ['Diagrams of cooling, ventilation, draining/bilge, lubricating and hydraulic systems','A','NR584 Sec 1, Tab 2 #9',''],
+  ['Description of operational modes for steering in normal and emergency conditions','I','NR584 Sec 1, Tab 2 #10',''],
+  ['Operation manual of the thruster in ice conditions','I','NR584 Sec 1, Tab 2 #11',''],
+  ['Structural drawings of the thruster','A','NR584 Sec 1, Tab 2 #12',''],
+  ['Structural connection to hull','A','NR584 Sec 1, Tab 2 #13',''],
+  ['Arrangement of the azimuth propulsion system supports','A','NR584 Sec 1, Tab 2 #14',''],
+  ['Ice load calculation of the thruster body','A','NR584 Sec 1, Tab 2 #15',''],
+  ['Stress calculation for the thruster body','A','NR584 Sec 1, Tab 2 #16',''],
+  ['Details of structural items (nozzle, bracing, etc.)','A','NR584 Sec 1, Tab 2 #17','Including information on clearance between propeller and nozzle'],
+  ['Maximum propulsive power in ice conditions','I','NR584 Sec 1, Tab 2 #18','As a function of thruster steering angle and shaft rotational speed'],
+  ['Propeller details','A','NR584 Sec 1, Tab 2 #19',''],
+  ['Detailed drawing of the propeller shaft including the brake','A','NR584 Sec 1, Tab 2 #20',''],
+  ['Propeller and intermediate shafts','A','NR584 Sec 1, Tab 2 #21',''],
+  ['Installation drawing of the bearings','I','NR584 Sec 1, Tab 2 #22',''],
+  ['Bearing details','A','NR584 Sec 1, Tab 2 #23',''],
+  ['Bearing data','I','NR584 Sec 1, Tab 2 #24','Max allowable static and dynamic load capacity, permissible rotational speed range, axial displacement, operating conditions'],
+  ['Dynamic load calculation of the bearings','I','NR584 Sec 1, Tab 2 #25',''],
+  ['Lifetime calculation of the bearings','I','NR584 Sec 1, Tab 2 #26',''],
+  ['Seals drawings','A','NR584 Sec 1, Tab 2 #27',''],
+  ['Gears details','A','NR584 Sec 1, Tab 2 #28',''],
+  ['Piping systems connected to thruster','A','NR584 Sec 1, Tab 2 #29',''],
+  ['Assembly sectional drawings and characteristic curves of hydraulic pumps of power units','I','NR584 Sec 1, Tab 2 #30',''],
+  ['General arrangement of electrical installations','A','NR584 Sec 1, Tab 2 #31',''],
+  ['Specification and data sheet of main electrical components','A','NR584 Sec 1, Tab 2 #32',''],
+  ['Schematic electrical diagrams of main electrical components','A','NR584 Sec 1, Tab 2 #33',''],
+  ['General arrangement diagram of main electrical components','A','NR584 Sec 1, Tab 2 #34',''],
+  ['Thruster control system','A','NR584 Sec 1, Tab 2 #35',''],
+  ['Diagram of the supply for monitoring and control systems of propulsion motors','A','NR584 Sec 1, Tab 2 #36',''],
+  ['Diagram of the supply, monitoring and control systems of controllable pitch propellers','A','NR584 Sec 1, Tab 2 #37',''],
+  ['Principles of control system and its power supply','A','NR584 Sec 1, Tab 2 #38',''],
+  ['Alarm and monitoring system details','A','NR584 Sec 1, Tab 2 #39','List of alarms and monitoring points; power supply diagram'],
+  ['Safety system details','A','NR584 Sec 1, Tab 2 #40','List of monitored parameters for safety system; power supply diagram'],
+  ['Test program for electrical propulsion motors and electrical slip rings','A','NR584 Sec 1, Tab 2 #41',''],
+  ['Diagrams of the electric power circuits','A','NR584 Sec 1, Tab 2 #42',''],
+  ['Functional diagram of control, monitoring and safety systems','A','NR584 Sec 1, Tab 2 #43','Including remote control from the navigating bridge and location of devices'],
+  ['Operating manuals of the steering unit and of its main components','I','NR584 Sec 1, Tab 2 #44',''],
+  ['General arrangement of the steering system','I','NR584 Sec 1, Tab 2 #45','Steering bearing and steering drive, protection and locking devices'],
+  ['Assembly drawing of the steering unit','I','NR584 Sec 1, Tab 2 #46','Sliding blocks, guides, stops and other similar components'],
+  ['General description of the steering unit installation and functioning principle','I','NR584 Sec 1, Tab 2 #47',''],
+  ['Detailed drawings of the main components of the steering system','A','NR584 Sec 1, Tab 2 #48','Including locking device and all load carrying components'],
+  ['Rotating mechanism of the thruster','A','NR584 Sec 1, Tab 2 #49',''],
+  ['Schematic layout of the hydraulic piping of power actuating systems','A','NR584 Sec 1, Tab 2 #50','Hydraulic steering unit: incl. refilling system, design pressure, max working pressure, pipe details, tank capacity, fluid flashpoint'],
+  ['Assembly drawings of the actuators and constructional drawings of their components','A','NR584 Sec 1, Tab 2 #51','Hydraulic actuators: design torque, max working pressure, relief valve setting pressure'],
+  ['Constructional drawings of the relief valves for protection of the hydraulic actuators','I','NR584 Sec 1, Tab 2 #52','Setting pressure and relieving capacity'],
+  ['Diagram of the supply, monitoring and control systems of the steering unit','A','NR584 Sec 1, Tab 2 #53',''],
+  ['Risk analysis of single failure','A','NR584 Sec 1, Tab 2 #54','Where the main steering unit comprises two or more identical power units'],
+  ['Risk analysis of hydraulic locking','A','NR584 Sec 1, Tab 2 #55','Where more than one steering unit can be simultaneously operated'],
 ];
-const STEER_ITEMS = [
-  ['Steering control system architecture','FA','NR467 Pt C Ch.1 (steering)'],['Steering FMEA / single-failure analysis','FA','NR467 Pt C Ch.1'],
-  ['Redundancy & duplication analysis','FA','NR467 Pt C Ch.1'],['Power supply (dual) arrangement','FA','NR467 Pt C Ch.1'],
-  ['Control stations (bridge + local)','FA','NR467 Pt C Ch.1'],['Alarms & monitoring','FA','NR467 Pt C Ch.1'],
-  ['Steering angle & response time (hard-over to hard-over)','FA','NR467 Pt C Ch.1'],['Emergency steering provisions','FA','NR467 Pt C Ch.1'],
-  ['SOLAS II-1 Reg.29 compliance documentation','FA','SOLAS II-1/29'],
+const NR584_SOLID = [
+  ['Sectional assembly (solid propeller)','A','NR584 Sec 1, Tab 3 #1',''],
+  ['Blade and hub details','A','NR584 Sec 1, Tab 3 #2',''],
+  ['Rating (power, rpm, etc.)','I','NR584 Sec 1, Tab 3 #3',''],
+  ['Data and procedures for fitting propeller to the shaft','A','NR584 Sec 1, Tab 3 #4',''],
 ];
-const SHAFT_ITEMS = [
-  ['Shaft-line arrangement (enhanced detail)','FA','NR467 Pt C Ch.1'],['Torsional vibration calculation','FA','NR467 Pt C Ch.1'],
-  ['Whirling / axial vibration analysis','FA','NR467 Pt C Ch.1'],['Shaft alignment calculation','FA','NR467 Pt C Ch.1'],
-  ['Couplings & clutch details','FA','NR467 Pt C Ch.1'],['Shaft material certificates & NDT','FA','NR467 Pt B / NR216 / NR266'],
+const NR584_CP = [
+  ['Sectional assembly (built-up / CP propeller)','A','NR584 Sec 1, Tab 4 #1',''],
+  ['Blade and hub details','A','NR584 Sec 1, Tab 4 #2',''],
+  ['Rating (power, rpm, etc.)','I','NR584 Sec 1, Tab 4 #3',''],
+  ['Data and procedures for fitting propeller to the shaft','A','NR584 Sec 1, Tab 4 #4',''],
+  ['Blade bolts and pre-tensioning procedures','A','NR584 Sec 1, Tab 4 #5',''],
+  ['Pitch corresponding to maximum propeller thrust and to normal service condition','I','NR584 Sec 1, Tab 4 #6',''],
+  ['Pitch control mechanism','A','NR584 Sec 1, Tab 4 #7',''],
+  ['Pitch control hydraulic system','A','NR584 Sec 1, Tab 4 #8',''],
 ];
-const MON_ITEMS = [
-  ['Oil-lubricated bearing & seal arrangement (approved type)','FA','NR467 Pt F (MON-SHAFT)'],
-  ['Lube-oil monitoring & analysis programme','FA','NR467 Pt F'],
-  ['Bearing temperature & weardown instrumentation','FA','NR467 Pt F / Pt C Ch.3'],
-  ['Condition-based survey scheme & data management','FI','NR467 Pt A / Pt F'],
+const NR584_MFR = [
+  ['Onboard installation procedure','I','NR584 Sec 1, Tab 5 #1',''],
+  ['Rated power and revolutions','I','NR584 Sec 1, Tab 5 #2',''],
+  ['Rated thrust','I','NR584 Sec 1, Tab 5 #3',''],
+  ['Material specifications of the major parts','A','NR584 Sec 1, Tab 5 #4','Physical, chemical and mechanical properties'],
+  ['Design of welded joints, welding procedures, heat treatments and NDE after welding','A','NR584 Sec 1, Tab 5 #5','Where parts of thrusters are of welded construction'],
+  ['Background information on previous operating experience','I','NR584 Sec 1, Tab 5 #6','Where applicable'],
 ];
-const DP_ITEMS = [
-  ['DP system general arrangement','FA','NR467 Pt F (DYNAPOS)'],['Thruster configuration drawing','FA','NR467 Pt F'],
-  ['DP capability plot','FA','NR467 Pt F'],['FMEA (comprehensive)','FA','NR467 Pt F'],
-  ['Redundancy concept (DYNAPOS-AT / -ATR)','FA','NR467 Pt F'],['Power supply segregation','FA','NR467 Pt F'],
-  ['Fire / flood zone arrangement (highest DP class)','FA','NR467 Pt F'],['DP control system architecture','FA','NR467 Pt F'],
-  ['Thruster allocation logic','FA','NR467 Pt F'],['Position reference system configuration','FA','NR467 Pt F'],
-  ['Power management system (PMS) configuration','FA','NR467 Pt F'],['UPS configuration','FA','NR467 Pt F'],
-  ['DP FMEA proving-trials plan','FA','NR467 Pt F / IMO MSC.1/Circ.1580'],['DP operations manual','FI','NR467 Pt F'],
+
+/* ---- Testing & certification (Sec 15 Art 3) ---- */
+const TEST_PROP = [
+  ['Material test reports — parts transmitting torque and propeller/impeller blades','A','NR467 Pt C, Ch 1, Sec 15, [3.1.1]','Propulsion and steering thrusters: tested per Ch 1, Sec 8, [4.1] IN THE PRESENCE OF A SURVEYOR'],
 ];
-const ICE_ITEMS = [
-  ['Ice-class notation basis & design conditions','FA','NR467 Pt F / NR527'],['Propeller ice-load strength calculation','FA','IACS UR I3 / NR527'],
-  ['Shaft line & gear ice-torque verification','FA','NR467 Pt F / NR527'],['Azimuth/pod lower-unit & slewing vs. ice-block impact','FA','NR467 Pt F'],
-  ['Winterisation (low-temp oils, materials, sensor heating)','FA','NR467 Pt F (COLD)'],['Low-temperature material certification','FA','NR467 Pt B / NR216'],
+const TEST_TRANS = [
+  ['Material test reports — transverse thruster parts','I','NR467 Pt C, Ch 1, Sec 15, [3.1.2]','Material testing need NOT be witnessed by a Surveyor, provided full test reports are made available to him'],
 ];
+const TEST_COMMON = [
+  ['Thruster inspection records','A','NR467 Pt C, Ch 1, Sec 15, [3.2.1]','Thrusters inspected per the applicable requirements in Ch 1, Sec 8, [4.2]'],
+  ['Prime mover test reports','A','NR467 Pt C, Ch 1, Sec 15, [3.2.2]','Tested per the requirements applicable to the type of mover used'],
+  ['Individual thruster test and certification','A','NR467 Pt C, Ch 1, Sec 15, [3.3.1]','"Thrusters are to be individually tested and certified by the Society." Mass produced thrusters may instead use the type approval programme — [3.3.2]'],
+];
+
+/* ---- Other additional notations ---- */
 const NOTE = {
-  comf:[['Noise & vibration prediction (blade-rate excitation)','FA','NR467 Pt F (COMF)'],['Resilient mounting / cavitation-noise control','FA','NR467 Pt F']],
-  aut:[['Extended alarms & monitoring of thruster','FA','NR467 Pt C Ch.3 / Pt F (AUT)'],['Safe remote control & fail-safe on power/control loss','FA','NR467 Pt F']],
-  clean:[['Environmentally Acceptable Lubricants (EAL) for seals & hydraulics','FA','NR467 Pt F (CLEANSHIP)'],['Leakage monitoring / oil-to-sea documentation','FA','NR467 Pt F']],
-  rp:[['Propulsion-train independence & segregation','FA','NR467 Pt F (RP)'],['Single-failure analysis & take-me-home capability','FA','NR467 Pt F']],
-  ex:[['Hazardous-area classification of thruster space & boundaries','FA','IEC 60079 / SOLAS II-2'],['Certified safe-type (Ex) equipment + certificates','FA','IEC 60079'],['Cable entries / penetrations / ventilation zone integrity','FA','SOLAS II-2']],
-  srtp:[['Safe Return to Port redundancy & segregation of propulsion/steering','FA','SOLAS II-2 Reg.21/22'],['Systems-availability analysis after casualty','FA','SOLAS II-2']],
+  comf:[['Noise and vibration prediction at thruster blade-rate excitation','A','NR467 Pt F, Ch 6 (COMF)',''],
+        ['Resilient mounting and cavitation-noise control measures','A','NR467 Pt F, Ch 6 (COMF)','']],
+  aut:[['Extended alarm and monitoring scope for the thruster','A','NR467 Pt F, Ch 3 (AUT) / Pt C, Ch 3',''],
+       ['Safe remote control and fail-safe behaviour on power or control loss','A','NR467 Pt F, Ch 3 (AUT)','']],
+  clean:[['Environmentally Acceptable Lubricants (EAL) for seals and hydraulics','A','NR467 Pt F, Ch 9 (CLEANSHIP)',''],
+         ['Leakage monitoring and oil-to-sea interface documentation','A','NR467 Pt F, Ch 9 (CLEANSHIP)','']],
+  mon:[['Oil-lubricated tailshaft bearing and approved-type seal arrangement','A','NR467 Pt F, Ch 5, Sec 2 (MON-SHAFT)','MON-SHAFT is assigned to ships fitted with oil or water lubricated systems for tailshaft bearings AND podded propulsions — Pt A, Ch 1, Sec 2, [6.6.3]'],
+       ['Lube-oil monitoring and analysis programme','A','NR467 Pt F, Ch 5, Sec 2 (MON-SHAFT)',''],
+       ['Bearing temperature and weardown instrumentation','A','NR467 Pt F, Ch 5, Sec 2 (MON-SHAFT)','']],
+  avm:[['Propulsion-train independence and segregation documentation','A','NR467 Pt F, Ch 2, Sec 2 (AVM-DPS)','AVM-DPS is assigned to ships arranged with redundant propulsion and steering installations — Pt A, Ch 1, Sec 2, [6.3.3]'],
+       ['Single-failure analysis of the propulsion and steering installation','A','NR467 Pt F, Ch 2, Sec 2 (AVM-DPS)','']],
+  ex:[['Hazardous-area classification of the thruster space and its boundaries','A','SOLAS II-2 / IEC 60079 / NR467 Pt C, Ch 2',''],
+      ['Certified safe-type (Ex) equipment schedule and certificates','A','IEC 60079',''],
+      ['Cable entries, penetrations and ventilation preserving zone integrity','A','SOLAS II-2 / NR467 Pt C, Ch 2','']],
+  srtp:[['Safe Return to Port redundancy and segregation of propulsion/steering','A','SOLAS II-2 Reg.21/22 / NR598',''],
+        ['Systems-availability analysis after the defined casualty','A','SOLAS II-2 Reg.21/22 / NR598','NR598 is the BV rule note "Implementation of safe return to port and orderly evacuation"']],
+  cyber:[['Cyber resilience documentation for the thruster control system','A','IACS UR E26 / E27; NR659','UR E26/E27 mandatory for ships contracted on or after 1 July 2024'],
+         ['Computer-based-system inventory and security capability description','A','IACS UR E27; NR659','']],
 };
+
+/* ---- Thruster types ---- */
+const TYPES = {
+  tunnel:{label:'Transverse (tunnel) thruster', family:'transverse', hint:'Athwartship thruster developing thrust in a transverse direction for manoeuvring purposes — Sec 15 [1.2.2].', fixedDuty:'man'},
+  retract:{label:'Retractable / azimuthing retractable thruster', family:'azimuth', hint:'Retractable unit — the rule has no separate table; assessed as a rotating/azimuth thruster plus the hull-opening and locking arrangements.', retractDefault:true},
+  azimuth:{label:'Azimuth thruster (Z / L drive)', family:'azimuth', crpOption:true, hint:'Thruster able to rotate through 360° to develop thrust in any direction — Sec 15 [1.2.3].'},
+  pod:{label:'Podded propulsor (electric pod)', family:'azimuth', crpOption:true, forceElectric:true, hint:'Azimuthing pod with the electric motor inside the pod. NR584 defines the sub-systems for polar/icebreaker service.'},
+  waterjet:{label:'Water-jet', family:'waterjet', hint:'Tubular casing (duct) enclosing an impeller; may have means for deviating the jet to provide steering — Sec 15 [1.2.4].'},
+  vsp:{label:'Voith-Schneider / cycloidal propeller', family:'azimuth', hint:'Recognised in Sec 14 [4.1.1] as an acceptable steering means; assessed under Sec 15 as far as applicable.'},
+  rimdriven:{label:'Rim-driven thruster', family:'azimuth', forceElectric:true, hint:'Integrated motor propulsor. No dedicated rule table — assessed under Sec 15 as far as applicable; agree the scope with the Society early.'},
+  pumpjet:{label:'Pump-jet / ducted rotor-stator', family:'waterjet', hint:'Ducted rotor + stator. Closest rule fit is the water-jet table (Tab 4); confirm scope with the Society.'},
+  gilljet:{label:'Gill / hydro-jet (pump-type transverse)', family:'waterjet', fixedDuty:'man', hint:'Internal pump discharging through directional outlets, for manoeuvring. Closest rule fit is the water-jet table.'},
+};
+
+/* ---- Ship types → governing rule set ---- */
 const SHIPS = {
-  none:{label:'— (not specified)', add:[]},
-  tug:{label:'Harbour / escort tug', steer:true, note:'NR467 Pt E (tug / escort tug)', add:[['Escort / indirect-towing loads on steering & structure','FA','NR467 Pt E'],['Unit & foundation substantiation for towing loads','FA','NR467 Pt E'],['Stability interaction documentation','FA','NR467 Pt E']]},
-  osv:{label:'Offshore supply / PSV / AHTS', note:'NR467 Pt E (OSV)', add:[['FiFi / service-system interfaces (if fitted)','FI','NR467 Pt E']], auto:['dp']},
-  dredger:{label:'Dredger (TSHD / CSD)', note:'NR467 Pt D', add:[['DREDGING service duty / robust manoeuvring','FA','NR467 Pt D']]},
-  passenger:{label:'Passenger / RoPax / ferry', note:'SOLAS + NR467 Pt D', add:[], auto:['srtp']},
-  cruise:{label:'Cruise ship', note:'SOLAS + NR467 Pt D/F', add:[], auto:['srtp','comf']},
-  deferry:{label:'Double-ended ferry', steer:true, note:'NR467 Pt D', add:[['Steering redundancy at each end + control changeover','FA','NR467 Pt C Ch.1']], auto:['comf']},
-  cable:{label:'Cable / pipe layer / construction', note:'NR467 Pt D/F', add:[['Worst-case-failure design intent','FA','NR467 Pt F']], auto:['dp']},
-  modu:{label:'Drillship / semi-sub (MODU)', note:'NR445 offshore units', add:[['Offshore-unit / MODU rules compliance','FA','NR445'],['Highest-DP-class fire/flood separation of thruster groups','FA','NR467 Pt F']], auto:['dp']},
-  tanker:{label:'Oil / chemical tanker', note:'SOLAS II-2 + IEC 60079', add:[], auto:['ex']},
-  gas:{label:'Gas carrier (LNG / LPG)', note:'IGC Code', add:[['IGC Code hazardous-zone compliance','FA','IGC Code']], auto:['ex']},
-  ice:{label:'Ice-class / polar trader', note:'NR467 Pt F / NR527', add:[], auto:['ice']},
-  naval:{label:'Research / naval / patrol', note:'NR483 (naval)', add:[['Underwater-noise / signature documentation','FA','NR483 / NR467 Pt F'],['Cavitation-noise control measures','FA','NR467 Pt F']]},
-  yacht:{label:'Large yacht', note:'NR500 (yachts)', add:[['Retractable-thruster / stabiliser interface (if fitted)','FI','NR500']], auto:['comf']},
-  small:{label:'Ship < 500 GT', note:'NR566', add:[['Confirm applicability of simplified requirements','FI','NR566']]},
-  cargo:{label:'Container / bulk / general cargo', note:'NR467 Pt C/D', add:[]},
+  none:{label:'— (not specified)', gov:'NR467', add:[]},
+  cargo:{label:'Container / bulk / general cargo', gov:'NR467', note:'NR467 Pt D, Ch 2 (container) / Ch 4 (bulk)', add:[]},
+  tanker:{label:'Oil / chemical tanker', gov:'NR467', note:'NR467 Pt D, Ch 7 / Ch 8 / Ch 10', auto:['ex'], add:[], steerFatigue:true},
+  gas:{label:'Gas carrier (LNG / LPG)', gov:'NR467', note:'NR467 Pt D, Ch 9 + IGC Code', auto:['ex'], steerFatigue:true,
+    add:[['IGC Code hazardous-zone compliance for the thruster space','A','IGC Code / SOLAS II-2','']]},
+  passenger:{label:'Passenger ship / RoPax / ferry', gov:'NR467', note:'NR467 Pt D, Ch 11 / Ch 12', auto:['srtp'], passenger:true, add:[]},
+  cruise:{label:'Cruise ship', gov:'NR467', note:'NR467 Pt D, Ch 11', auto:['srtp','comf'], passenger:true, add:[]},
+  deferry:{label:'Double-ended ferry', gov:'NR467', note:'NR467 Pt D, Ch 12', passenger:true, multiDefault:true,
+    add:[['Steering control changeover arrangement between the two ends','A','NR467 Pt C, Ch 1, Sec 14, [4.1.2]','Where the steering means consists of two or more thrusters, automatic synchronisation of thruster rotation is required unless each thruster withstands the others’ forces']]},
+  tug:{label:'Tug / salvage tug / escort tug', gov:'NR467', note:'NR467 Pt E, Ch 1 (tug, salvage tug, escort tug)', dutySteer:true,
+    add:[['Bollard pull trial programme','A','NR467 Pt E, Ch 1, App 1','Service notations are completed by the additional service feature standardized design bollard pull'],
+         ['Escort steering, braking and towing design loads on the thruster and its foundation','A','NR467 Pt E, Ch 1, Sec 1, [1.1.1]','escort tug: design maximum braking force, escort speed and steering force are declared service features']]},
+  osv:{label:'Offshore supply / PSV / AHTS', gov:'NR467', note:'NR467 Pt E, Ch 2 (AHV) / Ch 3 (supply)', auto:['dp'], add:[]},
+  dsv:{label:'Diving support vessel', gov:'NR467', note:'NR467 Pt E, Ch 7 + NR610 for the diving system', auto:['dp'],
+    add:[['Interface between the DP/thruster system and the diving system','A','NR610 (Rules for the classification of diving systems)','NR467 Pt A, Ch 1, Sec 1, [1.1.3]: where the requirements differ, NR610 prevails for the diving system']]},
+  cable:{label:'Cable-laying / pipe-laying / construction', gov:'NR467', note:'NR467 Pt E, Ch 6 (cable-laying) / Ch 12 (pipe laying)', auto:['dp'], add:[]},
+  lifting:{label:'Lifting unit / heavy-lift / crane vessel', gov:'NR467', note:'NR467 Pt E, Ch 8 + NR526 lifting appliances', auto:['dp'], add:[]},
+  fifi:{label:'Fire-fighting ship', gov:'NR467', note:'NR467 Pt E, Ch 4',
+    add:[['FiFi pump / thruster power-sharing and mode-changeover documentation','A','NR467 Pt E, Ch 4','Where the FiFi pumps and the thruster share a prime mover']]},
+  oilrec:{label:'Oil-recovery ship', gov:'NR467', note:'NR467 Pt E, Ch 5', add:[]},
+  standby:{label:'Standby rescue vessel', gov:'NR467', note:'NR467 Pt E, Ch 10', add:[]},
+  dredger:{label:'Dredger (TSHD / CSD)', gov:'NR467', note:'NR467 Pt D, Ch 13 (ships for dredging activity)', add:[]},
+  fishing:{label:'Fishing vessel', gov:'NR467', note:'NR467 Pt D, Ch 15', add:[]},
+  patrol:{label:'Offshore patrol vessel', gov:'NR467', note:'NR467 Pt D, Ch 16', add:[]},
+  modu:{label:'Drillship / semi-sub (MODU)', gov:'NR445', note:'NR445 offshore units (+ NR569 drilling ships, NR571 column-stabilised)', auto:['dp'],
+    add:[['Offshore-unit rule compliance for the thruster installation','A','NR445 (Rules for the classification of offshore units)','']]},
+  naval:{label:'Naval / military vessel', gov:'NR483', note:'NR483 naval ships',
+    add:[['Naval rule compliance for the propulsion and steering installation','A','NR483 (Rules for the classification of naval ships)',''],
+         ['Underwater radiated noise documentation','I','NR614 (URN)','Where a signature or URN requirement is carried']]},
+  research:{label:'Research vessel', gov:'NR467', note:'NR467 (service notation as assigned) + NR614 URN',
+    add:[['Underwater radiated noise documentation','I','NR614 (URN)','Where a URN notation is carried']]},
+  yacht:{label:'Large yacht', gov:'NR500', note:'NR500 yachts', auto:['comf'],
+    add:[['Yacht rule compliance for the thruster installation','A','NR500 (Rules for the classification and certification of yachts)','']]},
+  hsc:{label:'High-speed craft', gov:'NR396', note:'NR396 high-speed craft + HSC Code',
+    add:[['High-speed craft rule compliance for the propulsion installation','A','NR396 (Rules for the classification of high-speed craft)','']]},
+  small:{label:'Ship < 500 GT', gov:'NR566', note:'NR566 (+ NR600 for hull of small cargo/non-cargo ships)',
+    add:[['Confirm applicability of the simplified requirements','I','NR566 (Hull arrangement, stability and systems for ships less than 500 GT)','']]},
+  inland:{label:'Inland navigation vessel', gov:'NR217', note:'NR217 inland navigation vessels',
+    add:[['Inland navigation rule compliance for the thruster installation','A','NR217 (Rules for the classification of inland navigation vessels)','']]},
+  fsru:{label:'FSRU / FSU', gov:'NR645', note:'NR645 floating storage regasification / storage units', auto:['ex'],
+    add:[['FSRU/FSU rule compliance for the thruster installation','A','NR645','']]},
 };
-const GROUP_ORDER = ['Structure & hull','Duct / nozzle','Mechanical (propeller / shaft / gear)','Propulsion (main)','Controllable pitch','Contra-rotating propellers (CRP)','Retraction system',
-  'Drive / prime mover','Hydraulics','Steering gear','Main shaft line','Control & electrical',
-  'Dynamic positioning (Pt F)','Ice class & winterisation','Additional notations (Pt F)','Ship-type specific','Testing & commissioning'];
-const TESTING_ITEMS = [
-  ['FAT procedures & report','FA','NR467 Pt C Ch.1'],['Installation / commissioning test procedures','FA','NR467 Pt C Ch.1'],
-  ['Dock & sea trial procedures','FA','NR467 Pt C Ch.1'],['Test reports (after testing)','FI','NR467 Pt C Ch.1'],
-];
 
-/* ================= Build ================= */
+/* ---- Rule verification checks (numeric criteria a surveyor must confirm) ---- */
+function buildChecks(c){
+  const K=[];
+  if(c.power==='ge110'){
+    K.push(['Is the rated power ≥ 110 kW?','Sec 15 applies in full. The rule wording is "power equal to 110 kW or more" — a unit rated exactly 110 kW IS in scope.','NR467 Pt C, Ch 1, Sec 15, [1.1.1]']);
+  } else {
+    K.push(['Thruster < 110 kW — reduced scope','To be built in accordance with sound marine practice and tested as required in [3.2] to the satisfaction of the Surveyor. The Sec 15 plan tables are NOT applied.','NR467 Pt C, Ch 1, Sec 15, [1.1.2]']);
+    K.push(['Testing still required','Thrusters are to be inspected as per the applicable requirements in Ch 1, Sec 8, [4.2]; prime movers tested per the requirements applicable to the type of mover used.','NR467 Pt C, Ch 1, Sec 15, [3.2]']);
+    K.push(['Confirm the rated power against the 110 kW boundary','The threshold is "equal to 110 kW or more". Confirm the declared rating is the thruster power the rule means before applying the reduced scope.','NR467 Pt C, Ch 1, Sec 15, [1.1.1] / [1.1.2]']);
+    return K;
+  }
+  if(c.family==='azimuth' && c.duty!=='man'){
+    K.push(['Are at least two azimuth thrusters fitted?','"In general, at least two azimuth thrusters are to be fitted in ships where these are the sole means of propulsion. Single azimuth thruster installations will be specially considered by the Society on a case by case basis." Also applies to water-jets.','NR467 Pt C, Ch 1, Sec 15, [1.3.1]']);
+  }
+  if(c.family==='waterjet' && c.duty!=='man'){
+    K.push(['Are at least two water-jets fitted?','The two-unit requirement of [1.3.1] applies to water-jets as well where they are the sole means of propulsion.','NR467 Pt C, Ch 1, Sec 15, [1.3.1]']);
+  }
+  if(c.family==='transverse'){
+    K.push(['Is the tunnel thickness ≥ the adjacent hull plating?','"The thickness of the tunnel is not to be less than the adjacent part of the hull." Tunnels connected to the hull by devices other than welding are specially considered.','NR467 Pt C, Ch 1, Sec 15, [2.2.6]']);
+  }
+  if(c.duty==='man'){
+    K.push(['Propeller thickness — 10% increase NOT required','For propellers of thrusters intended for manoeuvring only, Ch 1, Sec 8, [2.5] applies but the increase in thickness of 10% does not need to be applied.','NR467 Pt C, Ch 1, Sec 15, [2.2.2]']);
+    K.push(['Shaft sized by the Sec 15 formula, not Sec 7','For manoeuvring-only thrusters the minimum shaft diameter follows the formula in Sec 15 [2.2.3] (+10% in way of a keyed connection to the propeller), not Ch 1, Sec 7, [2.2.3].','NR467 Pt C, Ch 1, Sec 15, [2.2.3]']);
+    K.push(['Gears checked with AUXILIARY safety factors','Gears of thrusters intended for manoeuvring only follow Ch 1, Sec 6 applying the safety factors for auxiliary gears.','NR467 Pt C, Ch 1, Sec 15, [2.2.4]']);
+  } else {
+    K.push(['Propeller to full Sec 8 [2.5] including the 10% thickness increase','For propellers of thrusters intended for propulsion the requirements of Ch 1, Sec 8, [2.5] apply in full.','NR467 Pt C, Ch 1, Sec 15, [2.2.2]']);
+    K.push(['Propeller shaft to Ch 1, Sec 7, [2.2.3]','For propeller shafts of thrusters intended for propulsion the main shafting rule applies.','NR467 Pt C, Ch 1, Sec 15, [2.2.3]']);
+    K.push(['Gears checked with PROPULSION safety factors','Gears of thrusters intended for propulsion follow Ch 1, Sec 6 applying the safety factors for propulsion gears.','NR467 Pt C, Ch 1, Sec 15, [2.2.4]']);
+  }
+  if(c.ducted && c.family==='azimuth'){
+    K.push(['Nozzle structure assessed under Pt B, Ch 12','For the requirements relative to the nozzle structure, see Part B, Chapter 12. Nozzle-to-hull scantlings and weld type/size are specially considered; the Society may require a detailed stress analysis for certain high power installations.','NR467 Pt C, Ch 1, Sec 15, [2.2.5]']);
+  }
+  if(c.roleSteer){
+    K.push(['Equivalent rudder stock diameter calculated','For steerable thrusters the equivalent rudder stock diameter is to be calculated in accordance with Part B, Chapter 12.','NR467 Pt C, Ch 1, Sec 15, [2.2.5]']);
+    K.push(['Main steering: ≥ 2,3°/s average turning speed','Capable of changing direction from one side to the other at the declared steering angle limits at an average turning speed of not less than 2,3°/s with the ship running ahead at maximum ahead service speed. Power operated for all ships. Not damaged at maximum astern speed.','NR467 Pt C, Ch 1, Sec 14, [4.2.5]']);
+    K.push(['Auxiliary steering: ≥ 0,5°/s','At an average turning speed of not less than 0,5°/s with the ship running ahead at one half of the maximum ahead service speed or 7 knots, whichever is the greater.','NR467 Pt C, Ch 1, Sec 14, [4.2.6]']);
+    K.push(['Steering controls at bridge, machinery control station and locally','Controls for steering are to be provided from the navigation bridge, the machinery control station and locally. Means are to be provided to stop any running thruster at each control station.','NR467 Pt C, Ch 1, Sec 15, [2.4.1]']);
+    K.push(['Thruster angle indicator independent of the control system','A thruster angle indicator is to be provided at each steering control station. The angle indicator is to be independent of the control system.','NR467 Pt C, Ch 1, Sec 15, [2.4.1]']);
+    if(c.units==='multi'){
+      K.push(['Automatic synchronisation of thruster rotation','Where the steering means consists of two or more thrusters, the control system is to include a device ensuring automatic synchronisation of thruster rotation, unless each thruster is designed to withstand any additional forces resulting from the thrust exerted by the other thrusters.','NR467 Pt C, Ch 1, Sec 14, [4.1.2]']);
+      K.push(['Each unit has main + auxiliary steering gear (or 2+ identical actuating systems)','For a ship fitted with multiple steering-propulsion units, each unit is to be provided with a main and an auxiliary steering gear, or with two or more identical steering actuating systems complying with [4.2.7]. Failure of one shall not render the other inoperative.','NR467 Pt C, Ch 1, Sec 14, [4.2.2]']);
+    } else {
+      K.push(['Single unit: 2+ steering actuating systems + risk assessment','For a ship fitted with a single steering-propulsion unit, the steering gear is to be provided with two or more steering actuating systems complying with [4.2.7], and a detailed risk assessment is to be submitted.','NR467 Pt C, Ch 1, Sec 14, [4.2.3]']);
+    }
+    if(c.steerpower==='gt2500'){
+      K.push(['Auxiliary steering must be power operated (> 2 500 kW/unit)','Power operation is required where necessary to meet SOLAS II-1/29.4.2 and in any ship having more than 2 500 kW propulsion power per steering-propulsion unit.','NR467 Pt C, Ch 1, Sec 14, [4.2.6]']);
+      K.push(['Alternative power supply automatic within 45 s','Where propulsion power exceeds 2 500 kW per thruster unit, an alternative power supply is to be provided automatically within 45 s from the emergency source or an independent source in the steering gear compartment (dedicated use only). Capacity ≥ 30 min for ships of 10 000 GT and upwards, ≥ 10 min for any other ship.','NR467 Pt C, Ch 1, Sec 14, [4.2.8]']);
+    }
+    K.push(['Minimum alarms: steering oil pressure LOW, oil tank level LOW','Tab 6 gives the minimum alarm and monitoring requirements for propulsion and steering thrusters.','NR467 Pt C, Ch 1, Sec 15, Tab 6 / [2.4.2]']);
+  }
+  if(c.family==='waterjet' && c.roleSteer){
+    K.push(['Water-jet steering performance equivalent to Sec 14 [4.2]/[4.3]','Steering performance and emergency steering availability are to be at least equivalent to the requirements in Ch 1, Sec 14, [4.2] and [4.3]. Note that the use of water-jets as steering means will be given special consideration by the Society (Sec 14 [4.3.1]).','NR467 Pt C, Ch 1, Sec 15, [2.3.5]']);
+  }
+  if(c.family==='waterjet'){
+    K.push(['Impeller shaft corrosion protection','The shafts are to be protected against corrosion by means of either a continuous liner or an oil-gland of an approved type, or by the nature of the material of the shaft.','NR467 Pt C, Ch 1, Sec 15, [2.3.1]']);
+    K.push(['Tip clearance and crash-stop loads considered','Design is to take into account loads developed in free going conditions and in peculiar manoeuvres like crash stop; tip clearance to account for vibratory behaviour, displacements and expansion in all operating conditions.','NR467 Pt C, Ch 1, Sec 15, [2.3.3]']);
+  }
+  if(c.prime==='electric'){
+    K.push(['Start blocked when generators insufficient','Provisions are to be made to prevent starting of the motors whenever there are insufficient generators in operation. Intermittent duty thrusters will be the subject of special consideration by the Society.','NR467 Pt C, Ch 1, Sec 15, [2.2.1]']);
+    if(c.gt1mw) K.push(['> 1 MW motor: additional assembly tests','Machines used as propulsion motor or thruster developing more than 1 MW require, during assembly: shaft line per Ch 1 Sec 7; rotor dynamic balancing; stator dielectric + insulation resistance after impregnation; frame visual + LPT of 10% of structure welds and 100% of handling points; watercooler visual + performance test; hydrostatic jacking unit pressure and working tests.','NR467 Pt C, Ch 2, Sec 4, [5.1.1]']);
+  }
+  if(c.duty==='man'){
+    K.push(['Material tests need NOT be Surveyor-witnessed','Material testing for parts of athwartship thrusters does not need to be witnessed by a Surveyor, provided full test reports are made available to him.','NR467 Pt C, Ch 1, Sec 15, [3.1.2]']);
+  } else {
+    K.push(['Material tests MUST be witnessed by a Surveyor','All materials intended for parts transmitting torque and for propeller/impeller blades are to be tested in accordance with Ch 1, Sec 8, [4.1] in the presence of a Surveyor.','NR467 Pt C, Ch 1, Sec 15, [3.1.1]']);
+  }
+  K.push(['Individual certification (or type approval for mass-produced units)','Thrusters are to be individually tested and certified by the Society. Mass produced thrusters of a type mentioned in [1.1] may be accepted within the framework of the type approval programme of the Society.','NR467 Pt C, Ch 1, Sec 15, [3.3.1] / [3.3.2]']);
+  if(c.ice==='iceclass' && c.duty==='man'){
+    K.push(['Ice: tunnel grids ONLY','Transverse thrusters intended for manoeuvring of ships with an ICE CLASS notation are required to comply with additional requirement Pt F, Ch 8, Sec 3, [3.5.1] only — i.e. tunnels are to be fitted with grids for protection against ice impacts. Do not demand the full propulsion-machinery ice package.','NR467 Pt C, Ch 1, Sec 15, [1.1.1]']);
+  }
+  if(c.ice==='iceclass' && c.duty!=='man'){
+    K.push(['Ice: full Pt F, Ch 8 propulsion-machinery package','Thrusters intended for propulsion and steering of ships with an ICE CLASS notation are to comply with the additional requirements of Part F, Chapter 8 (in full).','NR467 Pt C, Ch 1, Sec 15, [1.1.1]']);
+  }
+  if(c.ice==='polar'){
+    K.push(['Polar / icebreaker: NR527 applies','Thrusters intended for propulsion and steering of ships with an additional class notation POLAR CLASS or a service notation icebreaker are to comply with the relevant requirements of NR527.','NR467 Pt C, Ch 1, Sec 15, [1.1.1]']);
+    if(c.family==='azimuth') K.push(['Polar azimuth: NR584 applies in full','NR584 applies to ships fitted with an azimuth propulsion system and assigned a service notation icebreaker or an additional class notation POLAR CLASS. It carries its own 55-item documentation table plus propeller tables.','NR584 Sec 1, [1.1.1]']);
+  }
+  if(c.roleDP){
+    K.push(['DP: azimuth thrusters must also meet Pt F, Ch 11, Sec 5','For azimuth thrusters intended for dynamic positioning, the additional requirements in Pt F, Ch 11, Sec 5 are to be complied with.','NR467 Pt C, Ch 1, Sec 15, [1.1.1]']);
+    K.push([c.dpR?'FMEA IS required (R / RS symbol)':'FMEA is NOT required unless the R / RS symbol is requested','The FMEA of Tab 1 #17 is listed "For symbols R and RS only". For installations intended to be assigned DYNAPOS AM/AT R or AM/AT RS an FMEA is to be carried out ([2.4.1]). Plain AM, AT or AM/AT does not attract it.','NR467 Pt F, Ch 11, Sec 5, Tab 1 #17 / [2.4.1]']);
+  }
+  return K;
+}
+
+/* ============================== BUILD ============================== */
 function segVal(id){ const b=document.querySelector('#'+id+' button.on'); return b?b.dataset.v:''; }
+function cfgState(){
+  const t=document.getElementById('ttype').value, cfg=TYPES[t];
+  const shipKey=document.getElementById('ship').value, sc=SHIPS[shipKey]||SHIPS.none;
+  let duty=segVal('duty'); if(cfg.fixedDuty) duty=cfg.fixedDuty;
+  if(sc.dutySteer && duty==='man') duty='steer';
+  let prime=segVal('prime'); if(cfg.forceElectric) prime='electric';
+  const ducted=segVal('duct')==='ducted';
+  const steernozzle=ducted && document.getElementById('steernozzle').checked;
+  const roleSteer = duty==='steer' || steernozzle || !!sc.dutySteer;
+  return {
+    type:t, cfg, family:cfg.family, duty, prime, ducted, steernozzle, roleSteer,
+    power:segVal('power'), steerpower:segVal('steerpower'), units:segVal('units'),
+    cp:document.getElementById('mod_cp').checked,
+    retract:document.getElementById('mod_retract').checked,
+    crp:!!cfg.crpOption && document.getElementById('mod_crp').checked,
+    gt1mw:document.getElementById('mod_gt1mw').checked && prime==='electric',
+    roleDP:document.getElementById('role_dp').checked || (sc.auto||[]).includes('dp'),
+    dpR:document.getElementById('dp_R').checked,
+    ice:document.getElementById('ice').value,
+    shipKey, sc,
+    notes:{
+      comf:document.getElementById('not_comf').checked||(sc.auto||[]).includes('comf'),
+      aut:document.getElementById('not_aut').checked,
+      clean:document.getElementById('not_clean').checked,
+      mon:document.getElementById('not_mon').checked,
+      avm:document.getElementById('not_avm').checked,
+      ex:document.getElementById('not_ex').checked||(sc.auto||[]).includes('ex'),
+      srtp:document.getElementById('not_srtp').checked||(sc.auto||[]).includes('srtp'),
+      cyber:document.getElementById('not_cyber').checked,
+    }
+  };
+}
+
 function collect(){
-  const t = document.getElementById('ttype').value;
-  const cfg = TYPES[t];
-  const cp = document.getElementById('mod_cp').checked;
-  const retract = document.getElementById('mod_retract').checked;
-  const crp = !!cfg.crpOption && document.getElementById('mod_crp').checked;
-  const duty = segVal('duty');
-  const ducted = segVal('duct')==='ducted';
-  const steernozzle = ducted && document.getElementById('steernozzle').checked;
-  let prime = segVal('prime'); if(cfg.forceElectric) prime='electric';
-  const ship = document.getElementById('ship').value;
-  const sc = SHIPS[ship]||SHIPS.none;
+  const c=cfgState();
+  const G=[]; const add=(title,src,items)=>{ if(items&&items.length) G.push({title,src,items:items.map(x=>({name:x[0],cat:x[1],ref:x[2],par:x[3]||''}))}); };
 
-  const roleSteer = document.getElementById('role_steer').checked || !!cfg.steer || !!sc.steer || steernozzle;
-  const roleShaft = document.getElementById('role_shaft').checked || duty==='prop' || !!cfg.propulsion;
-  const roleDP   = document.getElementById('role_dp').checked;
+  if(c.power==='lt110'){
+    return {groups:[], checks:buildChecks(c), c, belowThreshold:true};
+  }
 
-  const groups = {};
-  const push = (g, arr)=>{ if(!arr||!arr.length)return; groups[g]=(groups[g]||[]).concat(arr.map(x=>({name:x[0],cat:x[1],ref:x[2]}))); };
+  const polarAz = (c.ice==='polar' && c.family==='azimuth' && c.duty!=='man');
 
-  push('Structure & hull', cfg.struct);
-  if(ducted){ push('Duct / nozzle', NOZZLE_ITEMS); if(steernozzle) push('Duct / nozzle', STEERNOZZLE_ITEMS); }
-  push('Mechanical (propeller / shaft / gear)', cfg.mech);
-  if(duty==='prop') push('Propulsion (main)', PROPULSION_ITEMS);
-  if(duty==='tmh')  push('Propulsion (main)', TMH_ITEMS);
-  if(cp) push('Controllable pitch', CP_ITEMS);
-  if(crp) push('Contra-rotating propellers (CRP)', CRP_ITEMS);
-  if(retract) push('Retraction system', RETRACT_ITEMS);
+  if(polarAz){
+    add('NR584 — Azimuth thrusters in ice: documentation','NR584 Sec 1, Tab 2 (55 items) — polar class / icebreaker azimuth propulsion', NR584_CORE);
+    add(c.cp?'NR584 — Built-up / controllable pitch propeller':'NR584 — Solid propeller','NR584 Sec 1, '+(c.cp?'Tab 4':'Tab 3'), c.cp?NR584_CP:NR584_SOLID);
+    add('NR584 — Manufacturer data','NR584 Sec 1, Tab 5', NR584_MFR);
+  }
 
-  if(prime==='electric') push('Drive / prime mover', ELECTRIC_ITEMS);
-  else if(prime==='diesel') push('Drive / prime mover', DIESEL_ITEMS);
-  else push('Drive / prime mover', [['Hydraulic motor specification','FA','NR467 Pt C Ch.1'],['Hydraulic drive schematic','FA','NR467 Pt C Ch.1']]);
+  add('All thrusters','NR467 Pt C, Ch 1, Sec 15, Tab 1 — applies to every thruster ≥ 110 kW', SEC15_T1);
+  if(c.family==='transverse') add('Transverse thrusters','NR467 Pt C, Ch 1, Sec 15, Tab 2', SEC15_T2);
+  if(c.family==='azimuth')    add('Rotating and azimuth thrusters','NR467 Pt C, Ch 1, Sec 15, Tab 3', SEC15_T3);
+  if(c.family==='waterjet')   add('Water-jets','NR467 Pt C, Ch 1, Sec 15, Tab 4 — submitted per [1.4.2]', SEC15_T4);
+  add('Manufacturer data (all thrusters and water-jets)','NR467 Pt C, Ch 1, Sec 15, Tab 5 — submitted by the manufacturer together with the plans, per [1.4.3]', SEC15_T5);
 
-  const needHyd = cfg.hyd || cp || retract || prime==='hydraulic' || steernozzle;
-  if(needHyd) push('Hydraulics', HYD_ITEMS);
+  const calcs=[];
+  if(c.family==='waterjet'){ calcs.push(CALC_WJ_FATIGUE, CALC_WJ_BLADEFREQ); }
+  if(c.family==='azimuth' && c.ducted) calcs.push(CALC_AZ_STRESS);
+  if(c.roleSteer) calcs.push(CALC_AZ_RUDDERSTOCK);
+  add('Calculations required by the design articles','NR467 Pt C, Ch 1, Sec 15, Article 2 — submissions demanded in the rule text itself', calcs);
 
-  if(roleSteer) push('Steering gear', STEER_ITEMS);
-  if(roleShaft) push('Main shaft line', SHAFT_ITEMS);
-  if(document.getElementById('not_mon').checked) push('Main shaft line', MON_ITEMS);
-  push('Control & electrical', CONTROL_ITEMS);
+  if(c.roleSteer){
+    const st=SEC14_T1_AZ.slice();
+    if(c.units==='single') st.push(SEC14_RISKASSESS);
+    if(c.units==='multi') st.push(SEC14_T2_SINGLEFAIL, SEC14_T2_HYDLOCK);
+    if(c.sc.steerFatigue) st.push(SEC14_T2_FATIGUE);
+    add('Steering gear — thruster used as steering means','NR467 Pt C, Ch 1, Sec 14, Tab 1 #13 (which pulls in items 2–6 and 8–12) + Tab 2 + Article 4', st);
+  }
 
-  if(roleDP) push('Dynamic positioning (Pt F)', DP_ITEMS);
-  if(document.getElementById('not_ice').checked) push('Ice class & winterisation', ICE_ITEMS);
+  let pm = c.prime==='electric'?PRIME_ELECTRIC.slice():(c.prime==='diesel'?PRIME_DIESEL.slice():PRIME_HYDRAULIC.slice());
+  if(c.prime==='electric' && c.gt1mw) pm=pm.concat(PRIME_ELECTRIC_1MW);
+  add('Prime mover','NR467 Pt C, Ch 1, Sec 15, [2.2.1] and the sections it refers to', pm);
 
-  let notes=[];
-  if(document.getElementById('not_comf').checked) notes=notes.concat(NOTE.comf);
-  if(document.getElementById('not_aut').checked) notes=notes.concat(NOTE.aut);
-  if(document.getElementById('not_clean').checked) notes=notes.concat(NOTE.clean);
-  if(document.getElementById('not_rp').checked) notes=notes.concat(NOTE.rp);
-  if(document.getElementById('not_ex').checked) notes=notes.concat(NOTE.ex);
-  if(document.getElementById('not_srtp').checked) notes=notes.concat(NOTE.srtp);
-  push('Additional notations (Pt F)', notes);
-  push('Ship-type specific', sc.add);
-  push('Testing & commissioning', TESTING_ITEMS);
+  if(c.roleDP){
+    const dp=DP_DOCS.slice();
+    if(c.dpR) dp.splice(16,0,DP_FMEA);
+    add('Dynamic positioning (DYNAPOS)','NR467 Pt F, Ch 11, Sec 5, Tab 1', dp);
+  }
 
-  const ordered = [];
-  ordered.push(['General & administrative', BASE_ITEMS.map(x=>({name:x[0],cat:x[1],ref:x[2]}))]);
-  GROUP_ORDER.forEach(g=>{ if(groups[g]){
-      const seen=new Set(); const arr=groups[g].filter(i=>{ if(seen.has(i.name))return false; seen.add(i.name); return true;});
-      ordered.push([g,arr]); }});
-  return {ordered, sc};
+  if(c.ice==='iceclass'){
+    if(c.duty==='man'){
+      add('Ice class — transverse manoeuvring thruster','NR467 Pt F, Ch 8, Sec 3, [3.5.1] — the ONLY requirement applied by Sec 15 [1.1.1] to a manoeuvring transverse thruster', ICE_TRANSVERSE);
+    } else {
+      let ice=ICE_PROPULSION.slice();
+      if(c.family==='azimuth') ice=ice.concat(ICE_AZIMUTH_BODY);
+      add('Ice class — propulsion / steering thruster','NR467 Pt F, Ch 8, Sec 3, Article 1 (ICE CLASS IA SUPER / IA / IB / IC)', ice);
+    }
+  }
+  if(c.ice==='polar' && !polarAz && c.duty!=='man'){
+    add('Polar class / icebreaker','NR467 Pt C, Ch 1, Sec 15, [1.1.1] → NR527', [
+      ['Polar class machinery compliance documentation','A','NR527 (Ships operating in polar waters and icebreakers)','Thrusters for propulsion and steering on POLAR CLASS or icebreaker ships comply with the relevant requirements of NR527'],
+      ['Propeller-ice interaction loads (IACS UR I3 basis)','A','IACS UR I3 — Machinery Requirements for Polar Class Ships','Covers azimuthing and fixed thrusters, geared and podded propulsors; propulsion machinery type factor k3 = 1,0 fixed / 1,2 azimuthing'],
+    ]);
+  }
+
+  let nt=[];
+  Object.keys(NOTE).forEach(k=>{ if(c.notes[k]) nt=nt.concat(NOTE[k]); });
+  add('Other additional class notations','NR467 Part F and related instruments', nt);
+
+  add('Ship type / service notation','Governing rule set: '+(c.sc.note||'NR467'), c.sc.add||[]);
+
+  let tests = (c.duty==='man'?TEST_TRANS:TEST_PROP).concat(TEST_COMMON);
+  add('Testing and certification','NR467 Pt C, Ch 1, Sec 15, Article 3', tests);
+
+  return {groups:G, checks:buildChecks(c), c, belowThreshold:false};
 }
 
-/* ================= Persistence ================= */
+/* ---- Callouts: scope warnings a surveyor must not miss ---- */
+function buildCallouts(c, below){
+  const out=[];
+  if(below){
+    out.push(['warn','Below the Section 15 threshold',
+      'Thrusters of less than 110 kW are to be built in accordance with sound marine practice and tested as required in [3.2] to the satisfaction of the Surveyor. The Sec 15 plan tables are not applied — agree the reduced scope with the Society.',
+      'NR467 Pt C, Ch 1, Sec 15, [1.1.2]']);
+    return out;
+  }
+  if(c.ducted && !c.steernozzle && c.duty!=='man' && c.family==='azimuth'){
+    out.push(['warn','Check this is actually a thruster',
+      'A thruster is a propeller installed in a REVOLVING nozzle or in a special transverse tunnel, or a water-jet. "Propulsion propellers in fixed nozzles are not considered thrusters" — those are assessed under Ch 1, Sec 8 (Propellers), not Sec 15. Tick "Nozzle is steerable" if the nozzle revolves.',
+      'NR467 Pt C, Ch 1, Sec 15, [1.2.1] → Ch 1, Sec 8, [1.1.1]']);
+  }
+  if(c.duty==='man'){
+    out.push(['info','Manoeuvring duty — reduced technical scope',
+      'Propeller per Sec 8 [2.5] but WITHOUT the 10% thickness increase; shaft by the Sec 15 [2.2.3] formula rather than Sec 7; gears with AUXILIARY gear safety factors; material tests need not be Surveyor-witnessed if full reports are provided.',
+      'NR467 Pt C, Ch 1, Sec 15, [2.2.2] / [2.2.3] / [2.2.4] / [3.1.2]']);
+  } else {
+    out.push(['info','Propulsion duty — full technical scope',
+      'Propeller per Sec 8 [2.5] in full; propeller shaft per Sec 7 [2.2.3]; gears with PROPULSION gear safety factors; material tests for parts transmitting torque and for blades must be witnessed by a Surveyor.',
+      'NR467 Pt C, Ch 1, Sec 15, [2.2.2] / [2.2.3] / [2.2.4] / [3.1.1]']);
+  }
+  if(c.ice==='iceclass' && c.duty==='man'){
+    out.push(['warn','Ice class — do not over-scope this package',
+      'For a transverse thruster intended for MANOEUVRING on an ICE CLASS ship, Sec 15 [1.1.1] requires compliance with Pt F, Ch 8, Sec 3, [3.5.1] ONLY: "Tunnels of transverse thrusters are to be fitted with grids for protection against ice impacts." The full propulsion-machinery ice package does not apply.',
+      'NR467 Pt C, Ch 1, Sec 15, [1.1.1] → Pt F, Ch 8, Sec 3, [3.5.1]']);
+  }
+  if(c.ice==='iceid'){
+    out.push(['info','ICE CLASS ID / YOUNG ICE 1 / YOUNG ICE 2',
+      'These notations sit outside the Finnish-Swedish Ice Class Rules equivalence stated in Pt F, Ch 8, Sec 1, [1.1.2]. Pt F, Ch 8, Sec 3 has a separate article for ICE CLASS ID propulsion machinery — confirm which applies before requesting ice-load calculations.',
+      'NR467 Pt F, Ch 8, Sec 1, [1.1.1] / [1.1.2]']);
+  }
+  if(c.ice==='polar' && c.duty==='man'){
+    out.push(['warn','Polar class + manoeuvring duty — confirm the scope',
+      'Sec 15 [1.1.1] directs thrusters intended for PROPULSION AND STEERING on POLAR CLASS / icebreaker ships to NR527. It does not extend that to transverse thrusters intended for manoeuvring only — for those, the express requirement is the ICE CLASS tunnel-grid provision of Pt F, Ch 8, Sec 3, [3.5.1]. Agree the applicable scope with the Society rather than assuming the full NR527 propulsion package.',
+      'NR467 Pt C, Ch 1, Sec 15, [1.1.1]; Pt F, Ch 8, Sec 3, [3.5.1]']);
+  }
+  if(c.ice==='polar' && c.family==='azimuth' && c.duty!=='man'){
+    out.push(['warn','NR584 applies — a separate rule note with its own submission tables',
+      'For an azimuth propulsion system on a ship with service notation icebreaker or additional class notation POLAR CLASS, NR584 "Azimuth thrusters in ice for polar class ships and icebreakers" applies in full: 55 documentation items (Tab 2), a propeller table (Tab 3 solid / Tab 4 built-up and CP), and manufacturer data (Tab 5), across 8 sections including a dedicated structural assessment of the thruster body in ice.',
+      'NR584 Sec 1, [1.1.1] / [1.3]']);
+  }
+  if(c.roleDP && !c.dpR){
+    out.push(['info','DP without the R / RS symbol — no FMEA',
+      'The FMEA at Pt F, Ch 11, Sec 5, Tab 1 #17 is annotated "For symbols R and RS only". If the vessel is only seeking DYNAPOS AM, AT or AM/AT, do not demand the FMEA. Tick the R/RS box if the redundancy symbol is requested.',
+      'NR467 Pt F, Ch 11, Sec 5, Tab 1 #17 / [2.4.1]']);
+  }
+  if(c.roleSteer && c.units==='single'){
+    out.push(['warn','Single steering-propulsion unit — risk assessment mandatory',
+      'A detailed risk assessment is to be submitted to demonstrate that in the case of any single failure in the steering gear, control system and power supply, the ship steering is maintained. The steering gear must also have two or more steering actuating systems.',
+      'NR467 Pt C, Ch 1, Sec 14, [4.2.3]']);
+  }
+  if(c.retract){
+    out.push(['info','Retractable unit — no dedicated rule table',
+      'NR467 Sec 15 has no separate table for retractable thrusters. Assess the unit itself under the rotating/azimuth table, and take the hull opening, closure, watertight integrity and locking arrangements under the hull rules (Pt B) and the general machinery arrangement requirements. Agree the scope with the Society early.',
+      'NR467 Pt C, Ch 1, Sec 15, Tab 3; Pt B']);
+  }
+  if(c.type==='vsp'||c.type==='rimdriven'||c.type==='pumpjet'||c.type==='gilljet'){
+    out.push(['info','Non-standard propulsor — confirm the scope with the Society',
+      'NR467 Sec 15 defines transverse thrusters, azimuth thrusters and water-jets. This unit type has no dedicated table; the closest applicable table has been applied. Cycloidal propellers are expressly recognised as a steering means in Sec 14 [4.1.1]. Agree the applicable scope in writing before review.',
+      'NR467 Pt C, Ch 1, Sec 15, [1.2]; Sec 14, [4.1.1]']);
+  }
+  return out;
+}
+
+/* ============================ PERSISTENCE ============================ */
 function sig(){
-  return [document.getElementById('ttype').value, document.getElementById('mod_cp').checked,
-    document.getElementById('mod_retract').checked, document.getElementById('mod_crp').checked,
-    segVal('duty'), segVal('duct'),
-    document.getElementById('steernozzle').checked, segVal('prime'),
-    document.getElementById('role_steer').checked, document.getElementById('role_shaft').checked,
-    document.getElementById('role_dp').checked, document.getElementById('ship').value,
-    ['ice','comf','aut','clean','mon','rp','ex','srtp'].map(n=>document.getElementById('not_'+n).checked?1:0).join('')
-  ].join('|');
+  const c=cfgState();
+  return [c.type,c.power,c.cp,c.retract,c.crp,c.gt1mw,c.duty,segVal('duct'),c.steernozzle,c.prime,
+    c.steerpower,c.units,c.roleDP,c.dpR,c.ice,c.shipKey,
+    Object.keys(c.notes).map(k=>c.notes[k]?1:0).join('')].join('|');
 }
-function loadTicks(){ try{return JSON.parse(localStorage.getItem('tqr:'+sig())||'{}');}catch(e){return {};} }
-function saveTicks(o){ try{localStorage.setItem('tqr:'+sig(), JSON.stringify(o));}catch(e){} }
-let TICKS = {};
+function loadTicks(){ try{return JSON.parse(localStorage.getItem('tqr2:'+sig())||'{}');}catch(e){return {};} }
+function saveTicks(o){ try{localStorage.setItem('tqr2:'+sig(), JSON.stringify(o));}catch(e){} }
+let TICKS={};
 
-/* ================= Render ================= */
+/* ============================== RENDER ============================== */
 function render(){
-  TICKS = loadTicks();
-  const {ordered, sc} = collect();
-  const filter = (document.getElementById('filter').value||'').toLowerCase();
-  const res = document.getElementById('results');
-  let total=0, fa=0, fi=0, done=0;
-  const ruleset = new Set();
+  TICKS=loadTicks();
+  const {groups, checks, c, belowThreshold}=collect();
+  const filter=(document.getElementById('filter').value||'').toLowerCase();
+  const res=document.getElementById('results');
   res.innerHTML='';
-  ordered.forEach(([g, items])=>{
-    const shown = items.filter(i=>!filter || i.name.toLowerCase().includes(filter) || i.ref.toLowerCase().includes(filter));
-    items.forEach(i=>{ total++; i.cat==='FA'?fa++:fi++; if(TICKS[g+'::'+i.name])done++;
-      i.ref.split(/[\/,]/).forEach(r=>{ r=r.trim(); if(r) ruleset.add(r); }); });
+  let total=0, fa=0, fi=0, done=0;
+  const ruleset=new Set();
+
+  const co=document.getElementById('callouts'); co.innerHTML='';
+  buildCallouts(c, belowThreshold).forEach(([kind,title,body,ref])=>{
+    const d=document.createElement('div'); d.className='callout '+kind;
+    d.innerHTML='<b>'+title+'</b>'+body+'<div class="cref">'+ref+'</div>';
+    co.appendChild(d);
+  });
+
+  groups.forEach(g=>{
+    g.items.forEach(i=>{ total++; i.cat==='A'?fa++:fi++; if(TICKS[g.title+'::'+i.name])done++;
+      const m=i.ref.match(/^(NR\d+|IACS[^,;]*|SOLAS[^,;]*|IEC[^,;]*|IGC[^,;]*)/); if(m) ruleset.add(m[1].trim()); });
+    const shown=g.items.filter(i=>!filter||i.name.toLowerCase().includes(filter)||i.ref.toLowerCase().includes(filter)||(i.par||'').toLowerCase().includes(filter));
     if(!shown.length) return;
-    const gEl=document.createElement('div'); gEl.className='group';
-    gEl.innerHTML='<div class="gh"><span>'+g+'</span><span class="cnt">'+shown.length+' item'+(shown.length>1?'s':'')+'</span></div>';
+    const el=document.createElement('div'); el.className='group';
+    el.innerHTML='<div class="gh"><span>'+g.title+'<span class="src">'+g.src+'</span></span><span class="cnt">'+shown.length+' item'+(shown.length>1?'s':'')+'</span></div>';
     const box=document.createElement('div'); box.className='items';
     shown.forEach(i=>{
-      const key=g+'::'+i.name; const checked=!!TICKS[key];
+      const key=g.title+'::'+i.name, checked=!!TICKS[key];
       const it=document.createElement('label'); it.className='item'+(checked?' done':'');
       it.innerHTML='<input type="checkbox" '+(checked?'checked':'')+'>'+
-        '<span class="name">'+i.name+'<div class="ref">'+i.ref+'</div></span>'+
+        '<span class="name">'+esc(i.name)+'<div class="ref">'+esc(i.ref)+'</div>'+(i.par?'<div class="par">'+esc(i.par)+'</div>':'')+'</span>'+
         '<span class="tag '+i.cat+'">'+i.cat+'</span>';
       it.querySelector('input').addEventListener('change',e=>{ TICKS[key]=e.target.checked; saveTicks(TICKS); render(); });
       box.appendChild(it);
     });
-    gEl.appendChild(box);
-    gEl.querySelector('.gh').addEventListener('click',()=>{ box.style.display = box.style.display==='none'?'':'none'; });
-    res.appendChild(gEl);
+    el.appendChild(box);
+    el.querySelector('.gh').addEventListener('click',()=>{ box.style.display=box.style.display==='none'?'':'none'; });
+    res.appendChild(el);
   });
-  if(!total){ res.innerHTML='<div class="empty">Select a thruster type to generate the required-drawing list.</div>'; }
+
+  if(checks.length){
+    const shown=checks.filter(k=>!filter||k[0].toLowerCase().includes(filter)||k[1].toLowerCase().includes(filter)||k[2].toLowerCase().includes(filter));
+    if(shown.length){
+      const el=document.createElement('div'); el.className='group';
+      el.innerHTML='<div class="gh"><span>Rule verification checks<span class="src">Numeric criteria and scope rules to confirm during review &mdash; not documents</span></span><span class="cnt">'+shown.length+'</span></div>';
+      const box=document.createElement('div'); box.className='items';
+      shown.forEach(k=>{ const d=document.createElement('div'); d.className='checkitem';
+        d.innerHTML='<div class="cq">'+esc(k[0])+'</div><div class="cv">'+esc(k[1])+'</div><div class="cr">'+esc(k[2])+'</div>';
+        box.appendChild(d); });
+      el.appendChild(box);
+      el.querySelector('.gh').addEventListener('click',()=>{ box.style.display=box.style.display==='none'?'':'none'; });
+      res.appendChild(el);
+    }
+  }
+
+  if(!total && !checks.length){ res.innerHTML='<div class="empty">Select a thruster type to generate the submission list.</div>'; }
+
   document.getElementById('s_total').textContent=total;
   document.getElementById('s_fa').textContent=fa;
   document.getElementById('s_fi').textContent=fi;
-  const pct= total? Math.round(done/total*100):0;
+  document.getElementById('s_chk').textContent=checks.length;
+  const pct=total?Math.round(done/total*100):0;
   document.getElementById('s_pct').textContent=pct+'%';
   document.getElementById('s_bar').style.width=pct+'%';
-  const rc=document.getElementById('rulechips'); rc.innerHTML='';
-  const chips=[...ruleset]; if(sc.note) chips.unshift('Ship rules: '+sc.note);
-  chips.filter(Boolean).forEach(r=>{ const c=document.createElement('span'); c.className='rulechip'; c.textContent=r; rc.appendChild(c); });
-}
 
-/* ================= Export ================= */
+  const rc=document.getElementById('rulechips'); rc.innerHTML='';
+  const gov=document.createElement('span'); gov.className='rulechip gov';
+  gov.textContent='Governing rule: '+(c.sc.gov||'NR467')+(c.sc.note?' — '+c.sc.note:'');
+  rc.appendChild(gov);
+  [...ruleset].sort().forEach(r=>{ const s=document.createElement('span'); s.className='rulechip'; s.textContent=r; rc.appendChild(s); });
+}
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch])); }
+
+/* ============================== EXPORT ============================== */
 function currentRows(){
-  const {ordered}=collect(); const rows=[];
-  ordered.forEach(([g,items])=>items.forEach(i=>rows.push([g,i.name,i.cat,i.ref, TICKS[g+'::'+i.name]?'Received':'Outstanding'])));
+  const {groups, checks}=collect(); const rows=[];
+  groups.forEach(g=>g.items.forEach(i=>rows.push([g.title,i.name,i.cat,i.ref,i.par||'',TICKS[g.title+'::'+i.name]?'Received':'Outstanding'])));
+  checks.forEach(k=>rows.push(['Rule verification check',k[0],'CHECK',k[2],k[1],'']));
   return rows;
 }
 function configText(){
-  const cfg=TYPES[document.getElementById('ttype').value];
-  return cfg.label
-    + (document.getElementById('mod_cp').checked?' + CP':'')
-    + (document.getElementById('mod_retract').checked?' + retractable':'')
-    + (cfg.crpOption && document.getElementById('mod_crp').checked?' + CRP':'')
-    + ' | duty: '+({man:'manoeuvring',prop:'propulsion',tmh:'take-me-home'}[segVal('duty')])
-    + ' | prop: '+segVal('duct')
-    + ' | prime: '+segVal('prime')
-    + ' | ship: '+(SHIPS[document.getElementById('ship').value].label);
+  const c=cfgState();
+  const dutyLbl={man:'manoeuvring',prop:'propulsion',steer:'propulsion + steering'}[c.duty];
+  return c.cfg.label+(c.cp?' + CP':'')+(c.retract?' + retractable':'')+(c.crp?' + CRP':'')
+    +' | power: '+(c.power==='ge110'?'≥110 kW':'<110 kW')
+    +' | duty: '+dutyLbl
+    +' | propeller: '+(c.ducted?(c.steernozzle?'steerable nozzle':'ducted (fixed nozzle)'):'open')
+    +' | prime mover: '+c.prime
+    +' | units: '+c.units
+    +' | ice: '+c.ice
+    +' | ship: '+c.sc.label
+    +' | governing rule: '+(c.sc.gov||'NR467');
 }
 function csvEscape(s){ s=(s==null?'':String(s)); return '"'+s.replace(/"/g,'""')+'"'; }
 function tsvCell(s){ s=(s==null?'':String(s)); return s.replace(/\t/g,' ').replace(/\r?\n/g,' / '); }
-
 function metaRows(){
   const g=id=>document.getElementById(id).value;
   return [
-    ['Vessel / Yard No', g('id_vessel')],['IMO number', g('id_imo')],['Class notation', g('id_notation')],['Reviewer / date', g('id_reviewer')],
-    ['Maker / model', g('sp_make')],['Rated power (kW)', g('sp_power')],['Rated thrust (kN)', g('sp_thrust')],['Prop. speed (rpm)', g('sp_rpm')],['Supply (V/bar)', g('sp_supply')],
-    ['Configuration', configText()],
+    ['Vessel / Yard No',g('id_vessel')],['IMO number',g('id_imo')],['Class notation',g('id_notation')],['Reviewer / date',g('id_reviewer')],
+    ['Maker / model',g('sp_make')],['Rated power (kW)',g('sp_power')],['Rated thrust (kN)',g('sp_thrust')],['Prop. speed (rpm)',g('sp_rpm')],['Supply (V/bar)',g('sp_supply')],
+    ['Configuration',configText()],
+    ['Rule basis','NR467 Jul 2026 (BV Rules Explorer); NR584 Apr 2026'],
   ];
 }
+const HEAD=['Group','Document / drawing or check','A / I','Rule reference','Particulars','Status'];
 function buildCSV(){
-  const meta=[['Thruster Plan-Approval Quick Reference — submission checklist']].concat(metaRows()).concat([[],['Group','Document / drawing','FA/FI','Rule reference','Status']]);
-  const lines = meta.map(r=>r.map(csvEscape).join(',')).concat(currentRows().map(r=>r.map(csvEscape).join(',')));
-  return lines.join('\r\n');
+  const meta=[['Thruster Plan-Approval Quick Reference — submission checklist']].concat(metaRows()).concat([[],HEAD]);
+  return meta.map(r=>r.map(csvEscape).join(',')).concat(currentRows().map(r=>r.map(csvEscape).join(','))).join('\r\n');
 }
 function buildTSV(){
-  const meta=metaRows().map(r=>r.map(tsvCell).join('\t'));
-  const header=['Group','Document / drawing','FA/FI','Rule reference','Status'].map(tsvCell).join('\t');
-  const rows=currentRows().map(r=>r.map(tsvCell).join('\t'));
-  return ['Thruster Plan-Approval Quick Reference — submission checklist'].concat(meta).concat(['',header]).concat(rows).join('\n');
+  return metaRows().map(r=>r.map(tsvCell).join('\t'))
+    .concat([''],[HEAD.map(tsvCell).join('\t')])
+    .concat(currentRows().map(r=>r.map(tsvCell).join('\t'))).join('\n');
 }
-function fileBaseName(){
-  const vn=(document.getElementById('id_vessel').value||'thruster').replace(/[^a-z0-9]+/gi,'_');
-  return 'thruster-submission-'+vn;
+function buildText(){
+  const {groups, checks}=collect(); const L=['THRUSTER PLAN-APPROVAL CHECKLIST',configText(),'Rule basis: NR467 Jul 2026; NR584 Apr 2026',''];
+  groups.forEach(g=>{ L.push('== '+g.title+' =='); L.push('   source: '+g.src);
+    g.items.forEach(i=>{ L.push('  ['+(TICKS[g.title+'::'+i.name]?'x':' ')+'] ('+i.cat+') '+i.name+'  — '+i.ref); }); L.push(''); });
+  if(checks.length){ L.push('== RULE VERIFICATION CHECKS =='); checks.forEach(k=>{ L.push('  - '+k[0]+'  — '+k[2]); }); }
+  return L.join('\n');
 }
-function showFallback(text){
-  const panel=document.getElementById('fallbackPanel'); const box=document.getElementById('fallbackText');
-  box.value=text; panel.style.display='block'; box.focus(); box.select();
+function showFallback(t){ const p=document.getElementById('fallbackPanel'),x=document.getElementById('fallbackText');
+  x.value=t; p.style.display='block'; x.focus(); x.select(); }
+async function copyOut(text){
+  try{ if(navigator.clipboard&&window.isSecureContext){ await navigator.clipboard.writeText(text); flash('Copied'); return; } }catch(e){}
+  try{ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select(); const ok=document.execCommand('copy'); document.body.removeChild(ta);
+    if(ok){ flash('Copied'); return; } }catch(e){}
+  showFallback(text);
 }
-function flashLabel(btn, msg, ms){
-  const o=btn.textContent; btn.textContent=msg; setTimeout(()=>{btn.textContent=o;}, ms||1400);
-}
-async function copyToClipboard(text){
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    try{ await navigator.clipboard.writeText(text); return true; }catch(e){ /* fall through */ }
-  }
-  try{
-    const ta=document.createElement('textarea');
-    ta.value=text; ta.setAttribute('readonly','');
-    ta.style.position='fixed'; ta.style.top='-1000px'; ta.style.left='-1000px';
-    document.body.appendChild(ta); ta.focus(); ta.select();
-    const ok=document.execCommand('copy');
-    document.body.removeChild(ta);
-    return ok;
-  }catch(e){ return false; }
-}
-async function copyForExcel(){
-  const btn=document.getElementById('copyExcel');
-  const tsv=buildTSV();
-  const ok=await copyToClipboard(tsv);
-  if(ok){ flashLabel(btn,'Copied ✓ — paste into a spreadsheet'); }
-  else { flashLabel(btn,'Could not auto-copy — see box below'); showFallback(tsv); }
-}
-function exportCSV(){
-  const btn=document.getElementById('exportCsv');
-  const csv=buildCSV();
-  let downloadAttempted=false;
-  try{
-    const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8;'});
-    const a=document.createElement('a'); const url=URL.createObjectURL(blob);
-    a.href=url; a.download=fileBaseName()+'.csv';
-    document.body.appendChild(a); a.click();
-    setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },500);
-    downloadAttempted=true;
-  }catch(e){ downloadAttempted=false; }
-  // Mobile / restricted browsers often fail this silently — always offer the manual fallback too.
-  flashLabel(btn, downloadAttempted?'Download started…':'Download not supported here');
-  showFallback(csv);
-}
-function copyList(){
-  const btn=document.getElementById('copyList');
-  const txt = configText()+'\n\n'+currentRows().map(r=>('[ ] '+r[1]+'  ('+r[2]+', '+r[3]+')  — '+r[0])).join('\n');
-  copyToClipboard(txt).then(ok=>{ if(ok) flashLabel(btn,'Copied ✓'); else showFallback(txt); });
-}
+let flashTimer=null;
+function flash(msg){ const f=document.querySelector('footer'); const old=f.textContent;
+  f.textContent=msg+' — '+old; clearTimeout(flashTimer); flashTimer=setTimeout(()=>{f.textContent=old;},2200); }
 
-/* ================= Wire up ================= */
-function initSelects(){
-  const tt=document.getElementById('ttype');
-  Object.entries(TYPES).forEach(([k,v])=>{ const o=document.createElement('option'); o.value=k; o.textContent=v.label; tt.appendChild(o); });
-  const sh=document.getElementById('ship');
-  Object.entries(SHIPS).forEach(([k,v])=>{ const o=document.createElement('option'); o.value=k; o.textContent=v.label; sh.appendChild(o); });
-}
-function segWire(id){ document.querySelectorAll('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); afterChange(id); })); }
-function afterChange(which){
-  const cfg=TYPES[document.getElementById('ttype').value];
-  document.getElementById('typehint').textContent=cfg.hint||'';
-  document.getElementById('dutyhint').textContent={man:'Auxiliary manoeuvring (e.g. bow thruster).',prop:'Main propulsion — shaft line & TVC apply.',tmh:'Take-me-home / emergency propulsion.'}[segVal('duty')]||'';
-  if(cfg.forceElectric){ document.querySelectorAll('#prime button').forEach(b=>b.classList.toggle('on',b.dataset.v==='electric')); }
-  // steering-nozzle option only when ducted
-  document.getElementById('steernozzle_wrap').style.display = (segVal('duct')==='ducted')?'flex':'none';
-  // CRP option only for types that support it (azimuth / podded)
-  const crpWrap=document.getElementById('mod_crp_wrap');
-  crpWrap.style.display = cfg.crpOption?'flex':'none';
-  if(!cfg.crpOption) document.getElementById('mod_crp').checked=false;
-  render();
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  initSelects(); segWire('duty'); segWire('duct'); segWire('prime');
-  document.getElementById('ttype').addEventListener('change',()=>{ afterChange('ttype'); });
-  document.getElementById('steernozzle').addEventListener('change',render);
-  ['mod_cp','mod_retract','mod_crp','role_steer','role_shaft','role_dp','ship',
-   'not_ice','not_comf','not_aut','not_clean','not_mon','not_rp','not_ex','not_srtp']
-   .forEach(id=>document.getElementById(id).addEventListener('change',()=>{
-     if(id==='ship'){ const s=SHIPS[document.getElementById('ship').value]; const au=s.auto||[];
-       au.forEach(a=>{ const el=document.getElementById('not_'+a); if(el) el.checked=true; });
-       document.getElementById('shiphint').textContent = (s.note?('Rules: '+s.note+'.  '):'')+(au.length?('Auto-ticked: '+au.join(', ').toUpperCase()):''); }
-     render();
-   }));
-  document.getElementById('filter').addEventListener('input',render);
-  document.getElementById('resetChecks').addEventListener('click',()=>{ TICKS={}; saveTicks(TICKS); render(); });
-  document.getElementById('copyExcel').addEventListener('click',copyForExcel);
-  document.getElementById('exportCsv').addEventListener('click',exportCSV);
-  document.getElementById('copyList').addEventListener('click',copyList);
-  document.getElementById('theme').addEventListener('click',()=>{
-    const r=document.documentElement; const cur=r.getAttribute('data-theme');
-    const next = cur==='dark'?'light': cur==='light'?'dark' : (matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark');
-    r.setAttribute('data-theme',next);
+/* ============================== INIT ============================== */
+(function init(){
+  const ts=document.getElementById('ttype');
+  Object.keys(TYPES).forEach(k=>{ const o=document.createElement('option'); o.value=k; o.textContent=TYPES[k].label; ts.appendChild(o); });
+  const ss=document.getElementById('ship');
+  Object.keys(SHIPS).forEach(k=>{ const o=document.createElement('option'); o.value=k; o.textContent=SHIPS[k].label; ss.appendChild(o); });
+
+  function syncUI(){
+    const cfg=TYPES[ts.value];
+    document.getElementById('typehint').textContent=cfg.hint||'';
+    document.getElementById('mod_crp_wrap').style.display=cfg.crpOption?'':'none';
+    if(!cfg.crpOption) document.getElementById('mod_crp').checked=false;
+    document.getElementById('mod_gt1mw_wrap').style.display=(segVal('prime')==='electric'||cfg.forceElectric)?'':'none';
+    document.getElementById('steernozzle_wrap').style.display=segVal('duct')==='ducted'?'':'none';
+    document.getElementById('dpR_wrap').style.display=document.getElementById('role_dp').checked||((SHIPS[ss.value].auto||[]).includes('dp'))?'':'none';
+    if(cfg.forceElectric){ document.querySelectorAll('#prime button').forEach(b=>b.classList.toggle('on',b.dataset.v==='electric')); }
+    document.querySelectorAll('#prime button').forEach(b=>{ b.disabled=!!cfg.forceElectric; b.style.opacity=cfg.forceElectric&&b.dataset.v!=='electric'?'.45':''; });
+    const shipCfg=SHIPS[ss.value];
+    const lockDuty = cfg.fixedDuty || (shipCfg.dutySteer?'steer':null);
+    if(lockDuty) document.querySelectorAll('#duty button').forEach(b=>b.classList.toggle('on',b.dataset.v===lockDuty));
+    document.querySelectorAll('#duty button').forEach(b=>{ b.disabled=!!lockDuty; b.style.opacity=lockDuty&&b.dataset.v!==lockDuty?'.45':''; });
+    if(cfg.retractDefault && !document.getElementById('mod_retract').dataset.touched) document.getElementById('mod_retract').checked=true;
+    const c=cfgState();
+    document.getElementById('dutyhint').textContent =
+      c.duty==='man'?'Manoeuvring only — reduced propeller/shaft/gear scope, no steering-gear package.'
+      :c.duty==='prop'?'Main propulsion — full Sec 8/Sec 7/Sec 6 propulsion scope.'
+      :'Propulsion and steering — Sec 14 steering-gear package applies in addition.';
+    document.getElementById('primehint').textContent =
+      c.prime==='electric'?'Sec 15 [2.2.1] → Pt C, Ch 2, Sec 4 (rotating machines).'
+      :c.prime==='diesel'?'Sec 15 [2.2.1] → Pt C, Ch 1, Sec 2 (diesel engines).'
+      :'Hydraulic drive — piping per Pt C, Ch 1, Sec 10.';
+    document.getElementById('unitshint').textContent =
+      segVal('units')==='single'?'Sec 14 [4.2.3]: 2+ steering actuating systems and a detailed risk assessment.'
+      :'Sec 14 [4.2.2]: main + auxiliary steering gear per unit, or 2+ identical actuating systems.';
+    document.getElementById('shiphint').textContent=SHIPS[ss.value].note||'';
+    const iceSel=document.getElementById('ice').value;
+    document.getElementById('icehint').textContent =
+      iceSel==='none'?''
+      :iceSel==='iceclass'?(c.duty==='man'?'Manoeuvring transverse thruster → Pt F, Ch 8, Sec 3, [3.5.1] ONLY (tunnel grids).':'Propulsion/steering → full Pt F, Ch 8 package.')
+      :iceSel==='iceid'?'Outside the Finnish-Swedish equivalence — check the ICE CLASS ID article.'
+      :'POLAR CLASS / icebreaker → NR527, and NR584 for azimuth propulsion systems.';
+  }
+
+  document.querySelectorAll('.seg').forEach(seg=>{
+    seg.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b||b.disabled)return;
+      seg.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); syncUI(); render(); });
   });
-  afterChange('init');
-});
+  ['ttype','ship','ice'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{syncUI();render();}));
+  ['mod_cp','mod_retract','mod_crp','mod_gt1mw','steernozzle','role_dp','dp_R',
+   'not_comf','not_aut','not_clean','not_mon','not_avm','not_ex','not_srtp','not_cyber']
+    .forEach(id=>document.getElementById(id).addEventListener('change',()=>{
+      if(id==='mod_retract') document.getElementById(id).dataset.touched='1';
+      syncUI(); render(); }));
+  document.getElementById('filter').addEventListener('input',render);
+  ['id_vessel','id_imo','id_notation','id_reviewer','sp_make','sp_power','sp_thrust','sp_rpm','sp_supply']
+    .forEach(id=>document.getElementById(id).addEventListener('input',()=>{}));
+
+  document.getElementById('copyExcel').addEventListener('click',()=>copyOut(buildTSV()));
+  document.getElementById('copyList').addEventListener('click',()=>copyOut(buildText()));
+  document.getElementById('exportCsv').addEventListener('click',()=>{
+    const csv='﻿'+buildCSV();
+    try{
+      const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+      const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+      a.download='thruster-checklist.csv'; document.body.appendChild(a); a.click();
+      setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},800); flash('CSV downloaded');
+    }catch(e){ showFallback(csv); }
+  });
+  document.getElementById('resetChecks').addEventListener('click',()=>{ TICKS={}; saveTicks(TICKS); render(); });
+  document.getElementById('theme').addEventListener('click',()=>{
+    const r=document.documentElement;
+    const cur=r.getAttribute('data-theme')|| (window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    r.setAttribute('data-theme', cur==='dark'?'light':'dark');
+  });
+
+  syncUI(); render();
+})();
 </script>
 </body>
 </html>

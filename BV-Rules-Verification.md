@@ -1,5 +1,10 @@
 # BV Rules Explorer Verification Log
 
+> **Round 2 (2026-07-16, deep pass)** — the sections below marked **§7 onwards** record a
+> full transcription of the actual NR467 Sec 15 / Sec 14 / Pt F submission tables and the
+> discovery of **NR584**, a dedicated azimuth-thruster rule note that the catalog had never
+> cited. `thruster-quickref.html` was rebuilt against these transcribed tables.
+
 Verification of the publications, rule references, and ship-type coverage cited in
 `Main.tex` (Thruster Requirements Catalog v1.6) against the live **Bureau Veritas
 Rules Explorer** (https://rulesexplorer.bureauveritas.com/), checked on 2026-07-16.
@@ -192,3 +197,306 @@ Rules Explorer only hosts Bureau Veritas publications (NR/NI numbers). The follo
 | Part F additional-notation chapters | 16 | 7 cited correctly | 1 naming error (RP→AVM-DPS), 2 uncited relevant chapters (Ch.14 Electric Propulsion, Ch.15 Elastic Shaft Alignment) |
 
 **Net assessment:** The catalog's core structural claims (which Part/Chapter/Section governs thrusters, steering gear, shafting, and its 8 cross-referenced rule notes) are all verified accurate against the live Jul 2026 edition. The issues found are all secondary: one wording precision error (≥110kW), two notation-naming errors (DYNAPOS suffixes, RP→AVM-DPS), and a ship-type coverage gap — most notably Diving Support Vessels, a thruster/DP-intensive vessel class with zero mention in the 15-row ship-type matrix.
+
+---
+---
+
+# ROUND 2 — deep transcription of the actual submission tables (2026-07-16)
+
+Round 1 (above) verified that the catalog's *structural* claims were right. Round 2 went
+into the rule text itself and transcribed the **actual documentation tables**. The finding
+is more serious than round 1: the catalog's document lists were **not** drawn from the rule
+tables at all. They were plausible-sounding engineering lists with generic citations
+("NR467 Pt C Ch.1"), and in several places they contradict the rule's own A/I categorisation.
+
+`thruster-quickref.html` has been rebuilt so every line it emits is traceable to a named
+rule table row or article. `Main.tex` still carries the older invented lists — see
+"Outstanding" at the end.
+
+---
+
+## 7. ★ NR584 — the missing dedicated thruster rule note
+
+**NR584 — "Azimuth thrusters in ice for polar class ships and icebreakers", Apr 2026.**
+
+This is a complete, dedicated BV rule note for azimuth thrusters. **It is cited nowhere in
+the catalog.** For a polar-class or icebreaker azimuth installation it is the controlling
+document, and it is far more demanding than NR467 Sec 15.
+
+- **Application [1.1.1]**: ships fitted with an azimuth propulsion system and assigned a
+  service notation **icebreaker** or an additional class notation **POLAR CLASS**.
+- **[1.1.2]** covers both **podded electrical thrusters** (steering unit, slewing bearing,
+  rudder part, pod containing the electric motor) and **Z/L geared thrusters** (steering
+  unit, upper gearing, lower gearing, nozzle, prime mover — diesel or electric).
+- **8 sections**: Sec 1 General · Sec 2 Structure of the Thruster Body · Sec 3 Machinery
+  Assessment · Sec 4 Electrical Installations · Sec 5 Steering Units · **Sec 6 Structural
+  Assessment of the Thruster Body in Ice** · Sec 7 Tests · Sec 8 Certification.
+- **Submission tables**: Tab 2 = **55 documentation items**; Tab 3 = solid propellers (4);
+  Tab 4 = built-up and CP propellers (8); Tab 5 = manufacturer data (6).
+
+Distinctive items with no equivalent anywhere in NR467 Sec 15, e.g.: *ice load calculation
+of the thruster body* (#15), *stress calculation for the thruster body* (#16), *maximum
+propulsive power in ice conditions as a function of steering angle and shaft speed* (#18),
+*detailed drawing of the propeller shaft including the brake* (#20), *operation manual of
+the thruster in ice conditions* (#11), *FMEA of the propulsion* covering cooling,
+lubrication, ventilation, sealing, steering, control and fire safety (#5), *risk analysis of
+hydraulic locking* (#55).
+
+---
+
+## 8. NR467 Pt C, Ch 1, Sec 15 — the real submission tables
+
+Sec 15 [1.4] directs: athwartship and azimuth thrusters → **Tab 1 + Tab 2 + Tab 3**;
+water-jets → **Tab 4**; manufacturer data → **Tab 5**. There are **five** tables, not three.
+
+**A = to be submitted for approval · I = to be submitted for information.**
+
+### Tab 1 — all thrusters (5 items)
+| # | A/I | Documentation |
+|---|---|---|
+| 1 | **I** | General arrangement of the thruster |
+| 2 | A | Propeller (incl. applicable details of Ch 1, Sec 8) |
+| 3 | A | Bearing details |
+| 4 | A | Propeller and intermediate shafts |
+| 5 | A | Gears (incl. applicable details of Ch 1, Sec 6) |
+
+### Tab 2 — transverse thrusters (4 items)
+Structure of the tunnel (A, showing materials and thickness) · Structural equipment/connecting
+devices transmitting thrust from propeller to tunnel (A) · Sealing devices (A — propeller
+shaft gland and thruster-tunnel connection) · Pitch control device and monitoring system
+(A — for adjustable pitch propellers).
+
+### Tab 3 — rotating and azimuth thrusters (5 items)
+Structural items (A — nozzle, bracing etc.) · Structural connection to hull (A) · Rotating
+mechanism of the thruster (A) · Thruster control system (A) · Piping systems connected to
+thruster (A).
+
+### Tab 4 — water-jets (7 items)
+General arrangement (**I**) · Casing/duct (A — location and shape, materials, thicknesses,
+forces acting on the hull) · Details of shafts, flanges, keys (A) · Sealing gland (**I**) ·
+Bearings (A) · Impeller (A) · Steering and reversing buckets, their control devices and
+corresponding hydraulic diagrams (A).
+
+### Tab 5 — manufacturer data, thrusters and water-jets (4 items)
+Data on ratings (**I** — rated power, thrust and revolutions) · Material specifications of
+the major parts (A) · Weldings (A — where of welded construction: joint design, procedures,
+heat treatments, NDE after welding) · Background information on previous operating
+experience (**I**, where applicable).
+
+### Discrepancies against the catalog's invented lists
+1. **General arrangement is I, not FA.** Catalog Table "General Requirements" #1 lists the GA
+   drawing as **FA**. The rule categorises it **I** (Tab 1 #1, and Tab 4 #1 for water-jets).
+2. **Technical specification sheet is I, not FA.** Catalog #2 lists it FA; the rule's
+   equivalent is "Data on ratings" — **I** (Tab 5 #1).
+3. **Water-jet sealing gland is I**, not FA (Tab 4 #4).
+4. **Volume.** The rule requires 13 items for a tunnel thruster (Tab 1 + Tab 2 + Tab 5). The
+   catalog's tunnel-thruster chapter lists ~39. The extra items are not wrong to *ask about*,
+   but they are not rule-mandated submissions and must not be presented as though they were.
+
+---
+
+## 9. Scope definitions that change what is even in scope
+
+- **[1.2.1] Thruster** — *"a propeller installed in a revolving nozzle or in a special
+  transverse tunnel in the ship, or a water-jet… **Propulsion propellers in fixed nozzles are
+  not considered thrusters** (see Ch 1, Sec 8, [1.1.1])."*
+  → The catalog's "fixed nozzle (Kort-type)" configuration under thrusters is **out of Sec 15
+  scope** when it is a propulsion propeller: it belongs to Sec 8. The rebuilt tool raises an
+  explicit warning for this case.
+- **[1.3.1]** — *"In general, at least two azimuth thrusters are to be fitted in ships where
+  these are the sole means of propulsion. Single azimuth thruster installations will be
+  specially considered."* Also applies to water-jets. Absent from the catalog.
+- **[1.2.2]/[1.2.3]/[1.2.4]** define transverse thruster, azimuth thruster and water-jet.
+
+## 10. Duty (manoeuvring vs propulsion) changes almost every technical requirement
+
+| Aspect | Manoeuvring only | Propulsion / steering |
+|---|---|---|
+| Propeller | Sec 8 [2.5] **without** the 10% thickness increase — [2.2.2] | Sec 8 [2.5] in full |
+| Shaft | formula in Sec 15 [2.2.3] (+10% at a keyed connection) | Ch 1, Sec 7, [2.2.3] |
+| Gears | Sec 6 with **auxiliary** gear safety factors — [2.2.4] | Sec 6 with **propulsion** safety factors |
+| Material tests | **need not** be Surveyor-witnessed if full reports provided — [3.1.2] | **witnessed by a Surveyor** — [3.1.1] |
+| Ice class | **only** Pt F, Ch 8, Sec 3, [3.5.1] | full Pt F, Ch 8 |
+
+The catalog has a "duty" concept but does not carry these specific rule consequences.
+
+## 11. Other Sec 15 requirements not reflected in the catalog
+- **[2.2.6]** tunnel thickness **not less than the adjacent part of the hull**; non-welded
+  tunnel-to-hull connections specially considered.
+- **[2.2.5]** nozzle structure → **Pt B, Ch 12**; nozzle-to-hull scantlings and weld type/size
+  specially considered, detailed stress analysis may be required for high power installations;
+  **for steerable thrusters the equivalent rudder stock diameter is calculated per Pt B, Ch 12**.
+- **[2.3.2]** water-jet guide vanes / shaft supports: **fatigue strength calculation to be submitted**.
+- **[2.3.3]** water-jet stator/rotor: **no natural frequency near the stator-rotor interaction
+  excitation frequencies; calculations to be submitted** for maximum speed and any currently used speed.
+- **[2.4.1]** steering thruster controls from **navigation bridge, machinery control station and
+  locally**; means to stop any running thruster at each station; **thruster angle indicator at each
+  steering control station, independent of the control system**.
+- **Tab 6** minimum alarms for propulsion/steering thrusters: steering oil pressure **low**, oil
+  tank level **low**. (Much shorter than the catalog's alarm expectations.)
+- **[3.3.1]** thrusters **individually tested and certified**; **[3.3.2]** mass-produced units may
+  go through the **type approval programme** instead.
+
+---
+
+## 12. NR467 Sec 14 — the steering-gear route for thrusters
+
+- **[1.1.1]** Sec 14 applies to steering gear of all mechanically propelled ships **and to the
+  steering mechanism of thrusters used as means of propulsion**.
+- **Tab 1 #13** is the thruster entry: *"For azimuth thrusters used as steering means:
+  Specification and drawings of the steering mechanism; where applicable, documents 2 to 6 and
+  8 to 12 above."* — i.e. the thruster steering package is a defined **subset** of the steering
+  gear table, not the whole of it. The rebuilt tool reproduces exactly that subset.
+- **Article 4** is dedicated to ships with thrusters as steering means:
+  - **[4.1.1]** the steering gear may consist of **azimuth thrusters, water-jets or cycloidal
+    propellers** complying with Sec 15 — this is the rule basis for treating VSP as a steering means.
+  - **[4.1.2]** two or more thrusters as steering means → control system must include
+    **automatic synchronisation of thruster rotation**, unless each thruster withstands the
+    others' forces.
+  - **[4.2.3]** single steering-propulsion unit → 2+ steering actuating systems **and a detailed
+    risk assessment to be submitted**.
+  - **[4.2.5]** main steering: **≥ 2,3°/s** average turning speed at maximum ahead service
+    speed, power operated for all ships, undamaged at maximum astern speed.
+  - **[4.2.6]** auxiliary steering: **≥ 0,5°/s** at half maximum ahead service speed **or 7
+    knots whichever is greater**; power operated where needed for SOLAS II-1/29.4.2 and in any
+    ship with **> 2 500 kW per steering-propulsion unit**.
+  - **[4.2.8]** where propulsion power **> 2 500 kW per thruster unit**, alternative power supply
+    **automatically within 45 s**, capacity **≥ 30 min** for ships ≥ 10 000 GT, **≥ 10 min** otherwise.
+  - **[4.3.1]** use of **water-jets as steering means will be given special consideration**.
+
+None of these numeric criteria appear in the catalog.
+
+---
+
+## 13. Electrical — Pt C, Ch 2
+
+- Sec 15 **[2.2.1]** sends electric thruster motors **and their feeding systems** to
+  **Pt C, Ch 2, Sec 4** (Rotating Machines), with two express provisions: prevent starting
+  whenever there are insufficient generators in operation; intermittent duty thrusters
+  specially considered.
+- **Ch 2, Sec 4, Article 5 — "Additional tests for rotating machines used as propulsion motor
+  or thruster"**: for machines **developing more than 1 MW**, during assembly — shaft line per
+  Ch 1 Sec 7; rotor dynamic balancing; stator dielectric + insulation resistance after
+  impregnation; frame visual + **liquid penetrant test of 10% of structure welds and 100% of
+  handling points**; watercooler visual + performance test; hydrostatic jacking unit pressure
+  and working tests.
+
+The catalog's electric-drive list (VFD spec, harmonic study, cable segregation etc.) is
+reasonable engineering practice but is **not** what Sec 15 [2.2.1] actually cites.
+
+---
+
+## 14. DYNAPOS — Pt F, Ch 11, Sec 5
+
+Full 22-row documentation table transcribed into the tool. Key correction:
+
+> **Item 17, Failure Mode and Effect Analysis (FMEA), is annotated "For symbols R and RS only".**
+
+[2.4.1] confirms: *"For installation intended to be assigned the notation DYNAPOS AM/AT R and
+DYNAPOS AM/AT RS an FMEA is to be carried out."* **Plain DYNAPOS AM, AT or AM/AT does not
+attract an FMEA.**
+
+The catalog states the opposite in its disclaimers — *"For DP systems, the FMEA is the
+cornerstone document. Inadequate FMEA is grounds for rejection"* — presented unconditionally.
+That is wrong for AM/AT-only installations. The tool now gates the FMEA on an explicit R/RS
+selection and explains the gate.
+
+Also thruster-specific in that table: **#11** layout drawings of thrust units, thrust shafts
+and blocks, arrangement of hull passages, thrust curves of each propulsion unit; **#18** study
+of possible interaction between thrusters; **#3** capability plots including the worst case failure.
+
+DYNAPOS **[1.1.3]** cross-refers to Pt C, Ch 1, Sec 2 (engine-driven thrusters), **Pt C, Ch 1,
+Sec 15** (azimuthal and transverse thrusters) and Pt F, Ch 3 (automation).
+
+---
+
+## 15. Ice class — the single most over-scoped area in the catalog
+
+**Pt F, Ch 8, Sec 3, [3.5.1] in full, verbatim:**
+
+> **"Tunnels of transverse thrusters are to be fitted with grids for protection against ice impacts."**
+
+Sec 15 **[1.1.1]** states that transverse thrusters intended for manoeuvring on ICE CLASS ships
+*"are required to comply with additional requirement Pt F, Ch 8, Sec 3, [3.5.1] only"*.
+
+**One sentence. One grid.** The catalog's Ice Class chapter applies an ice-strengthening
+submission set (propeller ice-load strength calculation, shaft/gear ice-torque verification,
+lower-unit/slewing ice-block impact, winterisation, low-temperature material certification) to
+thrusters generally. For a bow tunnel thruster on an ICE CLASS ship that is a substantial
+over-demand. The tool now splits the two paths and raises an explicit "do not over-scope" warning.
+
+By contrast, thrusters for **propulsion and steering** on ICE CLASS ships do get the full
+Pt F, Ch 8, Sec 3 Article 1 treatment, including **[1.11] azimuthing thruster body** — extreme
+ice impact loads, ice loads penetrating an ice ridge, thruster body global vibration,
+**steering gear design torque in ice**, and protection of the steering gear against excessive torque.
+
+**Ice notations (Pt F, Ch 8, Sec 1, [1.1.1])** are: ICE CLASS **IA SUPER, IA, IB, IC, ID**,
+**YOUNG ICE 1**, **YOUNG ICE 2**. The catalog lists only IA SUPER/IA/IB/IC — missing ID and both
+YOUNG ICE notations. [1.1.2] notes the strengthening requirements (excepting ID, YOUNG ICE 1 and 2)
+are equivalent to the **Finnish-Swedish Ice Class Rules 2019, as amended**.
+
+POLAR CLASS / icebreaker propulsion-and-steering thrusters → **NR527**, and for azimuth systems
+→ **NR584** (§7).
+
+---
+
+## 16. The wider BV publication landscape by ship type
+
+Rules Explorer carries **7 Main Rules, 68 Rule Notes, 57 Guidance Notes, 15 Former**. Governing
+publication by unit type:
+
+| Ship / unit type | Governing publication | Edition |
+|---|---|---|
+| Sea-going steel ships (default) | **NR467** | Jul 2026 |
+| Naval ships | **NR483** | Dec 2025 |
+| FSRU / FSU | **NR645** | Dec 2025 |
+| Inland navigation vessels | **NR217** | Jun 2025 |
+| Offshore units (MODU) | **NR445** | Jun 2025 |
+| Yachts | **NR500** | Oct 2024 |
+| High-speed craft | **NR396** | rule note |
+| Ships < 500 GT | **NR566** (+ NR600 hull) | Nov 2024 |
+| Polar waters / icebreakers | **NR527** | Jan 2026 |
+| Diving systems (on a DSV) | **NR610** — *prevails over NR467 for the diving system, per Pt A, Ch 1, Sec 1, [1.1.3]* | — |
+| Materials and welding (all) | **NR216** | Jan 2025 |
+
+Other rule notes relevant to thruster packages and **not cited in the catalog**: **NR584**
+(azimuth thrusters in ice), **NR659** (cyber security), **NR674** (condition monitoring —
+relevant to MON-SHAFT), **NR614** (underwater radiated noise), **NR632** (hardware-in-the-loop
+testing — DP/control validation), **NR598** (safe return to port — the catalog cites only SOLAS),
+**NR656** (power generation units), **NR526** (lifting appliances). Guidance notes: **NI663**
+(propeller in composite materials), **NI543** / **NI565** (ice selection and ice/structure
+interaction), **NI649** (lay-up and reactivation of DP vessels).
+
+---
+
+## 17. IACS and SOLAS (verified off Rules Explorer)
+
+- **IACS UR I3 — "Machinery Requirements for Polar Class Ships"** covers propeller-ice
+  interaction loads for **azimuthing and fixed thrusters**, geared and podded propulsors;
+  propulsion machinery type factor **k3 = 1,0 fixed / 1,2 azimuthing**. Rev.2 CR in force 1 Jul 2024.
+- **IACS UR E26 (Cyber Resilience of Ships)** and **UR E27 (Cyber Resilience of On-board Systems
+  and Equipment)** — mandatory for ships **contracted on or after 1 July 2024**. The catalog
+  mentions cybersecurity but gives no threshold date.
+- ⚠️ **UR M78 is "Internal Combustion Engines Fuelled by Gases or Low-flashpoint Fuels"** — it is
+  **not** a thruster requirement. Do not cite it in thruster work.
+- **SOLAS II-1/29.4.2** is cited by NR467 Sec 14 [4.2.6]; **IMO Res. MSC.137(76)** (Standards for
+  ship manoeuvrability) governs the manoeuvrability trials referenced in Sec 14 Article 4, to be
+  run at steering angles not exceeding the declared steering angle limits.
+
+---
+
+## 18. What was rebuilt, and what is still outstanding
+
+**Rebuilt — `thruster-quickref.html`.** Every emitted line now carries an exact citation
+(e.g. "NR467 Pt C, Ch 1, Sec 15, Tab 1 #2"), uses the rule's own **A / I** categorisation, and
+is grouped by its source table so provenance is visible. Added: the five Sec 15 tables, the
+Sec 14 Tab 1 #13 subset, the DYNAPOS table with R/RS gating, the split ice paths, the full
+NR584 tables, a "rule verification checks" panel carrying the numeric criteria (2,3°/s, 0,5°/s,
+45 s, 30/10 min, 110 kW, 1 MW, 2 500 kW), scope warnings (fixed-nozzle exclusion, ice
+over-scoping, <110 kW), and ship-type → governing-publication mapping for 24 ship types.
+Tested across 108 type × duty × ice combinations with no errors.
+
+**Outstanding — `Main.tex` / `Main.pdf`.** The PDF catalog still contains the pre-rule-table
+document lists, the GA/spec-sheet FA mis-categorisation, the unconditional DP-FMEA statement,
+the over-scoped ice chapter, and no reference to NR584. Bringing the PDF in line with the
+transcribed tables is a larger edit than the v1.7 corrections and has not been done.
