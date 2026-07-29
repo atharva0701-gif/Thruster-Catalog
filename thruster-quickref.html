@@ -36,8 +36,10 @@ header.top .sub{font-size:12px;opacity:.85;font-weight:400}
   color:#fff;border-radius:5px;padding:1px 7px;font-size:11.5px;font-weight:700;letter-spacing:.3px;
   margin-left:8px;vertical-align:2px;white-space:nowrap}
 .printhead{display:none}
-.wrap{display:grid;grid-template-columns:350px 1fr;gap:18px;padding:18px;max-width:1360px;margin:0 auto}
-@media(max-width:880px){.wrap{grid-template-columns:1fr}}
+.wrap{display:grid;grid-template-columns:360px 1fr;gap:18px;padding:18px;max-width:1500px;margin:0 auto}
+/* Desktop tool. Below ~900px the two columns simply stack so a half-width
+   window on a PC still works; it is not intended for phone use. */
+@media(max-width:900px){.wrap{grid-template-columns:1fr}.panel.controls{position:static;max-height:none}}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
 .panel.controls{position:sticky;top:70px;align-self:start;max-height:calc(100vh - 90px);overflow:auto}
 .field{margin-bottom:13px}
@@ -224,30 +226,37 @@ footer{max-width:1360px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
       <label class="chk"><input type="checkbox" id="not_cyber"> Cyber resilience (UR E26/E27)</label>
     </div>
 
+    <h2>7 &middot; Output</h2>
     <div class="btnrow">
-      <button class="btn" id="copyExcel">Copy for Excel / Sheets</button>
+      <button class="btn" id="copyExcel">Copy for Excel</button>
+      <button class="btn" id="exportCsv">Download .csv</button>
     </div>
-    <div class="hint" style="margin-top:-2px">Recommended on mobile: copies a table &mdash; open Excel/Sheets, tap a cell, paste.</div>
+    <div class="hint" style="margin-top:-2px"><b>Copy for Excel</b> puts the whole table on the clipboard &mdash; open Excel, click a cell, Ctrl+V and it fills in as columns. <b>Download .csv</b> saves a file you can open directly.</div>
     <div class="btnrow">
-      <button class="btn ghost" id="exportCsv">Download .csv file</button>
       <button class="btn ghost" id="copyList">Copy as checklist text</button>
+      <button class="btn ghost" onclick="window.print()">Print / PDF</button>
     </div>
     <div class="btnrow">
-      <button class="btn ghost" onclick="window.print()">Print / PDF</button>
       <button class="btn ghost" id="resetChecks">Reset ticks</button>
+      <button class="btn ghost" id="clearIdent">Clear vessel details</button>
     </div>
     <div id="fallbackPanel" style="display:none;margin-top:8px">
-      <div class="hint" style="margin-bottom:4px">If nothing downloaded or copied automatically, tap inside the box, select all, and copy manually:</div>
+      <div class="hint" style="margin-bottom:4px">If the copy or download did not go through, click inside the box, press Ctrl+A then Ctrl+C:</div>
       <textarea id="fallbackText" readonly onclick="this.select()"
         style="width:100%;height:90px;font-size:11.5px;font-family:Consolas,monospace;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)"></textarea>
     </div>
-    <div class="disc">Unofficial working aid. Every document line is traceable to a named rule table or article &mdash; verify each against the edition applicable to the vessel&rsquo;s contract date on <b>rulesexplorer.bureauveritas.com</b>. Runs fully offline as a local file. Not an official Bureau&nbsp;Veritas document.</div>
+    <div class="disc">Unofficial working aid for use on a BV computer. Every document line is traceable to a named rule table or article &mdash; verify each against the edition applicable to the vessel&rsquo;s contract date on <b>rulesexplorer.bureauveritas.com</b>. Runs fully offline as a local file: no internet, no install, no account. Not an official Bureau&nbsp;Veritas document.</div>
   </aside>
 
   <main>
     <div class="printhead">
       <div class="pt">Thruster Plan-Approval Quick Reference</div>
       <div class="pv" id="printver"></div>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:5px">
+      <div style="font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--bv2);font-weight:700">Vessel &amp; unit identification</div>
+      <div style="font-size:11px;color:var(--muted)">saved automatically on this computer</div>
+      <div id="identsaved" style="font-size:11px;color:var(--ok);font-weight:700"></div>
     </div>
     <div class="idbar">
       <input type="text" id="id_vessel" placeholder="Vessel / Yard No">
@@ -982,6 +991,27 @@ function metaRows(){
     ['Exported',new Date().toISOString().slice(0,16).replace('T',' ')],
   ];
 }
+/* ---- identification / specification persistence (survives closing the file) ---- */
+const IDENT_FIELDS=['id_vessel','id_imo','id_notation','id_reviewer',
+                    'sp_make','sp_power','sp_thrust','sp_rpm','sp_supply'];
+const IDENT_KEY='tqr2:ident';
+function saveIdent(){
+  try{ const o={}; IDENT_FIELDS.forEach(f=>o[f]=document.getElementById(f).value);
+    localStorage.setItem(IDENT_KEY, JSON.stringify(o));
+    const s=document.getElementById('identsaved');
+    if(s){ s.textContent='saved'; clearTimeout(s._t); s._t=setTimeout(()=>{s.textContent='';},1400); }
+  }catch(e){}
+}
+function loadIdent(){
+  try{ const o=JSON.parse(localStorage.getItem(IDENT_KEY)||'{}');
+    IDENT_FIELDS.forEach(f=>{ if(o[f]!=null) document.getElementById(f).value=o[f]; });
+  }catch(e){}
+}
+function clearIdent(){
+  IDENT_FIELDS.forEach(f=>document.getElementById(f).value='');
+  try{ localStorage.removeItem(IDENT_KEY); }catch(e){}
+}
+
 const HEAD=['Group','Document / drawing or check','A / I','Rule reference','Particulars','Status'];
 function buildCSV(){
   const meta=[['Thruster Plan-Approval Quick Reference — submission checklist']].concat(metaRows()).concat([[],HEAD]);
@@ -994,9 +1024,9 @@ function buildTSV(){
 }
 function buildText(){
   const {groups, checks}=collect();
-  const L=['THRUSTER PLAN-APPROVAL CHECKLIST',configText(),
-    'Rule basis: '+RULE_BASIS,
-    'Tool v'+TOOL_VERSION+' (built '+TOOL_BUILT+')',''];
+  const L=['THRUSTER PLAN-APPROVAL CHECKLIST',''];
+  metaRows().forEach(([k,v])=>{ if(v) L.push(k+': '+v); });
+  L.push('');
   groups.forEach(g=>{ L.push('== '+g.title+' =='); L.push('   source: '+g.src);
     g.items.forEach(i=>{ L.push('  ['+(TICKS[g.title+'::'+i.name]?'x':' ')+'] ('+i.cat+') '+i.name+'  — '+i.ref); }); L.push(''); });
   if(checks.length){ L.push('== RULE VERIFICATION CHECKS =='); checks.forEach(k=>{ L.push('  - '+k[0]+'  — '+k[2]); }); }
@@ -1082,8 +1112,13 @@ function flash(msg){ const f=document.getElementById('foot');
       if(id==='mod_retract') document.getElementById(id).dataset.touched='1';
       syncUI(); render(); }));
   document.getElementById('filter').addEventListener('input',render);
-  ['id_vessel','id_imo','id_notation','id_reviewer','sp_make','sp_power','sp_thrust','sp_rpm','sp_supply']
-    .forEach(id=>document.getElementById(id).addEventListener('input',()=>{}));
+  loadIdent();
+  IDENT_FIELDS.forEach(id=>document.getElementById(id).addEventListener('input',saveIdent));
+  document.getElementById('clearIdent').addEventListener('click',()=>{
+    if(confirm('Clear the vessel identification and specification fields?\n\nThe document tick-boxes are not affected.')){
+      clearIdent(); flash('Identification cleared');
+    }
+  });
 
   document.getElementById('copyExcel').addEventListener('click',()=>copyOut(buildTSV()));
   document.getElementById('copyList').addEventListener('click',()=>copyOut(buildText()));
