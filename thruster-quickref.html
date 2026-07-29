@@ -228,12 +228,13 @@ footer{max-width:1360px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
 
     <h2>7 &middot; Output</h2>
     <div class="btnrow">
+      <button class="btn" id="exportXlsx">Download Excel (.xlsx)</button>
       <button class="btn" id="copyExcel">Copy for Excel</button>
-      <button class="btn" id="exportCsv">Download .csv</button>
     </div>
-    <div class="hint" style="margin-top:-2px"><b>Copy for Excel</b> puts the whole table on the clipboard &mdash; open Excel, click a cell, Ctrl+V and it fills in as columns. <b>Download .csv</b> saves a file you can open directly.</div>
+    <div class="hint" style="margin-top:-2px"><b>Download Excel</b> gives a formatted workbook &mdash; headers, colour-coded A/I, borders, frozen header row and filters, ready to send. <b>Copy for Excel</b> puts the plain table on the clipboard if you would rather paste into an existing sheet.</div>
     <div class="btnrow">
       <button class="btn ghost" id="copyList">Copy as checklist text</button>
+      <button class="btn ghost" id="exportCsv">Download .csv</button>
       <button class="btn ghost" onclick="window.print()">Print / PDF</button>
     </div>
     <div class="btnrow">
@@ -341,8 +342,8 @@ const SEC15_T4 = [
 /* ---- Tab 5: manufacturer data, thrusters AND water-jets ---- */
 const SEC15_T5 = [
   ['Data on ratings','I','NR467 Pt C, Ch 1, Sec 15, Tab 5 #1','Rated power, thrust and revolutions'],
-  ['Material specifications of the major parts','A','NR467 Pt C, Ch 1, Sec 15, Tab 5 #2','Including their physical, chemical and mechanical properties'],
-  ['Weldings','A','NR467 Pt C, Ch 1, Sec 15, Tab 5 #3','Where parts are of welded construction: design of welded joints, welding procedures, heat treatments and NDE after welding'],
+  ['Material specifications of the major parts','A','NR467 Pt C, Ch 1, Sec 15, Tab 5 #2 → NR216','Including their physical, chemical and mechanical properties. The grades, testing and acceptance criteria are governed by NR216 (Materials and Welding); shafts and forgings NR216 Ch 1, rolled products NR216 Ch 2'],
+  ['Weldings','A','NR467 Pt C, Ch 1, Sec 15, Tab 5 #3 → NR216','Where parts are of welded construction: design of welded joints, welding procedures, heat treatments and NDE after welding. Welding procedure qualification and welder approval per NR216; welded shafts and rotors NR216 Ch 12'],
   ['Background information on previous operating experience in similar applications','I','NR467 Pt C, Ch 1, Sec 15, Tab 5 #4','Where applicable'],
 ];
 
@@ -553,15 +554,16 @@ const DP_INSTALL_R = [
 
 /* ---- Testing & certification (Sec 15 Art 3) ---- */
 const TEST_PROP = [
-  ['Material test reports — parts transmitting torque and propeller/impeller blades','A','NR467 Pt C, Ch 1, Sec 15, [3.1.1]','Propulsion and steering thrusters: tested per Ch 1, Sec 8, [4.1] IN THE PRESENCE OF A SURVEYOR'],
+  ['Material test reports — parts transmitting torque and propeller/impeller blades','A','NR467 Pt C, Ch 1, Sec 15, [3.1.1] → NR266','Propulsion and steering thrusters: tested per Ch 1, Sec 8, [4.1] IN THE PRESENCE OF A SURVEYOR. The survey scope and attendance for those material tests is governed by NR266 (Requirements for survey of materials and equipment)'],
 ];
 const TEST_TRANS = [
-  ['Material test reports — transverse thruster parts','I','NR467 Pt C, Ch 1, Sec 15, [3.1.2]','Material testing need NOT be witnessed by a Surveyor, provided full test reports are made available to him'],
+  ['Material test reports — transverse thruster parts','I','NR467 Pt C, Ch 1, Sec 15, [3.1.2] → NR266','Material testing need NOT be witnessed by a Surveyor, provided full test reports are made available to him. NR266 still sets what those reports must contain'],
 ];
 const TEST_COMMON = [
   ['Thruster inspection records','A','NR467 Pt C, Ch 1, Sec 15, [3.2.1]','Thrusters inspected per the applicable requirements in Ch 1, Sec 8, [4.2]'],
   ['Prime mover test reports','A','NR467 Pt C, Ch 1, Sec 15, [3.2.2]','Tested per the requirements applicable to the type of mover used'],
-  ['Individual thruster test and certification','A','NR467 Pt C, Ch 1, Sec 15, [3.3.1]','"Thrusters are to be individually tested and certified by the Society." Mass produced thrusters may instead use the type approval programme — [3.3.2]'],
+  ['Individual thruster test and certification','A','NR467 Pt C, Ch 1, Sec 15, [3.3.1] → NR320','"Thrusters are to be individually tested and certified by the Society." The certification route — product certificate, works certificate or type approval — follows the scheme in NR320 (Certification scheme of materials and equipment)'],
+  ['Type approval certificate (mass produced units)','A','NR467 Pt C, Ch 1, Sec 15, [3.3.2] → NR320','Mass produced thrusters of a type mentioned in [1.1] may be accepted within the framework of the Society type approval programme, administered under NR320. Check the certificate covers the exact model and rating offered'],
 ];
 
 /* ---- Other additional notations ---- */
@@ -1017,6 +1019,185 @@ function configText(){
     +' | ship: '+c.sc.label
     +' | governing rule: '+(c.sc.gov||'NR467');
 }
+/* ============================================================================
+   XLSX WRITER — produces a real, styled .xlsx entirely offline.
+   No libraries: a minimal ZIP (STORE method) wrapping SpreadsheetML.
+   ========================================================================== */
+const CRC_TABLE=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;
+  for(let k=0;k<8;k++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[n]=c>>>0;}return t;})();
+function crc32(bytes){let c=0xFFFFFFFF;for(let i=0;i<bytes.length;i++)c=CRC_TABLE[(c^bytes[i])&0xFF]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function strBytes(s){return new TextEncoder().encode(s);}
+function dosTime(d){return ((d.getHours()<<11)|(d.getMinutes()<<5)|(d.getSeconds()/2))&0xFFFF;}
+function dosDate(d){return (((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate())&0xFFFF;}
+function zipBuild(files){
+  const now=new Date(), tm=dosTime(now), dt=dosDate(now);
+  const chunks=[], central=[]; let offset=0;
+  files.forEach(f=>{
+    const nameB=strBytes(f.name), dataB=f.data, crc=crc32(dataB);
+    const lh=new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(6,0,true);
+    lh.setUint16(8,0,true); lh.setUint16(10,tm,true); lh.setUint16(12,dt,true);
+    lh.setUint32(14,crc,true); lh.setUint32(18,dataB.length,true); lh.setUint32(22,dataB.length,true);
+    lh.setUint16(26,nameB.length,true); lh.setUint16(28,0,true);
+    chunks.push(new Uint8Array(lh.buffer),nameB,dataB);
+    const cd=new DataView(new ArrayBuffer(46));
+    cd.setUint32(0,0x02014b50,true); cd.setUint16(4,20,true); cd.setUint16(6,20,true);
+    cd.setUint16(8,0,true); cd.setUint16(10,0,true); cd.setUint16(12,tm,true); cd.setUint16(14,dt,true);
+    cd.setUint32(16,crc,true); cd.setUint32(20,dataB.length,true); cd.setUint32(24,dataB.length,true);
+    cd.setUint16(28,nameB.length,true); cd.setUint16(30,0,true); cd.setUint16(32,0,true);
+    cd.setUint16(34,0,true); cd.setUint16(36,0,true); cd.setUint32(38,0,true); cd.setUint32(42,offset,true);
+    central.push(new Uint8Array(cd.buffer),nameB);
+    offset+=30+nameB.length+dataB.length;
+  });
+  const centralSize=central.reduce((a,b)=>a+b.length,0);
+  const eo=new DataView(new ArrayBuffer(22));
+  eo.setUint32(0,0x06054b50,true); eo.setUint16(4,0,true); eo.setUint16(6,0,true);
+  eo.setUint16(8,files.length,true); eo.setUint16(10,files.length,true);
+  eo.setUint32(12,centralSize,true); eo.setUint32(16,offset,true); eo.setUint16(20,0,true);
+  const all=chunks.concat(central,[new Uint8Array(eo.buffer)]);
+  const total=all.reduce((a,b)=>a+b.length,0), out=new Uint8Array(total);
+  let p=0; all.forEach(b=>{out.set(b,p);p+=b.length;});
+  return out;
+}
+function xmlEsc(s){ return String(s==null?'':s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&apos;')
+  .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g,''); }
+function colName(n){ let s=''; while(n>0){ const m=(n-1)%26; s=String.fromCharCode(65+m)+s; n=(n-m-1)/26; } return s; }
+
+/* style ids: 0 default | 1 title | 2 meta label | 3 meta value | 4 header
+   5 group row | 6 body | 7 "A" badge | 8 "I" badge | 9 rule ref | 10 status */
+function xlsxStyles(){
+  return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+  +'<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+  +'<fonts count="8">'
+    +'<font><sz val="10"/><name val="Calibri"/></font>'
+    +'<font><b/><sz val="15"/><color rgb="FF003366"/><name val="Calibri"/></font>'
+    +'<font><b/><sz val="10"/><color rgb="FF003366"/><name val="Calibri"/></font>'
+    +'<font><sz val="10"/><color rgb="FF333333"/><name val="Calibri"/></font>'
+    +'<font><b/><sz val="10"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font>'
+    +'<font><b/><sz val="10"/><color rgb="FFCC0000"/><name val="Calibri"/></font>'
+    +'<font><sz val="9"/><color rgb="FF6B7280"/><name val="Calibri"/></font>'
+    +'<font><b/><sz val="11"/><color rgb="FF003366"/><name val="Calibri"/></font>'
+  +'</fonts>'
+  +'<fills count="5">'
+    +'<fill><patternFill patternType="none"/></fill>'
+    +'<fill><patternFill patternType="gray125"/></fill>'
+    +'<fill><patternFill patternType="solid"><fgColor rgb="FF003366"/><bgColor indexed="64"/></patternFill></fill>'
+    +'<fill><patternFill patternType="solid"><fgColor rgb="FFDCE6F1"/><bgColor indexed="64"/></patternFill></fill>'
+    +'<fill><patternFill patternType="solid"><fgColor rgb="FFF2F2F2"/><bgColor indexed="64"/></patternFill></fill>'
+  +'</fills>'
+  +'<borders count="2">'
+    +'<border><left/><right/><top/><bottom/><diagonal/></border>'
+    +'<border><left style="thin"><color rgb="FFBFBFBF"/></left><right style="thin"><color rgb="FFBFBFBF"/></right>'
+      +'<top style="thin"><color rgb="FFBFBFBF"/></top><bottom style="thin"><color rgb="FFBFBFBF"/></bottom><diagonal/></border>'
+  +'</borders>'
+  +'<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'
+  +'<cellXfs count="11">'
+    +'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'                                  /*0*/
+    +'<xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/>'                    /*1*/
+    +'<xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/>'                    /*2*/
+    +'<xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1"><alignment wrapText="1"/></xf>' /*3*/
+    +'<xf numFmtId="0" fontId="4" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>' /*4*/
+    +'<xf numFmtId="0" fontId="7" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf>' /*5*/
+    +'<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf>' /*6*/
+    +'<xf numFmtId="0" fontId="5" fillId="0" borderId="1" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="top"/></xf>' /*7*/
+    +'<xf numFmtId="0" fontId="6" fillId="0" borderId="1" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="top"/></xf>' /*8*/
+    +'<xf numFmtId="0" fontId="6" fillId="0" borderId="1" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf>' /*9*/
+    +'<xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="top"/></xf>' /*10*/
+  +'</cellXfs></styleSheet>';
+}
+function xlsxSheet(rows, headerRowIdx){
+  const cols='<cols>'
+    +'<col min="1" max="1" width="26" customWidth="1"/>'
+    +'<col min="2" max="2" width="52" customWidth="1"/>'
+    +'<col min="3" max="3" width="7"  customWidth="1"/>'
+    +'<col min="4" max="4" width="34" customWidth="1"/>'
+    +'<col min="5" max="5" width="56" customWidth="1"/>'
+    +'<col min="6" max="6" width="14" customWidth="1"/>'
+    +'</cols>';
+  let body='';
+  rows.forEach((r,i)=>{
+    const rn=i+1;
+    let cells='';
+    r.cells.forEach((c,j)=>{
+      if(c.v===''||c.v==null){ if(!c.s) return; }
+      const ref=colName(j+1)+rn;
+      cells+='<c r="'+ref+'" s="'+(c.s||0)+'" t="inlineStr"><is><t xml:space="preserve">'+xmlEsc(c.v)+'</t></is></c>';
+    });
+    body+='<row r="'+rn+'"'+(r.h?' ht="'+r.h+'" customHeight="1"':'')+'>'+cells+'</row>';
+  });
+  const lastRow=rows.length, dim='A1:F'+lastRow;
+  const freeze=headerRowIdx>0
+    ? '<sheetView showGridLines="0" tabSelected="1" workbookViewId="0"><pane ySplit="'+headerRowIdx+'" topLeftCell="A'+(headerRowIdx+1)+'" activePane="bottomLeft" state="frozen"/></sheetView>'
+    : '<sheetView showGridLines="0" tabSelected="1" workbookViewId="0"/>';
+  return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+   +'<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+   +'<dimension ref="'+dim+'"/><sheetViews>'+freeze+'</sheetViews>'
+   +'<sheetFormatPr defaultRowHeight="14"/>'+cols
+   +'<sheetData>'+body+'</sheetData>'
+   +(headerRowIdx>0?'<autoFilter ref="A'+headerRowIdx+':F'+lastRow+'"/>':'')
+   +'<pageMargins left="0.4" right="0.4" top="0.5" bottom="0.5" header="0.3" footer="0.3"/>'
+   +'<pageSetup orientation="landscape" fitToWidth="1" paperSize="9"/>'
+   +'</worksheet>';
+}
+function buildXLSX(){
+  const {groups, checks}=collect();
+  const rows=[]; const R=(cells,h)=>rows.push({cells,h});
+  const blank=()=>R([{v:''}]);
+  R([{v:'Thruster Plan-Approval Checklist',s:1}],22);
+  blank();
+  metaRows().forEach(([k,v])=>R([{v:k,s:2},{v:v,s:3}]));
+  blank();
+  const headerRowIdx=rows.length+1;
+  R([{v:'Group',s:4},{v:'Document / drawing or check',s:4},{v:'A/I',s:4},
+     {v:'Rule reference',s:4},{v:'Particulars',s:4},{v:'Status',s:4}],30);
+  groups.forEach(g=>{
+    R([{v:g.title,s:5},{v:g.src,s:5},{v:'',s:5},{v:'',s:5},{v:'',s:5},{v:'',s:5}],18);
+    g.items.forEach(i=>{
+      R([{v:'',s:6},{v:i.name,s:6},{v:i.cat,s:i.cat==='A'?7:8},
+         {v:i.ref,s:9},{v:i.par||'',s:9},
+         {v:TICKS[g.title+'::'+i.name]?'Received':'Outstanding',s:10}]);
+    });
+  });
+  if(checks.length){
+    R([{v:'Rule verification checks',s:5},{v:'Criteria to confirm during review — not documents',s:5},
+       {v:'',s:5},{v:'',s:5},{v:'',s:5},{v:'',s:5}],18);
+    checks.forEach(k=>R([{v:'',s:6},{v:k[0],s:6},{v:'CHECK',s:8},{v:k[2],s:9},{v:k[1],s:9},{v:'',s:10}]));
+  }
+  const sheet=xlsxSheet(rows, headerRowIdx);
+  const files=[
+    {name:'[Content_Types].xml', data:strBytes('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+      +'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+      +'<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+      +'<Default Extension="xml" ContentType="application/xml"/>'
+      +'<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
+      +'<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
+      +'<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'
+      +'</Types>')},
+    {name:'_rels/.rels', data:strBytes('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+      +'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+      +'<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>'
+      +'</Relationships>')},
+    {name:'xl/workbook.xml', data:strBytes('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+      +'<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
+      +'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+      +'<sheets><sheet name="Thruster checklist" sheetId="1" r:id="rId1"/></sheets></workbook>')},
+    {name:'xl/_rels/workbook.xml.rels', data:strBytes('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+      +'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+      +'<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>'
+      +'<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>'
+      +'</Relationships>')},
+    {name:'xl/styles.xml', data:strBytes(xlsxStyles())},
+    {name:'xl/worksheets/sheet1.xml', data:strBytes(sheet)},
+  ];
+  return zipBuild(files);
+}
+function xlsxFilename(){
+  const v=(document.getElementById('id_vessel').value||'').replace(/[^A-Za-z0-9 _-]/g,'').trim().slice(0,40);
+  return 'Thruster checklist'+(v?' - '+v:'')+'.xlsx';
+}
+
 function csvEscape(s){ s=(s==null?'':String(s)); return '"'+s.replace(/"/g,'""')+'"'; }
 function tsvCell(s){ s=(s==null?'':String(s)); return s.replace(/\t/g,' ').replace(/\r?\n/g,' / '); }
 function metaRows(){
@@ -1159,6 +1340,16 @@ function flash(msg){ const f=document.getElementById('foot');
     }
   });
 
+  document.getElementById('exportXlsx').addEventListener('click',()=>{
+    try{
+      const bytes=buildXLSX();
+      const blob=new Blob([bytes],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+      a.download=xlsxFilename(); document.body.appendChild(a); a.click();
+      setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},1200);
+      flash('Excel file downloaded');
+    }catch(e){ flash('Excel export failed: '+e.message); }
+  });
   document.getElementById('copyExcel').addEventListener('click',()=>copyOut(buildTSV()));
   document.getElementById('copyList').addEventListener('click',()=>copyOut(buildText()));
   document.getElementById('exportCsv').addEventListener('click',()=>{
