@@ -523,6 +523,34 @@ const NR584_MFR = [
   ['Background information on previous operating experience','I','NR584 Sec 1, Tab 5 #6','Where applicable'],
 ];
 
+/* ---- Part B: hull-side submission for transverse thrusters ----
+   Easily missed: this sits in the HULL documentation table, not Part C. ---- */
+const HULL_TRANSVERSE = [
+  ['Transverse thruster — hull documentation','A','NR467 Pt B, Ch 1, Sec 4, [2.1.1], Tab 1 #12','Including: general arrangement; tunnel structure; connections of thruster with tunnel and hull structures. This is a HULL package approval item, separate from the Pt C, Sec 15 machinery submissions.'],
+];
+
+/* ---- Part A: survey scope carried by a thruster installation ---- */
+const SURVEY_ITEMS = [
+  ['Annual survey scope for the thruster installation','I','NR467 Pt A, Ch 3, Sec 1, [3.1.3]','External examination of the machinery installation, and an operating test of the complete installation'],
+  ['Class renewal survey scope for the thruster installation','I','NR467 Pt A, Ch 3, Sec 3, [3.2.6]','Examination of the machinery and electrical installation as applicable, plus external examination of the propulsive part at the dry dock survey due as part of the class renewal survey'],
+  ['Five-yearly survey of driving components','I','NR467 Pt A, Ch 2, Sec 2, [5.5.5]','Driving components serving the same purpose as the tailshaft in other propulsion systems — directional propellers, vertical axis propellers, water-jet units, DP and thruster-assisted mooring — at intervals not exceeding five years'],
+];
+
+/* ---- DYNAPOS Sec 5 Art 6: installation requirements ---- */
+const DP_INSTALL = [
+  ['Thruster location and interference study','A','NR467 Pt F, Ch 11, Sec 5, [6.2.1]','Location and operational modes chosen to minimise interference between thrusters and disturbance to sensor systems'],
+  ['Thruster intake depth justification','A','NR467 Pt F, Ch 11, Sec 5, [6.2.2]','Sufficient to reduce the probability of ingesting floating debris and of vortex formation'],
+  ['Hull integrity with the thruster installation','A','NR467 Pt F, Ch 11, Sec 5, [6.2.3]','"The integrity of the hull is not to be adversely affected by thruster installation, particularly where retractable or tunnel thrusters are provided"'],
+  ['Thrust in longitudinal and lateral directions + yawing moment','A','NR467 Pt F, Ch 11, Sec 5, [6.2.4]',''],
+  ['Thruster forces corrected for interference','A','NR467 Pt F, Ch 11, Sec 5, [6.2.6]','Values used in the consequence analysis corrected for interference between thrusters and other effects reducing effective force'],
+];
+const DP_INSTALL_R = [
+  ['Cable and piping routing with regard to fire and mechanical damage','A','NR467 Pt F, Ch 11, Sec 5, [6.1.1]','Symbol R: fuel, lubrication, hydraulic oil, cooling water, pneumatic circuits and essential cabling'],
+  ['Segregation of redundant piping and cabling','A','NR467 Pt F, Ch 11, Sec 5, [6.1.2]','Symbol RS: redundant piping/cables not routed through the same compartments; where unavoidable, A-60 class ducts, no cable connection boxes within such ducts'],
+  ['Interfacing systems that could cause DP failure','A','NR467 Pt F, Ch 11, Sec 5, [6.1.3]','Common fire suppression, engine ventilation, HVAC, ESD etc.'],
+  ['Thruster/power-system connection after failure','A','NR467 Pt F, Ch 11, Sec 5, [6.2.7]','Symbol R and RS: [6.2.4] met even after failure of one power system and one thruster connected to it'],
+];
+
 /* ---- Testing & certification (Sec 15 Art 3) ---- */
 const TEST_PROP = [
   ['Material test reports — parts transmitting torque and propeller/impeller blades','A','NR467 Pt C, Ch 1, Sec 15, [3.1.1]','Propulsion and steering thrusters: tested per Ch 1, Sec 8, [4.1] IN THE PRESENCE OF A SURVEYOR'],
@@ -635,6 +663,8 @@ function buildChecks(c){
   }
   if(c.family==='transverse'){
     K.push(['Is the tunnel thickness ≥ the adjacent hull plating?','"The thickness of the tunnel is not to be less than the adjacent part of the hull." Tunnels connected to the hull by devices other than welding are specially considered.','NR467 Pt C, Ch 1, Sec 15, [2.2.6]']);
+    K.push(['Tunnel plating net thickness checked against the HULL rule','The net thickness of the tunnel plating is not to be less than the net thickness required for the shell plating in the vicinity of the bow thruster. This is the scantling rule in Part B — Sec 15 [2.2.6] is the machinery-side statement of the same principle.','NR467 Pt B, Ch 11, Sec 1, [2.9.1]; Pt B, Ch 11, Sec 3, [2.2.4]']);
+    K.push(['Has the HULL package included the transverse thruster drawing?','Part B, Ch 1, Sec 4 lists "Transverse thruster, if any" as an approval item in the hull documentation: general arrangement, tunnel structure, and connections of thruster with tunnel and hull structures. It is easily missed because it sits outside the Sec 15 machinery tables.','NR467 Pt B, Ch 1, Sec 4, [2.1.1], Tab 1 #12']);
   }
   if(c.duty==='man'){
     K.push(['Propeller thickness — 10% increase NOT required','For propellers of thrusters intended for manoeuvring only, Ch 1, Sec 8, [2.5] applies but the increase in thickness of 10% does not need to be applied.','NR467 Pt C, Ch 1, Sec 15, [2.2.2]']);
@@ -775,10 +805,15 @@ function collect(){
   if(c.prime==='electric' && c.gt1mw) pm=pm.concat(PRIME_ELECTRIC_1MW);
   add('Prime mover','NR467 Pt C, Ch 1, Sec 15, [2.2.1] and the sections it refers to', pm);
 
+  if(c.family==='transverse'){
+    add('Hull package — transverse thruster','NR467 Pt B, Ch 1, Sec 4 — submitted with the HULL documentation, not with the Sec 15 machinery package', HULL_TRANSVERSE);
+  }
+
   if(c.roleDP){
     const dp=DP_DOCS.slice();
     if(c.dpR) dp.splice(16,0,DP_FMEA);
     add('Dynamic positioning (DYNAPOS)','NR467 Pt F, Ch 11, Sec 5, Tab 1', dp);
+    add('DP installation requirements','NR467 Pt F, Ch 11, Sec 5, Article 6', c.dpR?DP_INSTALL.concat(DP_INSTALL_R):DP_INSTALL);
   }
 
   if(c.ice==='iceclass'){
@@ -805,6 +840,7 @@ function collect(){
 
   let tests = (c.duty==='man'?TEST_TRANS:TEST_PROP).concat(TEST_COMMON);
   add('Testing and certification','NR467 Pt C, Ch 1, Sec 15, Article 3', tests);
+  add('In-service survey scope','NR467 Part A — what the installation attracts once in service', SURVEY_ITEMS);
 
   return {groups:G, checks:buildChecks(c), c, belowThreshold:false};
 }
@@ -812,6 +848,9 @@ function collect(){
 /* ---- Callouts: scope warnings a surveyor must not miss ---- */
 function buildCallouts(c, below){
   const out=[];
+  out.push(['warn','Scope of this tool — read before relying on it',
+    'This covers the <b>plan-approval machinery scope</b>: NR467 Pt C, Ch 1, Sec 15 and Sec 14, Pt C Ch 2 Sec 4, Pt F (DYNAPOS, ice), and NR584. It also flags the Part B hull drawing and the Part A survey scope. It is <b>not</b> a complete list of every thruster-related requirement in NR467 — a search for "thruster" returns roughly 96 articles across the rules, and the hull scantling rules (Pt B, Ch 11), shaft line (Sec 7), propellers (Sec 8), gearing (Sec 6), shaft vibration (Sec 9) and piping (Sec 10) are referenced here but not reproduced. Use it to build and check the submission list, not as the sole authority.',
+    'Verify against rulesexplorer.bureauveritas.com for the edition applicable to the vessel']);
   if(below){
     out.push(['warn','Below the Section 15 threshold',
       'Thrusters of less than 110 kW are to be built in accordance with sound marine practice and tested as required in [3.2] to the satisfaction of the Surveyor. The Sec 15 plan tables are not applied — agree the reduced scope with the Society.',
