@@ -23,6 +23,10 @@
 :root[data-theme="light"]{ --bg:#f4f6f9; --card:#fff; --ink:#1f2937; --muted:#6b7280;
   --line:#e2e8f0; --chip:#eef2f7; --bv:#003366; --bv2:#336699; --fa:#cc0000; --fi:#6b7280; --accent:#003366;
   --warn:#b45309; --warnbg:#fffbeb; --warnline:#fcd34d; --info:#1d4ed8; --infobg:#eff6ff; --infoline:#bfdbfe;}
+/* make native form controls (incl. the date picker popup) follow the theme */
+:root{color-scheme:light dark}
+:root[data-theme="dark"]{color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   background:var(--bg);color:var(--ink);line-height:1.45;font-size:15px}
@@ -44,8 +48,12 @@ header.top .sub{font-size:12px;opacity:.85;font-weight:400}
 .panel.controls{position:sticky;top:70px;align-self:start;max-height:calc(100vh - 90px);overflow:auto}
 .field{margin-bottom:13px}
 label.lab{display:block;font-weight:600;font-size:13px;margin-bottom:5px}
-select,input[type=text]{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;
-  background:var(--bg);color:var(--ink);font-size:14px}
+select,input[type=text],input[type=date]{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;
+  background:var(--bg);color:var(--ink);font-size:14px;font-family:inherit}
+input[type=date]{cursor:pointer}
+input[type=date]:invalid{color:var(--muted)}
+input[type=date]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.75}
+input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1}
 .panel h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--bv2);margin:2px 0 8px}
 .checks{display:flex;flex-direction:column;gap:6px}
 .chk{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;cursor:pointer;padding:3px 4px;border-radius:6px}
@@ -263,7 +271,8 @@ footer{max-width:1360px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
       <input type="text" id="id_vessel" placeholder="Vessel / Yard No">
       <input type="text" id="id_imo" placeholder="IMO number">
       <input type="text" id="id_notation" placeholder="Class notation string">
-      <input type="text" id="id_reviewer" placeholder="Reviewer / date">
+      <input type="text" id="id_reviewer" placeholder="Reviewer">
+      <input type="date" id="id_revdate" title="Review date — click the calendar icon, or use the arrow keys to step up and down">
     </div>
     <div class="specbar">
       <input type="text" id="sp_make" placeholder="Maker / model">
@@ -1203,7 +1212,8 @@ function tsvCell(s){ s=(s==null?'':String(s)); return s.replace(/\t/g,' ').repla
 function metaRows(){
   const g=id=>document.getElementById(id).value;
   return [
-    ['Vessel / Yard No',g('id_vessel')],['IMO number',g('id_imo')],['Class notation',g('id_notation')],['Reviewer / date',g('id_reviewer')],
+    ['Vessel / Yard No',g('id_vessel')],['IMO number',g('id_imo')],['Class notation',g('id_notation')],
+    ['Reviewer',g('id_reviewer')],['Review date',fmtDate(g('id_revdate'))],
     ['Maker / model',g('sp_make')],['Rated power (kW)',g('sp_power')],['Rated thrust (kN)',g('sp_thrust')],['Prop. speed (rpm)',g('sp_rpm')],['Supply (V/bar)',g('sp_supply')],
     ['Configuration',configText()],
     ['Rule basis',RULE_BASIS+' (BV Rules Explorer)'],
@@ -1212,7 +1222,7 @@ function metaRows(){
   ];
 }
 /* ---- identification / specification persistence (survives closing the file) ---- */
-const IDENT_FIELDS=['id_vessel','id_imo','id_notation','id_reviewer',
+const IDENT_FIELDS=['id_vessel','id_imo','id_notation','id_reviewer','id_revdate',
                     'sp_make','sp_power','sp_thrust','sp_rpm','sp_supply'];
 const IDENT_KEY='tqr2:ident';
 function saveIdent(){
@@ -1226,10 +1236,25 @@ function loadIdent(){
   try{ const o=JSON.parse(localStorage.getItem(IDENT_KEY)||'{}');
     IDENT_FIELDS.forEach(f=>{ if(o[f]!=null) document.getElementById(f).value=o[f]; });
   }catch(e){}
+  // first use on this machine: start the review date at today
+  const d=document.getElementById('id_revdate');
+  if(d && !d.value) d.value=todayISO();
+}
+function todayISO(){ const n=new Date();
+  return n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0'); }
+/* ISO yyyy-mm-dd -> dd Mmm yyyy, which reads unambiguously on a submission sheet */
+function fmtDate(iso){
+  if(!iso||!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso||'';
+  const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const [y,m,d]=iso.split('-');
+  return d+' '+M[(+m)-1]+' '+y;
 }
 function clearIdent(){
   IDENT_FIELDS.forEach(f=>document.getElementById(f).value='');
   try{ localStorage.removeItem(IDENT_KEY); }catch(e){}
+  // next vessel starts from today rather than an empty date
+  document.getElementById('id_revdate').value=todayISO();
+  saveIdent();
 }
 
 const HEAD=['Group','Document / drawing or check','A / I','Rule reference','Particulars','Status'];
