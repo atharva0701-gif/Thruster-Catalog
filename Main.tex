@@ -80,7 +80,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\textcolor{bvblue}{BV Thruster Requirements Catalog}}
-\fancyhead[R]{\small\textcolor{bvblue}{NR467 Sections 7, 14, 15}}
+\fancyhead[R]{\small\textcolor{bvblue}{NR467 Jul 2026 · Sec.\,14/15 · NR584}}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
@@ -155,7 +155,7 @@
     
     \vfill
     
-    {\large Document Version 1.7\par}
+    {\large Document Version 1.8\par}
     {\large 2026\par}
     
     \vspace{1cm}
@@ -187,6 +187,7 @@ This catalog provides a comprehensive overview of thruster requirements per Bure
 \section*{Document Structure}
 The catalog is organized into the following chapters:
 \begin{enumerate}[leftmargin=*]
+    \item \textbf{The Rule-Mandated Submissions (Authoritative)} --- the verbatim rule tables
     \item General Requirements (All Thrusters $\geq$110kW)
     \item Transverse Thrusters (Tunnel \& Retractable)
     \item Rotating and Azimuth Thrusters (incl. Podded Units)
@@ -231,13 +232,936 @@ This document is fully hyperlinked for quick reference:
 
 \section*{Legend}
 \begin{itemize}[leftmargin=*]
-    \item \fa{} = \textbf{For Approval} — Must be reviewed and approved before construction/installation
-    \item \fic{} = \textbf{For Information} — Submitted for record, not requiring formal approval
+    \item \fa{} = \textbf{For Approval} — corresponds to the rule's category \textbf{A} (``to be submitted for approval'')
+    \item \fic{} = \textbf{For Information} — corresponds to the rule's category \textbf{I} (``to be submitted for information'')
     \item \textbf{During Construction} = Certificates/reports generated during manufacturing
 \end{itemize}
 
 \vspace{0.3cm}
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{How to read this catalog --- two tiers of content}}
+
+\smallskip
+\noindent\textbf{Tier 1 --- what the rule actually demands.} Chapter
+\ref{ch:ruletables} reproduces the \emph{verbatim} submission tables of NR467
+Sec.\,15, Sec.\,14, Part F and NR584, with the rule's own \textbf{A}/\textbf{I}
+categorisation and an exact citation for every row. \textbf{That chapter is the
+authority. If anything elsewhere in this catalog conflicts with it, Chapter
+\ref{ch:ruletables} governs.}
+
+\smallskip
+\noindent\textbf{Tier 2 --- what a surveyor examines to approve those items.}
+Chapters \ref{ch:transverse}--\ref{ch:othertypes} and the discipline chapters
+set out the engineering content behind each rule item: the calculations,
+drawings and analyses that a reviewer normally needs in order to be satisfied
+that (say) ``Propeller'' or ``Rotating mechanism of the thruster'' can be
+approved. \textbf{This is professional practice, not a rule-mandated document
+list.} A client cannot be required to submit a Tier 2 line as a separate
+deliverable purely because it appears here --- cite the Tier 1 row it supports.
+\end{minipage}}
+
+\vspace{0.3cm}
 \noindent\textit{Note on rule references:} Thruster requirements are found in \textbf{NR467, Part C, Chapter 1, Section 15} (``Thrusters''); steering gear in \textbf{Section 14}; shaft lines and propellers in \textbf{Sections 7--8}. Bracketed sub-references such as [2.3] are structural pointers within this catalog. Ice class, comfort, automation and DP requirements sit in \textbf{NR467 Part F} (Additional Class Notations, e.g.\ DYNAPOS for DP); service notations are in \textbf{Part D} (general) and \textbf{Part E} (offshore service vessels \& tugs). Note \textbf{NR216} is the Materials \& Welding rule note (not a DP rule). Always confirm the exact article against the rule edition applicable to the vessel's contract/build date.
+
+\newpage
+
+% Chapter: THE RULE TABLES (authoritative)
+\chapter{The Rule-Mandated Submissions (Authoritative)}
+\label{ch:ruletables}
+
+This chapter reproduces the \emph{actual} submission tables of the rules, with
+the rule's own \textbf{A}/\textbf{I} categorisation and an exact citation for
+every row. It was transcribed from Bureau Veritas Rules Explorer against
+\textbf{NR467 edition Jul 2026} and \textbf{NR584 edition Apr 2026}.
+
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{This chapter is the authority.}} Where any
+other chapter of this catalog lists a document that does not appear here, that
+document is \emph{supporting technical content} (see the two-tier note in the
+Document Purpose chapter) --- not a rule-mandated submission. Always confirm
+the exact article against the rule edition applicable to the vessel's contract
+date at \url{https://rulesexplorer.bureauveritas.com/}.
+\end{minipage}}
+
+\section{Scope, definitions and thresholds}
+\label{sec:scope}
+
+\subsection{Power threshold}
+NR467 Pt C, Ch.\,1, Sec.\,15, [1.1.1] applies to thrusters developing power
+\textbf{equal to 110\,kW or more}. A unit rated at exactly 110\,kW \emph{is}
+in scope. Below that, [1.1.2]: thrusters of less than 110\,kW are to be built in
+accordance with sound marine practice and tested as required in [3.2] to the
+satisfaction of the Surveyor --- the Sec.\,15 plan tables are not applied.
+
+\subsection{What is (and is not) a thruster}
+\textbf{Sec.\,15 [1.2.1]:} ``A thruster is a propeller installed in a
+\emph{revolving} nozzle or in a special transverse tunnel in the ship, or a
+water-jet. A thruster may be intended for propulsion, manoeuvring and steering
+or any combination thereof. \textbf{Propulsion propellers in fixed nozzles are
+not considered thrusters} (see Ch.\,1, Sec.\,8, [1.1.1]).''
+
+\vspace{2mm}
+\noindent\fcolorbox{warningred}{white}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{Scope trap:}} a conventional propulsion
+propeller inside a \emph{fixed} Kort nozzle is \textbf{not} a thruster. It is
+assessed under Sec.\,8 (Propellers), not Sec.\,15. Confirm whether the nozzle
+revolves before applying this catalog.
+\end{minipage}}
+
+\vspace{2mm}
+\noindent Other definitions: \textbf{[1.2.2]} a \emph{transverse thruster} is an
+athwartship thruster developing thrust in a transverse direction for manoeuvring
+purposes; \textbf{[1.2.3]} an \emph{azimuth thruster} can rotate through
+360\textdegree{} to develop thrust in any direction; \textbf{[1.2.4]} a
+\emph{water-jet} is a tubular casing (duct) enclosing an impeller, which may have
+means for deviating the jet to provide a steering function.
+
+\subsection{Number of units}
+\textbf{Sec.\,15 [1.3.1]:} ``In general, \textbf{at least two azimuth thrusters}
+are to be fitted in ships where these are the sole means of propulsion. Single
+azimuth thruster installations will be specially considered by the Society on a
+case by case basis.'' This requirement \emph{also applies to water-jets}.
+
+\subsection{Which tables apply}
+Per Sec.\,15 [1.4]: athwartship and azimuth thrusters $\rightarrow$
+\textbf{Tab.\,1 + Tab.\,2 + Tab.\,3}; water-jets $\rightarrow$ \textbf{Tab.\,4};
+manufacturer data $\rightarrow$ \textbf{Tab.\,5}, submitted together with the plans.
+
+\subsection{Duty changes the technical rule set}
+\begin{longtable}{|p{3.6cm}|p{5.4cm}|p{5.4cm}|}
+\caption{Manoeuvring vs.\ propulsion --- rule consequences} \label{tab:dutysplit} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Aspect}} & \textcolor{white}{\textbf{Manoeuvring only}} & \textcolor{white}{\textbf{Propulsion / steering}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Aspect}} & \textcolor{white}{\textbf{Manoeuvring only}} & \textcolor{white}{\textbf{Propulsion / steering}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+Propeller [2.2.2] & Sec.\,8 [2.5] \textbf{without} the 10\% thickness increase & Sec.\,8 [2.5] in full \\
+\hline
+Shaft [2.2.3] & Formula in Sec.\,15 [2.2.3]; $+$10\% in way of a keyed connection & Ch.\,1, Sec.\,7, [2.2.3] \\
+\hline
+Gears [2.2.4] & Sec.\,6 with \textbf{auxiliary} gear safety factors & Sec.\,6 with \textbf{propulsion} gear safety factors \\
+\hline
+Material tests & \textbf{Need not} be witnessed by a Surveyor, provided full test reports are made available --- [3.1.2] & \textbf{In the presence of a Surveyor}, per Sec.\,8 [4.1] --- [3.1.1] \\
+\hline
+Ice class & \textbf{Only} Pt F, Ch.\,8, Sec.\,3, [3.5.1] (tunnel grids) & Full Pt F, Ch.\,8 \\
+\hline
+Steering gear & Not applicable & Sec.\,14 applies, incl.\ Article 4 \\
+\hline
+\end{longtable}
+
+\newpage
+
+\section{NR467 Sec.\,15 --- Table 1: all thrusters}
+
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{6.2cm}|p{6.0cm}|}
+\caption{NR467 Pt C, Ch.\,1, Sec.\,15, Tab.\,1 --- Documentation to be submitted for all thrusters} \label{tab:s15t1} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+1 & \fic{} & General arrangement of the thruster & --- \\
+\hline
+2 & \fa{} & Propeller & Including the applicable details mentioned in Ch.\,1, Sec.\,8 \\
+\hline
+3 & \fa{} & Bearing details & --- \\
+\hline
+4 & \fa{} & Propeller and intermediate shafts & --- \\
+\hline
+5 & \fa{} & Gears & Including the applicable details mentioned in Ch.\,1, Sec.\,6 \\
+\hline
+\end{longtable}
+
+\noindent\textbf{Note the categorisation:} the \emph{general arrangement} is
+\fic{} (information), not \fa{}. Earlier editions of this catalog listed it for
+approval; the rule does not.
+
+\section{NR467 Sec.\,15 --- Table 2: transverse thrusters}
+
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{6.2cm}|p{6.0cm}|}
+\caption{NR467 Pt C, Ch.\,1, Sec.\,15, Tab.\,2 --- Documentation to be submitted for transverse thrusters} \label{tab:s15t2} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+1 & \fa{} & Structure of the tunnel & Showing the materials and their thickness \\
+\hline
+2 & \fa{} & Structural equipment or other connecting devices which transmit the thrust from the propeller to the tunnel & --- \\
+\hline
+3 & \fa{} & Sealing devices & Propeller shaft gland and thruster-tunnel connection \\
+\hline
+4 & \fa{} & Pitch control device and corresponding monitoring system & For the adjustable pitch propellers \\
+\hline
+\end{longtable}
+
+\section{NR467 Sec.\,15 --- Table 3: rotating and azimuth thrusters}
+
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{6.2cm}|p{6.0cm}|}
+\caption{NR467 Pt C, Ch.\,1, Sec.\,15, Tab.\,3 --- Documentation to be submitted for rotating and azimuth thrusters} \label{tab:s15t3} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+1 & \fa{} & Structural items & Nozzle, bracing, etc. \\
+\hline
+2 & \fa{} & Structural connection to hull & --- \\
+\hline
+3 & \fa{} & Rotating mechanism of the thruster & --- \\
+\hline
+4 & \fa{} & Thruster control system & --- \\
+\hline
+5 & \fa{} & Piping systems connected to thruster & --- \\
+\hline
+\end{longtable}
+
+\section{NR467 Sec.\,15 --- Table 4: water-jets}
+
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{6.2cm}|p{6.0cm}|}
+\caption{NR467 Pt C, Ch.\,1, Sec.\,15, Tab.\,4 --- Document to be submitted for water-jets} \label{tab:s15t4} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+1 & \fic{} & General arrangement of the water-jet & --- \\
+\hline
+2 & \fa{} & Casing (duct) & Showing: location and shape, materials, thicknesses, forces acting on the hull \\
+\hline
+3 & \fa{} & Details of the shafts, flanges, keys & --- \\
+\hline
+4 & \fic{} & Sealing gland & --- \\
+\hline
+5 & \fa{} & Bearings & --- \\
+\hline
+6 & \fa{} & Impeller & --- \\
+\hline
+7 & \fa{} & Steering and reversing buckets and their control devices as well as the corresponding hydraulic diagrams & --- \\
+\hline
+\end{longtable}
+
+\section{NR467 Sec.\,15 --- Table 5: manufacturer data}
+
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{6.2cm}|p{6.0cm}|}
+\caption{NR467 Pt C, Ch.\,1, Sec.\,15, Tab.\,5 --- Document to be submitted for thrusters and water-jets} \label{tab:s15t5} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+1 & \fic{} & Data on ratings & Rated power, thrust and revolutions \\
+\hline
+2 & \fa{} & Material specifications of the major parts & Including their physical, chemical and mechanical properties \\
+\hline
+3 & \fa{} & Weldings & Where parts of thrusters are of welded construction. Including all particulars on the design of welded joints, welding procedures, heat treatments and non-destructive examinations after welding \\
+\hline
+4 & \fic{} & Background information on previous operating experience in similar applications & Where applicable \\
+\hline
+\end{longtable}
+
+\noindent\textbf{Note the categorisation:} \emph{data on ratings} --- the
+``technical specification sheet'' in commercial parlance --- is \fic{}
+(information), not \fa{}.
+
+\section{Calculations demanded by the Sec.\,15 design articles}
+
+These are not in the tables, but the rule text of Article 2 expressly requires
+them to be submitted.
+
+\begin{longtable}{|p{4.6cm}|p{1.1cm}|p{7.8cm}|}
+\caption{Submissions required by the text of NR467 Sec.\,15, Article 2} \label{tab:s15calc} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Reference}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Requirement}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Reference}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Requirement}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+Sec.\,15 [2.2.5] & \fa{} & Nozzle structure per \textbf{Part B, Chapter 12}. Nozzle-to-hull scantlings and weld type/size specially considered; the Society \emph{reserves the right to require a detailed stress analysis} for certain high power installations. \\
+\hline
+Sec.\,15 [2.2.5] & \fa{} & For \textbf{steerable} thrusters, the \textbf{equivalent rudder stock diameter} is to be calculated in accordance with Part B, Chapter 12. \\
+\hline
+Sec.\,15 [2.2.6] & --- & Transverse thruster tunnel thickness \textbf{not less than the adjacent part of the hull}. Tunnels connected to the hull by devices other than welding are specially considered. \\
+\hline
+Sec.\,15 [2.3.2] & \fa{} & Water-jet guide vanes and shaft supports: \textbf{``Fatigue strength calculation is to be submitted.''} \\
+\hline
+Sec.\,15 [2.3.3] & \fa{} & Water-jet stator/rotor: no natural frequency in the vicinity of the excitation frequencies due to stator--rotor hydrodynamic interaction. \textbf{``Calculations are to be submitted for maximum speed and any currently used speed.''} \\
+\hline
+Sec.\,15 [2.3.5] & --- & Water-jet steering performance and emergency steering availability at least \textbf{equivalent to Sec.\,14 [4.2] and [4.3]}. \\
+\hline
+Sec.\,15 [2.4.1] & --- & Steering controls from the \textbf{navigation bridge, the machinery control station and locally}; means to stop any running thruster at each control station; a \textbf{thruster angle indicator at each steering control station, independent of the control system}. \\
+\hline
+\end{longtable}
+
+\section{Minimum alarm and monitoring --- Sec.\,15 Table 6}
+
+\begin{table}[H]
+\centering
+\small
+\caption{NR467 Pt C, Ch.\,1, Sec.\,15, Tab.\,6 --- Azimuth thrusters: minimum alarm and monitoring}
+\label{tab:s15t6}
+\begin{tabular}{|p{7cm}|p{4cm}|}
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Identification of system parameter}} & \textcolor{white}{\textbf{Alarm}} \\
+\hline
+Steering oil pressure & Low \\
+\hline
+Oil tank level & Low \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent These two lines are the \emph{minimum} alarm and monitoring
+requirements the rule sets for propulsion and steering thrusters (see also
+Sec.\,14 [4]). Anything beyond them is either an automation-notation
+requirement (Part F, Ch.\,3) or good practice --- not Sec.\,15.
+
+\section{Testing and certification --- Sec.\,15 Article 3}
+
+\begin{longtable}{|p{3.3cm}|p{11.6cm}|}
+\caption{NR467 Pt C, Ch.\,1, Sec.\,15, Article 3} \label{tab:s15test} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Reference}} & \textcolor{white}{\textbf{Requirement}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Reference}} & \textcolor{white}{\textbf{Requirement}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+[3.1.1] Propulsion and steering thrusters & All materials intended for parts transmitting torque and for propeller/impeller blades are to be tested in accordance with Ch.\,1, Sec.\,8, [4.1] \textbf{in the presence of a Surveyor}. \\
+\hline
+[3.1.2] Transverse thrusters & Material testing for parts of athwartship thrusters \textbf{does not need to be witnessed} by a Surveyor, provided full test reports are made available to him. \\
+\hline
+[3.2.1] Thrusters & Thrusters are to be inspected as per the applicable requirements in Ch.\,1, Sec.\,8, [4.2]. \\
+\hline
+[3.2.2] Prime movers & Prime movers are to be tested in accordance with the requirements applicable to the type of mover used. \\
+\hline
+[3.3.1] Certification & \textbf{Thrusters are to be individually tested and certified by the Society.} \\
+\hline
+[3.3.2] Mass produced & Mass produced thrusters of a type mentioned in [1.1] may be accepted within the framework of the \textbf{type approval programme} of the Society. \\
+\hline
+\end{longtable}
+
+\newpage
+
+\section{NR467 Sec.\,14 --- thruster used as steering means}
+\label{sec:s14thruster}
+
+The steering-gear package for a thruster is \emph{not} the whole of Sec.\,14
+Table 1. The rule defines it as a specific subset:
+
+\vspace{2mm}
+\noindent\fcolorbox{bvblue}{white}{\begin{minipage}{0.95\textwidth}
+\small\textbf{NR467 Pt C, Ch.\,1, Sec.\,14, Tab.\,1, item 13 (\fic{}\,/\,\fa{}):}
+``For azimuth thrusters used as steering means: \textbf{Specification and
+drawings of the steering mechanism}. Where applicable, \textbf{documents 2 to 6
+and 8 to 12} above.''
+\end{minipage}}
+
+\vspace{3mm}
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{5.8cm}|p{6.4cm}|}
+\caption{Sec.\,14 Tab.\,1 rows pulled in by item 13} \label{tab:s14sub} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+13 & \fa{} & Specification and drawings of the steering mechanism & The azimuth-thruster entry itself \\
+\hline
+2 & \fic{} & General description of the installation and of its functioning principle & --- \\
+\hline
+3 & \fic{} & Operating manuals of the steering gear and of its main components & --- \\
+\hline
+4 & \fic{} & Description of the operational modes intended for steering in normal and emergency conditions & --- \\
+\hline
+5 & \fa{} & For hydraulic steering gear, the schematic layout of the hydraulic piping of power actuating systems & Including the refilling system, design pressure, maximum working pressure expected in service, pipe diameter/thickness/material/connections, fluid tank capacity, flashpoint \\
+\hline
+6 & \fic{} & For hydraulic pumps of power units, the assembly longitudinal and transverse sectional drawings and the characteristic curves & --- \\
+\hline
+8 & \fic{} & Constructional drawings of the relief valves for protection of the hydraulic actuators & Setting pressure; relieving capacity \\
+\hline
+9 & \fa{} & Diagrams of the electric power circuits & --- \\
+\hline
+10 & \fa{} & Functional diagram of control, monitoring and safety systems & Including the remote control from the navigation bridge, with the location of control, monitoring and safety devices \\
+\hline
+11 & \fa{} & Constructional drawings of the strength parts providing a mechanical transmission of forces & --- \\
+\hline
+12 & \fic{} & Calculation notes of the shrink-fit connections & --- \\
+\hline
+\end{longtable}
+
+\noindent\textbf{Note:} item 7 (rudder actuators) and item 1 (steering gear
+assembly drawing) are \emph{not} in the range item 13 pulls in. Note 1 to Tab.\,1
+adds that constructional drawings are to be accompanied by the specification of
+materials and, where applicable, welding details and procedures.
+
+\subsection{Sec.\,14 Table 2 --- additional analyses}
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{5.8cm}|p{6.4cm}|}
+\caption{NR467 Pt C, Ch.\,1, Sec.\,14, Tab.\,2} \label{tab:s14t2} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{When required}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{When required}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+1 & \fa{} & Analysis in relation to the risk of single failure & Where required by Sec.\,14 [2.4.2] \\
+\hline
+2 & \fa{} & Analysis in relation to the risk of hydraulic locking & Where required by Sec.\,14 [2.4.5] \\
+\hline
+3 & \fa{} & Fatigue analysis and/or fracture mechanics analysis & Steering gear on \textbf{oil tankers, chemical tankers or gas carriers} --- per Pt D, Ch.\,7, Sec.\,4, [7.2.2] and [7.3.1] \\
+\hline
+\end{longtable}
+
+\subsection{Sec.\,14 Article 4 --- performance criteria a surveyor must verify}
+\label{sec:s14art4}
+
+Article 4 is titled ``Design and construction --- Requirements for ships equipped
+with thrusters as steering means''. Its numeric criteria are the heart of the
+steering review:
+
+\begin{longtable}{|p{2.6cm}|p{12.3cm}|}
+\caption{NR467 Sec.\,14, Article 4 --- criteria} \label{tab:s14crit} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Reference}} & \textcolor{white}{\textbf{Criterion}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Reference}} & \textcolor{white}{\textbf{Criterion}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+[4.1.1] & The main and auxiliary steering gear may consist of \textbf{azimuth thrusters, water-jets or cycloidal propellers} complying with Sec.\,15 as far as applicable. \\
+\hline
+[4.1.2] & Where the steering means consists of \textbf{two or more thrusters}, the control system is to include a device ensuring \textbf{automatic synchronisation of the thruster rotation}, unless each thruster is designed to withstand any additional forces resulting from the thrust exerted by the other thrusters. \\
+\hline
+[4.2.2] & \textbf{Multiple} steering-propulsion units: each unit to have a main and an auxiliary steering gear, or two or more identical steering actuating systems per [4.2.7]. Failure of one shall not render the other inoperative. \\
+\hline
+[4.2.3] & \textbf{Single} steering-propulsion unit: two or more steering actuating systems per [4.2.7], and \textbf{a detailed risk assessment is to be submitted} demonstrating that on any single failure in the steering gear, control system and power supply, ship steering is maintained. \\
+\hline
+[4.2.5] & \textbf{Main} steering: adequate strength and capable of steering at maximum ahead service speed (to be demonstrated); capable of changing direction from one side to the other at the declared steering angle limits at an average turning speed of \textbf{not less than 2,3\textdegree/s} with the ship running ahead at maximum ahead service speed; \textbf{power operated for all ships}; so designed as not to be damaged at maximum astern speed (need not be proved by trials). \\
+\hline
+[4.2.6] & \textbf{Auxiliary} steering: capable of steering at navigable speed and of being brought speedily into action; average turning speed \textbf{not less than 0,5\textdegree/s} with the ship running ahead at one half of maximum ahead service speed \textbf{or 7 knots, whichever is the greater}; power operated where necessary to meet \textbf{SOLAS II-1/29.4.2} and in any ship having \textbf{more than 2\,500\,kW propulsion power per steering-propulsion unit}. \\
+\hline
+[4.2.7] & Auxiliary steering gear may be \textbf{omitted} where the main steering gear has two or more identical power units and actuators and: on a \emph{passenger ship} satisfies [4.2.5] with any one power unit out of operation; on a \emph{cargo ship} satisfies [4.2.5] operating with all power units; and after a single failure in piping or one power unit, steering capability is maintained or speedily regained. Electric steering motors count as part of the power unit and actuator. \\
+\hline
+[4.2.8] & Where propulsion power \textbf{exceeds 2\,500\,kW per thruster unit}, an alternative power supply is to be provided \textbf{automatically within 45\,s}, from the emergency source or an independent source located in the steering gear compartment (used only for this purpose), sufficient for the steering arrangements, their control system and the steering gear response indicator. Capacity \textbf{at least 30\,min} for ships of 10\,000\,GT and upwards, \textbf{at least 10\,min} for any other ship. \\
+\hline
+[4.3.1] & The use of \textbf{water-jets as steering means will be given special consideration} by the Society. \\
+\hline
+\end{longtable}
+
+\noindent Declared steering angle limits are declared by the directional control
+system manufacturer for each ship-specific non-traditional steering means.
+Manoeuvrability tests (IMO Res.\ MSC.137(76)) are to be carried out at steering
+angles not exceeding those limits.
+
+\newpage
+
+\section{Electric drive --- NR467 Pt C, Ch.\,2}
+\label{sec:electricrule}
+
+Sec.\,15 [2.2.1] routes the drive as follows: \textbf{diesel engines}
+$\rightarrow$ Ch.\,1, Sec.\,2; \textbf{electric motors and their feeding
+systems} $\rightarrow$ \textbf{Ch.\,2, Sec.\,4}. Two express provisions apply to
+electric drives:
+
+\begin{itemize}[leftmargin=*]
+\item provisions are to be made to \textbf{prevent starting of the motors
+whenever there are insufficient generators in operation};
+\item \textbf{intermittent duty thrusters} will be the subject of special
+consideration by the Society.
+\end{itemize}
+
+\subsection{Motors above 1\,MW}
+\textbf{NR467 Pt C, Ch.\,2, Sec.\,4, Article 5} --- ``Additional tests for
+rotating machines used as propulsion motor or thruster''. In addition to the
+standard Tab.\,1 tests, machines developing \textbf{more than 1\,MW} are subject
+to the following during their assembly:
+
+\begin{longtable}{|p{4.0cm}|p{10.9cm}|}
+\caption{NR467 Pt C, Ch.\,2, Sec.\,4, [5.1.1] --- machines $>$ 1\,MW} \label{tab:c2s4a5} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Requirement / test}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Requirement / test}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+Shaft line & Requirements of Ch.\,1, Sec.\,7 apply \\
+\hline
+Rotor winding assembly & Dynamic balancing \\
+\hline
+Stator winding assembly & Dielectric test (after impregnation); insulation resistance measurement (after impregnation) \\
+\hline
+Frame & Visual examination in compliance with design drawings; \textbf{liquid penetrant test of 10\% of the structure welds and 100\% of the handling points} \\
+\hline
+Watercooler & Visual examination in compliance with design drawings; performance test (temperature-rise measurement) \\
+\hline
+Hydrostatic jacking unit & Pressure test; working test under nominal conditions \\
+\hline
+\end{longtable}
+
+\newpage
+
+\section{Dynamic positioning --- NR467 Pt F, Ch.\,11, Sec.\,5 (DYNAPOS)}
+\label{sec:dpruletable}
+
+Sec.\,15 [1.1.1]: ``For azimuth thrusters intended for dynamic positioning, the
+additional requirements in \textbf{Pt F, Ch.\,11, Sec.\,5} are to be complied
+with.'' DYNAPOS [1.1.3] cross-refers back to Pt C, Ch.\,1, Sec.\,2 (engine-driven
+thrusters), \textbf{Pt C, Ch.\,1, Sec.\,15} (azimuthal and transverse thrusters)
+and Pt F, Chapter 3 (automation).
+
+\vspace{2mm}
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{The FMEA is conditional.}} Table 1 item 17
+(Failure Mode and Effect Analysis) is annotated \textbf{``For symbols R and RS
+only''}, and [2.4.1] confirms: ``For installation intended to be assigned the
+notation \textbf{DYNAPOS AM/AT R} and \textbf{DYNAPOS AM/AT RS} an FMEA is to be
+carried out.'' \textbf{A plain DYNAPOS AM, AT or AM/AT installation does not
+attract an FMEA.} Do not demand one as a matter of course.
+\end{minipage}}
+
+\vspace{3mm}
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{5.8cm}|p{6.4cm}|}
+\caption{NR467 Pt F, Ch.\,11, Sec.\,5, Tab.\,1 --- DYNAPOS documentation} \label{tab:dynapos} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline \multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+1 & \fa{} & Documentation on the environment conditions long term distribution & See [9.4.1] \\
+\hline
+2 & \fic{} & Owner performance request & If any \\
+\hline
+3 & \fa{} & \textbf{Capability plots} & Diagram of the environment limit conditions for the conditions defined in the specification, and at least with all thrusters running and selected in DP, and the worst case failure \\
+\hline
+4 & \fa{} & Functional block diagram for the sensor and reference systems & Reference systems for position / environmental conditions \\
+\hline
+5 & \fa{} & Functional block diagram for the control unit & --- \\
+\hline
+6 & \fa{} & Single line diagram and specification of the cables between the different equipment units & Power, control, display \\
+\hline
+7 & \fa{} & Electrical load balance & --- \\
+\hline
+8 & \fa{} & List of the equipment units & Manufacturer's identification, type and model for each \\
+\hline
+9 & \fa{} & Type test reports & For the sensors of the measurement systems, or equivalent \\
+\hline
+10 & \fa{} & Type test report or case-by-case approval certificate & For the DP control system; tests to be in accordance with Pt C, Ch.\,3, Sec.\,6 \\
+\hline
+11 & \fa{} & \textbf{For approval of propulsion based on rotary azimuth thrusters:} layout drawings of thrust units, thrust shafts and blocks; arrangement of hull passages; thrust curves of each propulsion unit & --- \\
+\hline
+12 & \fa{} & Electrical power management layout drawings and specification & If provided on board \\
+\hline
+13 & \fa{} & Internal communication system description & --- \\
+\hline
+14 & \fa{} & Description of the operator stations & Layout on board; descriptive diagrams of the display consoles \\
+\hline
+15 & \fa{} & Alarm list and parameter values displayed on the consoles & --- \\
+\hline
+16 & \fa{} & Program of FMEA proving tests alongside quay and at sea & --- \\
+\hline
+17 & \fa{} & \textbf{Failure mode and effect analysis (FMEA)} & \textbf{For symbols R and RS only} --- see [2.4] \\
+\hline
+18 & \fa{} & \textbf{Study of possible interaction between thrusters} & --- \\
+\hline
+19 & \fic{} & Technical specification of the positioning system & --- \\
+\hline
+20 & \fic{} & Operating manual of the positioning system & Including description of the equipment, maintenance guide, emergency procedures \\
+\hline
+21 & \fic{} & Vessel-specific DP-operation manuals & See [7.1] \\
+\hline
+22 & \fa{} & Program of FMEA annual tests alongside quay and at sea & --- \\
+\hline
+\end{longtable}
+
+\newpage
+
+\section{Ice class --- NR467 Pt F, Ch.\,8}
+\label{sec:iceruletable}
+
+\subsection{The notations}
+Pt F, Ch.\,8, Sec.\,1, [1.1.1] assigns: \textbf{ICE CLASS IA SUPER, ICE CLASS
+IA, ICE CLASS IB, ICE CLASS IC, ICE CLASS ID, YOUNG ICE 1, YOUNG ICE 2}. Per
+[1.1.2], the strengthening requirements --- \emph{excepting} ICE CLASS ID,
+YOUNG ICE 1 and YOUNG ICE 2 --- are equivalent to the \textbf{Finnish-Swedish
+Ice Class Rules 2019, as amended}, for ships trading in the Baltic in winter or
+equivalent ice conditions.
+
+\subsection{The scope split --- this is where packages are most often over-demanded}
+
+\vspace{1mm}
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{NR467 Sec.\,15 [1.1.1], verbatim:}}
+``Thrusters intended for propulsion and steering of ships with an ICE CLASS
+notation are to comply with the additional requirements of Part F, Chapter 8.
+\textbf{Transverse thrusters intended for manoeuvring of ships with an ICE CLASS
+notation are required to comply with additional requirement Pt F, Ch.\,8,
+Sec.\,3, [3.5.1] only.}''
+
+\smallskip
+\noindent And \textbf{Pt F, Ch.\,8, Sec.\,3, [3.5.1] in its entirety} reads:
+
+\smallskip
+\noindent\textit{``Tunnels of transverse thrusters are to be fitted with grids
+for protection against ice impacts.''}
+
+\smallskip
+\noindent\textbf{That is the whole ice requirement for a manoeuvring bow or
+stern tunnel thruster on an ice-class ship: a protective grid.} Do not apply
+the propulsion-machinery ice package to it.
+\end{minipage}}
+
+\subsection{Propulsion and steering thrusters --- the full package}
+Pt F, Ch.\,8, Sec.\,3, Article 1 applies to propulsion machinery for ICE CLASS
+IA SUPER / IA / IB / IC. [1.1.1] states that the regulations ``\emph{also apply
+to azimuthing and fixed thrusters for main propulsion, considering loads
+resulting from propeller-ice interaction and loads on the thruster body/ice
+interaction}''.
+
+\begin{longtable}{|p{2.6cm}|p{12.3cm}|}
+\caption{Pt F, Ch.\,8, Sec.\,3, Article 1 --- propulsion machinery in ice} \label{tab:iceart1} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Sub-article}} & \textcolor{white}{\textbf{Content}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{Sub-article}} & \textcolor{white}{\textbf{Content}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+[1.4] & Design ice loads on propeller blades; axial design loads for open and ducted propellers; torsional design loads; blade failure load \\
+\hline
+[1.5] & Calculation of blade stresses; acceptability criterion; fatigue design of the propeller blade; acceptability criterion for fatigue \\
+\hline
+[1.6] & Design of blade flange and bolts, propeller hub and controllable pitch mechanism; blade bolts and flanges; components of the pitch control system; servo oil pressure \\
+\hline
+[1.7] & Shaft line: design principle, materials, scantling of propeller, intermediate and thrust shafts; scantling of gear shaft; calculation of propeller blade failure; alternative design procedure \\
+\hline
+[1.8] & Couplings: flange, shrunk, keyed, flexible; clutches \\
+\hline
+[1.9] & Gears: application factor, inertia ratio, safety factors \\
+\hline
+\textbf{[1.11]} & \textbf{Azimuthing thruster body}: design principles; extreme ice impact loads; extreme ice loads on the thruster hull when penetrating an ice ridge; acceptability criterion for static loads; \textbf{thruster body global vibration}; \textbf{steering gear design torque in ice}; \textbf{protection of the steering gear against excessive torque} \\
+\hline
+[3.6.1] & Test and certification of propellers: Pt C, Ch.\,1, Sec.\,8, [4] applies; additionally material tests per [1.3] and [2.2.1] \\
+\hline
+\end{longtable}
+
+\newpage
+
+\section{NR584 --- Azimuth thrusters in ice for polar class ships and icebreakers}
+\label{sec:nr584}
+
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{A separate rule note --- easily missed.}}
+\textbf{NR584} (edition Apr 2026) applies to ships fitted with an \textbf{azimuth
+propulsion system} and assigned a service notation \textbf{icebreaker} or an
+additional class notation \textbf{POLAR CLASS}. It is a complete rule note in its
+own right, with 8 sections and its own submission tables, and it is
+substantially more demanding than NR467 Sec.\,15. If your vessel is polar-class
+with azimuth propulsion, \emph{this} is the controlling document.
+\end{minipage}}
+
+\subsection{Application and structure}
+Per NR584 Sec.\,1, [1.1.2] the azimuth propulsion system may be:
+\begin{itemize}[leftmargin=*]
+\item a \textbf{podded electrical thruster} --- steering unit, slewing bearing,
+rudder part of the system, and the pod containing the electric motor; or
+\item a \textbf{Z/L geared thruster} --- steering unit, upper gearing (Z-drive),
+lower gearing, nozzle, and the prime mover (diesel engine or electric motor).
+\end{itemize}
+
+\noindent The eight sections are: Sec.\,1 General; Sec.\,2 Structure of the
+Thruster Body; Sec.\,3 Machinery Assessment; Sec.\,4 Electrical Installations;
+Sec.\,5 Steering Units; \textbf{Sec.\,6 Structural Assessment of the Thruster
+Body in Ice}; Sec.\,7 Tests; Sec.\,8 Certification.
+
+\subsection{Submission tables}
+NR584 Sec.\,1, [1.3] requires \textbf{Table 2} (55 items, below), plus
+\textbf{Table 3} for solid propellers \emph{or} \textbf{Table 4} for built-up and
+controllable pitch propellers, plus \textbf{Table 5} manufacturer data.
+
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{6.0cm}|p{6.2cm}|}
+\caption{NR584 Sec.\,1, Tab.\,2 --- documentation to be submitted} \label{tab:nr584t2} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline \multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+1 & \fic{} & General arrangement of the thruster & Including cross sections and sealing arrangements exposed to sea \\
+\hline
+2 & \fic{} & General layout of the thruster & --- \\
+\hline
+3 & \fa{} & Azimuth thruster general specification & Rating, operation modes, limitations and maximum design loads (torque, thrust, hydrodynamic loads, loads transferred to hull, steering loads and cycles); material specifications for principal parts/assemblies; welding procedures \\
+\hline
+4 & \fic{} & Environmental conditions & --- \\
+\hline
+5 & \fa{} & \textbf{Failure Mode and Effects Analysis of the propulsion} & For the cooling, lubrication, ventilation systems, sealing system, steering functions of the thruster, thruster control system and fire safety \\
+\hline
+6 & \fa{} & Process and instrumentation of azimuth thruster & Including all the auxiliary services \\
+\hline
+7 & \fa{} & Specification and data sheet of the auxiliary services & --- \\
+\hline
+8 & \fa{} & Arrangements and details of the auxiliary services & --- \\
+\hline
+9 & \fa{} & Diagrams of cooling, ventilation, draining/bilge, lubricating and hydraulic systems & --- \\
+\hline
+10 & \fic{} & Description of the operational modes intended for steering in normal and emergency conditions & --- \\
+\hline
+11 & \fic{} & \textbf{Operation manual of the thruster in ice conditions} & --- \\
+\hline
+12 & \fa{} & Structural drawings of the thruster & --- \\
+\hline
+13 & \fa{} & Structural connection to hull & --- \\
+\hline
+14 & \fa{} & Arrangement of the azimuth propulsion system supports & --- \\
+\hline
+15 & \fa{} & \textbf{Ice load calculation of the thruster body} & --- \\
+\hline
+16 & \fa{} & \textbf{Stress calculation for the thruster body} & --- \\
+\hline
+17 & \fa{} & Details of structural items (nozzle, bracing, etc.) & Including information on clearance between propeller and nozzle \\
+\hline
+18 & \fic{} & \textbf{Maximum propulsive power in ice conditions} & As a function of thruster steering angle and shaft rotational speed \\
+\hline
+19 & \fa{} & Propeller details & Including the applicable details mentioned in [1.3.2] \\
+\hline
+20 & \fa{} & Detailed drawing of the propeller shaft & \textbf{Including the brake} \\
+\hline
+21 & \fa{} & Propeller and intermediate shafts & --- \\
+\hline
+22 & \fic{} & Installation drawing of the bearings & --- \\
+\hline
+23 & \fa{} & Bearing details & --- \\
+\hline
+24 & \fic{} & Bearing data & Maximum allowable static and dynamic load capacity, permissible rotational speed range, axial displacement, operating conditions \\
+\hline
+25 & \fic{} & Dynamic load calculation of the bearings & --- \\
+\hline
+26 & \fic{} & Lifetime calculation of the bearings & --- \\
+\hline
+27 & \fa{} & Seals drawings & --- \\
+\hline
+28 & \fa{} & Gears details & Including the applicable details required by the Society \\
+\hline
+29 & \fa{} & Piping systems connected to thruster & --- \\
+\hline
+30 & \fic{} & Assembly longitudinal and transverse sectional drawings of hydraulic pumps of power units, and their characteristic curves & --- \\
+\hline
+31 & \fa{} & General arrangement of electrical installations & --- \\
+\hline
+32 & \fa{} & Specification and data sheet of main electrical components & --- \\
+\hline
+33 & \fa{} & Schematic electrical diagrams of main electrical components & --- \\
+\hline
+34 & \fa{} & General arrangement diagram of main electrical components & --- \\
+\hline
+35 & \fa{} & Thruster control system & --- \\
+\hline
+36 & \fa{} & Diagram of the supply for monitoring and control systems of propulsion motors & --- \\
+\hline
+37 & \fa{} & Diagram of the supply, monitoring and control systems of controllable pitch propellers & --- \\
+\hline
+38 & \fa{} & Principles of control system and its power supply & --- \\
+\hline
+39 & \fa{} & Alarm and monitoring system details & List of alarms and monitoring points; power supply diagram \\
+\hline
+40 & \fa{} & Safety system details & List of monitored parameters for safety system; power supply diagram \\
+\hline
+41 & \fa{} & Test program for electrical propulsion motors and electrical slip rings & --- \\
+\hline
+42 & \fa{} & Diagrams of the electric power circuits & --- \\
+\hline
+43 & \fa{} & Functional diagram of control, monitoring and safety systems & Including the remote control from the navigating bridge, with the location of control, monitoring and safety devices \\
+\hline
+44 & \fic{} & Operating manuals of the steering unit and of its main components & --- \\
+\hline
+45 & \fic{} & General arrangement of the steering system & Main components (steering bearing and steering drive), protection and locking devices \\
+\hline
+46 & \fic{} & Assembly drawing of the steering unit & Including sliding blocks, guides, stops and other similar components \\
+\hline
+47 & \fic{} & General description of the steering unit installation and of its functioning principle & --- \\
+\hline
+48 & \fa{} & Detailed drawings of the main components of the steering system & Including locking device and all load carrying components \\
+\hline
+49 & \fa{} & Rotating mechanism of the thruster & --- \\
+\hline
+50 & \fa{} & For hydraulic steering unit, the schematic layout of the hydraulic piping of power actuating systems & Including refilling system; design pressure; maximum working pressure expected in service; pipe diameter, thickness, material and connections; fluid tank capacity; flashpoint \\
+\hline
+51 & \fa{} & Assembly drawings of the actuators and constructional drawings of their components & For hydraulic actuators: design torque, maximum working pressure, relief valve setting pressure \\
+\hline
+52 & \fic{} & Constructional drawings of the relief valves for protection of the hydraulic actuators & Setting pressure; relieving capacity \\
+\hline
+53 & \fa{} & Diagram of the supply, monitoring and control systems of the steering unit & --- \\
+\hline
+54 & \fa{} & \textbf{Risk analysis of single failure} & Where the main steering unit comprises two or more identical power units \\
+\hline
+55 & \fa{} & \textbf{Risk analysis of hydraulic locking} & Where more than one steering unit can be simultaneously operated \\
+\hline
+\end{longtable}
+
+\subsection{NR584 propeller and manufacturer tables}
+
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{12.6cm}|}
+\caption{NR584 Sec.\,1, Tab.\,3 (solid propellers) and Tab.\,4 (built-up and CP propellers)} \label{tab:nr584prop} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+\multicolumn{3}{|l|}{\cellcolor{lightgray}\textbf{Tab.\,3 --- solid propellers}} \\
+\hline
+1 & \fa{} & Sectional assembly \\
+\hline
+2 & \fa{} & Blade and hub details \\
+\hline
+3 & \fic{} & Rating (power, rpm, etc.) \\
+\hline
+4 & \fa{} & Data and procedures for fitting propeller to the shaft \\
+\hline
+\multicolumn{3}{|l|}{\cellcolor{lightgray}\textbf{Tab.\,4 --- built-up and controllable pitch propellers (items 1--4 as above, plus)}} \\
+\hline
+5 & \fa{} & Blade bolts and pre-tensioning procedures \\
+\hline
+6 & \fic{} & Pitch corresponding to maximum propeller thrust and to normal service condition \\
+\hline
+7 & \fa{} & Pitch control mechanism \\
+\hline
+8 & \fa{} & Pitch control hydraulic system \\
+\hline
+\end{longtable}
+
+\begin{longtable}{|p{0.7cm}|p{1.1cm}|p{5.8cm}|p{6.4cm}|}
+\caption{NR584 Sec.\,1, Tab.\,5 --- additional data and documentation to be submitted by manufacturer} \label{tab:nr584t5} \\
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{bvblue}
+\textcolor{white}{\textbf{No.}} & \textcolor{white}{\textbf{A/I}} & \textcolor{white}{\textbf{Documentation}} & \textcolor{white}{\textbf{Particulars}} \\
+\hline
+\endhead
+\hline
+\endlastfoot
+1 & \fic{} & Onboard installation procedure & --- \\
+\hline
+2 & \fic{} & Rated power and revolutions & --- \\
+\hline
+3 & \fic{} & Rated thrust & --- \\
+\hline
+4 & \fa{} & Material specifications of the major parts & Including their physical, chemical and mechanical properties \\
+\hline
+5 & \fa{} & Particulars on the design of welded joints, welding procedures, heat treatments and non-destructive examinations after welding & Where parts of thrusters are of welded construction \\
+\hline
+6 & \fic{} & Background information on previous operating experience in similar applications & Where applicable \\
+\hline
+\end{longtable}
 
 \newpage
 
@@ -294,6 +1218,16 @@ configuration, prime mover, role, ship type and notations are selected.
 
 \section{Mandatory Submissions for All Thruster Types}
 
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{Read with Chapter \ref{ch:ruletables}.}} The
+rule-mandated list for every thruster is \textbf{Sec.\,15 Tab.\,1} (Table
+\ref{tab:s15t1}) plus \textbf{Tab.\,5} (Table \ref{tab:s15t5}) --- nine rows in
+total. The table below expands those rows into the engineering content a
+reviewer normally needs; it is \emph{supporting practice}, and the A/I
+categories shown against the two rule rows have been aligned to the rule.
+\end{minipage}}
+\vspace{2mm}
+
 \begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
 \caption{General Requirements - All Thrusters} \label{tab:general-req} \\
 \hline
@@ -316,69 +1250,66 @@ configuration, prime mover, role, ship type and notations are selected.
 \hline
 \endlastfoot
 
-1 & General Arrangement Drawing & \fa{} & 
+1 & General Arrangement Drawing & \fic{} &
 \begin{itemize}[leftmargin=*,nosep]
 \item Thruster location on vessel
 \item Installation orientation
 \item Access provisions
 \item Clearances to other equipment
 \item Coordinate system reference
-\end{itemize} & NR467 Sec.15, [1] \\
+\end{itemize} & Sec.15, Tab.1 \#1 \\
 \hline
 
-2 & Technical Specification Sheet & \fa{} & 
+2 & Data on ratings (technical specification sheet) & \fic{} &
 \begin{itemize}[leftmargin=*,nosep]
-\item Rated power (kW)
-\item Rated thrust (kN)
-\item Rated speed (RPM)
+\item \textbf{Rated power, thrust and revolutions} (the rule's own wording)
 \item Operating voltage/pressure
 \item Weight and dimensions
 \item Operating depth/pressure rating
-\end{itemize} & NR467 Sec.15, [1] \\
+\end{itemize} & Sec.15, Tab.5 \#1 \\
 \hline
 
-3 & Material Specifications & \fa{} & 
+3 & Material specifications of the major parts & \fa{} &
 \begin{itemize}[leftmargin=*,nosep]
+\item \textbf{Physical, chemical and mechanical properties} (the rule's own wording)
 \item Material grades for all major components
-\item Compliance with NR467 Part B, Ch.3
 \item Corrosion protection details
-\item Material certificates (during construction)
-\end{itemize} & NR467 Part B, Ch.3 \\
+\item Material certificates (during construction) --- NR216 / NR266
+\end{itemize} & Sec.15, Tab.5 \#2 \\
 \hline
 
-4 & Welding Procedures & \fa{} & 
+4 & Weldings & \fa{} &
 \begin{itemize}[leftmargin=*,nosep]
-\item Welding Procedure Specifications (WPS)
-\item Welder qualification records
-\item NDT requirements and extent
+\item \textbf{Design of welded joints, welding procedures, heat treatments and NDE after welding} (rule wording, where parts are of welded construction)
+\item WPS / PQR and welder qualification records
 \item Weld inspection plan
-\end{itemize} & NR467 Part B, Ch.4 \\
+\end{itemize} & Sec.15, Tab.5 \#3; NR216 \\
 \hline
 
-5 & Manufacturer's Quality Plan & \fa{} & 
+5 & Manufacturer's Quality Plan & \fic{} &
 \begin{itemize}[leftmargin=*,nosep]
 \item Manufacturing sequence
 \item Inspection and test points
 \item Quality control procedures
 \item Traceability system
-\end{itemize} & NR467 Sec.15 \\
+\end{itemize} & \emph{Practice} --- supports Sec.15 [3.3.1] certification \\
 \hline
 
-6 & Operation \& Maintenance Manual & \fic{} & 
+6 & Operation \& Maintenance Manual & \fic{} &
 \begin{itemize}[leftmargin=*,nosep]
 \item Operating instructions
 \item Maintenance schedule
 \item Troubleshooting guide
 \item Safety precautions
-\end{itemize} & NR467 Sec.15 \\
+\end{itemize} & \emph{Practice} (rule-required only for ice: NR584 Tab.2 \#11) \\
 \hline
 
-7 & Spare Parts List & \fic{} & 
+7 & Spare Parts List & \fic{} &
 \begin{itemize}[leftmargin=*,nosep]
 \item Recommended spare parts
 \item Critical component identification
 \item Part numbers and suppliers
-\end{itemize} & NR467 Sec.15 \\
+\end{itemize} & \emph{Practice} --- not a Sec.15 table row \\
 \hline
 
 8 & Installation Manual & \fic{} & 
@@ -387,7 +1318,14 @@ configuration, prime mover, role, ship type and notations are selected.
 \item Alignment requirements
 \item Foundation specifications
 \item Connection details
-\end{itemize} & NR467 Sec.15 \\
+\end{itemize} & \emph{Practice} (rule-required only for ice: NR584 Tab.5 \#1) \\
+\hline
+
+9 & Background information on previous operating experience & \fic{} &
+\begin{itemize}[leftmargin=*,nosep]
+\item Service record of the same or similar unit
+\item Where applicable
+\end{itemize} & Sec.15, Tab.5 \#4 \\
 \hline
 
 \end{longtable}
@@ -397,6 +1335,22 @@ configuration, prime mover, role, ship type and notations are selected.
 % Chapter 2: Transverse Thrusters
 \chapter{Transverse Thrusters (Tunnel \& Retractable)}
 \label{ch:transverse}
+
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{Rule basis for this chapter.}} The
+rule-mandated submissions for a transverse thruster are \textbf{Sec.\,15
+Tab.\,1} (Table \ref{tab:s15t1}, 5 rows) $+$ \textbf{Tab.\,2} (Table
+\ref{tab:s15t2}, 4 rows) $+$ \textbf{Tab.\,5} (Table \ref{tab:s15t5}, 4 rows)
+--- \textbf{13 rows in total}. Everything below expands those rows into the
+engineering content a reviewer examines. It is \emph{supporting practice}, not
+an independent list of deliverables a client can be required to produce.
+
+\smallskip
+\noindent Note also \textbf{Sec.\,15 [2.2.6]}: the tunnel thickness is not to be
+less than the adjacent part of the hull; and for a manoeuvring-only unit the
+propeller need not carry the 10\% thickness increase, the shaft follows the
+Sec.\,15 [2.2.3] formula, and gears use \emph{auxiliary} gear safety factors.
+\end{minipage}}
 
 \section{Tunnel Thrusters (Fixed Installation)}
 
@@ -970,6 +1924,29 @@ configuration, prime mover, role, ship type and notations are selected.
 % Chapter 3: Azimuth Thrusters
 \chapter{Rotating and Azimuth Thrusters}
 \label{ch:azimuth}
+
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{Rule basis for this chapter.}} The
+rule-mandated submissions for a rotating or azimuth thruster are \textbf{Sec.\,15
+Tab.\,1} (Table \ref{tab:s15t1}) $+$ \textbf{Tab.\,3} (Table \ref{tab:s15t3})
+$+$ \textbf{Tab.\,5} (Table \ref{tab:s15t5}) --- \textbf{14 rows in total}. If
+the unit is also the ship's steering means, add the Sec.\,14 Tab.\,1 item 13
+subset (Section \ref{sec:s14thruster}) and verify the Article 4 criteria
+(Section \ref{sec:s14art4}). Everything below is the supporting engineering
+content behind those rows.
+
+\smallskip
+\noindent \textbf{Nozzle and hull connection --- Sec.\,15 [2.2.5]:} the nozzle
+structure is assessed under \textbf{Part B, Chapter 12}; nozzle-to-hull
+scantlings and weld type/size are specially considered and the Society may
+require a detailed stress analysis for certain high power installations. For
+\emph{steerable} thrusters the \textbf{equivalent rudder stock diameter} is
+calculated per Part B, Chapter 12.
+
+\smallskip
+\noindent \textbf{If POLAR CLASS or icebreaker:} \textbf{NR584} governs --- see
+Section \ref{sec:nr584}.
+\end{minipage}}
 
 \section{Azimuth Thrusters (Fixed Pitch \& Controllable Pitch)}
 
@@ -1915,6 +2892,28 @@ configuration, prime mover, role, ship type and notations are selected.
 
 % Chapter 4: Water-Jets
 \chapter{Water-Jet Propulsion Systems}
+
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{Rule basis for this chapter.}} Water-jets
+have their \emph{own} table: \textbf{Sec.\,15 Tab.\,4} (Table \ref{tab:s15t4},
+7 rows), submitted per [1.4.2], plus \textbf{Tab.\,5} manufacturer data (Table
+\ref{tab:s15t5}). Note that Tab.\,4 places the \emph{general arrangement} and
+the \emph{sealing gland} in category \fic{}.
+
+\smallskip
+\noindent Two calculations are demanded by the rule text itself:
+\textbf{[2.3.2]} a \emph{fatigue strength calculation} for guide vanes and shaft
+supports; and \textbf{[2.3.3]} a \emph{stator/rotor blade natural-frequency
+calculation} for maximum speed and any currently used speed, demonstrating no
+natural frequency near the stator--rotor hydrodynamic interaction excitation.
+
+\smallskip
+\noindent \textbf{[2.3.5]}: steering performance and emergency steering
+availability at least equivalent to Sec.\,14 [4.2] and [4.3]. Note Sec.\,14
+[4.3.1]: \emph{the use of water-jets as steering means will be given special
+consideration by the Society}. \textbf{[1.3.1]} (at least two units where they
+are the sole means of propulsion) applies to water-jets as well.
+\end{minipage}}
 \label{ch:waterjets}
 
 \section{General Arrangement}
@@ -2429,6 +3428,18 @@ configuration, prime mover, role, ship type and notations are selected.
 
 % Chapter: Voith-Schneider / Cycloidal
 \chapter{Voith-Schneider (Cycloidal) Propulsion Systems}
+
+\noindent\fcolorbox{bvblue}{white}{\begin{minipage}{0.95\textwidth}
+\small\textbf{Rule basis.} NR467 Sec.\,15 does not define a cycloidal
+propeller, so there is no dedicated table. The rule does, however, expressly
+recognise cycloidal propellers as an acceptable steering means:
+\textbf{Sec.\,14 [4.1.1]} --- ``The main and auxiliary steering gear \ldots{} may
+consist of thrusters of the following types: azimuth thrusters, water-jets,
+\textbf{cycloidal propellers}, complying with the provisions of Ch.\,1, Sec.\,15,
+\emph{as far as applicable}.'' Apply the rotating/azimuth tables (Tab.\,1 $+$
+Tab.\,3 $+$ Tab.\,5) as the closest fit and \textbf{agree the scope with the
+Society in writing before review}.
+\end{minipage}}
 \label{ch:vsp}
 
 \section{Description \& Classification Basis}
@@ -2623,6 +3634,21 @@ substantiation against grounding loads.
 
 % Chapter: Other Thruster Types
 \chapter{Other Thruster Types (Rim-Driven, Pump-Jet, Gill/Jet, Steering Grid)}
+
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{No dedicated rule tables exist for these
+types.}} NR467 Sec.\,15 [1.2] defines only three things: the \emph{transverse
+thruster}, the \emph{azimuth thruster} and the \emph{water-jet}. The unit types
+in this chapter must be mapped onto the closest applicable table --- rim-driven
+and steering-grid units onto Tab.\,3 (rotating/azimuth), pump-jet and gill/jet
+units onto Tab.\,4 (water-jet) --- and \textbf{the scope agreed with the Society
+in writing before review}. Do not present the lists below as rule requirements.
+
+\smallskip
+\noindent Remember the scope exclusion of \textbf{[1.2.1]}: a propulsion
+propeller in a \emph{fixed} nozzle is \textbf{not} a thruster and is assessed
+under Sec.\,8.
+\end{minipage}}
 \label{ch:othertypes}
 
 This chapter addresses less-common propulsor arrangements recognised by BV. Each
@@ -2974,13 +4000,64 @@ shaft-line torsional/alignment package in Chapter \ref{ch:shafting}.
 
 \section{Applicability}
 
-\textbf{\textcolor{warningred}{CRITICAL:}} When thrusters (azimuth, podded, or water-jets) are used as the PRIMARY or AUXILIARY steering system, they MUST comply with ALL steering gear requirements in addition to thruster requirements.
+\textbf{NR467 Pt C, Ch.\,1, Sec.\,14, [1.1.1]:} the requirements of Sec.\,14
+apply to the steering gear systems of all mechanically propelled ships,
+``\textbf{and to the steering mechanism of thrusters used as means of
+propulsion}''.
 
-This applies to:
+\textbf{Sec.\,14 [4.1.1]} states which thruster types may constitute the main and
+auxiliary steering gear: \textbf{azimuth thrusters, water-jets and cycloidal
+propellers}, complying with Sec.\,15 as far as applicable.
+
+\vspace{2mm}
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{The thruster steering package is a defined
+subset --- not the whole of Sec.\,14 Table 1.}} The rule entry is
+\textbf{Sec.\,14, Tab.\,1, item 13}: ``For azimuth thrusters used as steering
+means: \emph{Specification and drawings of the steering mechanism}. Where
+applicable, \emph{documents 2 to 6 and 8 to 12} above.'' Items 1 and 7 are
+\textbf{not} pulled in. The exact subset is reproduced in Table \ref{tab:s14sub};
+the additional analyses are Table \ref{tab:s14t2}; and the numeric performance
+criteria a surveyor must verify are Table \ref{tab:s14crit}.
+
+\smallskip
+\noindent \textbf{Do not simply demand the full rudder steering-gear package.}
+\end{minipage}}
+
+\vspace{2mm}
+\noindent The key criteria from \textbf{Sec.\,14, Article 4} (full text in
+Section \ref{sec:s14art4}), which surveyors most often need at the desk:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Main steering:} average turning speed \textbf{$\geq$ 2,3\textdegree/s}
+at maximum ahead service speed, within the declared steering angle limits;
+power operated for all ships.
+\item \textbf{Auxiliary steering:} \textbf{$\geq$ 0,5\textdegree/s} at half maximum
+ahead service speed \emph{or 7 knots, whichever is greater}; power operated where
+needed for SOLAS II-1/29.4.2 and in any ship with \textbf{$>$ 2\,500\,kW per
+steering-propulsion unit}.
+\item \textbf{Single unit:} two or more steering actuating systems \emph{plus a
+detailed risk assessment} ([4.2.3]).
+\item \textbf{Multiple units:} main $+$ auxiliary steering gear each, or two or
+more identical actuating systems; and \textbf{automatic synchronisation of
+thruster rotation} unless each thruster withstands the others' forces ([4.1.2]).
+\item \textbf{$>$ 2\,500\,kW per unit:} alternative power supply
+\textbf{automatically within 45\,s}, capacity \textbf{$\geq$ 30\,min} for ships
+$\geq$ 10\,000\,GT and \textbf{$\geq$ 10\,min} otherwise ([4.2.8]).
+\item \textbf{Controls} from the navigation bridge, machinery control station
+\emph{and locally}, with a \textbf{thruster angle indicator independent of the
+control system} at each steering control station (Sec.\,15 [2.4.1]).
+\item \textbf{Water-jets as steering means will be given special consideration}
+by the Society ([4.3.1]).
+\end{itemize}
+
+\vspace{2mm}
+\noindent This applies to:
 \begin{itemize}[leftmargin=*]
 \item Azimuth thrusters used for steering
 \item Podded propulsion units providing steering
 \item Water-jet systems providing steering
+\item Cycloidal (Voith-Schneider) propellers used for steering
 \item Any thruster configuration that replaces or supplements rudder steering
 \end{itemize}
 
@@ -4870,51 +5947,71 @@ hydraulics must define the \emph{fail-safe} pitch position.
 
 \section{Applicability}
 
-Thrusters that are part of a Dynamic Positioning (DP) system must comply with ALL applicable requirements from Chapters \ref{ch:transverse}-\ref{ch:hydraulics}, PLUS the additional DP-specific requirements in this chapter.
+\textbf{NR467 Sec.\,15 [1.1.1]:} ``For azimuth thrusters intended for dynamic
+positioning, the additional requirements in \textbf{Pt F, Ch.\,11, Sec.\,5} are
+to be complied with.'' Those requirements are \emph{in addition to} the full
+type package for each thruster used in the DP system.
 
-DP systems are classified into three classes:
+\vspace{2mm}
+\noindent\fcolorbox{bvblue}{white}{\begin{minipage}{0.95\textwidth}
+\small\textbf{The authoritative DP submission list is Table \ref{tab:dynapos}}
+(NR467 Pt F, Ch.\,11, Sec.\,5, Tab.\,1 --- 22 rows, reproduced verbatim in
+Section \ref{sec:dpruletable}). This chapter gives the surveyor's reading of it.
+DYNAPOS [1.1.3] cross-refers back to Pt C, Ch.\,1, Sec.\,2 (engine-driven
+thrusters), \textbf{Pt C, Ch.\,1, Sec.\,15} (azimuthal and transverse
+thrusters) and Pt F, Chapter 3 (automation).
+\end{minipage}}
+
+\subsection{Notation symbols}
+The additional class notation is \textbf{DYNAPOS}, completed by symbols
+describing the capability of the installation: \textbf{AM}, \textbf{AT},
+\textbf{AM/AT} and \textbf{SAM}, with the redundancy-qualified variants
+\textbf{AM/AT R} and \textbf{AM/AT RS} (NR467 Pt A, Ch.\,1, Sec.\,2, [6.21.5];
+Pt F, Ch.\,11, Sec.\,5). \textbf{DYNAPOS AM/AT} is equivalent to IMO equipment
+class 1 ([3.2.1]). An environmental station keeping index (\textbf{ESKI}) may be
+associated with the notation ([9.1.1]).
+
+\vspace{2mm}
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{The FMEA is conditional --- do not demand it
+as a matter of course.}} Table 1 item 17 (Failure Mode and Effect Analysis) is
+annotated in the rule \textbf{``For symbols R and RS only''}, and [2.4.1]
+confirms: ``For installation intended to be assigned the notation \textbf{DYNAPOS
+AM/AT R} and \textbf{DYNAPOS AM/AT RS} an FMEA is to be carried out.''
+
+\smallskip
+\noindent\textbf{A plain DYNAPOS AM, AT or AM/AT installation does not attract an
+FMEA under Pt F, Ch.\,11, Sec.\,5.} Earlier editions of this catalog stated
+unconditionally that the FMEA is the cornerstone DP document and that an
+inadequate FMEA is grounds for rejection. That is correct \emph{for R and RS
+installations} and wrong for the rest. Check the requested notation string first.
+
+\smallskip
+\noindent Note the related worst-case-failure provision: for \textbf{AM/AT R} or
+\textbf{AM/AT RS}, the DP vessel is to be operated so that the worst-case failure
+determined in [2.4.1] can occur at any time without breaching the acceptable
+excursion criteria ([3.1.1]). For \textbf{AM/AT}, the power system need not be
+redundant ([4.2.4]).
+\end{minipage}}
+
+\section{Thruster-specific rows in the DYNAPOS table}
+Three rows bear directly on the thruster package and are easily overlooked:
 \begin{itemize}[leftmargin=*]
-\item \textbf{DP-1}: Basic DP capability, no redundancy required
-\item \textbf{DP-2}: Redundant systems, single failure tolerance
-\item \textbf{DP-3}: Enhanced redundancy with fire/flood separation
+\item \textbf{Item 11 (\fa{})} --- for approval of propulsion based on rotary
+azimuth thrusters: \emph{layout drawings of thrust units, thrust shafts and
+blocks; arrangement of hull passages; thrust curves of each propulsion unit.}
+\item \textbf{Item 18 (\fa{})} --- \emph{study of possible interaction between
+thrusters.}
+\item \textbf{Item 3 (\fa{})} --- \emph{capability plots}, covering the
+conditions in the specification, the case with all thrusters running and
+selected in DP, \emph{and the worst case failure}.
 \end{itemize}
 
-The DP-specific submissions below are \emph{in addition to} the full type
-package for each thruster used in the DP system (structure, propeller, shaft,
-gear, drive, control). They focus on redundancy, power segregation, control and
-failure analysis, and are assessed principally under \textbf{NR467 Part F}
-(Additional Class Notation \textbf{DYNAPOS}).
-
-\textbf{Key DP-Specific Documents Required (\fa{}):}
-\begin{enumerate}
-\item DP System General Arrangement
-\item Thruster Configuration Drawing
-\item DP Capability Plot
-\item FMEA Documentation (comprehensive)
-\item Redundancy Concept (DP-2/DP-3)
-\item Power Supply Segregation
-\item Fire Zone Arrangement (DP-3)
-\item Watertight Subdivision (DP-3)
-\item DP Control System Architecture
-\item Thruster Allocation Logic
-\item Position Reference System Configuration
-\item Environmental Sensor Configuration
-\item Power Management System (PMS) Configuration
-\item UPS Configuration
-\item DP FMEA Proving Trials Plan
-\item DP Annual Trials Plan
-\end{enumerate}
-
-\textbf{Key DP-Specific Documents Required (\fic{}):}
-\begin{enumerate}
-\item DP Operations Manual
-\item DP Maintenance Manual
-\item DP Trials Reports
-\item DP Training Requirements
-\end{enumerate}
-
 \section{Reference}
-All DP (DYNAPOS) requirements per \textbf{NR467 Part F (Additional Class Notations)}; see also IMO MSC.1/Circ.1580 and IMCA guidance.
+\textbf{NR467 Part F, Chapter 11, Section 5} (DYNAPOS) is the governing text;
+DP control system type testing follows \textbf{Pt C, Ch.\,3, Sec.\,6} (item 10).
+See also IMO MSC.1/Circ.1580 and IMCA guidance, and \textbf{NR632} for
+hardware-in-the-loop testing of DP control systems.
 
 \newpage
 
@@ -4922,30 +6019,64 @@ All DP (DYNAPOS) requirements per \textbf{NR467 Part F (Additional Class Notatio
 \chapter{Ice Class \& Cold-Climate (Winterisation) Requirements}
 \label{ch:ice}
 
-\section{Applicability}
+\section{Applicability --- and the scope split that matters most}
 
-When a vessel carries a BV ice-class or polar notation, thrusters and their
-drive trains must be strengthened and winterised in addition to all base
-requirements of the preceding chapters. Two families apply:
-\begin{itemize}[leftmargin=*]
-\item \textbf{Baltic / Finnish-Swedish Ice Classes} --- notations
-\textbf{ICE CLASS IA SUPER, IA, IB, IC} (and \textbf{ID}), based on the
-Finnish-Swedish Ice Class Rules (FSICR / TRAFICOM), adopted in
-\textbf{NR467 Part E}. Intended for first-year Baltic-type ice with icebreaker
-assistance.
-\item \textbf{Polar Classes} --- notations \textbf{POLAR CLASS PC1--PC7}
-(IACS Polar Class / IMO Polar Code), addressed in \textbf{NR467 Part E} and
-Rule Note \textbf{NR527}. Machinery strengthening follows \textbf{IACS UR I3}.
-\end{itemize}
-Cold-climate service without ice loads is covered by winterisation notations such
-as \textbf{COLD} (e.g.\ \texttt{COLD(H\,$t_{DH}$, E\,$t_{DE}$)}), addressing
-design ambient temperatures rather than ice impact.
+\noindent\fcolorbox{warningred}{lightgray}{\begin{minipage}{0.95\textwidth}
+\small\textbf{\textcolor{warningred}{Read this before demanding anything in this
+chapter.}} The ice scope depends entirely on the thruster's \textbf{duty}.
+\textbf{NR467 Sec.\,15 [1.1.1], verbatim:}
 
-\textbf{Key principle:} ice class primarily drives \emph{ice-load strengthening}
-of the propeller, shaft line, gears and thruster body, plus \emph{winterisation}
-of exposed and seawater systems. The surveyor overlays these on the type package.
+\smallskip
+\noindent ``Thrusters intended for \textbf{propulsion and steering} of ships with
+an ICE CLASS notation are to comply with the additional requirements of Part F,
+Chapter 8. \textbf{Transverse thrusters intended for manoeuvring} of ships with
+an ICE CLASS notation \textbf{are required to comply with additional requirement
+Pt F, Ch.\,8, Sec.\,3, [3.5.1] only}.''
+
+\smallskip
+\noindent And \textbf{[3.5.1] in its entirety} reads: \textit{``Tunnels of
+transverse thrusters are to be fitted with grids for protection against ice
+impacts.''}
+
+\smallskip
+\noindent\textbf{So for a manoeuvring bow or stern tunnel thruster on an
+ice-class ship, the entire ice requirement is a protective grid on the tunnel.}
+The ice-load strengthening package in this chapter applies to
+\emph{propulsion and steering} thrusters. Applying it to a manoeuvring tunnel
+unit is a substantial over-demand and a common review error.
+\end{minipage}}
+
+\vspace{3mm}
+\noindent The notations, per \textbf{NR467 Pt F, Ch.\,8, Sec.\,1, [1.1.1]}, are:
+\textbf{ICE CLASS IA SUPER, ICE CLASS IA, ICE CLASS IB, ICE CLASS IC, ICE CLASS
+ID, YOUNG ICE 1} and \textbf{YOUNG ICE 2}. Per [1.1.2] the strengthening
+requirements --- \emph{excepting} ICE CLASS ID, YOUNG ICE 1 and YOUNG ICE 2 ---
+are equivalent to the \textbf{Finnish-Swedish Ice Class Rules 2019, as amended},
+for ships trading in the Baltic in winter or equivalent ice conditions.
+
+\vspace{2mm}
+\noindent\textbf{Polar service.} Thrusters intended for propulsion and steering
+of ships with an additional class notation \textbf{POLAR CLASS} or a service
+notation \textbf{icebreaker} comply with \textbf{NR527} (Sec.\,15 [1.1.1]).
+Where the vessel has an \textbf{azimuth} propulsion system, the controlling
+document is \textbf{NR584} --- see Section \ref{sec:nr584}. Machinery ice loads
+follow \textbf{IACS UR I3}, whose propulsion machinery type factor is
+$k_3 = 1{,}0$ for fixed and $1{,}2$ for azimuthing propulsors.
+
+\vspace{2mm}
+\noindent Cold-climate service without ice loads is covered by winterisation
+notations such as \textbf{COLD}, addressing design ambient temperatures rather
+than ice impact (NR467 Pt F, Ch.\,8, Sec.\,4).
 
 \section{Ice-Strengthening Submissions}
+
+\noindent\textbf{Applies to thrusters intended for \emph{propulsion and
+steering} only} --- see the scope box above. The authoritative sub-article map
+is Table \ref{tab:iceart1}; the table below is the supporting engineering
+content. For an azimuth unit, note especially Pt F, Ch.\,8, Sec.\,3,
+\textbf{[1.11]} --- thruster body ice loads, global vibration, \textbf{steering
+gear design torque in ice} and protection of the steering gear against
+excessive torque.
 
 \begin{longtable}{|p{0.5cm}|p{5cm}|p{1.5cm}|p{5.5cm}|p{2cm}|}
 \caption{Ice Class --- Additional Thruster Requirements} \label{tab:ice} \\
@@ -6264,15 +7395,60 @@ NR216 for DP --- read DP references as \textbf{NR467 Part F (DYNAPOS)}.
 \end{minipage}}
 
 \subsection{Related BV Rule Notes (as applicable)}
+
+\textbf{Thruster-specific:}
+\begin{itemize}[leftmargin=*]
+\item \textbf{NR584} --- \textbf{Azimuth thrusters in ice for polar class ships
+and icebreakers} (Apr 2026). \emph{The} dedicated azimuth-thruster rule note;
+controlling document for POLAR CLASS / icebreaker azimuth propulsion. See
+Section \ref{sec:nr584}.
+\end{itemize}
+
+\textbf{Materials, survey and certification:}
 \begin{itemize}[leftmargin=*]
 \item \textbf{NR216} --- Rules on Materials and Welding for the classification of marine units
 \item \textbf{NR266} --- Requirements for Survey of Materials and Equipment
 \item \textbf{NR320} --- Certification scheme of materials and equipment for marine units
-\item \textbf{NR527} --- Ships operating in polar waters / icebreakers (Polar Class)
-\item \textbf{NR500} --- Classification and certification of \emph{yachts}
-\item \textbf{NR566} --- Hull arrangement, stability and systems for \emph{ships $<$ 500 GT}
+\item \textbf{NR480} --- Approval of the manufacturing process of metallic materials
+\end{itemize}
+
+\textbf{Ship / unit type (the governing rule set):}
+\begin{itemize}[leftmargin=*]
+\item \textbf{NR467} --- Rules for the classification of \emph{steel ships} (the default)
+\item \textbf{NR445} --- Classification of \emph{offshore units} (MODU); with
+\textbf{NR569} drilling ships and \textbf{NR571} column-stabilised units
 \item \textbf{NR483} --- Classification of \emph{naval ships}
-\item \textbf{NR445} --- Classification of \emph{offshore units} (MODU / drillships)
+\item \textbf{NR500} --- Classification and certification of \emph{yachts}
+\item \textbf{NR396} --- Classification of \emph{high-speed craft}
+\item \textbf{NR566} --- Hull arrangement, stability and systems for \emph{ships $<$ 500 GT};
+with \textbf{NR600} for hull of small cargo / non-cargo ships
+\item \textbf{NR217} --- Classification of \emph{inland navigation vessels}
+\item \textbf{NR645} --- Classification of \emph{FSRU and FSU}
+\item \textbf{NR527} --- Ships operating in \emph{polar waters} and icebreakers
+\item \textbf{NR610} --- Classification of \emph{diving systems}. Per NR467 Pt A,
+Ch.\,1, Sec.\,1, [1.1.3], where the requirements differ \textbf{NR610 prevails}
+for the diving system --- relevant on a DSV whose DP/thruster package interfaces
+with it.
+\end{itemize}
+
+\textbf{Systems and services touching the thruster package:}
+\begin{itemize}[leftmargin=*]
+\item \textbf{NR659} --- Rules on \emph{cyber security} for the classification of marine units
+\item \textbf{NR674} --- \emph{Condition monitoring} systems (supports MON-SHAFT / CBM survey)
+\item \textbf{NR632} --- \emph{Hardware-in-the-loop} testing (DP and thruster control validation)
+\item \textbf{NR614} --- \emph{Underwater radiated noise} (URN)
+\item \textbf{NR598} --- Implementation of \emph{safe return to port} and orderly evacuation
+\item \textbf{NR656} --- \emph{Power generation units} (power plant feeding electric thrusters)
+\item \textbf{NR526} --- \emph{Lifting appliances} onboard ships and offshore units
+\end{itemize}
+
+\textbf{Guidance notes:}
+\begin{itemize}[leftmargin=*]
+\item \textbf{NI663} --- Propeller in composite materials
+\item \textbf{NI543} --- Ice reinforcement selection in different world navigation areas
+\item \textbf{NI565} --- Ice characteristics and ice/structure interactions
+\item \textbf{NI649} --- Lay-up and reactivation of DP vessels
+\item \textbf{NI640} --- Structural assessment of passenger ships and ro-ro ships
 \end{itemize}
 
 \section{International Standards}
@@ -6302,9 +7478,20 @@ NR216 for DP --- read DP references as \textbf{NR467 Part F (DYNAPOS)}.
 
 \subsection{IACS Unified Requirements \& Codes}
 \begin{itemize}[leftmargin=*]
-\item \textbf{IACS UR I1--I3}: Polar Class --- ships and machinery requirements (ice loads on propeller/shaft/gear)
-\item \textbf{IACS UR M}: Machinery requirements (shafting, gears, TVC principles)
-\item \textbf{IACS UR E22 / E26 / E27}: Programmable / cyber-resilient control systems
+\item \textbf{IACS UR I3} --- \emph{Machinery Requirements for Polar Class Ships}.
+Covers loads due to propeller-ice interaction for \textbf{azimuthing and fixed
+thrusters} with geared transmission or an integrated electric motor (geared and
+podded propulsors). Propulsion machinery type factor $k_3 = 1{,}0$ for fixed
+propulsors and $\mathbf{1{,}2}$ for azimuthing propulsors. (UR I1/I2 cover the
+Polar Class descriptions and structural requirements.)
+\item \textbf{IACS UR E26} --- \emph{Cyber Resilience of Ships}, and
+\textbf{UR E27} --- \emph{Cyber Resilience of On-board Systems and Equipment}.
+\textbf{Mandatory for ships contracted for construction on or after 1 July 2024.}
+\item \textbf{IACS UR E22} --- On board use and application of programmable
+electronic systems
+\item \textit{Caution:} \textbf{UR M78} is \emph{Internal Combustion Engines
+Fuelled by Gases or Low-flashpoint Fuels} --- it is \textbf{not} a thruster
+requirement and should not be cited in thruster work.
 \item \textbf{IMO Polar Code}: Ships operating in polar waters
 \item \textbf{Finnish-Swedish Ice Class Rules (TRAFICOM)}: Baltic ice classes basis
 \end{itemize}
@@ -6390,6 +7577,8 @@ NR216 for DP --- read DP references as \textbf{NR467 Part F (DYNAPOS)}.
 \hline
 1.6 & 2026 & Added \textbf{Part A} (Classification and Surveys) to references --- clarifies that notations/ship types are \emph{defined} in Part A Ch.\,1 while Parts D/E/F carry the technical requirements. Companion interactive tool rebuilt as a fully offline local app with a robust clipboard-based Excel/Sheets export (replacing the mobile-unreliable file-download-only export), a spec-capture bar, and a \textbf{contra-rotating propeller (CRP)} option for azimuth/podded units. & Plan Approval Reference (expanded ed.) \\
 \hline
+1.8 & 2026 & \textbf{Rule tables transcribed --- the catalog is now anchored to the actual rule text.} Added Chapter \ref{ch:ruletables} (``The Rule-Mandated Submissions''), reproducing verbatim, with the rule's own \textbf{A}/\textbf{I} categorisation and exact citations: NR467 Sec.\,15 \textbf{Tables 1--5} (there are \emph{five}, not three), Sec.\,15 Article 2 submissions and Table 6 alarms, Sec.\,15 Article 3 testing/certification, Sec.\,14 \textbf{Tab.\,1 item 13} subset and \textbf{Article 4} criteria (2,3\textdegree/s, 0,5\textdegree/s, 45\,s, 30/10\,min, 2\,500\,kW), Pt C Ch.\,2 Sec.\,4 [5.1.1] tests for motors $>$1\,MW, the full \textbf{DYNAPOS} Tab.\,1, the Pt F Ch.\,8 ice split, and all four \textbf{NR584} tables. \textbf{Corrections:} general arrangement and data-on-ratings are \fic{} (information), not \fa{} --- the rule categorises them so; the \textbf{DP FMEA is required for the R/RS symbols only}, not universally; \textbf{ice class for a manoeuvring transverse thruster is Pt F, Ch.\,8, Sec.\,3, [3.5.1] alone} (tunnel grids) --- the previous chapter over-scoped it; \textbf{propulsion propellers in fixed nozzles are not thrusters} (Sec.\,15 [1.2.1]) and belong under Sec.\,8; added [1.3.1] (at least two azimuth thrusters as sole propulsion) and [2.2.6] (tunnel thickness $\geq$ adjacent hull). Added \textbf{NR584} and NR396/NR600/NR610/NR659/NR674/NR632/NR614/NR598/NR656/NR526/NR480 plus guidance notes to the references; corrected the IACS entries (UR I3 with $k_3$; UR E26/E27 mandatory for ships contracted on/after 1 Jul 2024; noted that UR M78 is a fuel rule, not a thruster rule). Introduced an explicit \textbf{two-tier} structure separating rule-mandated submissions from supporting surveyor practice. & Plan Approval Reference (expanded ed.) \\
+\hline
 1.7 & 2026 & \textbf{Verified against live NR467 Jul 2026 edition (Rules Explorer)} --- see \texttt{BV-Rules-Verification.md} for the full evidence log. Corrected: power threshold wording to \textbf{$\geq$110\,kW} (rule says ``equal to 110\,kW or more'', not ``exceeding''); DYNAPOS notation suffixes to \textbf{AM / AT / AM-AT / AM-AT R / AM-AT RS / SAM} (previous ``ATR/SAT'' did not exist); redundant-propulsion notation to \textbf{AVM-DPS} (Part F, Ch.2) --- ``RP'' was not a real notation; corrected several Part D/E/F letter mis-attributions in the Notation Impact Matrix and Ship-Type Expectation Matrix (e.g.\ tug/escort tug is Part E not Part D; passenger/cruise ships are Part D not Part E; ice class is Part F not Part E; large yacht has no Part E involvement, NR500 only). Added \textbf{Diving Support Vessel, Lifting Unit, Fire-Fighting Ship, Oil-Recovery Ship and Standby Rescue Vessel} rows to the ship-type matrix (Part E chapters previously absent from the catalog). Added citations for previously-uncited Part F Ch.14 (Electric Propulsion or Power Supply) and Ch.15 (Elastic Shaft Alignment and Hydroelasticity). & Plan Approval Reference (expanded ed.) \\
 \hline
 \end{tabular}
@@ -6413,7 +7602,7 @@ NR216 for DP --- read DP references as \textbf{NR467 Part F (DYNAPOS)}.
 
 \item \textbf{Overlapping Requirements}: When thrusters serve multiple functions (propulsion + steering, or DP + steering), ALL applicable requirements must be met.
 
-\item \textbf{FMEA Critical}: For DP systems, the FMEA is the cornerstone document. Inadequate FMEA is grounds for rejection.
+\item \textbf{FMEA --- check the notation first}: for DP, the FMEA of Pt F, Ch.\,11, Sec.\,5, Tab.\,1 \#17 is required \textbf{for the R and RS symbols only} (DYNAPOS AM/AT R, AM/AT RS). Where it applies it is the cornerstone document and an inadequate FMEA is grounds for rejection --- but do not demand one for a plain AM / AT / AM-AT installation.
 
 \item \textbf{Steering Gear Compliance}: If thrusters provide steering, full SOLAS steering gear requirements apply.
 
@@ -6450,7 +7639,7 @@ NR216 for DP --- read DP references as \textbf{NR467 Part F (DYNAPOS)}.
 
 \vspace{2cm}
 
-{\large Document Version 1.7}
+{\large Document Version 1.8}
 
 {\large 2026}
 

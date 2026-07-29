@@ -111,13 +111,13 @@ hazardous-area/Ex; passenger → Safe Return to Port; OSV → DP).
 > class notation DYNAPOS in Part F — not "NR216", which is the Materials &
 > Welding rule note. Full evidence trail in `BV-Rules-Verification.md`.
 
-> ⚠️ **The HTML tool and the PDF are not yet in sync.** The tool has been rebuilt
-> against the actual Sec 15 / Sec 14 / Pt F submission tables. `Main.pdf` still
-> carries the earlier engineering-practice lists, which over-state some
-> requirements (notably ice class for manoeuvring thrusters, and the DP FMEA)
-> and mis-categorise the general arrangement and rating data as *for approval*
-> when the rule categorises them *for information*. **Where they differ, the tool
-> follows the rule.** See §18 of `BV-Rules-Verification.md`.
+> ✅ **The tool and the PDF are in sync (v1.8).** Both are anchored to the same
+> transcribed rule tables. The PDF's **Chapter 1 — "The Rule-Mandated
+> Submissions (Authoritative)"** reproduces NR467 Sec 15 Tables 1–5, Sec 14
+> Tab 1 #13 and Article 4, Pt C Ch 2 Sec 4 [5.1.1], the DYNAPOS table, the
+> Pt F Ch 8 ice split and all four NR584 tables, verbatim with the rule's own
+> **A/I** categories. Later chapters are explicitly marked as *supporting
+> surveyor practice*, not rule-mandated deliverables.
 
 ## What the guide covers
 

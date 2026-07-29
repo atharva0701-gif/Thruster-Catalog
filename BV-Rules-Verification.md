@@ -496,7 +496,43 @@ NR584 tables, a "rule verification checks" panel carrying the numeric criteria (
 over-scoping, <110 kW), and ship-type → governing-publication mapping for 24 ship types.
 Tested across 108 type × duty × ice combinations with no errors.
 
-**Outstanding — `Main.tex` / `Main.pdf`.** The PDF catalog still contains the pre-rule-table
-document lists, the GA/spec-sheet FA mis-categorisation, the unconditional DP-FMEA statement,
-the over-scoped ice chapter, and no reference to NR584. Bringing the PDF in line with the
-transcribed tables is a larger edit than the v1.7 corrections and has not been done.
+**Rebuilt — `Main.tex` / `Main.pdf` (v1.8, 150 pp).** Now carries a new
+**Chapter 1, "The Rule-Mandated Submissions (Authoritative)"**, reproducing verbatim with the
+rule's own A/I categorisation and exact citations: Sec 15 Tables 1–5, the Article 2 submissions,
+Table 6 alarms, Article 3 testing/certification, Sec 14 Tab 1 #13 subset and the Article 4
+criteria table, Pt C Ch 2 Sec 4 [5.1.1], the DYNAPOS Tab 1, the Pt F Ch 8 ice split and all four
+NR584 tables. An explicit **two-tier** convention now separates rule-mandated submissions from
+supporting surveyor practice, and each type chapter opens with a box stating its rule basis.
+
+Corrections applied to the body text: GA and data-on-ratings re-categorised to **I**; the
+unconditional DP-FMEA disclaimer replaced with the R/RS gating; the ice chapter rewritten around
+the [3.5.1]-only scope for manoeuvring transverse thrusters; the fixed-nozzle exclusion,
+[1.3.1] two-thruster rule and [2.2.6] tunnel thickness added; references expanded with NR584,
+NR396, NR600, NR610, NR659, NR674, NR632, NR614, NR598, NR656, NR526, NR480 and five guidance
+notes; IACS entries corrected (UR I3 with k3, UR E26/E27 with the 1 Jul 2024 contract date, and
+a caution that UR M78 is a fuel rule, not a thruster rule).
+
+Build verified: three pdflatex passes, exit 0, no unresolved cross-references, **zero overfull
+boxes**.
+
+---
+
+## 19. Re-verification checklist for the next rule edition
+
+When NR467 or NR584 issues a new edition, re-check in this order — these are the items most
+likely to move, and each one is load-bearing for both the PDF and the tool:
+
+1. **Sec 15 [1.1.1]** — the 110 kW threshold wording, and the ICE CLASS / POLAR CLASS routing
+   sentences (this is where the manoeuvring-vs-propulsion ice split lives).
+2. **Sec 15 Tables 1–5** — row count, wording and especially the **A/I** column.
+3. **Sec 15 [1.2.1]** — the fixed-nozzle exclusion.
+4. **Sec 14 Tab 1 item 13** — the range of items it pulls in ("documents 2 to 6 and 8 to 12").
+5. **Sec 14 Article 4** — the numeric criteria (2,3°/s, 0,5°/s, 7 kn, 2 500 kW, 45 s, 30/10 min).
+6. **Pt F Ch 11 Sec 5 Tab 1 item 17** — whether the FMEA is still annotated "For symbols R and
+   RS only".
+7. **Pt F Ch 8 Sec 3 [3.5.1]** — whether the transverse-thruster ice requirement is still only
+   the tunnel grids.
+8. **Pt C Ch 2 Sec 4 [5.1.1]** — the 1 MW threshold and the test list.
+9. **NR584 Tab 2** — the 55-row count and the A/I column.
+10. **Publication list** — new or withdrawn rule notes relevant to thrusters (the Rule Notes tab
+    on Rules Explorer; NR584 was found this way).
