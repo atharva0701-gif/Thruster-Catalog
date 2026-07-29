@@ -32,6 +32,10 @@ header.top h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.2px}
 header.top .sub{font-size:12px;opacity:.85;font-weight:400}
 .themebtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;
   border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px}
+.vbadge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+  color:#fff;border-radius:5px;padding:1px 7px;font-size:11.5px;font-weight:700;letter-spacing:.3px;
+  margin-left:8px;vertical-align:2px;white-space:nowrap}
+.printhead{display:none}
 .wrap{display:grid;grid-template-columns:350px 1fr;gap:18px;padding:18px;max-width:1360px;margin:0 auto}
 @media(max-width:880px){.wrap{grid-template-columns:1fr}}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
@@ -101,6 +105,9 @@ select,input[type=text]{width:100%;padding:8px 10px;border:1px solid var(--line)
 footer{max-width:1360px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);font-size:12px}
 @media print{
   header.top,.panel.controls,.themebtn,.btnrow,.search{display:none!important}
+  .printhead{display:block!important;border-bottom:2px solid #003366;margin-bottom:10px;padding-bottom:6px}
+  .printhead .pt{font-size:14pt;font-weight:700;color:#003366}
+  .printhead .pv{font-size:8.5pt;color:#444;margin-top:2px}
   .wrap{display:block;padding:0;max-width:none}
   .group{break-inside:avoid;border-color:#999}
   .group > .gh{background:#003366!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -111,7 +118,7 @@ footer{max-width:1360px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
 <body>
 <header class="top">
   <div>
-    <h1>Thruster Plan-Approval Quick Reference</h1>
+    <h1>Thruster Plan-Approval Quick Reference<span class="vbadge" id="vbadge"></span></h1>
     <div class="sub">Surveyor working aid &middot; anchored to <b>NR467 Jul&nbsp;2026</b> Pt&nbsp;C Ch&nbsp;1 Sec&nbsp;15 (Thrusters), Sec&nbsp;14 (Steering Gear), Pt&nbsp;F &middot; NR584 &middot; verified on BV Rules Explorer</div>
   </div>
   <button class="themebtn" id="theme">Toggle theme</button>
@@ -238,6 +245,10 @@ footer{max-width:1360px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
   </aside>
 
   <main>
+    <div class="printhead">
+      <div class="pt">Thruster Plan-Approval Quick Reference</div>
+      <div class="pv" id="printver"></div>
+    </div>
     <div class="idbar">
       <input type="text" id="id_vessel" placeholder="Vessel / Yard No">
       <input type="text" id="id_imo" placeholder="IMO number">
@@ -268,9 +279,17 @@ footer{max-width:1360px;margin:0 auto;padding:8px 18px 30px;color:var(--muted);f
     <div id="results"></div>
   </main>
 </div>
-<footer>Runs offline. Ticks auto-save per configuration in this browser. Share by sending this single file, or export to Excel/CSV.</footer>
+<footer id="foot"></footer>
 
 <script>
+/* ============================================================================
+   TOOL IDENTITY — bump TOOL_VERSION and TOOL_BUILT whenever the rule data or
+   the logic changes, so a colleague holding an old copy can tell at a glance.
+   ========================================================================== */
+const TOOL_VERSION = '2.0';
+const TOOL_BUILT   = '2026-07-29';
+const RULE_BASIS   = 'NR467 Jul 2026 · NR584 Apr 2026';
+
 /* ============================================================================
    REFERENCE DATA — transcribed from BV Rules Explorer, NR467 edition Jul 2026
    and NR584 edition Apr 2026.  A = approval, I = information (rule's own
@@ -958,7 +977,9 @@ function metaRows(){
     ['Vessel / Yard No',g('id_vessel')],['IMO number',g('id_imo')],['Class notation',g('id_notation')],['Reviewer / date',g('id_reviewer')],
     ['Maker / model',g('sp_make')],['Rated power (kW)',g('sp_power')],['Rated thrust (kN)',g('sp_thrust')],['Prop. speed (rpm)',g('sp_rpm')],['Supply (V/bar)',g('sp_supply')],
     ['Configuration',configText()],
-    ['Rule basis','NR467 Jul 2026 (BV Rules Explorer); NR584 Apr 2026'],
+    ['Rule basis',RULE_BASIS+' (BV Rules Explorer)'],
+    ['Tool version','v'+TOOL_VERSION+' (built '+TOOL_BUILT+')'],
+    ['Exported',new Date().toISOString().slice(0,16).replace('T',' ')],
   ];
 }
 const HEAD=['Group','Document / drawing or check','A / I','Rule reference','Particulars','Status'];
@@ -972,7 +993,10 @@ function buildTSV(){
     .concat(currentRows().map(r=>r.map(tsvCell).join('\t'))).join('\n');
 }
 function buildText(){
-  const {groups, checks}=collect(); const L=['THRUSTER PLAN-APPROVAL CHECKLIST',configText(),'Rule basis: NR467 Jul 2026; NR584 Apr 2026',''];
+  const {groups, checks}=collect();
+  const L=['THRUSTER PLAN-APPROVAL CHECKLIST',configText(),
+    'Rule basis: '+RULE_BASIS,
+    'Tool v'+TOOL_VERSION+' (built '+TOOL_BUILT+')',''];
   groups.forEach(g=>{ L.push('== '+g.title+' =='); L.push('   source: '+g.src);
     g.items.forEach(i=>{ L.push('  ['+(TICKS[g.title+'::'+i.name]?'x':' ')+'] ('+i.cat+') '+i.name+'  — '+i.ref); }); L.push(''); });
   if(checks.length){ L.push('== RULE VERIFICATION CHECKS =='); checks.forEach(k=>{ L.push('  - '+k[0]+'  — '+k[2]); }); }
@@ -987,12 +1011,25 @@ async function copyOut(text){
     if(ok){ flash('Copied'); return; } }catch(e){}
   showFallback(text);
 }
-let flashTimer=null;
-function flash(msg){ const f=document.querySelector('footer'); const old=f.textContent;
-  f.textContent=msg+' — '+old; clearTimeout(flashTimer); flashTimer=setTimeout(()=>{f.textContent=old;},2200); }
+let flashTimer=null, footHTML=null;
+function flash(msg){ const f=document.getElementById('foot');
+  if(footHTML===null) footHTML=f.innerHTML;
+  f.innerHTML='<b style="color:var(--ok)">'+esc(msg)+'</b><br>'+footHTML;
+  clearTimeout(flashTimer); flashTimer=setTimeout(()=>{ f.innerHTML=footHTML; },2200); }
 
 /* ============================== INIT ============================== */
 (function init(){
+  /* --- stamp version everywhere so scattered copies are identifiable --- */
+  document.getElementById('vbadge').textContent='v'+TOOL_VERSION;
+  document.getElementById('printver').textContent=
+    'Tool v'+TOOL_VERSION+'  ·  built '+TOOL_BUILT+'  ·  rule basis '+RULE_BASIS
+    +'  ·  printed '+new Date().toISOString().slice(0,10);
+  document.getElementById('foot').innerHTML=
+    '<b>v'+TOOL_VERSION+'</b> &middot; built '+TOOL_BUILT+' &middot; rule basis '+RULE_BASIS
+    +'<br>Runs offline &mdash; no internet, install or account needed. Ticks auto-save per configuration in this browser only '
+    +'(they are not shared between people). Share by sending this single file, or export to Excel/CSV.';
+  document.title='Thruster Plan-Approval Quick Reference v'+TOOL_VERSION;
+
   const ts=document.getElementById('ttype');
   Object.keys(TYPES).forEach(k=>{ const o=document.createElement('option'); o.value=k; o.textContent=TYPES[k].label; ts.appendChild(o); });
   const ss=document.getElementById('ship');
